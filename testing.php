@@ -1,6 +1,13 @@
 <?php
 	function urlRequest($url)
 	{
+		
+		$cacheKey = md5($url);
+		
+		if(file_exists('cache/'.$cacheKey)){
+			return file_get_contents('cache/'.$cacheKey);
+		}
+		
 		$userAgent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
 	 	$target_url = $url;
 		$ch = curl_init();
@@ -17,9 +24,36 @@
 			echo "<br />cURL error:" . curl_error($ch);
 			exit;
 		}
+		file_put_contents('cache/'.$cacheKey,$html);
 		return $html;
 	}
 	
+	
+	require_once 'phpQuery-onefile.php';
+	
+	$target_url = "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=0&dispatch=products.search&q=samsung+5600";
+	$html = urlRequest($target_url);
+	
+	
+	phpQuery::newDocumentHTML($html);
+	foreach(pq('div.box_GridProduct') as $div){
+		
+		$image = pq($div)->find('a.box_metacategory_image')->children('img')->attr('src2');
+		$a_link = pq($div)->find('.box_metacategory_name');
+		$name = $a_link->html();
+		$url = $a_link->attr('href');
+		$org_price = pq($div)->find('.box_metacategory_price')->html();
+		$disc_price = pq($div)->find('.box_metacategory_priceoffer')->html();
+		echo $name;
+		echo $image;
+		echo $org_price;
+		echo $disc_price;
+		echo $url;
+		echo '<br>';
+	}
+	
+	die;
+	//below abhishank code
 	$target_url = "http://www.dealsandyou.com/Noida-East-Delhi-Deals";
 	$html = urlRequest($target_url);
 	$dom = new DOMDocument();
