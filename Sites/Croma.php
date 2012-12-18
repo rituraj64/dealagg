@@ -5,6 +5,9 @@ class Croma extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.cromaretail.com/';
 	}
+	public function getLogo(){
+		return 'http://www.cromaretail.com/images/logo.jpg';
+	}
 	public function getSearchURL($query,$category = false){
 		return "http://www.cromaretail.com/productsearch.aspx?txtSearch=$query&x=0&y=0";
 	}

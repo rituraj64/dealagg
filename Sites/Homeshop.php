@@ -5,6 +5,9 @@ class Homeshop extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.homeshop18.com/';
 	}
+	public function getLogo(){
+		return "http://www.homeshop18.com/homeshop18/media/images/homeshop18_2011/header/hs18-logo.png";
+	}
 	public function getSearchURL($query,$category = false){
 		return "http://www.homeshop18.com/$query/search:$query";
 	}

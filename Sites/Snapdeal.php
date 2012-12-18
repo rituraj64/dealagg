@@ -8,6 +8,9 @@ class Snapdeal extends Parsing{
 	public function getSearchURL($query,$category = false){
 		return "http://www.snapdeal.com/search?keyword=".$query."&catId=&categoryId=0&suggested=false&vertical=&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 	}
+	public function getLogo(){
+		return "http://i4.sdlcdn.com/img/snapdeal/sprite/snapdeal_logo_tagline.png";
+	}
 	public function getData($html){
 	
 		$data = array();

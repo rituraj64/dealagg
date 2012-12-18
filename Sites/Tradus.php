@@ -8,6 +8,9 @@ class Tradus extends Parsing{
 	public function getSearchURL($query,$category = false){
 		return "http://www.tradus.com/search?query=".$query;
 	}
+	public function getLogo(){
+		return "http://www.tradus.com/sites/all/themes/basic/images/ci_images/tradus_logo/tradus_new_logo.jpg";
+	}
 	public function getData($html){
 	
 		$data = array();

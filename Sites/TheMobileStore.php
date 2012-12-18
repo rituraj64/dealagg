@@ -8,6 +8,9 @@ class TheMobileStore extends Parsing{
 	public function getSearchURL($query,$category = false){
 		return "http://www.themobilestore.in/home/search?q=".$query;
 	}
+	public function getLogo(){
+		return "http://a02-tata.buildabazaar.com/img/lookandfeel/31103/2e19ed541909556e27f03_999x350x.png.999xx.png";
+	}
 	public function getData($html){
 		$data = array();
 		phpQuery::newDocumentHTML($html);

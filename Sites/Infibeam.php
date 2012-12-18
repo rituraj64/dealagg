@@ -8,6 +8,9 @@ class Infibeam extends Parsing{
 	public function getSearchURL($query,$category = false){
 		return "http://www.infibeam.com/search?q=".$query;
 	}
+	public function getLogo(){
+		return "http://www.infibeam.com/assets/skins/common/images/logo.png";
+	}
 	public function getData($html){
 
 		$data = array();

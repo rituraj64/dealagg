@@ -5,6 +5,9 @@ class Flipkart extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.flipkart.com';
 	}
+	public function getLogo(){
+		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/img/flipkart.png';
+	}
 	public function getSearchURL($query,$category = false){
 		return "http://www.flipkart.com/search/a/all?query=".$query."&vertical=all&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=RxkVRuKj3BrMxTJVu9LopA--&_l=pMHn9vNCOBi05LKC_PwHFQ--&ref=fab6e824-24af-4177-b599-75ec8406cf5f&selmitem=All+Categories";
 		//return "http://www.flipkart.com/search/a/all?query=".$query."&vertical=all&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&selmitem=All+Categories";

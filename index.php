@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <!-- Le styles -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://cdn.webrupee.com/font">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -68,15 +68,65 @@
 		<script type="text/javascript">
 			function findPrice(){
 				$('#loading').show();
+				$('#results').hide();
+				$('#results').html('');
 				var query = $('#q').val();
 				var url = 'find.php?q='+query;
 				$.getJSON(url,function(data){
-					$('#loading').show();	
+					$('#loading').hide();
+					var size = data.data.length;
+					if(size > 0){
+						for(var i=0;i<data.data.length;i++){
+							var logo = data.data[i].logo;
+							var name = data.data[i].name;
+							var price = data.data[i].disc_price;
+							var image = data.data[i].image;
+							var url = data.data[i].url;
+							var website = data.data[i].website;
+
+							if($('#results').find('#'+website).length > 0){
+								var html = '<div class="span2 table-bordered" style="border-left: 1px solid #DDD;padding: 10px">';
+									html += '<div>';
+										html += '<a href="'+url+'" target="_blank"><img width="50px" height="50px" class="img-rounded" src="'+image+'"/></a>';
+										html += '<div style="height:40px;overflow:hidden"><a href="'+url+'" target="_blank" class="name" rel="tooltip" data-placement="top" data-original-title="'+name+'" style="height:40px;overflow:hidden">'+name+'</a></div>';
+										html += '<div><span class="WebRupee">Rs.</span>'+price+'</div>';
+										html += '<div>levenshtein'+data.data[i].levenshtein+'</div>';
+										html += '<div>levenshtein_score'+data.data[i].levenshtein_score+'</div>';
+										html += '<div>similar_text'+data.data[i].similar_text+'</div>';
+										html += '<div>similar_text_per'+data.data[i].similar_text_per+'</div>';
+									html += '</div>';
+								html += '</div>';
+								$('#results').find('#'+website).append(html);
+							}else{
+								var html = '<div class="row-fluid" id="'+website+'">';
+								html += '<div class="span2">';
+									html += '<img src="'+logo+'"/>';
+								html += '</div>';
+								html += '<div class="span2 table-bordered" style="border-left: 1px solid #DDD;padding: 10px">';
+									html += '<div>';
+										html += '<a href="'+url+'" target="_blank"><img width="50px" height="50px" class="img-rounded" src="'+image+'"/></a>';
+										html += '<div style="height:40px;overflow:hidden"><a href="'+url+'" target="_blank" class="name" rel="tooltip" data-placement="top" data-original-title="'+name+'">'+name+'</a></div>';
+										html += '<div><span class="WebRupee">Rs.</span>'+price+'</div>';
+										html += '<div>levenshtein'+data.data[i].levenshtein+'</div>';
+										html += '<div>levenshtein_score'+data.data[i].levenshtein_score+'</div>';
+										html += '<div>similar_text'+data.data[i].similar_text+'</div>';
+										html += '<div>similar_text_per'+data.data[i].similar_text_per+'</div>';
+									html += '</div>';
+								html += '</div>';
+								html += '</div>';
+								$('#results').append(html);
+							}	
+						}
+					}
+					$('.name').tooltip()
+					$('#results').show();
 				});
 			}
 		</script>
       </div>
-
+      <div id='results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;display: none">
+		      
+	  </div>
       <hr>
 
       <!-- Example row of columns -->

@@ -8,6 +8,9 @@ class Landmark extends Parsing{
 	public function getSearchURL($query,$category = false){
 		return "http://www.landmarkonthenet.com/search/?q=".$query;
 	}
+	public function getLogo(){
+		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/img/landmark.png';
+	}
 	public function getData($html){
 		$data = array();
 		phpQuery::newDocumentHTML($html);

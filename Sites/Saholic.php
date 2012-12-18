@@ -8,6 +8,9 @@ class Saholic extends Parsing{
 	public function getSearchURL($query,$category = false){
 		return "http://www.saholic.com/search?q=".$query."&category=10000";
 	}
+	public function getLogo(){
+		return "http://www.saholic.com/images/saholic-logo-5648.jpg";
+	}
 	public function getData($html){
 		$data = array();
 		phpQuery::newDocumentHTML($html);

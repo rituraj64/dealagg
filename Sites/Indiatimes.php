@@ -5,6 +5,9 @@ class Indiatimes extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://shopping.indiatimes.com/';
 	}
+	public function getLogo(){
+		return "http://shopping.indiatimes.com/images/images/shopping-indiatimes.png";
+	}
 	public function getSearchURL($query,$category = false){
 		return "http://shopping.indiatimes.com/control/mtkeywordsearch?SEARCH_STRING=".$query;
 	}

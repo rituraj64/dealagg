@@ -1,24 +1,26 @@
 <?php
 class Sulekha extends Parsing{
 	public $_code = 'Sulekha';
-	
+
 	public function getWebsiteUrl(){
 		return 'http://shopping.indiatimes.com/';
 	}
+	public function getLogo(){
+		return $_SERVER["SERVER_NAME"].'scrapping/img/sulekha.png';
+	}
 	public function getSearchURL($query,$category = false){
-		
 		$query2 = urldecode($query);
 		$query2 = preg_replace("![^a-z0-9]+!i", "-", $query2);
 		return "http://deals.sulekha.com/".$query2."_search?q=".$query;
 	}
 	public function getData($html){
-	
+
 		//this redirects to category page many times so write code for that as well.
-		
+
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		echo htmlentities(pq('div.dealBoxContainer')->html());die;
-		echo $html;die;		
+		echo $html;die;
 		foreach(pq('div.masonry-brick') as $div){
 			echo 1;die;
 			if(sizeof(pq($div)->find('.dealimgst'))){

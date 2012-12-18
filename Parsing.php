@@ -15,7 +15,7 @@ class Parsing{
 	public function getPriceData($query,$category = false,$delay = true){
 		$url = $this->getSearchURL($query,$category);
 		$website = $this->getCode();
-		if($this->hasCachedData($website, $query, $category)){
+		if($this->hasCachedData($website, $query, $category,$url)){
 			$html = $this->getCachedData($website, $query, $url);
 			return $this->getData($html);
 		}else{
@@ -38,7 +38,7 @@ class Parsing{
 		}
 		return $content;
 	}
-	public function hasCachedData($code,$query,$category){
+	public function hasCachedData($website,$query,$category,$url){
 		$cacheKey = $this->getCacheKey($website, $query, $url);
 		$filename = 'cache/'.$cacheKey;
 		if(file_exists($filename)){
