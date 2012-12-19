@@ -1,0 +1,1666 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script type="text/javascript">
+function readCookie(name) {
+var nameEQ = name + "=";
+var ca = document.cookie.split(';');
+for(var i=0;i < ca.length;i++) {
+var c = ca[i];
+while (c.charAt(0)==' ') c = c.substring(1,c.length);
+if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+}
+return null;
+}
+</script>
+<title>Buy products Online - Infibeam.com</title>
+<meta name="description" content="Buy products Online - Infibeam.com" />
+<meta name="keywords" content="Buy products Online" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="revisit-after" content="7 Days" />
+<meta name="ROBOTS" content="all"/>
+<meta name="msvalidate.01" content="C48C958F23B6431D04C172C3DEED2626" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="stylesheet" href="http://assets.infibeam.com/assets/yui-css/reset-fonts-grids.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="http://assets.infibeam.com/assets/skins/newcommon/style/globle.css?v=29" type="text/css">
+<link rel="stylesheet" href="http://assets.infibeam.com/assets/skins/newcommon/style/infibeam.css?v=3" type="text/css">
+<script src="http://assets.infibeam.com/includeResource.action?v=22&amp;bundle=jquerycore" type="text/javascript" charset="utf-8">
+</script>
+<script src="http://assets.infibeam.com/includeResource.action?v=0&amp;f=/lib/jquery/jquery.linksCombo.js&amp;f=/lib/jquery/jquery.history.js&amp;f=/lib/jquery/interface/iutil.js&amp;f=/lib/jquery/interface/idrag.js&amp;f=/lib/jquery/interface/idrop.js&amp;f=/lib/jquery/interface/islider.js&amp;f=/lib/jquery/jquery.sliderx.js&amp;f=/lib/jquery/jquery.color.js&amp;f=/lib/jquery/tooltip.js&amp;f=/lib/jquery/jquery.url.js&amp;" type="text/javascript" charset="utf-8">
+</script>
+<script src="/scripts/search.js?v=13" type="text/javascript" charset="utf-8">
+</script>
+<script src= type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="http://assets.infibeam.com/assets/skins/newcommon/style/nav.css?v=24" type="text/css">
+<link rel="stylesheet" href="http://assets.infibeam.com/assets/skins/newcommon/style/jcarousel.css" type="text/css">
+<link rel="stylesheet" href="http://assets.infibeam.com/static/festivals-of-india/newstyle/globle.css?v=19" type="text/css">
+<script>
+$(document).ready(function(){
+trackElements("Search", "All", "samsung galaxy s","","");
+});
+</script>
+<script>
+var IB ={};
+$(document).ready(function(){
+try{$(document).pngFix();}catch(err){}
+try{
+var airtelCatalogs= new Array();
+var airtelCatalogPage=new Array();
+airtelCatalogs[0]='P-E-M-Apple-iPhone-5-16GB';
+airtelCatalogs[1]='P-E-M-Apple-iPhone-5-32GB';
+airtelCatalogs[2]='P-E-M-Apple-iPhone-5-64GB';
+airtelCatalogPage[0]='http://shop.airtel.com/mobile/apple-iphone-5-16gb/p-12032-23459752049-cat--0137341.html';
+airtelCatalogPage[1]='http://shop.airtel.com/default/apple-iphone-5-32gb/p-12032-88879941147-cat--0137341.html';
+airtelCatalogPage[2]='http://shop.airtel.com/default/apple-iphone-5-64gb/p-12032-81650756687-cat--0137341.html';
+catalog_id=$("input[id=catalogId]").attr("value");
+var buy_from_airtel=false;
+var pageLink='';
+for(var i=0 ; i<airtelCatalogs.length;i++){
+if(catalog_id==airtelCatalogs[i]){
+buy_from_airtel=true;
+pageLink=airtelCatalogPage[i];
+}
+}
+if(buy_from_airtel==true){
+$("#ib_actions").hide();
+$("#ib_actions").parent().append("<div style=\"margin-top: 20px; a\" align=\"center\" ><a target=\"_blank\" href="+pageLink+"><img src=\"/assets/skins/newcommon/images/buy_on_airtel.png\" alt=\"Buy From Airtel\" /> </a></div>");
+}
+}
+catch(err){}
+});
+</script>
+<!-- Urchin -->
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-2515569-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+<!-- Google Event Tracking -->
+function trackElements(category, action, label, values, nonInteractionFlag){
+if(typeof(values)=="number"){
+_gaq.push(['_trackEvent', category, action, label, values]);
+}else{
+_gaq.push(['_trackEvent', category, action, label]);
+}
+}
+</script>
+<script type="text/javascript" src="/scripts/MarketplaceUtils.js"></script>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+<div id="custom-doc" class="yui-t4">
+<script>
+var isHomePage="false";
+if(isHomePage=="false"){
+$('.mainDiv').hide();
+}
+</script>
+<script src="/scripts/infibeamHeader.js"></script>
+<div id="hd">
+<!-- Header -->
+<div align="right" class="logo">
+<a id="sitelogo" href="/" title="Infibeam.com" rel="nofollow">
+<img src="/assets/skins/common/images/logo.png" border="0" alt="Infibeam.com" style="margin-left:10px; margin-top:5px; float:left;">
+</a>
+</div>
+<div align="right" class="links" style="position:absolute;right:0px;top:0px; z-index:9999;">
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/homeicon.gif" alt="Home" border="0" align="absmiddle" style="margin-top:-6px;"/>&nbsp;<a href="/" title="Home">Home</a>
+<span id="login">
+| <a id="loginlink" href="/Login.action" title="Login">Login</a>
+<a href="/Login.action#facebook" title="Facebook"><img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/facebook.gif" alt="Facebook" border="0" align="absmiddle"/></a>
+<a href="/Login.action#twitter" title="Twitter"><img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/twitter.gif" alt="Twitter" border="0" align="absmiddle"/></a>
+</span>
+<script type="text/javascript">
+var cust_name = readCookie("cust_name");
+if(cust_name=="Guest"){
+$('#login').html('| Hello ' + cust_name.replace(/"/g,'')+' | <a id="loginlink" href="/Login.action" title="Login">Login </a>');
+}else if(cust_name){
+$('#login').html('| Hello ' + cust_name.replace(/"/g,'') + ' | <a href="/jsp/logout.jsp">Logout </a>');
+}
+</script>
+|
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/cart.gif" border="0" align="absmiddle"> <a href="/ShowCart.action" title="Shopping Cart">Shopping Cart</a> |
+<a href="/ViewPurchases.action" title="Your Account">My Account</a> |
+<span style="position:relative;" >
+<span style="position:relative;">
+<a href="/wishlist.html" title="WishList" class = "myWishList" onmouseOver="onmouseOver();" >My WishList</a> |
+<ul class="wishListDiv" style="display:none;">
+<li><a href="/wishlist.html">WishList</a></li>
+<li><a href="/book-shelf.html">Book Shelf</a></li>
+<li><a href="/gift-registry.html">Gift Registry</a></li>
+<li><a href="/wedding-registry.html">Wedding Registry</a></li>
+<li><a href="/baby-registry.html">Baby Registry</a></li>
+</ul>
+</span>
+</span>
+<a href="/ViewWallet.action" title="Wallet">Wallet</a> |
+<a href="/static/help/help.html" title="Help">Help</a> |
+<a rel="nofollow" href="/TrackCustomerPurchase_input.action">Track Order</a>
+</div>
+<style>
+.wishListDiv{
+display:block;
+z-index:px;
+position:absolute;
+width:114px;
+font-size:12px;
+margin-top:25px ;
+top:-13px;
+background-color:white;
+color:Black;
+left: -10px;
+text-align:left;
+border: 1px solid #ddd;
+-webkit-box-shadow: 1px 1px 3px #ccc;
+-moz-box-shadow: 1px 1px 3px #ccc;
+box-shadow: 1px 1px 3px #ccc;
+}
+ul.wishListDiv li a{padding:3px 10px; border-bottom:1px solid #ededed; display:block; text-decoration:none;}
+ul.wishListDiv li a:hover{color:#fff;background-color:#E6682E;text-decoration:none;}
+</style>
+<script>
+$(document).ready(function(){
+$('.sublinks li').hover(function(){
+$(this).addClass('selected');
+},function(){
+$(this).removeClass('selected');
+$('#selectedBtn').addClass('selected');
+});
+$('#srchForm').submit(function(){
+if($('#suggest').val()=="Looking for something?"){
+$('#suggest').val("");
+$('#suggest').focus();
+return false;
+}
+return true;
+});
+});
+function onmouseOver(){
+$('.wishListDiv').show();
+setTimeout("onMouseOut()",2000);
+}
+function onMouseOut(){
+$('.wishListDiv').hide();
+}
+</script>
+<div class="sublinks">
+<a href="/deal-of-the-day.html" title="Today's Deal"><img src="http://assets.infibeam.com/assets/skins/newcommon/images/magicbox.jpg" border="0" alt="Magic Box" style="float:right;"></a>
+<ul>
+<li style="margin-left:3px;"><a href="/Books/">Books</a></li>
+<li ><a href="/Mobiles/">Mobiles</a></li>
+<li ><a href="/Gifts/">Gifts</a></li>
+<li ><a href="/Computers_Accessories/">Computers</a></li>
+<li ><a href="/Cameras/">Cameras</a></li>
+<li ><a href="/Watches/">Watches</a></li>
+<li ><a href="/Apparel/">Apparel</a></li>
+<li ><a href="/hot-deals.html">Hot Deals</a></li>
+</ul>
+</div>
+<div style="clear:both;">
+<div id="header">
+<ul>
+<li id="mainmenu">
+<div class="mainli" style="background:transparent;">
+<a href="/static/all-stores.html" style="width:187px; height:32px; display:block; font:bold 13px Arial,sans-serif; color:#fff; background:url(/assets/skins/newcommon/images/allstorenew.jpg) no-repeat left -32px;"><span style="padding-left:8px; padding-top:7px; display:block; font:bold 13px Arial,sans-serif; color:#fff;">All Stores</span></a>
+</div>
+<div class="mainDiv" id="menucontents" style="display:none">
+<ul class="menu">
+<li class="menuLink"><div class="store">
+<a href="/Books/">Books & Magazines</a>
+<div class="subMenu" style="display: none; left: 160px; z-index: 1; width:510px;">
+<ul>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Books/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Books</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Books/new-releases-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">New Releases</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Books/best-selling-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Best Sellers</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Books/recommended-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Recommended</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Books/upcoming-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Upcoming</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Textbooks/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Textbooks</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/eBooks/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>eBooks</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/eBooks/best-selling-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Best Sellers</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/eBooks/recommended-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Recommended</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/eBooks/search?q=engineering" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Engineering</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/eBooks/categories/Computers" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Computers</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/eBooks/categories/Fiction" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Fiction</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/eBooks/tata-mcgraw-hill-publisher/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Tata McGraw Hill</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Magazines/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Magazines</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Magazines/search?category=Automobile" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Automobile</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Magazines/best-magazine-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Best Selling</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Magazines/search?category=Business" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Business</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Magazines/search?category=Lifestyle" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Lifestyle</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Magazines/search?category=Fashion" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Fashion</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Magazines/recommended-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Recommended</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/eMagazines/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>eMagazines</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/eMagazines/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">eMagazines</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/indigi" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Infibeam Digital Platform</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Pi" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Infibeam Pi</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Pi/Pi.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Pi</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Pi/Pi2.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Pi2</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Pi/Pi.html#pi-accessories" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Pi Accessories</a></span>
+</li>
+</ul>
+</div>
+</div> </li>
+<li class="menuLink"><div class="store">
+<a href="/Mobiles/">Mobiles & Accessories</a>
+<div class="subMenu" style="display: none; left: 160px; z-index: 1; width:510px;">
+<ul>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Mobiles/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Mobiles</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobiles/new-releases-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">New Releases</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobiles/best-selling-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Best Selling</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobiles/recommended-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Recommended</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobiles/search?bodyType=SmartPhone" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Smart Phones</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobiles/upcoming-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Upcoming</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Portable_Electronics/search?bodyType=Tablet" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Tablet Pcs</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=Tablet&make=Samsung" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Samsung</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=Tablet&make=Micromax" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Micromax</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href=" /Portable_Electronics/search?bodyType=Tablet&make=Karbonn" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Karbonn</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=Tablet&make=Milagrow" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Milagrow</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=Tablet&make=Swipe" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Swipe</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=Tablet&make=BSNL Penta" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">BSNL Penta</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=Tablet&make=Devante" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Devante</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Mobile_Accessories/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Mobile Accessories</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobile_Accessories/search?category=Batteries" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Batteries</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobile_Accessories/search?category=Bluetooth%20Devices" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Bluetooth Devices</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobile_Accessories/search?category=Chargers" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Chargers</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobile_Accessories/search?category=Handsfree" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Handsfree</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobile_Accessories/search?category=Memory Cards" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Memory Cards</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Mobiles/search" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Mobile Brands</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/mobiles/make/nokia.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Nokia</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/mobiles/make/samsung.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Samsung</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/mobiles/make/micromax.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Micromax</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/mobiles/make/lg.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">LG</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/mobiles/make/blackberry.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Blackberry</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Mobiles/search" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Popular Searches</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobiles/search?features=3G" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">3G</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobiles/search?features=Dual Sim" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Dual SIM</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobiles/search?features=Android OS" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Android</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mobiles/search?features=QWERTY" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">QWERTY</a></span>
+</li>
+</ul>
+</div>
+</div> </li>
+<li class="menuLink"><div class="store">
+<a href="/Home-Lifestyle/">Home & LifeStyle</a>
+<div class="subMenu" style="display: none; left: 160px; z-index: 1; width:510px;">
+<ul>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Apparel/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Apparel</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Apparel/search?category=Men" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Mens Wear</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Apparel/search?category=Women" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Womens Wear</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Apparel/search?category=Kids" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Kids Wear</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Apparel/search?category=Unisex" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Unisex Clothing</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Apparel/search?bodyType=Nightwear" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Nightwear</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Apparel/search?bodyType=Lingerie" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Lingerie</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Apparel_Accessories/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Fashion Accessories</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Eyewear/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Eyewear</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Bags/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Bags</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Apparel_Accessories/search?productType=Belts" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Belts</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Apparel_Accessories/search?productType=Wallets" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Wallets</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Apparel_Accessories/search?category=Men" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Men</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Apparel_Accessories/search?category=Women" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Women</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Watches/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Watches</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Watches/search?category=Gents" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Men</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Watches/search?category=Ladies" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Women</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Watches/search?category=Kids" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Kids</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Watches/search?category=Pair Watches" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Pair</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Watches/search?category=Unisex" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Unisex</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Jewellery/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Jewellery</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Jewellery/search?bodyType=Necklaces" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Necklaces</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Jewellery/search?bodyType=Mangalsutra" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Mangalsutra</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Jewellery/search?bodyType=Rings" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Rings</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Jewellery/search?bodyType=Bracelets" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Bracelets</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Jewellery/search?element=Gold" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Gold</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Jewellery/search?element=Silver" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Silver</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Footwear/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Footwear</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Footwear/search?category=Men" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Men</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Footwear/search?category=Women" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Women</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Footwear/search?category=Unisex" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Unisex</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Footwear/search?style=Shoes" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Shoes</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Footwear/search?style=Sandals" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Sandals</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Footwear/search?style=Slippers" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Slippers</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Beauty/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Personal Care & Beauty</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Beauty/search?bodyType=Deodorants&bodyType=Perfumes" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Perfumes & Deodorants</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href=" /Beauty/search?bodyType=Skin%20Care" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Skin Care</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Beauty/search?bodyType=Body Care" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Body Care</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Beauty/search?bodyType=Hair%20Care" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Hair Care</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Beauty/search?bodyType=Cosmetic%20Hampers" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Cosmetics</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Beauty/search?bodyType=Hair%20Removal" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Hair Removal</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Kitchenware/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Kitchen</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Kitchenware/search?category=Storage and Containers" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Storage & Containers</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Kitchenware/search?category=Cookware" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Cookware</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Kitchenware/search?category=Dinnerware" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Dinnerware</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Kitchenware/search?category=Mugs" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Mugs</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Home_Furnishing/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Home Decor</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Home_Furnishing/search?category=Bedding" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Bedding</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Home_Furnishing/search?category=Showpieces" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Showpieces</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Home_Furnishing/search?category=Curtains" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Curtains</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Home_Furnishing/search?category=Furniture" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Furniture</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Home_Furnishing/search?category=Paintings" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Paintings</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Home_Furnishing/search?category=Wall%20Decor" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Wall Decor</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Toys_Games/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Toys & Games</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Toys_Games/search?category=Water Toys" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Water Toys</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Toys_Games/search?category=Board Games" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Board Games</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Toys_Games/search?category=Dolls" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Barbie Dolls</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Toys_Games/search?category=Puzzles" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Puzzles</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Toys_Games/search?category=Educational" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Educational</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Toys_Games/search?category=Soft Toys" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Soft Toys</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Home-Lifestyle/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Other Stores</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Baby/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Baby Products</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Religion_Spirituality/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Religion & Spirituality</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Grocery/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Grocery</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Office_Supplies/search" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Office Supplies</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Health_Equipments/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Health Equipments</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Home_Furnishing/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Home Furnishing</a></span>
+</li>
+</ul>
+</div>
+</div> </li>
+<li class="menuLink"><div class="store">
+<a href="/Gifts/">Gifts & Christmas Gifts</a>
+<div class="subMenu" style="display: none; left: 160px; z-index: 1; width:510px;">
+<ul>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Christmas_Gifts/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Christmas Gifts</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Christmas_Gifts/search?category=Christmas Gifts" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Christmas Gifts</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Christmas_Gifts/search?category=New Year Gifts" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">New Year Gifts</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Christmas_Gifts/search?contents=Cakes" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Cakes</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Christmas_Gifts/search?contents=Candles" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Candles</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Christmas_Gifts/search?contents=Christmas Decor" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Christmas Decor</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Christmas_Gifts/search?contents=Christmas Tree" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Christmas Tree</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Christmas_Gifts/search?contents=Soft Toys" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Soft Toys</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Christmas_Gifts/search?contents=Combo" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Combo Gifts</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Gifts/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Gifts</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cakes_Gifts" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Cakes</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Chocolates_Gifts" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Chocolates</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Sweets_Gifts" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Sweets</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Fruits_Gifts" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Fruits</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Flowers_Gifts" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Flowers</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Combos_Gifts" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Combo Gifts</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gift_Certificates_Gifts" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Gift Certificates</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Gifts/search" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Gift Ideas</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gifts/Anniversary-Gifts-India.xhtml" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Anniversary Gifts</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gifts/search?availability=Every Hour and Day&product=Combos" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Every Hour & Day</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gifts/search?availability=Same Day Delivery&product=Combos" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Same Day Delivery</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gifts/search?availability=Regular Delivery&product=Combos" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Regular Delivery</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gifts/Wedding-Gifts-India.xhtml" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Wedding</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gifts/Birthday-Gifts-India.xhtml" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Birthday Gifts</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Combos_Gifts/search?delivery=Midnight%20Delivery" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Midnight Delivery</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="http://www.picsquare.com/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Personalised Gifts</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="http://www.picsquare.com/custom/tshirt" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Photo T-shirts</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="http://www.picsquare.com/custom/photo-print" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Photo Prints</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="http://www.picsquare.com/custom/photo-chocolate" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Photo Choclates</a></span>
+</li>
+</ul>
+</div>
+</div> </li>
+<li class="menuLink"><div class="store">
+<a href="/Computers_Accessories/">Computers & IT Products</a>
+<div class="subMenu" style="display: none; left: 160px; z-index: 1; width:510px;">
+<ul>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Computers_Accessories/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Computers</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Laptop_Computers_Accessories/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Laptops</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Desktop_Computers_Accessories/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Desktops</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Monitor_Computers_Accessories/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Monitors</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Software_Computers_Accessories/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Software</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Accessories_Computers_Accessories/search" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Accessories</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Hard_Disk_Computers_Accessories/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Hard Disks</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Web_Camera_Computers_Accessories/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Web Camera</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Printer_Scanner_Computers_Accessories/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Printer / Scanner</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Pen_Drives_Computers_Accessories/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Pen Drives</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Speaker_Computers_Accessories/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Speakers</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=Headphone" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Headphones</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Mouse_Keyboard_Computers_Accessories/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Mouse / Keyboards</a></span>
+</li>
+</ul>
+</div>
+</div> </li>
+<li class="menuLink"><div class="store">
+<a href="/Electronics/">Electronics</a>
+<div class="subMenu" style="display: none; left: 160px; z-index: 1; width:510px;">
+<ul>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Home_Appliances/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Home Appliances</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Air_Conditioner_Home_Appliances/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Air Conditioners</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Washing_Machine_Home_Appliances/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Washing Machines</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Toaster_Grill_Home_Appliances/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Toaster & Grills</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Microwave_Oven_Home_Appliances/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Microwave Ovens</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Refrigerator_Home_Appliances/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Refrigerators</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Tea_Coffee_Maker_Home_Appliances/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Tea & Coffee Makers</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Food_Processor_Home_Appliances/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Food Processors</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Geysers_Home_Appliances/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Geysers</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Portable_Electronics/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Portable Electronics</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=iPod" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">iPods</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=iPad" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">iPads</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=Tablet" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Tablet Pcs</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=MP3 Player" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">MP3 Players</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=Mp4 Player" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Mp4 Players</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=Media Player" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Media Players</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/search?bodyType=Headphone" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Headphones</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Home_Entertainment/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Home Entertainment</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/TVs_Home_Entertainment/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">TVs</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/TVs_Home_Entertainment/search?subCategory=LCD&subCategory=LED" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">LCD's & LED's</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/DVD_Players_Home_Entertainment/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">DVD Players</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Home_Theatre_Home_Entertainment/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Home Theatre</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Gaming_Consoles/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Gaming Consoles</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gaming_Consoles/search?category=Console Hardware" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Game Consoles</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gaming_Consoles/search?category=Handheld Game" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Handheld</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gaming_Consoles/search?category=Games" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Games CDs/DVDs</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gaming_Consoles/search?category=Accessories" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Accessories</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gaming_Consoles/search?category=Controllers" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Controllers</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Gaming_Consoles/PC-Computer-Games.xhtml" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">PC Games</a></span>
+</li>
+</ul>
+</div>
+</div> </li>
+<li class="menuLink"><div class="store">
+<a href="/Cameras/">Cameras & Accessories</a>
+<div class="subMenu" style="display: none; left: 160px; z-index: 1; width:510px;">
+<ul>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Cameras/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Cameras</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cameras/best-digital-camera-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Best Selling</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cameras/recommended-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Recommended</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cameras/search?category=Camcorder" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Camcorders</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cameras/search?category=Digital Frames" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Digital Frames</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Camera_Accessories/search" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Camera Accessories</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Camera_Accessories/search?category=Battery and Chargers" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Battery & Chargers</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Camera_Accessories/search?category=Memory Cards" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Memory Cards</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Pen_Drives_Computers_Accessories/search" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Pen Drives</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Camera_Accessories/search?category=Chargers" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Chargers</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Camera_Accessories/search?category=Batteries" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Batteries</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Camera_Accessories/search?category=Lens" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Lens</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Cameras/search" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Camera Brands</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cameras/Canon.xhtml" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Canon</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cameras/Kodak.xhtml" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Kodak</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cameras/Nikon.xhtml" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Nikon</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cameras/Sony.xhtml" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Sony</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cameras/Olympus.xhtml" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Olympus</a></span>
+</li>
+</ul>
+</div>
+</div> </li>
+<li class="menuLink"><div class="store">
+<a href="/Media/">Movies, Music & Posters</a>
+<div class="subMenu" style="display: none; left: 160px; z-index: 1; width:510px;">
+<ul>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Posters/" style="padding:2px; padding-left:0px; color:#E6682E;"><b><b style='color:#990000;'>Posters</b></b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Posters/search?category=Movies" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Movies</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Posters/search?category=Animals" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Wild Life</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Posters/search?category=Photographic" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Photographic</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Posters/search?category=Sports" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Sports</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Posters/search?posterType=Fine%20Art%20Print" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Fine Art Posters</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Movies/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Movies</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Movies/pre-order-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Pre Order</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Movies/new-releases-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">New Releases</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Movies/english-best-sellers-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">English</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Movies/hindi-best-sellers-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Hindi</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Movies/box-set-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Box Sets</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Movies/blu-ray-disc-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Blu-Ray</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Movies/regional-movies-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Regional Movies</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Music/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Music</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Music/pre-order-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Pre Order</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Music/new-releases-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">New Releases</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Music/english-best-sellers-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">English</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Music/hindi-best-sellers-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Hindi</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Music/box-set-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Box Sets</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Music/classical-songs-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Classical</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Music/regional-best-sellers-showcase.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Regional</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Phi" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Infibeam Phi</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/i-Phi-WinCE-Media-Device-TouchScreen/P-E-PE-Infibeam-Phi-WinCE.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Windows Phi</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Portable_Electronics/i-Phi-Android-Media-Device-TouchScreen/P-E-PE-Infibeam-Phi-Android.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Android Phi</a></span>
+</li>
+</ul>
+</div>
+</div> </li>
+<li class="menuLink"><div class="store">
+<a href="/Automobiles/">Auto & Services</a>
+<div class="subMenu" style="display: none; left: 160px; z-index: 1; width:510px;">
+<ul>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Bikes/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Bikes</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Bikes/search?condition=New" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">New Bikes</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Bikes/search?condition=Used" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Used Bikes</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/finance/LoanCalculator_input.action" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">EMI Calculator</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/bikes/make/bajaj.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Manufacturers</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Cars/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Cars</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cars/search?condition=New" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">New Cars</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cars/search?condition=Used" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Used Cars</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/finance/LoanCalculator_input.action" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">EMI Calculators</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/cars/make/audi.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Manufacturers</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Cars/Insurance.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Insurance Calculators</a></span>
+</li>
+<li style="max-width:500px; background:transparent; float:left; margin-bottom:5px; border-bottom:1px solid #f0f0f0; padding:5px;">
+<a href="/Travel/" style="padding:2px; padding-left:0px; color:#E6682E;"><b>Travel / Rental</b></a>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Travel/" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Travel Packages</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/Travel/car-rental.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Rent a Car</a>,&nbsp;&nbsp;</span>
+<span style="text-align:left; color:#333;padding:0px; font:12px tahoma,verdana,arial,sans-serif; float:left;"><a href="/static/vehicle-rentals.html" style="padding:0px; color:#333; font:12px tahoma,verdana,arial,sans-serif; float:left;">Vehicle Rentals</a></span>
+</li>
+</ul>
+</div>
+</div> </li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div id="searchpage" style="float:right;_margin-left:-15px;">
+<table width="783px">
+<tr>
+<td>
+<form name="search" action="/search.jsp" method="get" id="srchForm">
+<div style="margin-top:5px; margin-left:5px;">
+<table>
+<tr>
+<td> <select name="storeName" id="searchHeader" class="text" style="width:140px; height:22px; font-size:14px; border:1px solid #ededed; ">
+<option value="All" selected="selected">All Stores</option>
+<option value="Automobiles" >Automobiles</option>
+<option value="Books" >Books</option>
+<option value="Electronics" >Electronics</option>
+<option value="Gifts" >Gifts</option>
+<option value="LifeStyle" >LifeStyle</option>
+<option value="Magazines" >Magazines</option>
+<option value="Media" >Movies & Music</option>
+</select>
+&nbsp;</td>
+<td><input id="suggest" name="query" size="30" value = "samsung galaxy s" style="width:360px; padding:2px; border:1px solid #ededed;" onblur="if(this.value=='') {this.value='Looking for something?'; this.style.color='#B2B2B2'; this.style.fontStyle='italic';}" onfocus="if(this.value=='Looking for something?') { this.value='';this.style.color='#333333';this.style.fontStyle='normal';}">&nbsp;</td>
+<td><input type="image" name="submit" src="http://assets.infibeam.com/assets/skins/newcommon/images/btnsearchnew.gif" value="Search" align="absmiddle"></td>
+<td style="font-size:14px; color:#fff; padding-left:10px;"><b>FREE SHIPPING TO INDIA</b></td>
+</tr>
+<link href="/style/jquery.autocomplete.css?q=10" media="all" rel="stylesheet" type="text/css" />
+<script src="/lib/jquery/jquery.autocomplete.js?13" type="text/javascript"></script>
+<script type = "text/javascript">
+$("#suggest").autocomplete("http://autocomplete_new.infibeam.com/auto_complete/suggest",
+{selectFirst: false }
+).bind("result", function(a) { $("#srchForm").submit() });
+</script>
+</table>
+</div>
+</form>
+</td>
+</tr>
+</table>
+</div>
+<div id="submenu" >
+</div>
+</div>
+</div><!-- End Header -->
+<!-- Product Strip -->
+<div style="height:10px; line-height:10px; clear:both;"></div>
+<div id="bd">
+<style>
+.button a {
+max-width: 275px;
+font-family: Arial;
+color: #ffffff;
+font-size: 15px;
+padding: 5px;
+text-decoration: none;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+text-shadow: 1px 1px 5px #878787;
+border: solid #00406b 0px;
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#04669e), to(#00406b));
+background: -moz-linear-gradient(top, #04669e, #00406b);
+-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#04669e, endColorStr=#00406b);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#04669e, endColorStr=#00406b);
+display:inline-block; /* IE is so silly */
+text-decoration:none;
+font-size:13px;
+}
+a:link.pcFacetCount h3{text-decoration:none; color: #000000;line-height: 35px;font-size:16px; font-weight: bold;}
+a:hover.pcFacetCount h3{text-decoration:underline;}
+</style>
+<div id="yui-main">
+<div class="yui-b">
+<div class="yui-gf">
+<div class="yui-u main-panel">
+<div id="featuredproducts" >
+</div>
+<div id="loading" style="display:none; top:300px; left:680px; font-size:14px;" align='center'>
+<img src="http://assets.infibeam.com/assets/skins/lightbox/images/loading.gif" alt="Loading..." border="0" align="absmiddle"/><br/>
+<b>Loading...</b>
+</div>
+<div id="resultsPane">
+<div id="search_result">
+<script>
+$( function() {
+$.getJSON('http://api.infibeam.com/spell/samsung galaxy s?callback=?', function(data) {
+if (data && data.length > 0) {
+var suggestion = data[0].toString();
+var output = '<div style="color:#990000; background-color:#f8f8f8; padding:10px; border:1px solid #EDEDED; border-bottom:none;">Did you mean: <a style="font-style:italic;font-weight:bold;" rel="nofollow" href="' + "/search?q=" + suggestion + '&' + "sc=1" + '">' + suggestion + '</a></div>';
+$('#spellcheck').html(output);
+$('#spellcheck').css('padding-top', '0px');
+$("#auth_title_links").css('font-size', '12px');
+}
+});
+});
+</script>
+<div id="spellcheck" style="font-size:15px;"></div>
+<div style="line-height:24px;"> 3,016 results found for <h1 style='display:inline;'title="samsung galaxy s"><b>product "Samsung Galaxy S"</b> </h1> in 18 categories </div>
+<div>
+<div class="boxinner big">
+<a href="/Mobiles/search?q=samsung galaxy s" rel="nofollow" class="pcFacetCount"><h3>Mobiles (57)</h3></a>
+<div style="height:5px; line-height:5px; clear:both;"></div>
+<div>
+<ul class="srch_result frame" >
+<li>
+<a href="/Mobiles/i-Samsung-Galaxy-S-III-Android/P-E-M-Samsung-Galaxy-S-III.html?id=Red" title="Samsung Galaxy S III (Red)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/Galaxy-S-III/upload/color/Samsung-Galaxy-S-IIIRed_8eb31.jpg?wid=120&hei=130" title="Samsung Galaxy S III (Red)" alt="Samsung Galaxy S III (Red)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/16.png" border="0">
+</span>
+<span class="title"><br> Samsung Galaxy S III (Red)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">35,599</span>
+<span class="scratch">42,500</span>
+<span>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/offer.png" align="absmiddle" alt="Offer!"/>
+</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Mobiles/i-Samsung-Galaxy-S-III-Android/P-E-M-Samsung-Galaxy-S-III.html?id=Blue" title="Samsung Galaxy S III (Blue)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/Galaxy-S-III/upload/color/Samsung-Galaxy-S-IIIBlue_fef17.jpg?wid=120&hei=130" title="Samsung Galaxy S III (Blue)" alt="Samsung Galaxy S III (Blue)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/16.png" border="0">
+</span>
+<span class="title"><br> Samsung Galaxy S III (Blue)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">35,599</span>
+<span class="scratch">42,500</span>
+<span>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/offer.png" align="absmiddle" alt="Offer!"/>
+</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Mobiles/i-Samsung-Galaxy-Note-Android-Tablet/P-E-M-Samsung-Galaxy-Note.html?id=Blue" title="Samsung Galaxy Note (Blue)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/Galaxy-Note/upload/color/Samsung-Galaxy-Note-frontBlue_1b5bd.jpg?wid=120&hei=130" title="Samsung Galaxy Note (Blue)" alt="Samsung Galaxy Note (Blue)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/22.png" border="0">
+</span>
+<span class="title"><br> Samsung Galaxy Note (Blue)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">29,990</span>
+<span class="scratch">38,250</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Mobiles/i-Samsung-Galaxy-S-III-Android/P-E-M-Samsung-Galaxy-S-III.html?id=White" title="Samsung Galaxy S III (White)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/Galaxy-S-III/upload/color/Samsung-Galaxy-S-IIIWhite_cd32d.jpg?wid=120&hei=130" title="Samsung Galaxy S III (White)" alt="Samsung Galaxy S III (White)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/16.png" border="0">
+</span>
+<span class="title"><br> Samsung Galaxy S III (White)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">35,599</span>
+<span class="scratch">42,500</span>
+<span>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/offer.png" align="absmiddle" alt="Offer!"/>
+</span>
+</div>
+</p>
+</li>
+</ul>
+</div>
+<div style="text-align:center;"><div class="button"><a href="/Mobiles/search?q=samsung galaxy s" rel="nofollow">See more results in <b>Mobiles</b></a></div></div>
+</div>
+</div>
+<div style="height:10px; line-height:10px; clear:both;"></div>
+<div>
+<div class="boxinner big">
+<a href="/Hot_Deals/search?q=samsung galaxy s" rel="nofollow" class="pcFacetCount"><h3>Hot Deals (2)</h3></a>
+<div style="height:5px; line-height:5px; clear:both;"></div>
+<div>
+<ul class="srch_result frame" >
+<li>
+<a href="/Cameras/i-Samsung-Galaxy-Camera-Android-3G/P-E-C-Samsung-GALAXY-Combo.html?id=White" title="Samsung GALAXY Camera (White)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Still_Camera/Samsung_Camera/GALAXY-Combo/upload/front/Samsung-GALAXY-Combo-front_10755.jpg?wid=120&hei=130" title="Samsung GALAXY Camera (White)" alt="Samsung GALAXY Camera (White)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/6.png" border="0">
+</span>
+<span class="title"><br> Samsung GALAXY Camera (White)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">29,199</span>
+<span class="scratch">30,900</span>
+<span>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/offer.png" align="absmiddle" alt="Offer!"/>
+</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Mobile_Accessories/i-Golla-Denim-Gray-Mobile-Wallet/P-E-MA-Golla-G1231.html?id=Grey" title="Golla Mobile Wallet Amazon,Denim For Samsung Galaxy S2 And S3 (Grey) (Grey)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Golla/G1231/upload/front/Golla-G1231_b4157.jpg?wid=120&hei=130" title="Golla Mobile Wallet Amazon,Denim For Samsung Galaxy S2 And S3 (Grey) (Grey)" alt="Golla Mobile Wallet Amazon,Denim For Samsung Galaxy S2 And S3 (Grey) (Grey)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/16.png" border="0">
+</span>
+<span class="title"><br> Golla Mobile Wallet Amazon,Denim For Samsung Galaxy S2 And...</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">759</span>
+<span class="scratch">899</span>
+</div>
+</p>
+</li>
+</ul>
+</div>
+<div style="text-align:center;"></div>
+</div>
+</div>
+<div style="height:10px; line-height:10px; clear:both;"></div>
+<div>
+<div class="boxinner big">
+<a href="/Cameras/search?q=samsung galaxy s" rel="nofollow" class="pcFacetCount"><h3>Cameras (10)</h3></a>
+<div style="height:5px; line-height:5px; clear:both;"></div>
+<div>
+<ul class="srch_result frame" >
+<li>
+<a href="/Cameras/i-Samsung-Galaxy-Camera-Android-3G/P-E-C-Samsung-GALAXY-Combo.html?id=White" title="Samsung GALAXY Camera (White)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Still_Camera/Samsung_Camera/GALAXY-Combo/upload/front/Samsung-GALAXY-Combo-front_10755.jpg?wid=120&hei=130" title="Samsung GALAXY Camera (White)" alt="Samsung GALAXY Camera (White)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/6.png" border="0">
+</span>
+<span class="title"><br> Samsung GALAXY Camera (White)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">29,199</span>
+<span class="scratch">30,900</span>
+<span>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/offer.png" align="absmiddle" alt="Offer!"/>
+</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Cameras/i-Samsung-Galaxy-Camera-Android-3G/P-E-C-Samsung-GALAXY.html?id=White" title="Samsung GALAXY Camera (White)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Still_Camera/Samsung_Camera/GALAXY/upload/front/Samsung-GALAXY-front_eca7f.jpg?wid=120&hei=130" title="Samsung GALAXY Camera (White)" alt="Samsung GALAXY Camera (White)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/6.png" border="0">
+</span>
+<span class="title"><br> Samsung GALAXY Camera (White)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">29,200</span>
+<span class="scratch">30,900</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Cameras/i-Samsung-WB150F-Digital-Camera/P-E-C-Samsung-WB150F.html?id=White" title="Samsung WB150F (White)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Still_Camera/Samsung_Camera/WB150F/upload/color/Samsung-WB150FWhite_b7b32.jpg?wid=120&hei=130" title="Samsung WB150F (White)" alt="Samsung WB150F (White)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/8.png" border="0">
+</span>
+<span class="title"><br> Samsung WB150F (White)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">11,899</span>
+<span class="scratch">12,900</span>
+<span>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/offer.png" align="absmiddle" alt="Offer!"/>
+</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Cameras/i-Samsung-ES90-Digital-Camera/P-E-C-Samsung-ES90.html?id=Black" title="Samsung ES90 (Black)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Still_Camera/Samsung_Camera/ES90/upload/color/Samsung-ES90Black_c9b2c.jpg?wid=120&hei=130" title="Samsung ES90 (Black)" alt="Samsung ES90 (Black)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/8.png" border="0">
+</span>
+<span class="title"><br> Samsung ES90 (Black)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">5,299</span>
+<span class="scratch">5,790</span>
+<span>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/offer.png" align="absmiddle" alt="Offer!"/>
+</span>
+</div>
+</p>
+</li>
+</ul>
+</div>
+<div style="text-align:center;"><div class="button"><a href="/Cameras/search?q=samsung galaxy s" rel="nofollow">See more results in <b>Cameras</b></a></div></div>
+</div>
+</div>
+<div style="height:10px; line-height:10px; clear:both;"></div>
+<div>
+<div class="boxinner big">
+<a href="/Portable_Electronics/search?q=samsung galaxy s" rel="nofollow" class="pcFacetCount"><h3>Portable Electronics (39)</h3></a>
+<div style="height:5px; line-height:5px; clear:both;"></div>
+<div>
+<ul class="srch_result frame" >
+<li>
+<a href="/Portable_Electronics/i-Samsung-Galaxy-Note-Tablet-N8000/P-E-PE-Samsung-GT-N8000.html?id=16-White" title="Samsung Galaxy Note 800 10.1 Tablet (16 GB,White)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/GT-N8000/upload/front/Samsung-GT-N8000-front_2bd01.jpg?wid=120&hei=130" title="Samsung Galaxy Note 800 10.1 Tablet (16 GB,White)" alt="Samsung Galaxy Note 800 10.1 Tablet (16 GB,White)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/7.png" border="0">
+</span>
+<span class="title"><br> Samsung Galaxy Note 800 10.1 Tablet (16 GB,White)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">37,500</span>
+<span class="scratch">40,500</span>
+<span>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/offer.png" align="absmiddle" alt="Offer!"/>
+</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Portable_Electronics/i-Samsung-Galaxy-Tab-2-310/P-E-PE-Samsung-Tab-2-310.html?id=16-Silver" title="Samsung Galaxy Tab 2 310 (16 GB,Silver)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/Tab-2-310/upload/color/Samsung-Tab-2-310Silver_ef817.jpg?wid=120&hei=130" title="Samsung Galaxy Tab 2 310 (16 GB,Silver)" alt="Samsung Galaxy Tab 2 310 (16 GB,Silver)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/17.png" border="0">
+</span>
+<span class="title"><br> Samsung Galaxy Tab 2 310 (16 GB,Silver)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">19,300</span>
+<span class="scratch">23,250</span>
+<span>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/offer.png" align="absmiddle" alt="Offer!"/>
+</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Portable_Electronics/i-Samsung-Galaxy-Tab-2-310/P-E-PE-Samsung-Tab-2-310.html?id=16-White" title="Samsung Galaxy Tab 2 310 (16 GB,White)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/Tab-2-310/upload/color/Samsung-Tab-2-310White_f3e94.jpg?wid=120&hei=130" title="Samsung Galaxy Tab 2 310 (16 GB,White)" alt="Samsung Galaxy Tab 2 310 (16 GB,White)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/17.png" border="0">
+</span>
+<span class="title"><br> Samsung Galaxy Tab 2 310 (16 GB,White)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">19,300</span>
+<span class="scratch">23,250</span>
+<span>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/offer.png" align="absmiddle" alt="Offer!"/>
+</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Portable_Electronics/i-Samsung-Galaxy-Tab-Headset/P-E-PE-Samsung-EHS44ASSBECINU.html?id=0-White" title="Samsung Galaxy Tab Headset" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/EHS44ASSBECINU/upload/front/Samsung-EHS44ASSBECINU_fd7ff.jpg?wid=120&hei=130" title="Samsung Galaxy Tab Headset" alt="Samsung Galaxy Tab Headset" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/51.png" border="0">
+</span>
+<span class="title"><br> Samsung Galaxy Tab Headset</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">389</span>
+<span class="scratch">799</span>
+</div>
+</p>
+</li>
+</ul>
+</div>
+<div style="text-align:center;"><div class="button"><a href="/Portable_Electronics/search?q=samsung galaxy s" rel="nofollow">See more results in <b>Portable Electronics</b></a></div></div>
+</div>
+</div>
+<div style="height:10px; line-height:10px; clear:both;"></div>
+<div>
+<div class="boxinner big">
+<a href="/Mobile_Accessories/search?q=samsung galaxy s" rel="nofollow" class="pcFacetCount"><h3>Mobile Accessories (741)</h3></a>
+<div style="height:5px; line-height:5px; clear:both;"></div>
+<div>
+<ul class="srch_result frame" >
+<li>
+<a href="/Mobile_Accessories/i-Samsung-Galaxy-USB-Connector/P-E-MA-Samsung-ET-R205UBEGINU.html?id=Black" title="Samsung Galaxy S2 USB Connector (Black)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/ET-R205UBEGINU/upload/front/Samsung-ET-R205UBEGINU_57cbd.jpg?wid=120&hei=130" title="Samsung Galaxy S2 USB Connector (Black)" alt="Samsung Galaxy S2 USB Connector (Black)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/24.png" border="0">
+</span>
+<span class="title"><br> Samsung Galaxy S2 USB Connector (Black)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">499</span>
+<span class="scratch">660</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Mobile_Accessories/i-Samsung-Galaxy-Note-Stylus-Pen/P-E-MA-Samsung-ET-S100EBEGINU.html?id=Black" title="Samsung Stylus Pen for Samsung Galaxy Note ET-S100EBEGINU" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/ET-S100EBEGINU/upload/front/Samsung-ET-S100EBEGINU_090af.jpg?wid=120&hei=130" title="Samsung Stylus Pen for Samsung Galaxy Note ET-S100EBEGINU" alt="Samsung Stylus Pen for Samsung Galaxy Note ET-S100EBEGINU" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/20.png" border="0">
+</span>
+<span class="title"><br> Samsung Stylus Pen for Samsung Galaxy Note ET-S100EBEGINU</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">1,039</span>
+<span class="scratch">1,299</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Mobile_Accessories/i-Samsung-Galaxy-S2-HDTV-Adaptor/P-E-MA-Samsung-EIA2UHUNBECINU.html?id=Black" title="Samsung Galaxy S2 HDTV Adaptor EIA2UHUNBECINU" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/EIA2UHUNBECINU/upload/front/Samsung-EIA2UHUNBECINU_b4af7.jpg?wid=120&hei=130" title="Samsung Galaxy S2 HDTV Adaptor EIA2UHUNBECINU" alt="Samsung Galaxy S2 HDTV Adaptor EIA2UHUNBECINU" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/29.png" border="0">
+</span>
+<span class="title"><br> Samsung Galaxy S2 HDTV Adaptor EIA2UHUNBECINU</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">1,179</span>
+<span class="scratch">1,670</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Mobile_Accessories/i-Galaxy-S3-Flip-Cover/P-E-MA-Samsung-EFC-1G6FBECINU.html?id=Blue" title="Samsung Flip Cover for Galaxy S3 (Blue)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/EFC-1G6FBECINU/upload/front/Samsung-EFC-1G6FBECINU_9dd48.jpg?wid=120&hei=130" title="Samsung Flip Cover for Galaxy S3 (Blue)" alt="Samsung Flip Cover for Galaxy S3 (Blue)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/14.png" border="0">
+</span>
+<span class="title"><br> Samsung Flip Cover for Galaxy S3 (Blue)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">1,289</span>
+<span class="scratch">1,499</span>
+</div>
+</p>
+</li>
+</ul>
+</div>
+<div style="text-align:center;"><div class="button"><a href="/Mobile_Accessories/search?q=samsung galaxy s" rel="nofollow">See more results in <b>Mobile Accessories</b></a></div></div>
+</div>
+</div>
+<div style="height:10px; line-height:10px; clear:both;"></div>
+<div>
+<div class="boxinner big">
+<a href="/Books/search?q=samsung galaxy s" rel="nofollow" class="pcFacetCount"><h3>Books (1899)</h3></a>
+<div style="height:5px; line-height:5px; clear:both;"></div>
+<div>
+<ul class="srch_result frame" >
+<li>
+<a href="/Books/samsung-galaxy-5-lambert-m-surhone/9786133641723.html" title="Samsung Galaxy 5 [Paperback]" >
+<img src="http://cdn-img-b-tata.infibeam.net/img/4b6e3b26/a8125/41/723/P-M-B-9786133641723.jpg?wid=120&hei=130" title="Samsung Galaxy 5 [Paperback]" alt="Samsung Galaxy 5 [Paperback]" />
+<span class="title"><br> Samsung Galaxy 5 [Paperback]</span>
+</a>
+<p>
+<div class="price">
+<span class="price">
+Rs. 7,564
+</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/eBooks/my-samsung-galaxy-nexus-craig-james-johnston-pdf-ebook-download/9780132995795-BEPDF.html" title="My Samsung Galaxy Nexus [eBook]" >
+<img src="http://cdn-img-b-tata.infibeam.net/img/0987db90/76120/95/795/P-M-B-9780132995795.jpg?wid=120&hei=130" title="My Samsung Galaxy Nexus [eBook]" alt="My Samsung Galaxy Nexus [eBook]" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/20.png" border="0">
+</span>
+<span class="title"><br> My Samsung Galaxy Nexus [eBook]</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">887</span>
+<span class="scratch">1,109</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/eBooks/samsung-galaxy-note-dummies-dan-gookin-epub-ebook-download/9781118388471-BEEPB.html" title="Samsung Galaxy Note For Dummies [eBook]" >
+<img src="http://cdn-img-b-tata.infibeam.net/img/f012556d/76120/88/471/P-M-B-9781118388471.jpg?wid=120&hei=130" title="Samsung Galaxy Note For Dummies [eBook]" alt="Samsung Galaxy Note For Dummies [eBook]" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/25.png" border="0">
+</span>
+<span class="title"><br> Samsung Galaxy Note For Dummies [eBook]</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">1,009</span>
+<span class="scratch">1,345</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Books/my-samsung-galaxy-s-ii-steve-schwartz/9780789749635.html" title="My Samsung Galaxy S III [Paperback]" >
+<img src="http://cdn-img-b-tata.infibeam.net/img/bf8dcb31/b8af1/49/635/P-M-B-9780789749635.jpg?wid=120&hei=130" title="My Samsung Galaxy S III [Paperback]" alt="My Samsung Galaxy S III [Paperback]" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/24.png" border="0">
+</span>
+<span class="title"><br> My Samsung Galaxy S III [Paperback]</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">1,095</span>
+<span class="scratch">1,441</span>
+</div>
+</p>
+</li>
+</ul>
+</div>
+<div style="text-align:center;"><div class="button"><a href="/Books/search?q=samsung galaxy s" rel="nofollow">See more results in <b>Books</b></a></div></div>
+</div>
+</div>
+<div style="height:10px; line-height:10px; clear:both;"></div>
+<div>
+<div class="boxinner big">
+<a href="/Computers_Accessories/search?q=samsung galaxy s" rel="nofollow" class="pcFacetCount"><h3>Computers Accessories (21)</h3></a>
+<div style="height:5px; line-height:5px; clear:both;"></div>
+<div>
+<ul class="srch_result frame" >
+<li>
+<a href="/Laptop/i-Samsung-Laptop-NP300E5X-S01IN/P-CA-L-Samsung-NP300E5X-S01IN.html?id=Black" title="Samsung NP300E5X Laptop (Black)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/NP300E5X-S01IN/upload/front/Samsung-NP300E5X-S01IN_f3657.jpg?wid=120&hei=130" title="Samsung NP300E5X Laptop (Black)" alt="Samsung NP300E5X Laptop (Black)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/6.png" border="0">
+</span>
+<span class="title"><br> Samsung NP300E5X Laptop (Black)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">37,699</span>
+<span class="scratch">39,990</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Laptop/i-Samsung-AMD-Dual-Core-Laptop/P-CA-L-Samsung-NP-RV513-A02IN.html?id=Silver" title="Samsung Laptop NP RV513 (Silver)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/NP-RV513-A02IN/upload/front/Samsung-NP-RV513-A02IN-1_1476c.jpg?wid=120&hei=130" title="Samsung Laptop NP RV513 (Silver)" alt="Samsung Laptop NP RV513 (Silver)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/18.png" border="0">
+</span>
+<span class="title"><br> Samsung Laptop NP RV513 (Silver)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">21,399</span>
+<span class="scratch">25,990</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Laptop/i-Samsung-Corei3-DOS-Laptop/P-CA-L-Samsung-NP300E5Z-S0AIN.html?id=Multicolor" title="Samsung Laptop NP300E5Z (Multicolor)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/NP300E5Z-S0AIN/upload/front/Samsung-NP300E5Z-S0AIN-front_abafe.jpg?wid=120&hei=130" title="Samsung Laptop NP300E5Z (Multicolor)" alt="Samsung Laptop NP300E5Z (Multicolor)" />
+<span class="title"><br> Samsung Laptop NP300E5Z (Multicolor)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">32,279</span>
+<span class="scratch">33,416</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Monitor/i-Samsung-LED-Monitor/P-CA-MO-Samsung-S22B370HS.html?id=Black" title="Samsung S22B370HS LED Monitor (Black)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/S22B370HS/upload/front/Samsung-S22B370HS_6e954.jpg?wid=120&hei=130" title="Samsung S22B370HS LED Monitor (Black)" alt="Samsung S22B370HS LED Monitor (Black)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/6.png" border="0">
+</span>
+<span class="title"><br> Samsung S22B370HS LED Monitor (Black)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">9,159</span>
+<span class="scratch">9,700</span>
+</div>
+</p>
+</li>
+</ul>
+</div>
+<div style="text-align:center;"><div class="button"><a href="/Computers_Accessories/search?q=samsung galaxy s" rel="nofollow">See more results in <b>Computers Accessories</b></a></div></div>
+</div>
+</div>
+<div style="height:10px; line-height:10px; clear:both;"></div>
+<div>
+<div class="boxinner big">
+<a href="/Home_Appliances/search?q=samsung galaxy s" rel="nofollow" class="pcFacetCount"><h3>Home Appliances (60)</h3></a>
+<div style="height:5px; line-height:5px; clear:both;"></div>
+<div>
+<ul class="srch_result frame" >
+<li>
+<a href="/Microwave_Oven/i-Samsung-Microwave-Oven-Convection-CE1041DFB/P-E-HA-Samsung-14000014911.html?id=Black" title="Samsung CE1041DFB Convection 28 Liter Microwave oven (Black)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/14000014911/upload/front/Samsung-14000014911_bc98e.jpg?wid=120&hei=130" title="Samsung CE1041DFB Convection 28 Liter Microwave oven (Black)" alt="Samsung CE1041DFB Convection 28 Liter Microwave oven (Black)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/13.png" border="0">
+</span>
+<span class="title"><br> Samsung CE1041DFB Convection 28 Liter Microwave oven (Black)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">12,403</span>
+<span class="scratch">14,190</span>
+<span>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/offer.png" align="absmiddle" alt="Offer!"/>
+</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Washing_Machine/i-Samsung-Washing-Machine-TL-62/P-E-HA-Samsung-WA82BSLEC.html?id=Grey" title="Samsung WA82BSLEC 6.2 Kg Washing Machine (Grey)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/WA82BSLEC/upload/front/Samsung-WA82BSLEC_3f799.jpg?wid=120&hei=130" title="Samsung WA82BSLEC 6.2 Kg Washing Machine (Grey)" alt="Samsung WA82BSLEC 6.2 Kg Washing Machine (Grey)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/6.png" border="0">
+</span>
+<span class="title"><br> Samsung WA82BSLEC 6.2 Kg Washing Machine (Grey)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">15,615</span>
+<span class="scratch">16,690</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Refrigerator/i-Samsung-Side-Side-Door/P-E-HA-Samsung-RS21HST.html?id=Silver" title="Samsung RS21HST Side-by-Side Door Refrigerator (Silver)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/RS21HST/upload/front/Samsung-RS21HST_8c7c7.jpg?wid=120&hei=130" title="Samsung RS21HST Side-by-Side Door Refrigerator (Silver)" alt="Samsung RS21HST Side-by-Side Door Refrigerator (Silver)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/8.png" border="0">
+</span>
+<span class="title"><br> Samsung RS21HST Side-by-Side Door Refrigerator (Silver)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">63,921</span>
+<span class="scratch">69,500</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Microwave_Oven/i-Samsung-LED-Display-Microwave-Oven/P-E-HA-Samsung-CE107FF-S.html?id=Black" title="Samsung CE107FF-S Convection 28 Liter Microwave Oven (Black)" >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/CE107FF-S/upload/front/Samsung-CE107FF-S_e7252.jpg?wid=120&hei=130" title="Samsung CE107FF-S Convection 28 Liter Microwave Oven (Black)" alt="Samsung CE107FF-S Convection 28 Liter Microwave Oven (Black)" />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/12.png" border="0">
+</span>
+<span class="title"><br> Samsung CE107FF-S Convection 28 Liter Microwave Oven (Black)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">13,973</span>
+<span class="scratch">15,890</span>
+</div>
+</p>
+</li>
+</ul>
+</div>
+<div style="text-align:center;"><div class="button"><a href="/Home_Appliances/search?q=samsung galaxy s" rel="nofollow">See more results in <b>Home Appliances</b></a></div></div>
+</div>
+</div>
+<div style="height:10px; line-height:10px; clear:both;"></div>
+<div>
+<div class="boxinner big">
+<a href="/rakhi-gifts/search?q=samsung galaxy s" rel="nofollow" class="pcFacetCount"><h3>Rakhis (2)</h3></a>
+<div style="height:5px; line-height:5px; clear:both;"></div>
+<div>
+<ul class="srch_result frame" >
+<li>
+<a href="/Mobiles/i-Samsung-Galaxy-S2-I9100-Android/P-E-M-Samsung-Galaxy-S2-I9100.html?id=Black" title="Samsung Galaxy S2 I9100 (Black) " >
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Samsung/Samsung_Galaxy_S2_I9100/upload/front/Samsung-Galaxy-S2-I9100-front_09dd8.jpg?wid=120&hei=130" title="Samsung Galaxy S2 I9100 (Black) " alt="Samsung Galaxy S2 I9100 (Black) " />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/7.png" border="0">
+</span>
+<span class="title"><br> Samsung Galaxy S2 I9100 (Black)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">30,599</span>
+<span class="scratch">32,990</span>
+</div>
+</p>
+</li>
+<li>
+<a href="/Mobiles/i-Samsung-E1160/P-E-M-Samsung-E1160.html?id=Black" title="Samsung E1160 (Black) " >
+<img src="http://cdn-img-a-tata.infibeam.net/img/86e94863/4b/04/p-e-m-samsung-e1160-front-1.wm.jpg?wid=120&hei=130" title="Samsung E1160 (Black) " alt="Samsung E1160 (Black) " />
+<span class="discount">
+<img src="http://www.infibeam.com/static-images/discount/golanew/26.png" border="0">
+</span>
+<span class="title"><br> Samsung E1160 (Black)</span>
+</a>
+<p>
+<div class="price">
+Rs.
+<span class="normal">1,465</span>
+<span class="scratch">1,975</span>
+</div>
+</p>
+</li>
+</ul>
+</div>
+<div style="text-align:center;"></div>
+</div>
+</div>
+<div style="height:10px; line-height:10px; clear:both;"></div>
+<div style="line-height:24px;"> <h1 style='display:inline;'title="samsung galaxy s"><b>product "Samsung Galaxy S"</b> </h1> also found in <h1 style='display:inline;'title="Mobiles(57), Hot_Deals(2), Cameras(10), Portable_Electronics(39), Mobile_Accessories(741), Books(1899), Computers_Accessories(21), Home_Appliances(60), Rakhis(2), Home_Entertainment(57), Movies(55), Music(45), Posters(12), Apparel(6), Apparel_Accessories(3), Bags(3), Camera_Accessories(3), Beauty(1), "><a rel='nofollow' href='/Home_Entertainment/search?q=samsung galaxy s'><b>Home Entertainment</b></a> (57), <a rel='nofollow' href='/Movies/search?q=samsung galaxy s'><b>Movies</b></a> (55), <a rel='nofollow' href='/Music/search?q=samsung galaxy s'><b>Music</b></a> (45), <a rel='nofollow' href='/Posters/search?q=samsung galaxy s'><b>Posters</b></a> (12), <a rel='nofollow' href='/Apparel/search?q=samsung galaxy s'><b>Apparel</b></a> (6), <a rel='nofollow' href='/Apparel_Accessories/search?q=samsung galaxy s'><b>Apparel Accessories</b></a> (3), <a rel='nofollow' href='/Bags/search?q=samsung galaxy s'><b>Bags</b></a> (3), <a rel='nofollow' href='/Camera_Accessories/search?q=samsung galaxy s'><b>Camera Accessories</b></a> (3), <a rel='nofollow' href='/Beauty/search?q=samsung galaxy s'><b>Beauty</b></a> (1)</h1> </div>
+<br>
+<div style="height:10px; line-height:10px; clear:both;"></div>
+<div style="padding:10px; border:1px solid #dbe4fc; background-color:#f0f4ff; text-align:center;">
+<form action="/search">
+<table align="center">
+<tr>
+<td><b>SEARCH PRODUCTS</b>&nbsp;</td>
+<td><input type="text" name="q" size="32" style="padding:3px; " value="samsung galaxy s">&nbsp;</td>
+<td><input type="submit" value="Search" style="padding:2px; width:65px;"></td>
+</tr>
+</table>
+</form>
+</div>
+</div>
+<!-- End Search Result -->
+</div>
+</div>
+<div class="yui-b sidepanel">
+<div id="product_category" class="nav" style="width:175px;">
+<h3><a rel="nofollow" href="/All/search?q=samsung galaxy s">Browse by Store</a></h3>
+<ul class="booksearch listboxbook">
+<li>
+<a rel="nofollow" href="/Mobiles/search?q=samsung galaxy s">Mobiles <span class="catcount">(57)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Hot_Deals/search?q=samsung galaxy s">Hot Deals <span class="catcount">(2)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Cameras/search?q=samsung galaxy s">Cameras <span class="catcount">(10)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Portable_Electronics/search?q=samsung galaxy s">Portable Electronics <span class="catcount">(39)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Mobile_Accessories/search?q=samsung galaxy s">Mobile Accessories <span class="catcount">(741)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Books/search?q=samsung galaxy s">Books <span class="catcount">(1899)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Computers_Accessories/search?q=samsung galaxy s">Computers Accessories <span class="catcount">(21)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Home_Appliances/search?q=samsung galaxy s">Home Appliances <span class="catcount">(60)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/rakhi-gifts/search?q=samsung galaxy s">Rakhis <span class="catcount">(2)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Home_Entertainment/search?q=samsung galaxy s">Home Entertainment <span class="catcount">(57)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Movies/search?q=samsung galaxy s">Movies <span class="catcount">(55)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Music/search?q=samsung galaxy s">Music <span class="catcount">(45)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Posters/search?q=samsung galaxy s">Posters <span class="catcount">(12)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Apparel/search?q=samsung galaxy s">Apparel <span class="catcount">(6)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Apparel_Accessories/search?q=samsung galaxy s">Apparel Accessories <span class="catcount">(3)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Bags/search?q=samsung galaxy s">Bags <span class="catcount">(3)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Camera_Accessories/search?q=samsung galaxy s">Camera Accessories <span class="catcount">(3)</span></a>
+</li>
+<li>
+<a rel="nofollow" href="/Beauty/search?q=samsung galaxy s">Beauty <span class="catcount">(1)</span></a>
+</li>
+</ul>
+</div>
+<div style="height:10px; line-height:10px; clear:both;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="yui-b" align="center">
+<div class="dodright">
+<ul>
+<li>
+<a href="/Bags/i-Lavie-Ella-Box-Bag-Cognac/P-LS-B-Lavie-L02940015107.html?id=Brown" title="Lavie Ella Box Bag Cognac">
+<img src="http://cdn-img-a-tata.infibeam.net/img/2acf123a/Lavie/L02940015107/upload/front/Lavie-L02940015107_ccbb2.jpg?wid=150&hei=165" border="0" alt="Lavie Ella Box Bag Cognac" title="Lavie Ella Box Bag Cognac">
+<br>
+<span class="showcaseTitle">
+Lavie Ella Box...
+</span>
+<div class="price">
+<img src='http://assets.infibeam.com/assets/skins/newcommon/images/rsred.gif' alt='Rs.'/>
+<span class="normal">1,270</span>
+<span class="scratch">4,590</span>
+</div>
+<span class="discount">
+<div style="height:37px; width:37px; background:url('http://assets.infibeam.com/assets/skins/newcommon/images/gola.png') no-repeat -2840px 0px;"></div>
+</span>
+</a>
+</li>
+</ul>
+</div>
+<div style="height:10px; line-height:10px;" class="clear"></div>
+<center><a href="/Portable_Electronics/i-Apple-iPad-Mini-Wifi/P-E-PE-Apple-iPad-Mini-Wifi.html" title="Apple iPad Mini Wifi"><img src="/assets/skins/newcommon/images/ads/ipadmini.jpg" alt="Apple iPad Mini Wifi" border="0" /></a></center>
+<div style="height:10px; line-height:10px;" class="clear"></div>
+<div style="height:10px; line-height:10px;" class="clear"></div>
+</div>
+</div>
+<!-- Footer -->
+<div style="height:10px; line-height:10px; clear:both;"></div>
+<div id="ft" >
+<div style="background-color:#212121; padding:8px; height:30px;">
+<div style="float:right;">
+<a href="http://www.facebook.com/infibeam" target="_blank" rel="nofollow" title="Facebook"><img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/facebook32.png" alt="Facebook" border="0"/></a>
+<a href="http://twitter.com/infibeam" target="_blank" rel="nofollow" title="Twitter"><img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/twitter32.png" alt="Twitter" border="0"/></a>
+<a href="http://blog.infibeam.com/" target="_blank" rel="nofollow" title="Infibeam - Blog"><img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/blogger32.png" alt="Infibeam Blog" border="0"/></a>
+<a href="https://plus.google.com/115263157584389000337" target="_blank" rel="publisher" title="Google Plus"><img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/googleplus32.png" alt="Google Plus" border="0"/></a>
+<a href="http://pinterest.com/infibeam/" target="_blank" rel="nofollow" title="Pinterest"><img src="http://assets.infibeam.com/assets/skins/newcommon/images/icon/pinterest32.png" alt="Pinterest" border="0"/></a>
+</div>
+<div style="margin-top:3px;">
+<form name="SubscribeToNewsLetter" action="/SubscribeToNewsLetter.action" method="POST">
+<span style="color:#fff; font-size:13px; line-height:20px;"><b>Newsletter Subscription</b></span>
+<input type="text" name="subscriberEmail" size="16" style="width:200px; padding:4px; border:1px solid #999;"/>
+<input type="image" name="submit" src="/assets/skins/newcommon/images/signmeupnew.png" align="absmiddle" style="margin-top:-3px;"/>
+</form>
+</div>
+</div>
+<table style="text-align:left;" align="center" width="100%">
+<tr>
+<td valign="top">
+<h3><a href="/static/all-stores.html" rel="nofollow">All Stores</a></h3>
+<table width="300">
+<tr>
+<td valign="top" width="110" style="padding:0px;">
+<ul>
+<li><a href="/Apparel/">Apparel</a></li>
+<li><a href="/Beauty/">Beauty</a></li>
+<li><a href="/Baby/">Baby</a></li>
+<li><a href="/Bikes/">Bikes</a></li>
+<li><a href="/Books/">Books</a></li>
+<li><a href="/eBooks/">eBooks</a></li>
+<li><a href="/Cameras/">Cameras</a></li>
+<li><a href="/Cars/">Cars</a></li>
+<li><a href="/Computers_Accessories/">Computers Accessories</a></li>
+<li><a href="/Eyewear/">Eyewear</a></li>
+<li><a href="/Gifts/">Gifts</a></li>
+<li><a href="/Health_Equipments/">Health</a></li>
+<li><a href="/Home_Appliances/">Home Appliances</a></li>
+<li><a href="/Home_Furnishing/">Home Furnishing</a></li>
+<li><a href="/Home_Entertainment/">Home Entertainment</a></li>
+<li><a href="/Automobiles/" title="Automobiles">Automobiles</a></li>
+<li><a href="/Media/" title="Media">Media</a></li>
+</ul>
+</td>
+<td valign="top" width="190" style="padding:0px;">
+<ul>
+<li><a href="/Jewellery/">Jewellery</a></li>
+<li><a href="/Magazines/">Magazines</a></li>
+<li><a href="/Movies/">Movies</a></li>
+<li><a href="/Music/">Music</a></li>
+<li><a href="/Mobiles/">Mobiles</a></li>
+<li><a href="/Mobile_Accessories/">Mobile Accessories</a></li>
+<li><a href="/Portable_Electronics/">Gadgets</a></li>
+<li><a href="/Pen_Drives_Computers_Accessories/search">Pen Drives</a></li>
+<li><a href="/Religion_Spirituality/">Religion / Spirituality</a></li>
+<li><a href="/Toys_Games/">Toys / Games</a></li>
+<li><a href="/Watches/">Watches</a></li>
+<li><a href="/Footwear/">Footwear</a></li>
+<li><a href="/hot-deals.html" title="Deals Of The Day" rel="nofollow">Hot Deals!</a></li>
+<li><a href="/deal-of-the-day.html" title="Deals Of The Day" rel="nofollow"><b>Magic Box</b></a></li>
+<li><a href="/Travel/" title="Travel">Travel</a></li>
+<li><a href="/Home-Lifestyle/" title="Home & LifeStyle">Home & LifeStyle</a></li>
+<li><a href="/Electronics/" title="Electronics">Electronics</a></li>
+</ul>
+</td>
+</tr>
+</table>
+</td>
+<td valign="top">
+<h3>Your Account</h3>
+<ul>
+<li><a rel="nofollow" href="/YourAccount.action">Your Account Home</a></li>
+<li><a rel="nofollow" href="/ViewPurchases.action?id=1">Where's My Order</a></li>
+<li><a rel="nofollow" href="/ShowCart.action">Shopping Cart</a></li>
+<li><a rel="nofollow" href="/WishList.action">Wish List</a><br></li>
+</ul>
+<br>
+<h3>Contact Us</h3>
+<ul>
+<li><a href="/ContactUs.action" title="Contact Us" rel="nofollow">Contact Us</a></li>
+<li><a href="/ContactUs.action?category=Bulk Orders" title="Bulk Order Inquiry">Bulk Order Inquiry</a></li>
+<li><a href="/static/corporate-program.html" title="Corporate Program">Corporate Program</a></li>
+<li><a href="/MerchantSignup.action" title="Merchant Signup">Merchant Signup</a></li>
+<li><a href="/static/advertise-with-us.html" title="Advertise With Us">Advertise With Us</a></li>
+<li><a href="/affiliate" title="Affiliates">Affiliate <sup style="font-size:10px; font-weight:bold; color:#990000;">New</sup></a></li>
+</ul>
+</td>
+<td valign="top">
+<h3>Help</h3>
+<ul>
+<li><a href="/static/help/terms-conditions.html" title="Terms & Conditions">Terms & Conditions</a></li>
+<li><a href="/static/help/payment-returns.html" title="Payments & Returns">Payments & Returns</a></li>
+<li><a href="/static/help/privacy-policy.html" title="Privacy Policy">Privacy Policy</a></li>
+<li><a href="/static/help/help.html" title="Help / FAQ">Help / FAQ</a></li>
+<li><a href="/static/help/shipping-options.html" title="Shipping Options">Shipping Options</a></li>
+</ul>
+<br>
+<h3>Others</h3>
+<ul>
+<li><a href="/static/careers.html" title="Careers">Careers</a></li>
+<li><a href="/static/help/about-us.html" title="About Us">About Us</a></li>
+<li><a href="http://blog.infibeam.com/" target="_blank" title="Infibeam Blog">Blog</a></li>
+<li><a href="http://news.infibeam.com/blog/news/" title="News">News</a> / <a href="http://news.infibeam.com/blog/news/categories/infibeam/" title="Press Releases">Press Releases</a></li>
+<li><a href="/static/festivals-of-india/index.html" title="Festivals of India">Festivals of India</a></li>
+<li><a href="/static/sitemap.html" title="Site Map" >Site Map</a></li>
+</ul>
+</td>
+<td valign="top">
+<h3>Payment Options</h3>
+<ul>
+<li>Credit Cards & Debit Cards</li>
+<li>Net Banking & PayPal</li>
+<li>
+<a href="/static/help/cash-on-delivery.html">Cash On Delivery</a> & <a href="/static/help/emi.html">EMI</a>
+</li>
+<li>
+<a href="/static/help/wallet.html">Wallet <sup style="font-size:10px; font-weight:bold; color:#990000;">New</sup></a>
+</li>
+</ul>
+<br>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/payment.gif" alt="Payment Options" title="Payment Options" border="0"/>
+<img src="http://assets.infibeam.com/assets/skins/newcommon/images/AExp_SafeKey_SM_163px.gif" border="0"/>
+<h3>Safe & Secure Shopping</h3>
+<div align="center"><img src="http://assets.infibeam.com/assets/skins/newcommon/images/entrust.png" alt="Safe and Secure Shopping" title="Safe and Secure Shopping" border="0"/></div>
+</td>
+</tr>
+</table>
+<div style="border-top:1px dotted #999; background-color:#e2e2e2; line-height:30px; text-align:left;">
+<span style="float:right;">Infibeam sites: <a href="http://www.buildabazaar.com/" rel="nofollow" target="_blank">BuildaBazaar.com</a> | <a href="http://www.picsquare.com/" rel="nofollow" target="_blank">Picsquare.com</a>&nbsp;&nbsp;</span>
+&nbsp;&nbsp;Copyright &copy; <a href="/Books/dl/" style="cursor: default; text-decoration: none; color: #535353;">2007-2012</a> Infibeam.com and Affiliates
+</div>
+</div>
+<div id="header_submenus" style="display:none;"></div>
+</div>
+<script type="text/javascript">
+adroll_adv_id = "3XEPKCSMY5GPHGDGQUV6DR";
+adroll_pix_id = "5WLFZTGGUFH5PADE2GCDP7";
+(function () {
+var oldonload = window.onload;
+window.onload = function(){
+__adroll_loaded=true;
+var scr = document.createElement("script");
+var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+scr.setAttribute('async', 'true');
+scr.type = "text/javascript";
+scr.src = host + "/j/roundtrip.js";
+((document.getElementsByTagName('head') || [null])[0] ||
+document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+if(oldonload){oldonload()}};
+}());
+</script>
+</body>
+</html>
+<style>
+.scrollup{
+position:fixed;
+bottom:10px;
+right: 20px;
+}
+.scrollup {
+background:url(/assets/skins/newcommon/images/icon/sactive.png) no-repeat 0px 0px;
+height:60px;
+width:58px;
+display:block;
+}
+a.scrollup:hover{
+background:url(/assets/skins/newcommon/images/icon/shover.png) no-repeat 0px 0px;
+}
+</style>
+<script>
+$(document).ready(function(){
+$('.scrollup').fadeOut();
+$(window).scroll(function(){
+if ($(this).scrollTop() > 400) {
+$('.scrollup').fadeIn();
+} else {
+$('.scrollup').fadeOut();
+}
+});
+$('.scrollup').click(function(){
+$("html, body").animate({ scrollTop: 0 }, 1000);
+return false;
+});
+});
+</script>
+<a href="" class="scrollup"></a>

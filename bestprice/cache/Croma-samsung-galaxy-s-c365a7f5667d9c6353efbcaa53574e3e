@@ -1,0 +1,728 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+    <title>Croma :: Your search results</title>
+    <meta name="Description" content="Croma" />
+    <meta name="Keywords" content="Croma" />
+    <link rel="icon" type="image/ico" href="http://www.cromaretail.com/images/croma.ico" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta property="og:title" content="Croma :: Croma :: Your search results" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.cromaretail.com//productsearch.aspx" />
+    <meta property="og:site_name" content="Cromaretail.com" />
+    <meta property="og:image" content="http://www.cromaretail.com/images/croma.ico" />
+    <meta property="fb:admins" content="1283475257" />
+    <meta property="og:description" content="Croma" />
+
+    <link href="Theme/default/styles/shop-style.css?ver=07Aug12" rel="stylesheet" />
+    <link href="Theme/default/styles/inner-style-v2.css?ver=07Aug12" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="Theme/default/styles/ie_hacks_inner.css" />
+    <style type="text/css">
+    #header-inner .buy-list {width:310px}
+    #header-inner .buy-list .view-cart img {margin-left:0px;margin-top:0px;}
+    #main-content #inner-content .content-right {margin-left:5px;} 
+    ul.display li .content_block .view-price .view-details img {margin-top:-22px}
+    </style>
+	<![endif]-->
+    <script type="text/javascript" src="Theme/default/scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="Theme/default/scripts/custom-main.js"></script>
+    <script type="text/javascript" src="Theme/default/scripts/custom-search.js"></script>
+    <script src="Theme/default/scripts/jquery.autocomplete.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="Theme/default/styles/jquery.autocomplete.css" />
+    <script src="/scripts/jquery.cookie.js" language="javascript" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () { attachThumbEvent(); });
+
+        function attachThumbEvent() {
+            $('a[id^=aThumb]').click(function () {
+                $.cookie('search-thumb-view', 'thumb_view');
+                $('a[id^=aThumb]').fadeTo('slow', 1.0); $('a[id*=aGrid]').fadeTo('slow', 0.25);
+                $("ul.display").fadeOut("fast", function () {
+                    $(this).fadeIn("fast").addClass("thumb_view");
+                });
+            });
+
+            $('a[id^=aGrid]').click(function () {
+                $.cookie('search-thumb-view', '');
+                $('a[id^=aGrid]').fadeTo('slow', 1.0);
+                $('a[id*=aThumb]').fadeTo('slow', 0.25);
+                $("ul.display").fadeOut("fast", function () { $(this).fadeIn("fast").removeClass("thumb_view"); });
+            });
+        }
+    </script>
+    <script type="text/javascript" language="javascript">
+        function show_search() {
+            window.location = 'ProductSearch.aspx?txtSearch=' + document.getElementById('txtSearch').value;
+        }
+
+        function Find1() {
+            var sParameter1 = $("#txtSearch").val();
+            window.location = 'ProductSearch.aspx?txtSearch=' + $("#txtSearch").val();
+        }
+
+        function newTextSearch(a) {
+            $("#txtSearch").val(a);
+            Find1();
+        }
+    </script>
+    <link rel="stylesheet" href="Theme/default/styles/jquery-ui-1.8rc1.custom.css" type="text/css" />
+    <!--[if IE 6]>
+    <link rel="stylesheet" href="Theme/default/styles/jslider.ie6.css" type="text/css" media="screen">
+
+	<![endif]-->
+    <script type="text/javascript" src="Theme/default/scripts/jquery.dependClass.js"></script>
+    <script type="text/javascript" src="Theme/default/scripts/jquery-ui-1.8rc1.custom.min.js"></script>
+    <style type="text/css">
+        #main-content {
+            margin: 0 auto;
+        }
+
+        ul#topnav {
+            background-position: 0 -100px;
+        }
+
+        .search {
+            float: left;
+            margin-left: 228px;
+            width: 440px;
+        }
+
+            .search .search-box {
+                float: left;
+                background: url(images/search-box.png) no-repeat;
+                color: #39939C;
+                float: left;
+                font-size: 12px;
+                margin-right: 10px;
+                margin-top: 10px;
+                padding: 7px 8px 10px;
+                width: 320px;
+                border: none;
+            }
+
+            .search .search-btn {
+                margin-top: 10px;
+            }
+
+        #search-div {
+            position: absolute;
+        }
+
+        .ac_results {
+            width: 330px !important;
+            float: left;
+            margin-top: -6px !important;
+        }
+
+        ul.thumb_view li .content_block .view-price .submit-btn {
+            margin-top: -20px;
+            display: block;
+            margin-left: -27px;
+        }
+
+        ul.thumb_view li .content_block .view-price img {
+            float: left;
+            margin-right: 17px;
+            margin-top: -27px;
+        }
+    </style>
+    
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-400817-37']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+    
+    <script type="text/javascript">
+        function OperaReload() {
+            try {
+                var headElement = document.getElementsByTagName("head")[0];
+                if (headElement && headElement.innerHTML)
+                    headElement.innerHTML += "<meta http-equiv=\"refresh\" content=\"1\">";
+            }
+            catch (e) { }
+        }
+    </script>
+    <!-- start Coremetrics -->
+    <script type="text/javascript" src="//libs.coremetrics.com/eluminate.js"></script>
+    <script type="text/javascript">
+        cmSetClientID("90388267", true, "data.coremetrics.com", "cromaretail.com");
+    </script>
+    <!-- end Coremetrics -->
+    <!--product-search-->
+</head>
+<body class="shopping-cart" onunload="OperaReload()">
+    <div id="main">
+        <div class="border">
+            <div id="container">
+                <div id="header-inner">
+                    <div class="tata-logo">
+                        <img src="images/tata-logo-new.png" width="151" height="25" alt="A Tata Enterprise" title="A Tata Enterprise" /></div>
+                    <div class="logo">
+                        <img src="images/tele.jpg" width="16" height="12" align="left" vspace="1" alt="customer care" title="customer care" />&nbsp;&nbsp;Toll Free Customer Support 1800-258-3636<br clear="all" />
+                        <br />
+                        <a href="/">
+                            <img src="images/logo.jpg" width="186" height="64" border="0" alt="croma" title="croma" /></a>
+                    </div>
+                    <div class="top-cart"><div class="top-reg"><a style="border-right:1px solid #39939c;" href="we-help-you-buy.aspx"><strong>We Help You Buy</strong></a></div>  <div class="top-reg"><a style="border-right:1px solid #39939c;" href="/blog">Blog</a></div>  <div class="top-reg"><a href="/register.aspx"  style="border-right:1px solid #39939c;">Register</a></div><div class="top-reg"><a id="displayText" href="/login.aspx">Login </a></div> </div>
+                    <br clear="all" />
+                    <div class="buy-list"><script type="text/javascript">
+
+      
+      
+          function loadBagCount()
+          {
+              $.ajax
+              (
+                  {
+                      type: 'POST',
+                      url: 'ProcessAjaxRequest.aspx',
+                      data: { commandname: 'BagCount' },
+                      beforeSend: function() { $('#sLoader').show(); },
+                      success: function(d) 
+                      { 
+                        eval('var oJson = ' + d); 
+                        $('#dvBagCount').html(oJson.bagCount); 
+                        $('#spBagTotal').html(oJson.bagTotalPrice); 
+                        $('#sLoader').hide();
+                      }
+                  }
+              );
+          }
+          
+         
+      
+
+    </script><span class="buy-bg"><span class="view-list"><span id="dvBagCount">0</span> item(s)
+        </span><span class="view-list">Total :</span><span class="view-list"><span class="WebRupee">Rs.</span> 
+          <span id="spBagTotal">0.00</span></span><span class="view-cart"><a href="/addtocart.aspx"><img width="81" height="20" border="0" src="images/view-cart.jpg" alt="View cart" /></a></span></span></div>
+                </div>
+                <br clear="all" />
+                <div id="main-content" style="padding-bottom: 0px">
+                    <div class="shopping-cart">
+                        <div class="middle-menu">
+                            <div class="hidden_action_container" style="width: 150px"><a href="croma-offers.aspx">
+                                <img src="images/free-shipping.png" width="40" height="40" border="0" align="middle" alt="free shipping" title="free shipping" />&nbsp;FREE SHIPPING</a> </div>
+                            <!--<div class="hidden_action_container"  style="width:177px"><a href="croma-offers.aspx"><img src="images/cash-delivery.png" width="40" height="40" border="0" align="middle"  alt="cash on delivery" title="cash on delivery"/>&nbsp;CASH ON DELIVERY</a> </div>-->
+                            <div class="hidden_action_container" style="width: 177px"><a href="croma-offers.aspx">
+                                <img src="images/trusted-services.png" width="40" height="40" border="0" align="middle" alt="trusted-service" title="trusted-service" />&nbsp;TRUSTED SERVICE</a> </div>
+                            <!--Commented KNM07NOV12 Task#1162
+                            <div class="hidden_action_container" style="width: 221px"><a href="croma-offers.aspx">
+                                <img src="images/money-back.png" width="40" height="40" border="0" align="middle" alt="money back guarantee" title="money back guarantee" />&nbsp;MONEY BACK GUARANTEE</a> 
+                            </div>
+                            -->
+                            <!--Added KNM07Nov12, Task#1162-->
+                            <div class="hidden_action_container"  style="width:177px"><a href="croma-offers.aspx"><img src="images/codicon.png" width="40" height="40" border="0" align="middle"  alt="cash on delivery" title="cash on delivery"/>&nbsp;CASH ON DELIVERY</a> </div>
+                            <div class="hidden_action_container" style="width: 152px"><a href="croma-offers.aspx">
+                                <img src="images/easy-returns.png" width="40" height="40" border="0" align="middle" alt="easy returns" title="easy returns" />&nbsp;EASY RETURNS</a> </div>
+                            <div class="hidden_action_container" style="width: 164px"><a href="croma-offers.aspx">
+                                <img src="images/safe-secure.png" width="40" height="40" border="0" align="middle" alt="safe and secure" title="safe and secure" />&nbsp;SAFE &amp; SECURED</a> </div>
+                        </div>
+                        <div class="top-banner">
+                            <div class="banner-menu">
+                                <!-- Menu -->
+                                <ul id="topnav" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li class="home"><a href="/default.aspx" class="home selected">Home</a></li><li class="Phones"><a href="/phones-c-1.aspx" class="Phones selected">phones</a><div class="sub" style="margin-left:-27px;border-top:1px solid #999900"><span class="Phones-ar"> </span><br clear="all" /><ul style="width:190px;float:left;border-right:3px solid #e4e4e4;"><li><h2>
+                In Phones
+              </h2></li><li><a href="Mobile-Phones-c-10.aspx">Mobile Phones</a></li><li><a href="Telephones-c-12.aspx">Telephones</a></li></ul><ul style="width:148px;border-left:3px solid #e4e4e4;margin-left:-3px"><li><h2>
+                Brands
+              </h2></li><li><a href="Apple-bc-49-1.aspx">Apple</a></li><li><a href="Sony-bc-63-1.aspx">Sony</a></li><li><a href="Samsung-bc-5-1.aspx">Samsung</a></li><li><a href="Blackberry-bc-100-1.aspx">Blackberry</a></li><li><a href="Micromax-bc-101-1.aspx">Micromax</a></li></ul></div></li><li class="Computers"><a href="/computers-c-3.aspx" class="Computers selected">computers</a><div class="sub" style="margin-left:-68px;border-top:1px solid #0073ff"><span class="Computers-ar"> </span><br clear="all" /><ul style="width:190px;float:left;border-right:3px solid #e4e4e4;"><li><h2>
+                In Computers
+              </h2></li><li><a href="e-Book-Readers-c-23.aspx">e Book Readers</a></li><li><a href="Tablets--iPads-c-22.aspx">Tablets &amp; iPads</a></li><li><a href="Laptops-c-20.aspx">Laptops</a></li><li><a href="Netbooks-c-21.aspx">Netbooks</a></li><li><a href="Ultrabooks-c-814.aspx">Ultrabooks</a></li><li><a href="Computer-Storage-c-29.aspx">Computer Storage</a></li><li><a href="Desktops-c-25.aspx">Desktops</a></li><li><a href="Computer-Speakers-c-27.aspx">Computer Speakers</a></li><li><a href="Network-Components-c-28.aspx">Network Components</a></li><li><a href="Computer-Softwares-c-30.aspx">Computer Softwares</a></li><li><a href="Monitors-c-32.aspx">Monitors</a></li><li><a href="Printers-c-31.aspx">Printers</a></li><li><a href="Printer-Ink-c-736.aspx">Printer Ink</a></li><li><a href="Office-Solutions-c-735.aspx">Office Solutions</a></li></ul><ul style="width:148px;border-left:3px solid #e4e4e4;margin-left:-3px"><li><h2>
+                Brands
+              </h2></li><li><a href="Apple-bc-49-3.aspx">Apple</a></li><li><a href="Sony-bc-63-3.aspx">Sony</a></li><li><a href="Samsung-bc-5-3.aspx">Samsung</a></li><li><a href="Philips-bc-32-3.aspx">Philips</a></li><li><a href="Blackberry-bc-100-3.aspx">Blackberry</a></li></ul></div></li><li class="Entertainment"><a href="/Entertainment-c-4.aspx" class="Entertainment selected">entertainment</a><div class="sub" style="margin-left:-88px;border-top:1px solid #ce18f2"><span class="Entertainment-ar"> </span><br clear="all" /><ul style="width:190px;float:left;border-right:3px solid #e4e4e4;"><li><h2>
+                In Entertainment
+              </h2></li><li><a href="LED-TVs-c-34.aspx">LED TVs</a></li><li><a href="LCD-TVs-c-33.aspx">LCD TVs</a></li><li><a href="Plasma-TVs-c-36.aspx">Plasma TVs</a></li><li><a href="Home-Theatre-Systems-c-44.aspx">Home Theatre Systems</a></li><li><a href="Home-Audio-Systems-c-41.aspx">Home Audio Systems</a></li><li><a href="Portable-Audio-Systems-c-42.aspx">Portable Audio Systems</a></li><li><a href="DVD-Players-c-43.aspx">DVD Players</a></li><li><a href="Apple-iPods-c-37.aspx">Apple iPods</a></li><li><a href="MP3--Mp4-Players-c-39.aspx">MP3 &amp; Mp4 Players</a></li></ul><ul style="width:148px;border-left:3px solid #e4e4e4;margin-left:-3px"><li><h2>
+                Brands
+              </h2></li><li><a href="Apple-bc-49-4.aspx">Apple</a></li><li><a href="Sony-bc-63-4.aspx">Sony</a></li><li><a href="Samsung-bc-5-4.aspx">Samsung</a></li><li><a href="LG-bc-3-4.aspx">LG</a></li><li><a href="Philips-bc-32-4.aspx">Philips</a></li></ul></div></li><li class="Appliances"><a href="/Home-Appliances-c-5.aspx" class="Appliances selected">home appliances</a><div class="sub" style="margin-left:-111px;border-top:1px solid #ff8c26"><span class="Appliances-ar"> </span><br clear="all" /><ul style="width:190px;float:left;border-right:3px solid #e4e4e4;"><li><h2>
+                In Home Appliances
+              </h2></li><li><a href="Air-Conditioners-c-46.aspx">Air Conditioners</a></li><li><a href="Refrigerators-c-47.aspx">Refrigerators</a></li><li><a href="Washing-Machine-c-48.aspx">Washing Machine</a></li><li><a href="Air-Coolers--Fans-c-51.aspx">Air Coolers &amp; Fans</a></li><li><a href="Water-Heaters-c-803.aspx">Water Heaters</a></li><li><a href="Vacuum-Cleaners-c-50.aspx">Vacuum Cleaners</a></li><li><a href="Safety-Lockers-c-54.aspx">Safety Lockers</a></li><li><a href="Power-c-53.aspx">Power</a></li><li><a href="Lighting-Products-c-52.aspx">Lighting Products</a></li><li><a href="Health-Care-c-56.aspx">Health Care</a></li><li><a href="Electric-Shavers-c-443.aspx">Electric Shavers</a></li><li><a href="Personal-Care-c-55.aspx">Personal Care</a></li><li><a href="Water-Dispensers-c-802.aspx">Water Dispensers</a></li><li><a href="Irons-c-57.aspx">Irons</a></li></ul><ul style="width:148px;border-left:3px solid #e4e4e4;margin-left:-3px"><li><h2>
+                Brands
+              </h2></li><li><a href="Samsung-bc-5-5.aspx">Samsung</a></li><li><a href="LG-bc-3-5.aspx">LG</a></li><li><a href="Philips-bc-32-5.aspx">Philips</a></li><li><a href="Croma-bc-9-5.aspx">Croma</a></li><li><a href="Whirlpool-bc-10-5.aspx">Whirlpool</a></li></ul></div></li><li class="Kitchen"><a href="/kitchen-c-6.aspx" class="Kitchen selected">kitchen</a><div class="sub" style="margin-left:-136px;border-top:1px solid #e23c56"><span class="Kitchen-ar"> </span><br clear="all" /><ul style="width:190px;float:left;border-right:3px solid #e4e4e4;"><li><h2>
+                In Kitchen Appliances
+              </h2></li><li><a href="Food-Processor-c-58.aspx">Food Processor</a></li><li><a href="Microwaves-Ovens-c-60.aspx">Microwaves Ovens</a></li><li><a href="OTG-c-61.aspx">OTG</a></li><li><a href="Toasters--Sandwich-Makers-c-759.aspx">Toasters &amp; Sandwich Makers</a></li><li><a href="Steamers--Cookers-c-756.aspx">Steamers &amp; Cookers</a></li><li><a href="Cooking-Appliances-c-59.aspx">Cooking Appliances</a></li><li><a href="Coffee--Tea-Makers-c-753.aspx">Coffee &amp; Tea Makers</a></li><li><a href="Kettles-c-755.aspx">Kettles</a></li><li><a href="Dishwashers-c-62.aspx">Dishwashers</a></li><li><a href="Electric-Chimney-c-798.aspx">Electric Chimney</a></li><li><a href="Water-Purifiers-c-800.aspx">Water Purifiers</a></li></ul><ul style="width:148px;border-left:3px solid #e4e4e4;margin-left:-3px"><li><h2>
+                Brands
+              </h2></li><li><a href="Samsung-bc-5-6.aspx">Samsung</a></li><li><a href="LG-bc-3-6.aspx">LG</a></li><li><a href="Philips-bc-32-6.aspx">Philips</a></li><li><a href="Croma-bc-9-6.aspx">Croma</a></li><li><a href="Whirlpool-bc-10-6.aspx">Whirlpool</a></li></ul></div></li><li class="Cameras"><a href="/cameras-c-2.aspx" class="Cameras selected">cameras</a><div class="sub" style="margin-left:-144px;border-top:1px solid #ff4019"><span class="Cameras-ar"> </span><br clear="all" /><ul style="width:190px;float:left;border-right:3px solid #e4e4e4;"><li><h2>
+                In Cameras
+              </h2></li><li><a href="Digital-Cameras-c-14.aspx">Digital Cameras</a></li><li><a href="Digital-SLR-Cameras-c-15.aspx">Digital SLR Cameras</a></li><li><a href="Camcorders-c-16.aspx">Camcorders</a></li><li><a href="Digital-Photo-Frames-c-17.aspx">Digital Photo Frames</a></li><li><a href="Binoculars-c-18.aspx">Binoculars</a></li></ul><ul style="width:148px;border-left:3px solid #e4e4e4;margin-left:-3px"><li><h2>
+                Brands
+              </h2></li><li><a href="Sony-bc-63-2.aspx">Sony</a></li><li><a href="Philips-bc-32-2.aspx">Philips</a></li><li><a href="Croma-bc-9-2.aspx">Croma</a></li><li><a href="Canon-bc-85-2.aspx">Canon</a></li><li><a href="Nikon-bc-149-2.aspx">Nikon</a></li></ul></div></li><li class="Gaming"><a href="/Gaming-c-7.aspx" class="Gaming selected">gaming</a><div class="sub" style="margin-left:-222px;border-top:1px solid #8ed90d"><span class="Gaming-ar"> </span><br clear="all" /><ul style="width:190px;float:left;border-right:3px solid #e4e4e4;"><li><h2>
+                In Gaming
+              </h2></li><li><a href="Gaming-Console-c-63.aspx">Gaming Console</a></li><li><a href="Games-c-64.aspx">Games</a></li><li><a href="Electronic-Toys-c-65.aspx">Electronic Toys</a></li></ul><ul style="width:148px;border-left:3px solid #e4e4e4;margin-left:-3px"><li><h2>
+                Brands
+              </h2></li><li><a href="Sony-bc-63-7.aspx">Sony</a></li><li><a href="Microsoft-bc-60-7.aspx">Microsoft</a></li><li><a href="UBI-Soft-bc-127-7.aspx">UBI Soft</a></li><li><a href="EA-Sports-bc-128-7.aspx">EA Sports</a></li><li><a href="Mitashi-bc-106-7.aspx">Mitashi</a></li></ul></div></li><li class="Accessories"><a href="/Accessories-c-8.aspx" class="Accessories selected">accessories</a><div class="sub" style="margin-left:-266px;border-top:1px solid #f2186d"><span class="Accessories-ar"> </span><br clear="all" /><ul style="width:190px;float:left;border-right:3px solid #e4e4e4;"><li><h2>
+                In Accessories
+              </h2></li><li><a href="Mobile-Phone-Accessories-c-68.aspx">Mobile Phone Accessories</a></li><li><a href="Camera-Accessories-c-69.aspx">Camera Accessories</a></li><li><a href="Laptop-Accessories-c-70.aspx">Laptop Accessories</a></li><li><a href="iPad-Accessories-c-71.aspx">iPad Accessories</a></li><li><a href="Tablet-Accessories-c-72.aspx">Tablet Accessories</a></li><li><a href="Computer-Accessories-c-74.aspx">Computer Accessories</a></li><li><a href="Mac-Accessories-c-777.aspx">Mac Accessories</a></li><li><a href="iPod-Accessories-c-75.aspx">iPod Accessories</a></li><li><a href="MP3-Accessories-c-76.aspx">MP3 Accessories</a></li><li><a href="Audio--Video-Accessories-c-78.aspx">Audio &amp; Video Accessories</a></li><li><a href="Gaming-Accessories-c-77.aspx">Gaming Accessories</a></li><li><a href="e-Book-Accessories-c-73.aspx">e Book Accessories</a></li></ul><ul style="width:148px;border-left:3px solid #e4e4e4;margin-left:-3px"><li><h2>
+                Brands
+              </h2></li><li><a href="Apple-bc-49-8.aspx">Apple</a></li><li><a href="Sony-bc-63-8.aspx">Sony</a></li><li><a href="Samsung-bc-5-8.aspx">Samsung</a></li><li><a href="LG-bc-3-8.aspx">LG</a></li><li><a href="Philips-bc-32-8.aspx">Philips</a></li></ul></div></li><li class="occasions"><a href="cromazone.aspx" class="occasions selected">croma zone</a></li></ul>
+              <!-- Menu -->
+                            </div>
+                        </div>
+                        <div class="search">
+                            <form id="sForm" name="sForm" method="get" action="/ProductSearch.aspx">
+                                <div style="text-align: center; padding: 0pt 0pt 8px;">
+                                    <div>
+                                        <!--
+                                     <input  id="search" name="search" onblur="return showDefaultText(this, 'Which products can we help you buy today?')" onfocus="return hideDefaultText(this, 'Which products can we help you buy today?')" value="Which products can we help you buy today?" class="search-box" type="text" />
+                                     -->
+                                        <input id="txtSearch" name="txtSearch" onblur="return showDefaultText(this, 'Which products can we help you buy today?')" onfocus="return hideDefaultText(this, 'Which products can we help you buy today?')" value="Which products can we help you buy today?" class="search-box" type="text" autocomplete="off" />
+                                        <input type="image" id="BTsearch" src="images/search-btn.png" class="search-btn" onclick="if ($.trim($('#txtSearch').val()) != 'Which products can we help you buy today?') document.sForm.submit(); else return false;" value="Search" />
+                                    </div>
+                                    <div id="search-div"></div>
+                                    <br clear="all" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <br clear="all" />
+                    <div id="inner-content">
+                        <div class="content-prod">
+                            <div id="myspan">
+                                <script src="Theme/default/scripts/cufon-yui.js" type="text/javascript"></script> <script src="Theme/default/scripts/Mercedes-Light_500.font.js" type="text/javascript"></script>  <script src="/Theme/default/scripts/jquery.rating.js" type="text/javascript"></script>  <link href="/Theme/default/styles/jquery.rating.css" rel="stylesheet" type="text/css" />  <script type="text/javascript">Cufon.replace('.sidetop,#main-content #inner-content .content-left .content .title,#main-content #inner-content .content-left .content .intro,#main-content .middle-menu-inner .title,#main-content .topband .title,#main-content .topband .tagline,#panel-compare .login .text,#panel-compare .compare .text, #recent-view .title,#main-content .prod-topband .title , .content_block .order-title,#prod-inner #scroller-body .box .col-1 .title,#prod-inner #scroller-body .box .col-2 .title, #prod-inner #scroller-body .box .smallband, #prod-inner .col-right #more-box .title, #prod-inner .col-right #more-box ul li .find-out , #scroll-view .title, a .accordionButton,#main-content .topband .content-right .title'); // Works without a selector engine</script><script src="/Theme/Default/scripts/HashFragment.js" type="text/javascript"></script><script type="text/javascript" language="javascript">
+			
+		//Added FYB090112
+		$(window).load(function() {
+			if (UrlContainsHF() == true) {
+				ProcessProductSearchPageHFs();
+			}
+		});
+		
+		/*
+		function applyAllFilter() {
+			applyFilter('spProductLoader1');
+		}
+		
+		function applyFilter(sLoaderId) {
+			//alert("applyFilter");
+			var oJson = { 
+				strip: 'strip', 
+				test: 'test', 
+				CategoryID: $('#CategoryID').val(), 
+				txtSearch: $('#txtSearch').val(),
+				brand_id: ((typeof(sBrandId) != 'undefined') ? sBrandId : ''), 
+				ddlSort: $('#ddlSort').val(), 
+				rdbBrands: cntrlValues('rdbBrands'), 
+				rdbCategories: cntrlValues('rdbCategories'), 
+				min: $('#slider-range').slider('values', 0), 
+				max: $('#slider-range').slider('values', 1)
+			};
+			
+			if($('[name=rdbAttribute]').size() > 0) oJson.rdbAttribute = cntrlValues('rdbAttribute', '|ATTR|');
+			
+			$('#' + sLoaderId).show();
+			
+			oAjaxReq = $.post(sUrl, oJson, function(d) { 
+				$('#myspan').html(d); attachThumbEvent(); 
+				$('#' + sLoaderId).hide(); Custom.init();  
+			});
+		}
+		*/
+		
+		function cntrlValues(sCntrl, sSep) {
+			var o = $('[name=' + sCntrl + ']:checked');
+			var s = '';
+			
+			for(var i = 0; i < o.size(); i ++)
+			{
+				if(s == '') s = o[i].value;
+				else s += ((typeof(sSep) != 'undefined') ? sSep : ',') + o[i].value;
+			}
+			return s;
+		}
+		
+		$(function() {  
+			//alert("Anonymous-priceRange");
+			priceRange(); 
+			/*$('#ddlSort').change(function() { applyFilter('spLoader'); });*/  
+		});
+		
+		/*
+		function applyProductFilter(sLoaderId) {
+			//alert("applyProductFilter");
+			var oJson = { 
+				CategoryID: $('#CategoryID').val(), 
+				brand_id: ((typeof(sBrandId) != 'undefined') ? sBrandId : ''), 
+				ddlSort: $('#ddlSort').val(), 
+				rdbCategories: cntrlValues('rdbCategories') 
+			};
+			$('#' + sLoaderId).show();
+			oAjaxReq = $.post('/ProductFilter.aspx', oJson, function(d) { onSuccess(d, sLoaderId); });		   
+		}
+		*/
+		
+		function KillRequest() {
+			if(typeof(oAjaxReq) != 'undefined') {
+				oAjaxReq.abort();
+			}
+		}
+		
+		/*
+		function FilterProduct() { 
+			applyProductFilter('spProductLoader1');		 
+		}
+		  
+		function onSuccess(d, sLoaderId) {
+			try {			   
+				$('#myspan').html(d);
+			} 
+			catch(e) {  }
+		}		
+		*/
+	 
+		function searh_solr() {
+			//alert("searh_solr");
+			doPaging('1', 'spApplyLoader');
+		}
+		
+		function FilterCategory() {
+			//alert("FilterCategory");
+			var sCurrentIndex="1";
+			var oJson = { 
+				strip: 'strip', 
+				test: 'test', 
+				PageNumber: sCurrentIndex,
+				txtSearch: $('#txtSearch').val(),
+				CategoryID: $('#CategoryID').val(), 
+				brand_id: ((typeof(sBrandId) != 'undefined') ? sBrandId : ''),
+				rdbCategories: cntrlValues('rdbCategories'),
+				Hproductids : $('#IDhiddenProduct').val()
+			};
+			
+			if($('[name=rdbAttribute]').size() > 0) oJson.rdbAttribute = cntrlValues('rdbAttribute', '|ATTR|');
+		   
+			$('#spProductLoader1').show(); /* Custom.disable();*/ 
+			oAjaxReq = $.post('ProductSearch.aspx', oJson, function(d) { 
+				$('#myspan').html(d); 
+				attachThumbEvent(); 
+				$('#spProductLoader1').hide();
+				Custom.init();
+				toggleContainer();
+			});
+		}
+		
+		function doPaging(sCurrentIndex, sLoaderId) {
+			//alert("doPaging " + sCurrentIndex + "-" + sLoaderId);
+			if (typeof sCurrentIndex != "undefined") {PageChanged(sCurrentIndex)}; //FYB 090112
+			var oJson = { 
+				strip: 'strip', 
+				test: 'test', 
+				PageNumber: sCurrentIndex,
+				CategoryID: $('#CategoryID').val(), 
+				brand_id: ((typeof(sBrandId) != 'undefined') ? sBrandId : ''), 
+				txtSearch: $('#txtSearch').val(),
+				ddlSort: $('#ddlSort').val(), 
+				rdbBrands: cntrlValues('rdbBrands'), 
+				rdbCategories: cntrlValues('rdbCategories'), 
+				min: $('#slider-range').slider('values', 0), 
+				max: $('#slider-range').slider('values', 1), 
+				Hproductids : $('#IDhiddenProduct').val()
+			};
+			if($('[name=rdbAttribute]').size() > 0) oJson.rdbAttribute = cntrlValues('rdbAttribute', '|ATTR|');
+		   
+			$('#spProductLoader1').show(); /* Custom.disable();*/ 
+			
+			oAjaxReq = $.post('ProductSearch.aspx', oJson, function(d) { 
+				$('#myspan').html(d); 
+				attachThumbEvent(); 
+				$('#spProductLoader1').hide();
+				Custom.init();
+				toggleContainer();
+			});
+		}
+		
+		function cntrlValues(sCntrl, sSep) {
+			var o = $('[name=' + sCntrl + ']:checked');
+			var s = '';
+			for(var i = 0; i < o.size(); i ++)
+			{
+				if(s == '') s = o[i].value;
+				else s += ((typeof(sSep) != 'undefined') ? sSep : ',') + o[i].value;
+			}
+			return s;
+		}
+		
+		function controlValues(sCntrl) {
+			// alert(sCntrl);
+			 var o = $('[name=' + sCntrl + ']:checked');
+			// alert(o);
+			 
+			var s = '';
+			
+			for(var i = 0; i < o.size(); i ++) {
+				if(s == '') s = o[i].value;
+				else s += ',' + o[i].value;
+			}
+			
+			return s;
+		}
+		
+		function toggleContainer() {
+			$(".toggle_container").show();
+			$(".trigger").removeClass('active1').unbind('click');
+			$(".trigger").addClass('active1').unbind('click');
+			$(".trigger").bind('click', function() { 
+				$(this).toggleClass("active1").next().slideToggle("fast");
+			});
+		}  
+		
+		function PutHtmlHiddenFieldValue(message) {
+			var hidden = document.getElementById('IDhiddenProduct');
+			if (hidden != null) {
+				  hidden.value = message;
+			}
+		}
+	
+		</script><div id="grid-container"><input type="hidden" id="IDhiddenProduct" name="IDhiddenProduct"><script>
+					$('#IDhiddenProduct').val('12357,15727,15686,10345,10346');
+				</script><script>
+					$('#txtSearch').val('samsung galaxy s');
+				</script><div id="div_search">
+    <table cellpadding="0" cellspacing="0"></table>
+  </div><br clear="all"><script type="text/javascript">
+								 cmCreatePageviewTag("Successful:1", "product search","samsung galaxy s","5"); 
+							</script><div class="content-left" style="width:154px">
+    <div class="sidetop">refine by</div>
+    <div class="trigger active1"><a href="javascript:;">Categories</a></div>
+    <div class="toggle_container" style="display: block;">
+      <ul>
+        <li><input type="checkbox" name="rdbCategories" value="533" class="styled">Cases &amp; Covers (2)</li>
+        <li><input type="checkbox" name="rdbCategories" value="536" class="styled">Screen Protectors (1)</li>
+        <li><input type="checkbox" name="rdbCategories" value="95" class="styled">Android Mobile Phones (2)</li>
+      </ul>
+    </div><br clear="all"><div class="trigger"><a href="javascript:;">Brands</a></div>
+    <div class="toggle_container">
+      <ul>
+        <li><input type="checkbox" name="rdbBrands" value="367" class="styled">MOLIFE (2)
+									</li>
+        <li><input type="checkbox" name="rdbBrands" value="5" class="styled">Samsung (2)
+									</li>
+        <li><input type="checkbox" name="rdbBrands" value="50" class="styled">Scratchgard (1)
+									</li>
+      </ul>
+    </div><br clear="all"><div class="trigger active1"><a href="javascript:;">Price range</a></div>
+    <div class="toggle_container" style="display: block;"><script>
+
+								var iMin = 'Null';
+								var iMax = 'Null';
+
+								var hfMin = 350;
+								var hfMax = 19499;
+
+								
+					function priceRange() {				  
+						$('#slider-range').slider ({
+							range: true,
+							min: hfMin,
+							max: hfMax,
+							values: [(isNaN(iMin)) ? hfMin : parseFloat('0' + iMin), (isNaN(iMax)) ? hfMax : parseFloat('0' + iMax)],
+							slide: function(event, ui) {$('#range1').html(ui.values[0]); $('#range2').html(ui.values[1]);},
+							stop: function(envent,ui) {
+								// doPaging();
+								PriceRangeChanged($('#slider-range').slider('values', 0), $('#slider-range').slider('values', 1)); //Added FYB090112
+								doPaging('1', 'spApplyLoader');
+							}
+						});
+
+						$('#range1').html($('#slider-range').slider('values', 0));
+						$('#range2').html($('#slider-range').slider('values', 1));
+					}
+				
+							</script><div style="text-align: left;"><span id="range2">Price Range</span><span class="WebRupee">Rs.</span><span class="WebRupee" style="float:left">Rs.</span><span id="range1" style="float:left">Price Range</span></div><br clear="all"> <div id="slider-range"></div> </div><br clear="all"></div><span id="spAttributesLoader" style="display:none">
+						 
+					</span><div class="content-right">
+    <div class="topband" style="width:788px;height:52px"><span class="title">search results</span></div> <div class="grid-panel"> <span class="results">
+			Showing <strong>1</strong> - <strong>5</strong> of <strong>5</strong> results
+		</span><div class="select-box"><span id="spLoader" style="display:none;">
+				 
+			</span></div><span class="switch-box">
+			View :
+			<span style="float: right; width: 60px;"><a href="javascript:;" id="aGrid1" style="float:left;" class="switch_thumb"> </a><a href="javascript:;" id="aThumb1" onclick="" style="float:left;opacity:0.4;filter:alpha(opacity=40)" class="switch_thumb"> </a></span></span><div id="spProductLoader1" style="display:none;"></div><span class="pagination-box"><span style="float:right;width:105%"><a class="none">Prev</a><a class="pages"><strong><span>1</span></strong></a><a class="none" style="float:left">Next</a></span></span> </div> <ul class="display grid_view">
+      <li>
+        <div class="content_block"><a href="Samsung-I9070-Galaxy-S-Advance-GSM-Mobile-Phone-pc-12357-95.aspx" class="img"><img id="main-img" border="0" src="/Images/Catalogue/Product/medium/172428.jpg" alt="" width="140" height="140"></a> 
+										<div class="view-content">
+            <div class="text">
+              <h3><strong><a href="Samsung-I9070-Galaxy-S-Advance-GSM-Mobile-Phone-pc-12357-95.aspx">Samsung I9070 Galaxy S Advance GSM Mobile Phone</a></strong></h3><br><input type="radio" name="rdbRate1" value="1" disabled class="star"><input type="radio" name="rdbRate1" value="2" disabled class="star"><input type="radio" name="rdbRate1" value="3" disabled class="star"><input type="radio" name="rdbRate1" checked value="4" disabled class="star"><input type="radio" name="rdbRate1" value="5" disabled class="star"><span style="float:left;font-size:11px;padding-top:3px;">4 of 5 <a href="/view-review.aspx?category_id=95&amp;skuid=12355" class="group">
+															(1 Reviews)
+														</a></span><span class="view-intro">Available with a plethora of cutting-edge features, the Samsung i9070 Galaxy S Advance GSM Mobile Phone provides an... 
+
+												</span></div><br clear="all"></div>
+          <div class="view-price"><span class="price"><span class="regular">
+													Rs. 19,499</span></span><div style="margin-left:7px;margin-top:-5px" class="view-details"><a href="Samsung-I9070-Galaxy-S-Advance-GSM-Mobile-Phone-pc-12357-95.aspx" style="float:right;"><img src="../images/view-details-btn.png" border="0" width="125" height="22"></a></div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="content_block"><a href="Samsung-Galaxy-S-Duos-S7562-GSM-Mobile-Phone-(Dual-SIM)-(Black)-pc-15727-95.aspx" class="img"><img id="main-img" border="0" src="/Images/Catalogue/Product/medium/174305.jpg" alt="" width="140" height="140"></a> 
+										<div class="view-content">
+            <div class="text">
+              <h3><strong><a href="Samsung-Galaxy-S-Duos-S7562-GSM-Mobile-Phone-(Dual-SIM)-(Black)-pc-15727-95.aspx">Samsung Galaxy S Duos S7562 GSM Mobile Phone (Dual SIM) (Black)</a></strong></h3><br><span class="view-intro">The dual SIM Samsung Galaxy S Duos S7562 GSM mobile phone features Android v4.0 ICS OS. This black... 
+
+												</span></div><br clear="all"></div>
+          <div class="view-price"><span class="price"><span class="regular">
+													Rs. 17,299</span></span><div style="margin-left:7px;margin-top:-5px" class="view-details"><a href="Samsung-Galaxy-S-Duos-S7562-GSM-Mobile-Phone-(Dual-SIM)-(Black)-pc-15727-95.aspx" style="float:right;"><img src="../images/view-details-btn.png" border="0" width="125" height="22"></a></div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="content_block"><a href="Samsung-Galaxy-S-Duos-Scratchgard-pc-15686-536.aspx" class="img"><img id="main-img" border="0" src="/Images/Catalogue/Product/medium/174316.jpg" alt="" width="140" height="140"></a> 
+										<div class="view-content">
+            <div class="text">
+              <h3><strong><a href="Samsung-Galaxy-S-Duos-Scratchgard-pc-15686-536.aspx">Samsung Galaxy S Duos Scratchgard</a></strong></h3><br><span class="view-intro">As the name suggests, the Samsung Galaxy S Duos Scratchgard guards your mobile’s screen from scratches and minor... 
+
+												</span></div><br clear="all"></div>
+          <div class="view-price"><span class="price"><span class="regular">
+													Rs. 350</span></span><div style="margin-left:7px;margin-top:-5px" class="view-details"><a href="Samsung-Galaxy-S-Duos-Scratchgard-pc-15686-536.aspx" style="float:right;"><img src="../images/view-details-btn.png" border="0" width="125" height="22"></a></div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="content_block"><a href="Molife-Bumpy-Samsung-Galaxy-S-Mobile-Phone-Case-(Black)-pc-10345-533.aspx" class="img"><img id="main-img" border="0" src="/Images/Catalogue/Product/medium/171358.jpg" alt="" width="140" height="140"></a> 
+										<div class="view-content">
+            <div class="text">
+              <h3><strong><a href="Molife-Bumpy-Samsung-Galaxy-S-Mobile-Phone-Case-(Black)-pc-10345-533.aspx">Molife Bumpy Samsung Galaxy S Mobile Phone Case (Black)</a></strong></h3><br><span class="view-intro">Flaunting a minimalist, contemporary design, this all new Molife Bumpy Samsung Galaxy S mobile phone case is well... 
+
+												</span></div><br clear="all"></div>
+          <div class="view-price"><span class="price"><span class="regular">
+													Rs. 799</span></span><div style="margin-left:7px;margin-top:-5px" class="view-details"><a href="Molife-Bumpy-Samsung-Galaxy-S-Mobile-Phone-Case-(Black)-pc-10345-533.aspx" style="float:right;"><img src="../images/view-details-btn.png" border="0" width="125" height="22"></a></div>
+          </div>
+        </div>
+      </li>
+      <li class="view-border">border line</li>
+      <li>
+        <div class="content_block"><a href="Molife-Bumpy-Samsung-Galaxy-S-Mobile-Phone-Case-(Pink)-pc-10346-533.aspx" class="img"><img id="main-img" border="0" src="/Images/Catalogue/Product/medium/171359.jpg" alt="" width="140" height="140"></a> 
+										<div class="view-content">
+            <div class="text">
+              <h3><strong><a href="Molife-Bumpy-Samsung-Galaxy-S-Mobile-Phone-Case-(Pink)-pc-10346-533.aspx">Molife Bumpy Samsung Galaxy S Mobile Phone Case (Pink)</a></strong></h3><br><span class="view-intro">Featuring an uncluttered, simplistic design, this all new Molife Bumpy Samsung Galaxy S mobile phone case is well... 
+
+												</span></div><br clear="all"></div>
+          <div class="view-price"><span class="price"><span class="regular">
+													Rs. 799</span></span><div style="margin-left:7px;margin-top:-5px" class="view-details"><a href="Molife-Bumpy-Samsung-Galaxy-S-Mobile-Phone-Case-(Pink)-pc-10346-533.aspx" style="float:right;"><img src="../images/view-details-btn.png" border="0" width="125" height="22"></a></div>
+          </div>
+        </div>
+      </li>
+    </ul> <div class="grid-panel"> <span class="results">
+			Showing <strong>1</strong> - <strong>5</strong> of <strong>5</strong> results
+		</span><div class="select-box"><span id="spLoader" style="display:none;">
+				 
+			</span></div><span class="switch-box">
+			View :
+			<span style="float: right; width: 60px;"><a href="javascript:;" id="aGrid0" style="float:left;" class="switch_thumb"> </a><a href="javascript:;" id="aThumb0" onclick="" style="float:left;opacity:0.4;filter:alpha(opacity=40)" class="switch_thumb"> </a></span></span><div id="spProductLoader0" style="display:none;"></div><span class="pagination-box"><span style="float:right;width:105%"><a class="none">Prev</a><a class="pages"><strong><span>1</span></strong></a><a class="none" style="float:left">Next</a></span></span> </div> <script>  priceRange(); toggleContainer();  </script></div>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="middle-content">
+                    <div id="sitemap"><ul><li class="title">About Us</li><li><span class="more-arr"> </span><a href="about-us.aspx">About Croma</a></li><li><span class="more-arr"> </span><a href="news-media.aspx">News &amp; Media</a></li><li><span class="more-arr"> </span><a href="career-opportunities.aspx">Career Opportunities</a></li></ul><ul><li class="title">Order Support</li><li><span class="more-arr"> </span><a href="delivery-information.aspx">
+        Shipping Information 
+        </a></li><li><span class="more-arr"> </span><a href="refunds-returns.aspx">Cancellation &amp; Returns</a></li><li><span class="more-arr"> </span><a href="faqs.aspx">FAQs</a></li><li><span class="more-arr"> </span><a href="BulkOrdersGiftCards.aspx">Bulk Order/Gift Card Inquiry</a></li></ul><ul><li class="title">Here To Help</li><li><span class="more-arr"> </span><a href="contact-us.aspx">Contact us</a></li><li><span class="more-arr"> </span><a href="customer-services.aspx">Complaint &amp; Feedback</a></li><li><span class="more-arr"> </span><a href="site-map.aspx">Site map</a></li><li><span class="more-arr"> </span><a href="location.aspx">Find your Croma store</a></li><li><span class="more-arr"> </span><a href="/blog">Blog</a></li></ul><ul><li class="title">Shopping Policies</li><li><span class="more-arr"> </span><a href="secure-shopping.aspx">Safe &amp; Secured Shopping </a></li><li><span class="more-arr"> </span><a href="privacy-policy.aspx">Privacy Policy</a></li><li><span class="more-arr"> </span><a href="terms-conditions.aspx">Terms &amp; Conditions</a></li><li><span class="more-arr"> </span><a href="disclaimer.aspx">Disclaimer</a></li></ul><ul><li class="title">Connect With Us</li><li style="margin-left:1px">Subscribe to Croma offers<br /><input type="text" class="email-box" id="txtEmail" onblur="return showText(this, 'Enter email address')" onfocus="return hideText(this, 'Enter email address')" value="Enter email address" /><input type="image" src="images/go-btn.gif" class="go-btn" onclick="InsNewsSub('txtEmail','RegFoot');" /></li><li style="width: 30px; float: left"><a style="padding-top: 5px;" href="https://www.facebook.com/CromaRetail" target="_blank"><span class="fb-icon"> </span></a></li><li style="width: 0px; float: left; padding: 3px 0 0"><a href="http://twitter.com/cromaretail" target="_blank"><span class="twt-icon"> </span></a></li></ul> </div>
+                    <br />
+                    <div id="footer-logo" class="col-39939c">
+                        Copyright &copy; 2012 Infiniti Retail Ltd. All rights reserved.
+                        <br />
+                        <img src="images/om.jpg" width="231" height="52" alt="om" title="om" style="display: none" /><div class="tata-logo" style="margin-top: -23px">
+                            <table width="135" border="0" cellpadding="2" cellspacing="0" title="Click to Verify - This site chose VeriSign SSL for secure e-commerce and confidential communications.">
+                                <tr>
+                                    <td width="135" align="center" valign="top">
+                                        <script type="text/javascript" src="https://seal.verisign.com/getseal?host_name=www.cromaretail.com&amp;size=S&amp;use_flash=NO&amp;use_transparent=NO&amp;lang=en"></script>
+                                        <!--<br />
+<a href="http://www.symantec.com/ssl-certificates" target="_blank"  style="color:#000000; text-decoration:none; font:bold 7px verdana,sans-serif; letter-spacing:.5px; text-align:center; margin:0px; padding:0px;">ABOUT SSL CERTIFICATES</a>-->
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <span class="poweredby">Powered by: <a href="http://www.interface.co.in/" target="_blank">Interface</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="Theme/default/scripts/jquery.hoverIntent.minified.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            function megaHoverOver() {
+                $(this).find(".sub").stop().fadeTo('fast', 1).show();
+
+                if ($(this).find(".row").length > 0) { //If row exists...
+                    var biggestRow = 0;
+                    //Calculate each row
+                    $(this).find(".row").each(function () {
+                        $(this).calcSubWidth();
+                        //Find biggest row
+                        if (rowWidth > biggestRow) {
+                            biggestRow = rowWidth;
+                        }
+                    });
+                    //Set width
+                    $(this).find(".sub").css({ 'width': biggestRow });
+                    $(this).find(".row:last").css({ 'margin': '0' });
+
+                } else { //If row does not exist...
+
+                    //$(this).calcSubWidth();
+                    //Set Width
+                    //$(this).find(".sub").css({'width' : rowWidth});
+
+                }
+            }
+
+            function megaHoverOut() {
+                $(this).find(".sub").stop().fadeTo('fast', 0, function () {
+                    $(this).hide();
+                });
+            }
+
+
+            var config = {
+                sensitivity: 2, // number = sensitivity threshold (must be 1 or higher)    
+                interval: 1, // number = milliseconds for onMouseOver polling interval    
+                over: megaHoverOver, // function = onMouseOver callback (REQUIRED)    
+                timeout: 1, // number = milliseconds delay before onMouseOut    
+                out: megaHoverOut // function = onMouseOut callback (REQUIRED)    
+            };
+
+            //$("ul#topnav li .sub").css({'opacity':'0'});
+            $("ul#topnav li").hoverIntent(config);
+
+
+
+        });
+
+
+
+    </script>
+    <script language="javascript" type="text/javascript" src="Theme/default/scripts/custom-form-elements1.js"></script>
+    <!-- Google Code for all other pages Remarketing List -->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 1002592439;
+        var google_conversion_language = "en";
+        var google_conversion_format = "3";
+        var google_conversion_color = "ffffff";
+        var google_conversion_label = "IALzCMn7lgMQt7GJ3gM";
+        var google_conversion_value = 0;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+        <div style="display: inline;">
+            <img height="1" width="1" style="border-style: none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1002592439/?value=0&amp;label=IALzCMn7lgMQt7GJ3gM&amp;guid=ON&amp;script=0" />
+        </div>
+    </noscript>
+</body>
+</html>

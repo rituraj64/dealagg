@@ -1,0 +1,1661 @@
+
+  
+  
+    
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>Crossword.in
+    </title>
+    
+  
+
+    
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link href="/stylesheets/sitewide.css?1297669750" media="all" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/skins/xw-simple/site.css?1330344925" media="all" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/jquery-ui-themes-1.8.5/themes/smoothness/jquery-ui.css?1324893286" media="all" rel="stylesheet" type="text/css" />
+    
+  
+    
+    
+  
+
+    <script>
+        !document.JSON && document.write(unescape('%3Cscript src="/javascripts/json2.js?1297669750" type="text/javascript"%3E%3C/script%3E'));
+    </script>
+    <style>
+      .ui-autocomplete {
+        z-index: 10 !important;
+      }
+    </style>
+    <script src="/javascripts/global.js?1324893286" type="text/javascript"></script>
+    
+  <script src="/javascripts/search-cache.js?1297669750" type="text/javascript"></script>
+
+  
+    
+    <script src="/javascripts/footer_crossword.js?1297669750" type="text/javascript"></script>
+  
+
+
+    <script type="text/javascript">
+      $( function() {
+        $(".navtree").sDrop();
+
+
+        $("#search input[type=text]").autocomplete({
+          source:function( request, response ) {
+            $.ajax({
+              url: "http://autocomplete_new.infibeam.com/auto_complete/suggest",
+              dataType: "jsonp",
+              data: {
+                term: request.term,
+                pc: "books"
+              },
+              success: function( data ) {
+                response(data)
+              }
+            })
+          },
+           select: function(event, ui) { 
+               $("#search input.text").val(ui.item.value);
+               $("#search").trigger("submit");
+           }
+        }).keydown(function(event) {
+           if (event.keyCode=='13'){
+            $("#search").trigger("submit");
+            }
+           });
+                
+        $("#search select").change(function(){
+          var cat = $(this).val().toLowerCase();
+          if( cat == "books" || cat == "home")
+          {
+            $("#search input[type=text]").autocomplete("enable");
+          }
+          else
+          {
+            $("#search input[type=text]").autocomplete("disable");        
+          }
+         });
+        $("#search select").change();
+
+        $("#search").submit(function() {
+          var href="/"+$("#search select").val() + "/search?q="+encodeURIComponent($("#search input.text").val());
+          document.location=href;
+          return false;
+        });
+    
+        $(document).keypress(function(event) {
+          if(event.which == 57 && event.ctrlKey ){
+            $("#bd").toggleClass("showgrid");
+          }
+        });
+        
+      });
+
+      $(function() {
+
+      var q="dan brown";
+      $("#search input.text").val(q);
+
+
+
+
+    $(".variant-title a").each(function(){
+      $(this).data('title',$(this).html());
+    })
+    $(".contributors a").each(function(){
+      $(this).data('ctbr',$(this).html());
+    })
+  });
+
+    </script>
+  </head>
+    <!--[if lt IE 7 ]> <body class="xw-simple ie6"> <![endif]-->
+    <!--[if IE 7 ]>    <body class="xw-simple ie7"> <![endif]-->
+    <!--[if IE 8 ]>    <body class="xw-simple ie8"> <![endif]-->
+    <!--[if IE 9 ]>    <body class="xw-simple ie9"> <![endif]-->
+  <!--[if (gt IE 9)|!(IE)]><!--> <body class="xw-simple"> <!--<![endif]-->
+    <div id="page">
+      
+        <div id="hd" class="clearfix">
+          
+       
+        
+        <div class="header-widget header-widget clearfix" data-widget-id="16"> 
+         <div class="logo-top-links">
+             <div class="logo">
+                     <a href="/" title="Crossword">
+               <img src="/images/crossword-logo.png" alt="Crossword"/>
+          </a>   
+             </div> <!-- header-logo -->
+         
+             <div class="top-links">
+                  <a class=" home" href="/">Home</a>   |   <a class=" login" href="/login">Login</a>   |   <a class=" shopping-cart" href="/shopping-cart">Shopping Cart</a>   |   <a class=" your-account" href="/my-account">My Account</a>   |   <a class=" track-your-order" href="/track-your-order">Track Your Order</a>   |   <a class=" help" href="/help">Help</a>   |   <a class=" wish-list" href="/my_save_list/wish_list">My Wish List</a>   |   <a class=" contact-us" href="/contact_us/">Contact Us</a>     
+                  <div class="free-shipping">
+         <img src="/images/free-shipping.png" />
+       </div> 
+             </div> <!-- top_links -->
+         </div>
+         <div class="header-menu navtree">
+             <ul><li class="selected"> <a href="/books/search" class="menu-level-0  selected" >Books Home</a> <ul><li class=""> <a href="http://www.crossword.in/see_more_pages/books-best-of-2012-seemore-data" class="menu-level-1 " target='_blank'>Best Of 2012</a> </li></ul></li><li class=""> <a href="/books-recommends-data" class="menu-level-0 " >Crossword Recommends</a> </li><li class=""> <a href="/Gift_Voucher" class="menu-level-0 " >Gift Vouchers</a> </li><li class=""> <a href="http://www.crossword.in/theeconomist_crossword_book_award_html" class="menu-level-0 " target='_blank'>The Economist Crossword Book Award</a> </li><li class=""> <a href="http://www.crossword.in/see_more_pages/books-best-of-2012-seemore-data" class="menu-level-0 " target='_blank'>Best Of 2012</a> </li></ul> <div class="search">
+        <form id="search">
+          <select><option value='home'>Home</option><option value='home-toys'>Toys</option><option value='books'>Books</option><option value='gifts'>Gifts</option><option value='home-music'>Music</option><option value='home-movies'>Movies</option></select>
+          <input type="text" class="text"></input>
+          <input type='submit' value="Search" class='button'></input>
+        </form>
+      </div>
+    
+         </div> <!-- header-menu -->
+    <div class="site-links"> <a class="header-bread-crumb " href="/books/search">Books Home</a>  <a class="site-link " href="/see_more_pages/books-new-releases-seemore-data">New Releases</a> &bull; <a class="site-link " href="/see_more_pages/books-best-sellers-seemore-data">Best Sellers</a> &bull; <a class="site-link " href="/see_more_pages/books-recently-sold-seemore-data">Recently Sold</a> &bull; <a class="site-link " href="/see_more_pages/books-prebooking-seemore-data">Prebooking</a> &bull; <a class="site-link " href="/see_more_pages/books-top-100-seemore-data">Top 100</a> &bull; <a class="site-link " href="/see_more_pages/books-business-and-management-bestseller-seemore-data">Business Books</a> &bull; <a class="site-link " href="/see_more_pages/books-box-sets-seemore-data">Box Sets</a> &bull; <a class="site-link " href="/popular_books">Popular Books</a> &bull; <a class="site-link " href="/crossword-events-html">Events</a> &bull; <a class="site-link " href="http://www.crossword.in/brps">Book Reward Points</a> </div></div>
+      
+    
+        </div>
+      
+
+      <div id="bd" class="clearfix">
+        
+
+
+
+        
+  
+  
+  
+
+   
+
+  <div class="span-24">
+    <div id="content-slot" class="span-19 last">
+      
+
+
+
+  
+<script>
+  $(function() {
+    IB.nav.set_search_page("/books/search");
+    
+      IB.nav.force_set_value("q","dan brown");
+    
+    
+    $('#search select').val("books");
+  });
+</script>
+
+<div id="search-results">
+  
+
+    Search for dan brown in <a href="/books/search?q=dan brown&amp;q.f=title">Title</a>&nbsp;|&nbsp;<a href="/books/search?q=dan brown&amp;q.f=contributors">Author</a>
+    
+      <div class="search-summary">
+        Showing 24518 Results for <b>dan brown</b> in 
+        
+        <b><a href="/books">Books</a></b>
+        <span><a class="show-as" data-view-type="grid-view" href="#">Grid</a> | <a class="show-as" data-view-type="list-view" href="#">List</a></span>
+        <div class="pagination"><span class="disabled prev_page">&laquo; Previous</span> <span class="current">1</span> <a href="/books/search?page=2&amp;q=dan+brown" rel="next">2</a> <a href="/books/search?page=3&amp;q=dan+brown">3</a> <a href="/books/search?page=4&amp;q=dan+brown">4</a> <a href="/books/search?page=5&amp;q=dan+brown">5</a> <span class="gap">&hellip;</span> <a href="/books/search?page=1533&amp;q=dan+brown">1533</a> <a href="/books/search?page=2&amp;q=dan+brown" class="next_page" rel="next">Next &raquo;</a></div>
+      </div>
+    
+
+    
+    <ul id="search-result-items" class="list-view clearfix">   
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/call-me-dan-anish-trivedi/p-books-0143063308.html">
+          <img data="books-0143063308" title="Call Me Dan" src="http://cdn-img-b-tata.infibeam.net/img/188b9e9c/3c78b/63/308/P-M-B-9780143063308.jpg?wid=135&hei=135" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/call-me-dan-anish-trivedi/p-books-0143063308.html title="Call Me Dan" short-title="Call Me Dan">Call Me Dan</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=Anish Trivedi&q.f=contributors">Anish Trivedi</a></span>
+      </span>
+              <span class="price">
+            <span class='cod-badge'><img src="/images/badges/cod/cod_badge.png" title="Cash On Delivery Available"/></span>
+        
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 250
+         </span>
+       </span>
+    
+              
+          <span class="buy-now">
+             <form action="/books/call-me-dan-anish-trivedi/p-books-0143063308.html">
+               <input type="submit" value=" Buy Now!" name="commit" class="button" />
+             </form>
+          </span>
+      
+	      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-0143063308 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/call-me-dan-anish-trivedi/p-books-0143063308.html"
+                addthis:title="Call Me Dan">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="in-stock"><b>In Stock.</b> </span>
+        <span class="ships-in">
+          Ships in <b>3 - 5 days</b><br/>
+          Free Shipping in India for orders above <span style ="font-family:rupee">R</span> 300.<br/>
+          For orders below <span style ="font-family:rupee">R</span> 300, shipping charge of <span style ="font-family:rupee">R</span> 30.
+        </span>
+      
+              
+         <span class="variant-snippet">
+            About the Book : Gautam is awkward and shy; Dan oozes confidence. Dan deftly juggles his coffee and cookies; Gautam drops drinks. Gautam is afraid to&hellip;
+         </span>
+      
+              
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/dan-yack-blaise-cendrars/p-books-0720611571.html">
+          <img data="books-0720611571" title="Dan Yack" src="http://cdn-img-b-tata.infibeam.net/img/f7d3ac00/571/1/9780720611571.jpg?wid=135&hei=135" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/dan-yack-blaise-cendrars/p-books-0720611571.html title="Dan Yack" short-title="Dan Yack">Dan Yack</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=Blaise Cendrars&q.f=contributors">Blaise Cendrars</a></span>
+      </span>
+              <span class="price">
+          <span class="variant-list-price">
+            <span style ="font-family:rupee">R</span> 941
+          </span>
+      
+            <span class='discount-badge'><img src="/images/badges/discounts/22.gif" /></span>
+        
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 734
+         </span>
+       </span>
+    
+              
+          <span class="buy-now">
+             <form action="/books/dan-yack-blaise-cendrars/p-books-0720611571.html">
+               <input type="submit" value=" Buy Now!" name="commit" class="button" />
+             </form>
+          </span>
+      
+	      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-0720611571 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/dan-yack-blaise-cendrars/p-books-0720611571.html"
+                addthis:title="Dan Yack">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="in-stock"><b>Imported Edition</b> </span>
+        <span class="ships-in">
+          Ships in <b>10 - 15 days</b><br/>
+          Free Shipping in India for orders above <span style ="font-family:rupee">R</span> 300.<br/>
+          For orders below <span style ="font-family:rupee">R</span> 300, shipping charge of <span style ="font-family:rupee">R</span> 30.
+        </span>
+      
+              
+         <span class="variant-snippet">
+            Centering on eccentric English millionaire shipowner, notorious hell-raiser, and the envy of all St Petersburg, Dan Yack, this strange travel yarn begins with the protagonist finding&hellip;
+         </span>
+      
+              <div class="others-in-family">Other Editions: <span> <a href=/books/dan-yack-paperback-blaise-cendrars/p-books-2070440214.html> Dan Yack (Paperback) </a> </span></div>
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/dan-brown-film-tratti-da-opere-di-dan/p-books-123197320x.html">
+          <img data="books-123197320x" title="Dan Brown: Film Tratti Da Opere Di Dan Brown, Personaggi Di Dan Brown, Romanzi Di Dan Brown, Critiche Al Codice Da Vinci, Angeli" src="http://img.crossword.in/img/no_image.jpg.999x135x135.jpg" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/dan-brown-film-tratti-da-opere-di-dan/p-books-123197320x.html title="Dan Brown: Film Tratti Da Opere Di Dan Brown, Personaggi Di Dan Brown, Romanzi Di Dan Brown, Critiche Al Codice Da Vinci, Angeli" short-title="Dan Brown: Film Tratti Da Opere Di Dan Brown, &hellip;">Dan Brown: Film Tratti Da Opere Di Dan Brown, &hellip;</a></span>
+        <span class="contributors">
+    
+        <span class="ctbr-name"><a></a></span>
+      </span>
+              <span class="price">
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 935
+         </span>
+       </span>
+    
+              
+          <span class="buy-now">
+             <form action="/books/dan-brown-film-tratti-da-opere-di-dan/p-books-123197320x.html">
+               <input type="submit" value=" Buy Now!" name="commit" class="button" />
+             </form>
+          </span>
+      
+	      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-123197320x />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/dan-brown-film-tratti-da-opere-di-dan/p-books-123197320x.html"
+                addthis:title="Dan Brown: Film Tratti Da Opere Di Dan Brown, Personaggi Di Dan Brown, Romanzi Di Dan Brown, Critiche Al Codice Da Vinci, Angeli">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="in-stock"><b>Imported Edition</b> </span>
+        <span class="ships-in">
+          Ships in <b>10 - 15 days</b><br/>
+          Free Shipping in India for orders above <span style ="font-family:rupee">R</span> 300.<br/>
+          For orders below <span style ="font-family:rupee">R</span> 300, shipping charge of <span style ="font-family:rupee">R</span> 30.
+        </span>
+      
+              
+              
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/lost-symbol-dan-brown/p-books-0552161233.html">
+          <img data="books-0552161233" title="The Lost Symbol" src="http://img.crossword.in/img/books/d0/db/books-0552161233b602cad0db.jpg.999x135x135.jpg" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/lost-symbol-dan-brown/p-books-0552161233.html title="The Lost Symbol" short-title="The Lost Symbol">The Lost Symbol</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=Dan Brown&q.f=contributors">Dan Brown</a></span>
+      </span>
+              <span class="price">
+            <span class='cod-badge'><img src="/images/badges/cod/cod_badge.png" title="Cash On Delivery Available"/></span>
+        
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 399
+         </span>
+       </span>
+    
+              
+          <span class="buy-now">
+             <form action="/books/lost-symbol-dan-brown/p-books-0552161233.html">
+               <input type="submit" value=" Buy Now!" name="commit" class="button" />
+             </form>
+          </span>
+      
+	      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-0552161233 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/lost-symbol-dan-brown/p-books-0552161233.html"
+                addthis:title="The Lost Symbol">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="in-stock"><b>In Stock.</b> </span>
+        <span class="ships-in">
+          Ships in <b>3 - 5 days</b><br/>
+          Free Shipping in India for orders above <span style ="font-family:rupee">R</span> 300.<br/>
+          For orders below <span style ="font-family:rupee">R</span> 300, shipping charge of <span style ="font-family:rupee">R</span> 30.
+        </span>
+      
+              
+         <span class="variant-snippet">
+            The most anticipated publication of the decade, The Lost Symbol is the stunning new thriller featuring Robert Langdon. WHAT WAS LOST WILL BE FOUND Washington DC:&hellip;
+         </span>
+      
+              <div class="others-in-family">Other Editions: <span> <a href=/books/lost-symbol-dan-brown/p-books-1400079144.html> The Lost Symbol </a> </span>&nbsp;<span> <a href=/books/lost-symbol-dan-brown/p-books-059305427X.html> The Lost Symbol </a> </span>&nbsp;<span> <a href=/books/lost-symbol-dan-brown/p-books-0375434526.html> The Lost Symbol </a> </span>&nbsp;<span> <a href=/books/lost-symbol-cd-dan-brown/p-books-9780752869599.html> The Lost Symbol (cd) </a> </span>&nbsp;<span> <a href=/books/lost-symbol-dan-brown/p-books-0385504225.html> The Lost Symbol </a> </span>&nbsp;<span> <a href=/books/lost-symbol-dan-brown/p-books-7020078125.html> The Lost Symbol </a> </span>&nbsp;<span> <a href=/books/lost-symbol-dan-brown/p-books-8983923385.html> The Lost Symbol </a> </span>&nbsp;<span> <a href=/books/lost-symbol-dan-brown/p-books-8983923393.html> The Lost Symbol </a> </span>&nbsp;<span> <a href=/books/lost-symbol-dan-brown/p-books-9571351482.html> The Lost Symbol </a> </span></div>
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/angels-demons-dan-brown/p-books-1416578749.html">
+          <img data="books-1416578749" title="Angels & Demons" src="http://cdn-img-b-tata.infibeam.net/img/e6649fc3/741/8/9781416578741.jpg?wid=135&hei=135" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/angels-demons-dan-brown/p-books-1416578749.html title="Angels &amp; Demons" short-title="Angels & Demons">Angels & Demons</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=Dan Brown&q.f=contributors">Dan Brown</a></span>
+      </span>
+              <span class="price">
+          <span class="variant-list-price">
+            <span style ="font-family:rupee">R</span> 590
+          </span>
+      
+            <span class='discount-badge'><img src="/images/badges/discounts/24.gif" /></span>
+        
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 448
+         </span>
+       </span>
+    
+              
+          <span class="buy-now">
+             <form action="/books/angels-demons-dan-brown/p-books-1416578749.html">
+               <input type="submit" value=" Buy Now!" name="commit" class="button" />
+             </form>
+          </span>
+      
+	      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-1416578749 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/angels-demons-dan-brown/p-books-1416578749.html"
+                addthis:title="Angels &amp; Demons">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="in-stock"><b>Imported Edition</b> </span>
+        <span class="ships-in">
+          Ships in <b>10 - 15 days</b><br/>
+          Free Shipping in India for orders above <span style ="font-family:rupee">R</span> 300.<br/>
+          For orders below <span style ="font-family:rupee">R</span> 300, shipping charge of <span style ="font-family:rupee">R</span> 30.
+        </span>
+      
+              
+         <span class="variant-snippet">
+            THE #1 "NEW YORK TIMES" BESTSELLER -- NOW A MAJOR MOTION PICTUREAn ancient secret brotherhood. A devastating new weapon of destruction. An unthinkable target. World-renowned Harvard&hellip;
+         </span>
+      
+              <div class="others-in-family">Other Editions: <span> <a href=/books/angels-demons-premium-brown-dan/p-books-1416524797.html> Angels & Demons </a> </span>&nbsp;<span> <a href=/books/angels-demons-dan-brown/p-books-074349346x.html> Angels & Demons </a> </span>&nbsp;<span> <a href=/books/angels-demons-dan-brown/p-books-1416580824.html> Angels & Demons </a> </span>&nbsp;<span> <a href=/books/angels-demons-dan-brown/p-books-0743486226.html> Angels & Demons </a> </span>&nbsp;<span> <a href=/books/angels-demons-dan-brown/p-books-4042955010.html> Angels & Demons </a> </span>&nbsp;<span> <a href=/books/angels-demons-dan-brown/p-books-9571344583.html> Angels & Demons </a> </span>&nbsp;<span> <a href=/books/angels-demons-p2-90-brown-dan/p-books-1416528652.html> Angels & Demons </a> </span>&nbsp;<span> <a href=/books/angels-demons-fmt/p-books-9781439142356.html> Angels & Demons </a> </span>&nbsp;<span> <a href=/books/angels-demons-illustrated-brown-dan/p-books-0743277716.html> Angels & Demons </a> </span>&nbsp;<span> <a href=/books/angels-demons-dan-brown/p-books-4042955029.html> Angels & Demons </a> </span>&nbsp;<span> <a href=/books/angels-demons-dan-brown/p-books-404295507x.html> Angels & Demons </a> </span>&nbsp;<span> <a href=/books/angels-demons-korean-dan-brown/p-books-8983923040.html> Angels & Demons (Korean) </a> </span>&nbsp;<span> <a href=/books/angels-demons-korean-dan-brown/p-books-8983923059.html> Angels & Demons (Korean) </a> </span></div>
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/dan-dan-marcia-leonard/p-books-0761320288.html">
+          <img data="books-0761320288" title="Dan and Dan" src="http://cdn-img-b-tata.infibeam.net/img/553d776e/289/0/9780761320289.jpg?wid=135&hei=135" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/dan-dan-marcia-leonard/p-books-0761320288.html title="Dan and Dan" short-title="Dan and Dan">Dan and Dan</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=Marcia Leonard&q.f=contributors">Marcia Leonard</a></span>
+      </span>
+              <span class="price">
+          <span class="variant-list-price">
+            <span style ="font-family:rupee">R</span> 295
+          </span>
+      
+            <span class='discount-badge'><img src="/images/badges/discounts/24.gif" /></span>
+        
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 224
+         </span>
+       </span>
+    
+              
+          <span class="buy-now">
+             <form action="/books/dan-dan-marcia-leonard/p-books-0761320288.html">
+               <input type="submit" value=" Buy Now!" name="commit" class="button" />
+             </form>
+          </span>
+      
+	      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-0761320288 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/dan-dan-marcia-leonard/p-books-0761320288.html"
+                addthis:title="Dan and Dan">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="in-stock"><b>Imported Edition</b> </span>
+        <span class="ships-in">
+          Ships in <b>10 - 15 days</b><br/>
+          Free Shipping in India for orders above <span style ="font-family:rupee">R</span> 300.<br/>
+          For orders below <span style ="font-family:rupee">R</span> 300, shipping charge of <span style ="font-family:rupee">R</span> 30.
+        </span>
+      
+              
+              <div class="others-in-family">Other Editions: <span> <a href=/books/dan-dan-marcia-leonard/p-books-0613075803.html> Dan and Dan </a> </span>&nbsp;<span> <a href=/books/dan-dan-marcia-leonard/p-books-078079365x.html> Dan and Dan </a> </span></div>
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/lost-symbol-found-unauthorized-analysis-dan-browns-novel/p-books-1608880117.html">
+          <img data="books-1608880117" title="The Lost Symbol- - Found: Unauthorized Analysis of Dan Brown's Novel" src="http://cdn-img-b-tata.infibeam.net/img/2533b8b2/119/0/9781608880119.jpg?wid=135&hei=135" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/lost-symbol-found-unauthorized-analysis-dan-browns-novel/p-books-1608880117.html title="The Lost Symbol    Found: Unauthorized Analysis of Dan Brown's Novel" short-title="The Lost Symbol Found: Unauthorized Analysis of Dan &hellip;">The Lost Symbol Found: Unauthorized Analysis of Dan &hellip;</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=Graeme Davis&q.f=contributors">Graeme Davis</a></span>
+      </span>
+              <span class="price">
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 1,100
+         </span>
+       </span>
+    
+              
+          <span class="buy-now">
+             <form action="/books/lost-symbol-found-unauthorized-analysis-dan-browns-novel/p-books-1608880117.html">
+               <input type="submit" value=" Buy Now!" name="commit" class="button" />
+             </form>
+          </span>
+      
+	      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-1608880117 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/lost-symbol-found-unauthorized-analysis-dan-browns-novel/p-books-1608880117.html"
+                addthis:title="The Lost Symbol- - Found: Unauthorized Analysis of Dan Brown's Novel">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="in-stock"><b>Imported Edition</b> </span>
+        <span class="ships-in">
+          Ships in <b>10 - 15 days</b><br/>
+          Free Shipping in India for orders above <span style ="font-family:rupee">R</span> 300.<br/>
+          For orders below <span style ="font-family:rupee">R</span> 300, shipping charge of <span style ="font-family:rupee">R</span> 30.
+        </span>
+      
+              
+              
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/preaching-another-jesus-decoding-dan-browns-da-vinci/p-books-1411613279.html">
+          <img data="books-1411613279" title="Preaching Another Jesus: Decoding Dan Brown's Da Vinci Code Hoax" src="http://cdn-img-b-tata.infibeam.net/img/e5d5ab80/270/3/9781411613270.jpg?wid=135&hei=135" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/preaching-another-jesus-decoding-dan-browns-da-vinci/p-books-1411613279.html title="Preaching Another Jesus: Decoding Dan Brown's Da Vinci Code Hoax" short-title="Preaching Another Jesus: Decoding Dan Brown's Da &hellip;">Preaching Another Jesus: Decoding Dan Brown's Da &hellip;</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=Shawn Mc Donnell&q.f=contributors">Shawn Mc Donnell</a></span>
+      </span>
+              <span class="price">
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 1,022
+         </span>
+       </span>
+    
+              
+          <span class="buy-now">
+             <form action="/books/preaching-another-jesus-decoding-dan-browns-da-vinci/p-books-1411613279.html">
+               <input type="submit" value=" Buy Now!" name="commit" class="button" />
+             </form>
+          </span>
+      
+	      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-1411613279 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/preaching-another-jesus-decoding-dan-browns-da-vinci/p-books-1411613279.html"
+                addthis:title="Preaching Another Jesus: Decoding Dan Brown's Da Vinci Code Hoax">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="in-stock"><b>Imported Edition</b> </span>
+        <span class="ships-in">
+          Ships in <b>10 - 15 days</b><br/>
+          Free Shipping in India for orders above <span style ="font-family:rupee">R</span> 300.<br/>
+          For orders below <span style ="font-family:rupee">R</span> 300, shipping charge of <span style ="font-family:rupee">R</span> 30.
+        </span>
+      
+              
+         <span class="variant-snippet">
+            Preaching Another Jesus: Decoding Dan Brown's DaVinci Code Hoax. "Abetted by his carefully-applied image of scholarly piety, Dan Brown has pushed his way into many Christian&hellip;
+         </span>
+      
+              
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/west-coast-hockey-league-players-west-coast-hockey/p-books-1157980899.html">
+          <img data="books-1157980899" title="West Coast Hockey League Players West Coast Hockey League Players: Dan Currie, Kevin Brown Dan Currie, Kevin Brown" src="http://cdn-img-b-tata.infibeam.net/img/3f30cd28/896/0/9781157980896.jpg?wid=135&hei=135" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/west-coast-hockey-league-players-west-coast-hockey/p-books-1157980899.html title="West Coast Hockey League Players West Coast Hockey League Players: Dan Currie, Kevin Brown Dan Currie, Kevin Brown" short-title="West Coast Hockey League Players West Coast Hockey &hellip;">West Coast Hockey League Players West Coast Hockey &hellip;</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=Llc Books&q.f=contributors">Llc Books</a></span>
+      </span>
+              <span class="price">
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 935
+         </span>
+       </span>
+    
+              
+          <span class="buy-now">
+             <form action="/books/west-coast-hockey-league-players-west-coast-hockey/p-books-1157980899.html">
+               <input type="submit" value=" Buy Now!" name="commit" class="button" />
+             </form>
+          </span>
+      
+	      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-1157980899 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/west-coast-hockey-league-players-west-coast-hockey/p-books-1157980899.html"
+                addthis:title="West Coast Hockey League Players West Coast Hockey League Players: Dan Currie, Kevin Brown Dan Currie, Kevin Brown">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="in-stock"><b>Imported Edition</b> </span>
+        <span class="ships-in">
+          Ships in <b>10 - 15 days</b><br/>
+          Free Shipping in India for orders above <span style ="font-family:rupee">R</span> 300.<br/>
+          For orders below <span style ="font-family:rupee">R</span> 300, shipping charge of <span style ="font-family:rupee">R</span> 30.
+        </span>
+      
+              
+              
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/father-brown-selected-stor-ww-chesterton-g-k/p-books-1853260037.html">
+          <img data="books-1853260037" title="Father Brown" src="http://cdn-img-b-tata.infibeam.net/img/8c7a6475/2d0d4/60/032/P-M-B-9781853260032.jpg?wid=135&hei=135" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/father-brown-selected-stor-ww-chesterton-g-k/p-books-1853260037.html title="Father Brown" short-title="Father Brown">Father Brown</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=G K Chesterton&q.f=contributors">G K Chesterton</a></span>
+      </span>
+              <span class="price">
+          <span class="variant-list-price">
+            <span style ="font-family:rupee">R</span> 183
+          </span>
+      
+            <span class='discount-badge'><img src="/images/badges/discounts/25.gif" /></span>
+        
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 138
+         </span>
+       </span>
+    
+              
+          <span class="buy-now">
+             <form action="/books/father-brown-selected-stor-ww-chesterton-g-k/p-books-1853260037.html">
+               <input type="submit" value=" Buy Now!" name="commit" class="button" />
+             </form>
+          </span>
+      
+	      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-1853260037 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/father-brown-selected-stor-ww-chesterton-g-k/p-books-1853260037.html"
+                addthis:title="Father Brown">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="in-stock"><b>Imported Edition</b> </span>
+        <span class="ships-in">
+          Ships in <b>17 - 22 days</b><br/>
+          Free Shipping in India for orders above <span style ="font-family:rupee">R</span> 300.<br/>
+          For orders below <span style ="font-family:rupee">R</span> 300, shipping charge of <span style ="font-family:rupee">R</span> 30.
+        </span>
+      
+              
+              
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/unauthorized-dan-brown-compani-helfers-john/p-books-0806527811.html">
+          <img data="books-0806527811" title="The Unauthorized Dan Brown Companion" src="http://cdn-img-b-tata.infibeam.net/img/7b178bad/819/7/9780806527819.jpg?wid=135&hei=135" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/unauthorized-dan-brown-compani-helfers-john/p-books-0806527811.html title="The Unauthorized Dan Brown Companion" short-title="The Unauthorized Dan Brown Companion">The Unauthorized Dan Brown Companion</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=John Helfers&q.f=contributors">John Helfers</a></span>
+      </span>
+              <span class="price">
+            <span class='cod-badge'><img src="/images/badges/cod/cod_badge.png" title="Cash On Delivery Available"/></span>
+        
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 575
+         </span>
+       </span>
+    
+              
+	      
+        &nbsp;&nbsp;
+        <span class="buy-now">
+          <form action="/products/notify_me_when_available" method="put">
+            <input type="hidden" name="variant_id" value=books-0806527811 />
+						<input type="hidden" name="uri"  value=/books/search?q=dan+brown />
+						<input type="submit" value="Tell me when available" name="commit" class="button notify-me" />
+          </form>
+        </span>
+      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-0806527811 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/unauthorized-dan-brown-compani-helfers-john/p-books-0806527811.html"
+                addthis:title="The Unauthorized Dan Brown Companion">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="out-of-stock">Out Of  Stock</span>
+      
+              
+         <span class="variant-snippet">
+            With "The Unauthorized Dan Brown Companion," readers will at last have all the information needed to distinguish for themselves between the inventions of a master storyteller&hellip;
+         </span>
+      
+              
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/dan-brown-enigma-graham-thomas/p-books-184358302x.html">
+          <img data="books-184358302x" title="The Dan Brown Enigma" src="http://img.crossword.in/img/no_image.jpg.999x135x135.jpg" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/dan-brown-enigma-graham-thomas/p-books-184358302x.html title="The Dan Brown Enigma" short-title="The Dan Brown Enigma">The Dan Brown Enigma</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=Graham A Thomas&q.f=contributors">Graham A Thomas</a></span>
+      </span>
+              <span class="price">
+          <span class="variant-list-price">
+            <span style ="font-family:rupee">R</span> 1,475
+          </span>
+      
+            <span class='discount-badge'><img src="/images/badges/discounts/24.gif" /></span>
+        
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 1,121
+         </span>
+       </span>
+    
+              
+	      
+        &nbsp;&nbsp;
+        <span class="buy-now">
+          <form action="/products/notify_me_when_available" method="put">
+            <input type="hidden" name="variant_id" value=books-184358302x />
+						<input type="hidden" name="uri"  value=/books/search?q=dan+brown />
+						<input type="submit" value="Tell me when available" name="commit" class="button notify-me" />
+          </form>
+        </span>
+      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-184358302x />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/dan-brown-enigma-graham-thomas/p-books-184358302x.html"
+                addthis:title="The Dan Brown Enigma">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="out-of-stock">Out Of  Stock</span>
+      
+              
+              
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/dan-brown-box-set-brown-dan/p-books-0552769762.html">
+          <img data="books-0552769762" title="Dan Brown box set" src="http://img.crossword.in/img/books/f6/5a/books-0552769762d8fcaff65a.jpg.999x135x135.jpg" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/dan-brown-box-set-brown-dan/p-books-0552769762.html title="Dan Brown box set" short-title="Dan Brown box set">Dan Brown box set</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=BROWN DAN&q.f=contributors">BROWN DAN</a></span>
+      </span>
+              <span class="price">
+            <span class='cod-badge'><img src="/images/badges/cod/cod_badge.png" title="Cash On Delivery Available"/></span>
+        
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 1,075
+         </span>
+       </span>
+    
+              
+	      
+        &nbsp;&nbsp;
+        <span class="buy-now">
+          <form action="/products/notify_me_when_available" method="put">
+            <input type="hidden" name="variant_id" value=books-0552769762 />
+						<input type="hidden" name="uri"  value=/books/search?q=dan+brown />
+						<input type="submit" value="Tell me when available" name="commit" class="button notify-me" />
+          </form>
+        </span>
+      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-0552769762 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/dan-brown-box-set-brown-dan/p-books-0552769762.html"
+                addthis:title="Dan Brown box set">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="out-of-stock">Out Of  Stock</span>
+      
+              
+              
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/viaje-los-escenarios-de-dan-brown-oliver-mittelbach/p-books-8403504551.html">
+          <img data="books-8403504551" title="Viaje a Los Escenarios de Dan Brown" src="http://cdn-img-b-tata.infibeam.net/img/74643309/554/4/9788403504554.JPG?wid=135&hei=135" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/viaje-los-escenarios-de-dan-brown-oliver-mittelbach/p-books-8403504551.html title="Viaje a Los Escenarios de Dan Brown" short-title="Viaje a Los Escenarios de Dan Brown">Viaje a Los Escenarios de Dan Brown</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=Oliver Mittelbach&q.f=contributors">Oliver Mittelbach</a></span>
+      </span>
+              <span class="price">
+          <span class="variant-list-price">
+            <span style ="font-family:rupee">R</span> 1,177
+          </span>
+      
+            <span class='discount-badge'><img src="/images/badges/discounts/10.gif" /></span>
+        
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 1,059
+         </span>
+       </span>
+    
+              
+	      
+        &nbsp;&nbsp;
+        <span class="buy-now">
+          <form action="/products/notify_me_when_available" method="put">
+            <input type="hidden" name="variant_id" value=books-8403504551 />
+						<input type="hidden" name="uri"  value=/books/search?q=dan+brown />
+						<input type="submit" value="Tell me when available" name="commit" class="button notify-me" />
+          </form>
+        </span>
+      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-8403504551 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/viaje-los-escenarios-de-dan-brown-oliver-mittelbach/p-books-8403504551.html"
+                addthis:title="Viaje a Los Escenarios de Dan Brown">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="out-of-stock">Out Of  Stock</span>
+      
+              
+         <span class="variant-snippet">
+            Dan Brown's books come to life in the pages of this guide. The characters of The Da Vinci Code in Paris, London and Roslin, Angels and&hellip;
+         </span>
+      
+              
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/chi-angels-demons-brown-dan-angels-demons-chinese/p-books-7020049923.html">
+          <img data="books-7020049923" title="Chi- Angels & Demons: Brown Dan= Angels & Demons (Chinese)" src="http://img.crossword.in/img/no_image.jpg.999x135x135.jpg" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/chi-angels-demons-brown-dan-angels-demons-chinese/p-books-7020049923.html title="Chi  Angels &amp; Demons: Brown Dan= Angels &amp; Demons (Chinese)" short-title="Chi Angels &amp; Demons: Brown Dan= Angels &amp; Demons &hellip;">Chi Angels &amp; Demons: Brown Dan= Angels &amp; Demons &hellip;</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=Dan Brown&q.f=contributors">Dan Brown</a></span>
+      </span>
+              <span class="price">
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 1,477
+         </span>
+       </span>
+    
+              
+	      
+        &nbsp;&nbsp;
+        <span class="buy-now">
+          <form action="/products/notify_me_when_available" method="put">
+            <input type="hidden" name="variant_id" value=books-7020049923 />
+						<input type="hidden" name="uri"  value=/books/search?q=dan+brown />
+						<input type="submit" value="Tell me when available" name="commit" class="button notify-me" />
+          </form>
+        </span>
+      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-7020049923 />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/chi-angels-demons-brown-dan-angels-demons-chinese/p-books-7020049923.html"
+                addthis:title="Chi- Angels &amp; Demons: Brown Dan= Angels &amp; Demons (Chinese)">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="out-of-stock">Out Of  Stock</span>
+      
+              
+              
+            </div>
+    
+        </li>
+      
+        <li class="clearfix">
+          
+          
+      <div class="variant-image">
+        <a href="/books/confessions-dan-yack-blaise-cendrars/p-books-072061158x.html">
+          <img data="books-072061158x" title="Confessions of Dan Yack" src="http://cdn-img-b-tata.infibeam.net/img/63a130b4/588/1/9780720611588.jpg?wid=135&hei=135" />
+        </a>
+      </div>
+    
+            <div class="variant-desc">
+              
+        <span class="variant-title"> <a href=/books/confessions-dan-yack-blaise-cendrars/p-books-072061158x.html title="Confessions of Dan Yack" short-title="Confessions of Dan Yack">Confessions of Dan Yack</a></span>
+        <span class="contributors">
+    
+        <span class="by">By</span>
+        <span class="ctbr-name"><a href="/home/search?q=Blaise Cendrars&q.f=contributors">Blaise Cendrars</a></span>
+      </span>
+              <span class="price">
+            <span class='cod-badge'><img src="/images/badges/cod/cod_badge.png" title="Cash On Delivery Available"/></span>
+        
+          <span class="variant-final-price">
+           <span style ="font-family:rupee">R</span> 325
+         </span>
+       </span>
+    
+              
+	      
+        &nbsp;&nbsp;
+        <span class="buy-now">
+          <form action="/products/notify_me_when_available" method="put">
+            <input type="hidden" name="variant_id" value=books-072061158x />
+						<input type="hidden" name="uri"  value=/books/search?q=dan+brown />
+						<input type="submit" value="Tell me when available" name="commit" class="button notify-me" />
+          </form>
+        </span>
+      
+              
+        &nbsp;&nbsp;
+        <span class="wish-list">
+          <form action="/my_save_list/add_to_wish_list" method="put">
+            <input type="hidden" name="variant_id" value=books-072061158x />
+            <input type="submit" value="Add To Wishlist" name="commit" class="button" />
+          </form>
+        </span>
+      
+              
+          <span class="share">
+            <span class="addthis_toolbox addthis_default_style">
+              <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4cc16fb57769591c"
+                class="addthis_button_compact"
+                addthis:url="http://www.crossword.in/books/confessions-dan-yack-blaise-cendrars/p-books-072061158x.html"
+                addthis:title="Confessions of Dan Yack">
+                Share
+              </a>
+            </span>
+          </span>
+       
+              
+        <span class="out-of-stock">Out Of  Stock</span>
+      
+              
+         <span class="variant-snippet">
+            Continuing the adventures of the eccentric English millionaire Dan Yack, this novel centers on tells the story of the protagonist's tender love for the young Mireille,&hellip;
+         </span>
+      
+              
+            </div>
+    
+        </li>
+      
+    </ul>
+
+    <div class="clearfix"></div>
+  
+
+  
+    
+      <div class="search-summary">
+        Showing 24518 Results for <b>dan brown</b> in
+        <b>Home &gt; Books</b>
+        <span><a class="show-as" data-view-type="grid-view" href="#">Grid</a> | <a class="show-as" data-view-type="list-view" href="#">List</a></span>
+        <div class="pagination"><span class="disabled prev_page">&laquo; Previous</span> <span class="current">1</span> <a href="/books/search?page=2&amp;q=dan+brown" rel="next">2</a> <a href="/books/search?page=3&amp;q=dan+brown">3</a> <a href="/books/search?page=4&amp;q=dan+brown">4</a> <a href="/books/search?page=5&amp;q=dan+brown">5</a> <span class="gap">&hellip;</span> <a href="/books/search?page=1533&amp;q=dan+brown">1533</a> <a href="/books/search?page=2&amp;q=dan+brown" class="next_page" rel="next">Next &raquo;</a></div>
+      </div>
+    
+  
+</div>
+
+
+  
+
+
+      
+    </div>
+    
+      <div id="left-slot" class="span-5">
+        
+    <div id="facets">
+      
+        
+          <div id="facet-na" data-facet-name="na" class="clearfix facet browse_node">
+            <h6>SHOP BY CATEGORY </h6>
+            
+              <ul class="browse-tree">
+                
+                  <li class="level-1">
+                    <a href="/books/search?q=dan brown">Books<i>(24518)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-art/search?q=dan brown">Art<i>(269)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-business-economics/search?q=dan brown">Business & Economics<i>(858)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-cooking/search?q=dan brown">Cooking<i>(172)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-family-relationships/search?q=dan brown">Family & Relationships<i>(249)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-fiction/search?q=dan brown">Fiction<i>(1572)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-health-fitness/search?q=dan brown">Health & Fitness<i>(177)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-juvenile-fiction/search?q=dan brown">Kids Fiction<i>(1415)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-juvenile-nonfiction/search?q=dan brown">Kids Nonfiction<i>(577)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-reference/search?q=dan brown">Reference<i>(152)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-religion/search?q=dan brown">Religion<i>(1416)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-self-help/search?q=dan brown">Self-Help<i>(257)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-social-science/search?q=dan brown">Social Science<i>(892)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-travel/search?q=dan brown">Travel<i>(266)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-architecture/search?q=dan brown">Architecture<i>(136)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-biography-autobiography/search?q=dan brown">Biography & Autobiography<i>(950)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-body-mind-spirit/search?q=dan brown">Body, Mind & Spirit<i>(185)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-comics-graphic-novels/search?q=dan brown">Comics & Graphic Novels<i>(239)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-computers/search?q=dan brown">Computers<i>(457)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-drama/search?q=dan brown">Drama<i>(122)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-education/search?q=dan brown">Education<i>(836)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-foreign-language-study/search?q=dan brown">Foreign Language Study<i>(134)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-history/search?q=dan brown">History<i>(4022)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-humor/search?q=dan brown">Humor<i>(146)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-language-arts-disciplines/search?q=dan brown">Language Arts & Disciplines<i>(417)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-law/search?q=dan brown">Law<i>(432)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-literary-collections/search?q=dan brown">Literary Collections<i>(1511)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-literary-criticism/search?q=dan brown">Literary Criticism<i>(310)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-mathematics/search?q=dan brown">Mathematics<i>(136)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-medical/search?q=dan brown">Medical<i>(514)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-music/search?q=dan brown">Music<i>(373)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-nature/search?q=dan brown">Nature<i>(249)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-performing-arts/search?q=dan brown">Performing Arts<i>(185)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-philosophy/search?q=dan brown">Philosophy<i>(243)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-poetry/search?q=dan brown">Poetry<i>(315)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-political-science/search?q=dan brown">Political Science<i>(517)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-psychology/search?q=dan brown">Psychology<i>(308)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-science/search?q=dan brown">Science<i>(639)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-sports-recreation/search?q=dan brown">Sports & Recreation<i>(394)</i></a>
+                  </li>
+                
+                  <li class="level-2">
+                    <a href="/books-technology-engineering/search?q=dan brown">Technology & Engineering<i>(382)</i></a>
+                  </li>
+                
+              </ul>
+            
+
+            <div class="facet-footer">&nbsp;</div>
+          </div>
+        
+      
+    </div>
+  
+      </div>
+    
+  </div>
+
+  
+
+  
+
+      </div>
+
+      
+        <div id="ft" class="clearfix">
+
+          <div id="ft-wrap">
+            
+       
+        
+        <div class="html-widget default-html-widget clearfix" data-widget-id="17"><table style="text-align: left; width: 994px; margin-left: -10px;" border="0" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr style="background-color: #e8e0b2;">
+<td style="padding: 7px 5px 7px 10px; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; color: #535353;" width="194">Shop with Confidence</td>
+<td style="padding: 7px 5px 7px 10px; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; color: #535353;" width="238">About Us</td>
+<td style="padding: 7px 5px 7px 10px; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; color: #535353;" width="189">My Account</td>
+<td style="padding: 7px 5px 7px 10px; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; color: #535353;" width="103">Follow Us</td>
+<td style="padding: 7px 5px 7px 10px; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: bold; color: #535353;" width="250">Search</td>
+</tr>
+<tr style="background-color: #fff7c8;">
+<td style="padding: 10px 0px 0px 20px; vertical-align: top;" align="left" valign="top">
+<ul>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Secure Shopping" href="../../../../Secure_Shopping">Secure Shopping</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Customer Care" href="../../../../Customer_Care">Customer Care</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Privacy Policy" href="../../../../privacy_policy_content">Privacy Policy</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Terms of Use" href="../../../../Terms_of_Use">Terms of Use</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Shipping Policy" href="../../../../shipping_Policy_content">Shipping Policy</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Returns Policy" href="../../../../Returns_Policy">Returns Policy</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Payment Option" href="../../../../payments_and_returns_content">Payment Option</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Delivery Area" href="../../../../Delivery_Area">Delivery Area</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="How to Shop" href="../../../../How_to_Shop">How to Shop</a></li>
+</ul>
+</td>
+<td style="padding: 10px 0px 0px 20px;" align="left" valign="top">
+<ul>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="About us" href="../../../../about-us-html">About us</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Events" href="../../../../crossword-events-html">Events</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Crossword Book Rewards Program" href="../../../../book-rewards-html">Crossword Book Rewards Program</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="The Economist Crossword Book Award" href="http://www.crossword.in/theeconomist_crossword_book_award_html">The Economist Crossword Book Award</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Advertise with us" href="../../../../advertise-with-us-html">Advertise with us</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Crossword Franchisee" href="../../../../franchisee_page">Crossword Franchisee</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Crossword Stores" href="../../../../stores">Crossword Stores</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Jobs" href="../../../../jobs_content">Jobs</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Help / FAQ" href="../../../../FAQs">Help / FAQ</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Contact Us" href="../../../../contact_us">Contact Us</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" title="Feedback" href="../../../../feedback">Feedback</a></li>
+</ul>
+</td>
+<td style="padding: 10px 0px 0px 20px; vertical-align: top;" align="left" valign="top">
+<ul>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" href="../../../../my-account" rel="nofollow">My Account</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" href="../../../../customers/my_orders" rel="nofollow">My Orders</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" href="../../../../shopping-cart" rel="nofollow">My Shopping Cart</a></li>
+<li><a style="font-family: Verdana, Geneva, sans-serif; font-size: 12px; color: #535353; text-decoration: none;" href="../../../../my_save_list/wish_list" rel="nofollow">My Wish List</a></li>
+</ul>
+</td>
+<td style="vertical-align: top;" valign="top"><a href="http://www.facebook.com/Crosswordbookstores" rel="nofollow" target="blank"><img style="float: left;" src="../../../../images/icon/facebook.jpg" alt="Facebook" border="0" /></a> <a href="http://twitter.com/crossword_book" rel="nofollow" target="blank"><img style="float: left; margin-left: 10px;" src="../../../../images/icon/twitter.jpg" alt="Twitter" border="0" /></a></td>
+<td style="vertical-align: top;">
+<table style="width: 220px;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="margin: 0px;"><form action="/books/search" method="get" accept-charset="UNKNOWN"><input class="text" style="width: 110px; height: 18px;" type="text" name="q" /> <input type="submit" value="GO" /></form></td>
+</tr>
+<tr>
+<td><img src="/assets/secure_footer_1.jpg" alt="" width="247" height="129" />
+<script type="text/javascript" src="https://seal.thawte.com/getthawteseal?host_name=www.crossword.in&amp;size=S&amp;lang=en"></script>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr style="background-color: #fff7c8;">
+<td colspan="5">
+<table style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="font-family: Verdana, Geneva, sans-serif; font-size: 10px; text-align: left; padding: 10px 0px 0px 10px;">&copy; 2010-2011 Crossword Bookstores Ltd. All Rights Reserved.</td>
+<td style="font-family: Verdana, Geneva, sans-serif; font-size: 10px; text-align: right; padding-right: 10px;">Powered By Infibeam.com</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table></div>
+      
+    
+          </div>
+        </div>
+      
+    </div>
+  </body>
+</html>
+
+
+
+
