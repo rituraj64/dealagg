@@ -8,6 +8,8 @@ if(isset($_REQUEST['q'])){
 	$cat = false;
 	if(isset($_REQUEST['cat'])){
 		$cat = $_REQUEST['cat'];
+		session_start();
+		$_SESSION['prev_cat'] = $cat;
 	}
 
 	$parsing = new Parsing();
@@ -38,6 +40,7 @@ if(isset($_REQUEST['q'])){
 					$count = 0;
 					foreach($data1 as $row){
 						$name = $row['name'];
+						/*
 						$row['levenshtein'] = levenshtein(strtolower($name), strtolower($query2));
 						$row['lendiff'] = abs( strlen($name) - strlen($query2) );
 						$row['levenshtein_score'] = $row['levenshtein'] - $row['lendiff'];
@@ -45,17 +48,15 @@ if(isset($_REQUEST['q'])){
 						$row['similar_text'] = similar_text(strtolower($name), strtolower($query2),$per);
 						$row['similar_text_per'] = number_format($per,2);
 						$row['query'] = $query2;
+						*/
 							
 						$row['logo'] = $siteObj->getLogo();
 							
 						$data2[] = $row;
 						$count++;
-						if($count > 10){
-							continue;
-						}
 					}
 					$data1 = array();
-					uasort($data2, 'priceSort');
+					//uasort($data2, 'priceSort');
 
 					if(empty($data)){
 						$data = $data2;

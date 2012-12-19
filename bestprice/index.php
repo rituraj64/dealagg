@@ -1,3 +1,6 @@
+<?php
+	session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -70,7 +73,7 @@
 		  	 			$i = 0;
 		  	 			foreach($cats as $key => $cat){
 		  	 		?>
-		  	 			<option value="<?php echo $key;?>"><?php echo $cat;?></option>
+		  	 			<option value="<?php echo $key;?>" <?php if(isset($_SESSION['prev_cat']) && $_SESSION['prev_cat'] == $key){echo 'selected="selected";';} ?>><?php echo $cat;?></option>
 		  	 		<?php $i++;} ?>
 		  		</select>
 		  		<button type="submit" class="btn btn-large btn-danger">NOW!</button>
@@ -87,7 +90,7 @@
 		</div>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$('.dropdown-toggle').dropdown();
+				$('.popup').popover();
 			});
 			function hideError(){
 				$('#error_msg').hide();
@@ -122,49 +125,120 @@
 							var image = data.data[i].image;
 							var url = data.data[i].url;
 							var website = data.data[i].website;
+							var author = "";
+							var shipping = '';
+							var stock = 0;
+							var offer = '';
+							if(data.data[i].author){
+								author = data.data[i].author;
+							}
+							if(data.data[i].shipping){
+								shipping = data.data[i].shipping;
+							}
+							if(data.data[i].stock){
+								stock = data.data[i].stock;
+							}
+							if(data.data[i].offer){
+								offer = data.data[i].offer;
+							}
 
 							if($('#results').find('#'+website).length > 0){
-								var html = '<div class="span2 table-bordered" style="border-left: 1px solid #DDD;padding: 10px">';
-									html += '<div>';
-										html += '<a href="'+url+'" target="_blank"><img width="50px" height="50px" class="img-rounded" src="'+image+'"/></a>';
-										html += '<div style="height:40px;overflow:hidden"><a href="'+url+'" target="_blank" class="name" rel="tooltip" data-placement="top" data-original-title="'+name+'" style="height:40px;overflow:hidden">'+name+'</a></div>';
-										html += '<div><span class="WebRupee">Rs.</span>'+price+'</div>';
-										html += '<div>levenshtein'+data.data[i].levenshtein+'</div>';
-										html += '<div>levenshtein_score'+data.data[i].levenshtein_score+'</div>';
-										html += '<div>similar_text'+data.data[i].similar_text+'</div>';
-										html += '<div>similar_text_per'+data.data[i].similar_text_per+'</div>';
-									html += '</div>';
-								html += '</div>';
-								$('#results').find('#'+website).append(html);
+								var html = $('#smallItemTemplate').html();	
+								html = html.replace(/{website}/g,website);
+								html = html.replace(/{website_url}/g,logo);
+								html = html.replace(/{item_url}/g,url);
+								html = html.replace(/{item_image}/g,image);
+								html = html.replace(/{item_name}/g,name);
+								html = html.replace(/{item_price}/g,price);
+								html = html.replace(/{item_author}/g,author);
+								if(shipping.length > 60){
+									var shipping2 = shipping = shipping.substring(0,57)+'...';
+									shipping = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="'+shipping+'">'+shipping2+'</span>';
+								}
+								if(offer.length > 60){
+									var offer2 = shipping = offer.substring(0,57)+'...';
+									offer = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="'+offer+'">'+offer2+'</span>';
+								}
+								html = html.replace(/{item_shipping}/g,shipping);
+								html = html.replace(/{item_offer}/g,offer);
+
+								var item_details = 'Price: <span class="WebRupee"></span>'+price+' <br/>';
+								if(author.length > 0){
+									item_details += 'Author: by '+author+'<br/>';
+								}
+								if(shipping.length == 0){
+									item_details += 'Shipping:' + offer+'<br/>';
+								}
+								if(offer.length == 0){
+									item_details += 'Offer:' + offer+'<br/>';
+								}
+								var stock_color = 'btn-success';
+								if(stock == 0 || stock.length == 0){
+									item_details += 'Stock: No Info'+'<br/>';
+									stock_color = '';
+								}else if(stock == 1){
+									item_details += 'Stock: In Stock'+'<br/>';
+									stock_color = 'btn-success';
+								} else {
+									item_details += 'Stock: Out of Stock'+'<br/>';
+									stock_color = 'btn-danger';
+								}
+								html = html.replace(/{stock_color}/g,stock_color);
+								html = html.replace(/{item_details}/g,item_details);
+								$('#results').find('#'+website).find('#other_prod').append(html);
 							}else{
-								var html = '<div class="row-fluid" id="'+website+'">';
-								html += '<div class="span2">';
-									html += '<img src="'+logo+'"/>';
-								html += '</div>';
-								html += '<div class="span2 table-bordered" style="border-left: 1px solid #DDD;padding: 10px">';
-									html += '<div>';
-										html += '<a href="'+url+'" target="_blank"><img width="50px" height="50px" class="img-rounded" src="'+image+'"/></a>';
-										html += '<div style="height:40px;overflow:hidden"><a href="'+url+'" target="_blank" class="name" rel="tooltip" data-placement="top" data-original-title="'+name+'">'+name+'</a></div>';
-										html += '<div><span class="WebRupee">Rs.</span>'+price+'</div>';
-										html += '<div>levenshtein'+data.data[i].levenshtein+'</div>';
-										html += '<div>levenshtein_score'+data.data[i].levenshtein_score+'</div>';
-										html += '<div>similar_text'+data.data[i].similar_text+'</div>';
-										html += '<div>similar_text_per'+data.data[i].similar_text_per+'</div>';
-									html += '</div>';
-								html += '</div>';
-								html += '</div>';
+								var html = $('#resultBodyTemplate').html();
+								html = html.replace(/{website}/g,website);
+								html = html.replace(/{website_url}/g,logo);
+								html = html.replace(/{item_url}/g,url);
+								html = html.replace(/{item_image}/g,image);
+								html = html.replace(/{item_name}/g,name);
+								html = html.replace(/{item_price}/g,price);
+								html = html.replace(/{item_author}/g,author);
+								if(shipping.length > 60){
+									var shipping2 = shipping = shipping.substring(0,57)+'...';
+									shipping = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="'+shipping+'">'+shipping2+'</span>';
+								}
+								if(offer.length > 60){
+									var offer2 = shipping = offer.substring(0,57)+'...';
+									offer = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="'+offer+'">'+offer2+'</span>';
+								}
+								html = html.replace(/{item_shipping}/g,shipping);
+								html = html.replace(/{item_offer}/g,offer);
+								
 								$('#results').append(html);
+								if(offer.length == 0){
+									$('#results').find('#'+website).find('.offer').remove();
+								}
+								if(author.length == 0){
+									$('#results').find('#'+website).find('.author').remove();
+								}
+								if(shipping.length == 0){
+									$('#results').find('#'+website).find('.shipping').remove();
+								}
+								if(stock == 0 || stock.length == 0){
+									$('#results').find('#'+website).find('.in_stock').remove();
+									$('#results').find('#'+website).find('.out_of_stock').remove();
+								}else if(stock == 1){
+									$('#results').find('#'+website).find('.no_info').remove();
+									$('#results').find('#'+website).find('.out_of_stock').remove();
+								} else {
+									$('#results').find('#'+website).find('.in_stock').remove();
+									$('#results').find('#'+website).find('.no_info').remove();
+								}
+								
 							}	
 						}
 					}
-					$('.name').tooltip()
+					$('.apply_tooltip').tooltip();
+					$('.popup').popover();
 					$('#results').show();
 				});
 			}
 		</script>
       </div>
-      <div id='results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;display: none">
-		      
+      <div id='results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;display:none">
+		     
 	  </div>
       <hr>
 
@@ -195,4 +269,76 @@
 
     </div> <!-- /container -->
   </body>
+  
+  
+  <div id='resultBodyTemplate' style="display: none">
+  		<div class="row-fluid clearfix" id="{website}" style="vertical-align: middle;height: 175px;margin-top:10px">
+				<div class="span2" style="line-height: 150px">
+					<img src="{website_url}" alt="{website}" title="{website}"/>
+				</div>
+				<div class="popup span4 table-bordered" style="margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
+					 	<div class="media">
+							<a class='pull-left' href="{item_url}" target="_blank">
+								<img style="width:100px;height:100px;margin:5px" class="img-rounded media-object" src="{item_image}" alt='{item_name}' title='{item_name}'/>
+							</a>
+							<div class="media-body pull-left" style="width: 175px;">
+								<div class='pull-left' style="max-height:40px;overflow:hidden">
+									<a href="{item_url}" target="_blank" class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="{item_name}">{item_name}</a>
+								</div>
+								<div class='clearfix'></div>
+								<div class='pull-left'>
+									Price <span class="WebRupee">Rs.</span>{item_price}
+								</div>
+								<div class='clearfix'></div>
+								<div class='pull-left author'>
+									by <small>{item_author}</small>
+								</div>
+								<div class='clearfix'></div>
+								<div class='pull-left' class='stock'>
+									<span class="label label-success in_stock">In Stock</span>
+									<span class="label label-important out_of_stock">Out Of Stock</span>
+									<span class="label no_info">No Info</span>
+								</div>
+							</div>
+						</div>
+						<div class='clearfix'></div>
+						<hr style="padding: 0px;margin: 0px;margin-top: 5px;"/>
+						<div style="font-size:12px;margin: 5px;text-align: left" class='other_info'>
+							<div class='offer pull-left'>
+								Offer: {item_offer}
+							</div>
+							<div class='clearfix'></div>
+							<div class='shipping'>
+								<div class='pull-left' style="font-size:12px">
+									Shipping: {item_shipping}
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="span4" style="margin-left:10px;">
+					<div class='row-fluid' id="other_prod">
+					</div>
+					<div style="padding-top: 10px;"></div>
+				</div>
+			 	<div class='span2 table-bordered' style="border-left: 1px solid #DDD;margin-left:10px;">
+			 		<div style="font-size:12px">
+						Coupons:
+					</div>
+				</div>
+			 </div>
+			 <hr style="padding: 0px;margin: 0px;margin-top: 5px;"/>
+  </div>
+  
+  <div id='smallItemTemplate' style="display: none">
+  		<div class='span3' style="margin-left: 5px;">
+			<div class='table-bordered' style="border-left: 1px solid #DDD;padding: 5px;text-align: center;">
+				<a href="{item_url}" target="_blank">
+					<img style="width: 50px;height: 50px;" width="50px" height="50px" class="img-rounded" src="{item_image}" alt='{item_name}' title='{item_name}'/>
+				</a>
+				<a class='popup btn btn-mini {stock_color}' style="line-height: 14px" rel="popover" data-placement="right" data-html='true' data-trigger='click' data-content="{item_details}" data-original-title="{item_name}">
+					Details 
+				</a>
+			</div>
+		</div>
+  </div>
 </html>

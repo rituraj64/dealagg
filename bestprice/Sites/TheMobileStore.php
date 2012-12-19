@@ -39,6 +39,8 @@ class TheMobileStore extends Parsing{
 			$row['image'] = $img;
 			$data2[] = $row;
 		}
+		$data2 = $this->cleanData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query);
 		return $data2;
 	}
 }

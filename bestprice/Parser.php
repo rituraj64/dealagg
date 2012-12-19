@@ -8,18 +8,19 @@ class Parser{
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
 		curl_setopt($ch, CURLOPT_URL,$target_url);
-		curl_setopt($ch, CURLOPT_FAILONERROR, true);
+		//curl_setopt($ch, CURLOPT_FAILONERROR, true);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($ch, CURLOPT_AUTOREFERER, true);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
 		$html = curl_exec($ch);
-		curl_close($ch);
-		if (!$html) {
+		if (!$html || strpos($html, '<body') === false) {
 			$msg = "<br />cURL error number:" .curl_errno($ch);
 			$msg .= "<br />cURL error:" . curl_error($ch);
 			$msg .=  "<br>".$url;
+			$msg .=  "<br>".$html;
 			throw new Exception($msg);
 		}
+		curl_close($ch);
 		return $html;
 	}
 }

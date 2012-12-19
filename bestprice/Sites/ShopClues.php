@@ -53,6 +53,8 @@ class ShopClues extends Parsing{
 				break;
 			}
 		}
+		$data = $this->cleanData($data, $query);
+		$data = $this->bestMatchData($data, $query);
 		return $data;
 	}
 }

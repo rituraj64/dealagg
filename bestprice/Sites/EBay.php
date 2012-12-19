@@ -3,7 +3,6 @@ class EBay extends Parsing{
 	public $_code = 'eBay';
 
 	public function getAllowedCategory(){
-		return array();
 		return array(Category::BOOKS);
 	}
 
@@ -11,7 +10,7 @@ class EBay extends Parsing{
 		return 'http://read.ebay.in/';
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/img/ebay.png';
+		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/ebay.png';
 	}
 	public function getSearchURL($query,$category = false){
 		if($category == Category::BOOKS){
@@ -40,7 +39,6 @@ class EBay extends Parsing{
 						}
 					}else if($i == 2){
 						$disc_price = pq($td)->find('tr:first')->find('td:last')->html();
-						$org_price = 0;
 						$offer = '';
 						$shipping = pq($td)->find('tr:last')->html();
 					}
@@ -49,7 +47,6 @@ class EBay extends Parsing{
 				$data[] = array(
 						'name'=>$name,
 						'image'=>$image,
-						'org_price'=>$org_price,
 						'disc_price'=>$disc_price,
 						'url'=>$url,
 						'website'=>$this->getCode(),

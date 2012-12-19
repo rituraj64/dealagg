@@ -11,7 +11,8 @@ class Parsing{
 	}
 	public function getWebsites(){
 		//,'Sulekha','TheMobileStore'  the html is not valid is not included yet in list.
-		return array('Snapdeal','ShopClues','Flipkart','Tradus','Indiatimes','Zoomin','Saholic','Landmark','Infibeam','Homeshop','Croma','Crossword','EBay');
+		// indiaplaza gives page requested was moved.
+		return array('Snapdeal','ShopClues','Flipkart','Tradus','Indiatimes','Zoomin','Saholic','Landmark','Infibeam','Homeshop','Croma','Crossword','EBay','Rediff','uRead','Bookadda');
 	}
 	public function allowCategory($cat){
 		foreach($this->getAllowedCategory() as $key => $val){
@@ -87,26 +88,44 @@ class Parsing{
 			}
 
 			$row['disc_price'] = $this->removeAlpha($row['disc_price']);
-			$row['org_price'] = $this->removeAlpha($row['org_price']);
 
 			$row['image'] = $this->makeAbsUrl($row['image']);
 			$row['url'] = $this->makeAbsUrl($row['url']);
+
+			if(isset($row['author'])){
+				$row['author'] = trim(str_replace("by", '', $row['author']));
+				$row['author'] = $this->removeSpecial($row['author']);
+			}
 
 			$data2[] = $row;
 		}
 		return $data2;
 	}
 	public function bestMatchData($data,$query){
-		return $data;
+		$data2 = array();
+		$i = 0;
+		foreach($data as $row){
+			$data2[] = $row;
+			if($i > 7){
+				break;
+			}
+			$i++;
+		}
+		return $data2;
 	}
 	public function clearHtml($str){
-		return trim(strip_tags(str_replace(PHP_EOL, '', $str)));
+		$str = trim(strip_tags(str_replace(PHP_EOL, '', $str)));
+		$str = str_replace('&nbsp;', '', $str);
+		return $str;
 	}
 	public function removeNum($str){
 		return trim(preg_replace("![^a-z]+!i", "", $str));
 	}
 	public function removeAlpha($str){
 		return trim(preg_replace("![^0-9]+!i", "", $str));
+	}
+	public function removeSpecial($str){
+		return trim(preg_replace("![^0-9a-z ]+!i", "", $str));
 	}
 	public function makeAbsUrl($img){
 		if(empty($img)){

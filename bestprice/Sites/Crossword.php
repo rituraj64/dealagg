@@ -3,7 +3,6 @@ class Crossword extends Parsing{
 	public $_code = 'Crossword';
 
 	public function getAllowedCategory(){
-		return array();
 		return array(Category::BOOKS);
 	}
 
@@ -11,7 +10,7 @@ class Crossword extends Parsing{
 		return 'http://www.crossword.in/';
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/img/crossword.png';
+		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/crossword.png';
 	}
 	public function getSearchURL($query,$category = false){
 		if($category == Category::BOOKS){
@@ -27,7 +26,6 @@ class Crossword extends Parsing{
 			$name = pq($div)->find('.variant-title')->html();
 			$author = pq($div)->find('.contributors')->find('.ctbr-name')->html();
 			$disc_price = pq($div)->find('.variant-final-price')->html();
-			$org_price = 0;
 			$shipping = pq($div)->find('.ships-in')->html();
 			$offer = '';
 			$stock = 0;
@@ -39,7 +37,6 @@ class Crossword extends Parsing{
 			$data[] = array(
 					'name'=>$name,
 					'image'=>$image,
-					'org_price'=>$org_price,
 					'disc_price'=>$disc_price,
 					'url'=>$url,
 					'website'=>$this->getCode(),

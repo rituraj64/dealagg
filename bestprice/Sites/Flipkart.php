@@ -5,7 +5,6 @@ class Flipkart extends Parsing{
 	//need to integrate flipkart offers and cashback
 
 	public function getAllowedCategory(){
-		return array();
 		return array(Category::BOOKS,Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
 	}
 
@@ -13,7 +12,7 @@ class Flipkart extends Parsing{
 		return 'http://www.flipkart.com';
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/img/flipkart.png';
+		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/flipkart.png';
 	}
 	public function getSearchURL($query,$category = false){
 		if($category == Category::MOBILE){
@@ -50,7 +49,6 @@ class Flipkart extends Parsing{
 						$a_link = pq($div)->find('.fk-anchor-link');
 						$name = strip_tags($a_link->html());
 						$url = $a_link->attr('href');
-						$org_price = 0;
 						$disc_price = pq($div)->find('.final-price')->html();
 						$offer = pq($div)->find('.fk-search-page-offers')->html();
 						$stock = 0;
@@ -59,12 +57,10 @@ class Flipkart extends Parsing{
 						if($cat == 'Books'){
 							$author = pq($div)->find('.fk-item-category')->html();
 							$author = $this->clearHtml($author);
-							$author = str_replace("by", '', $author);
 						}
 						$data[] = array(
 								'name'=>$name,
 								'image'=>$image,
-								'org_price'=>$org_price,
 								'disc_price'=>$disc_price,
 								'url'=>$url,
 								'website'=>$this->getCode(),

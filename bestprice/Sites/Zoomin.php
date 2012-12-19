@@ -32,6 +32,8 @@ class Zoomin extends Parsing{
 
 			}
 		}
+		$data = $this->cleanData($data, $query);
+		$data = $this->bestMatchData($data, $query);
 		return $data;
 	}
 

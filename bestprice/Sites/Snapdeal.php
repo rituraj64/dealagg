@@ -3,7 +3,7 @@ class Snapdeal extends Parsing{
 	public $_code = 'Snapdeal';
 
 	public function getAllowedCategory(){
-		return array(Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
+		return array(Category::BOOKS,Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
 	}
 
 	public function getWebsiteUrl(){
@@ -34,17 +34,62 @@ class Snapdeal extends Parsing{
 		return "http://i4.sdlcdn.com/img/snapdeal/sprite/snapdeal_logo_tagline.png";
 	}
 	public function getData($html,$query,$category){
-
 		$data = array();
 		phpQuery::newDocumentHTML($html);
-		foreach(pq('div.product_listing_cont') as $div){
-			if(sizeof(pq($div)->find('.product-image'))){
-				$image = pq($div)->find('.product-image')->html();
-				$url = pq($div)->find('a')->attr('href');
-				$name = strip_tags(pq($div)->find('.product_listing_heading')->html());
-				$org_price = pq($div)->find('.product_listing_price_outer')->find('.originalprice')->html();
-				$disc_price = pq($div)->find('.product_listing_price_outer')->find('.product_discount_outer ')->html();
-				$data[] = array('name'=>$name,'image'=>$image,'org_price'=>$org_price,'disc_price'=>$disc_price,'url'=>$url,'website'=>$this->getCode());
+		if(sizeof(pq('div.product_listing_cont'))){
+			foreach(pq('div.product_listing_cont') as $div){
+				if(sizeof(pq($div)->find('.product-image'))){
+					$image = pq($div)->find('.product-image')->html();
+					$url = pq($div)->find('a')->attr('href');
+					$name = strip_tags(pq($div)->find('.product_listing_heading')->html());
+					$disc_price = pq($div)->find('.product_listing_price_outer')->find('.product_discount_outer ')->html();
+					$offer = '';
+					$shipping = '' ;
+					$stock = 0;
+					$cat ='';
+					$data[] = array(
+							'name'=>$name,
+							'image'=>$image,
+							'disc_price'=>$disc_price,
+							'url'=>$url,
+							'website'=>$this->getCode(),
+							'offer'=>$offer,
+							'shipping'=>$shipping,
+							'stock'=>$stock,
+							'author' => $author,
+							'cat' => $cat
+					);
+				}
+			}
+		}else{
+			foreach(pq('.product_grid_cont') as $div){
+				if(sizeof(pq($div)->find('.product-image'))){
+					$image = pq($div)->find('.product-image')->html();
+					$url = pq($div)->children('a:first')->attr('href');
+					$name = pq($div)->find('.product_grid_cont_heading')->html();
+					$org_price = $disc_price = pq($div)->find('.product_grid_cont_price_outer')->children('.product_price')->children('.originalprice ')->html();
+					$org_price = $this->clearHtml($org_price);
+					$disc_price = pq($div)->find('.product_grid_cont_price_outer')->children('.product_price')->html();;
+					$disc_price = $this->clearHtml($disc_price);
+					$disc_price = str_replace($org_price, '', $disc_price);
+					$offer = '';
+					$shipping = '';
+					$stock = 0;
+					$cat ='';
+					$author = '';
+					$data[] = array(
+							'name'=>$name,
+							'image'=>$image,
+							'disc_price'=>$disc_price,
+							'url'=>$url,
+							'website'=>$this->getCode(),
+							'offer'=>$offer,
+							'shipping'=>$shipping,
+							'stock'=>$stock,
+							'author' => $author,
+							'cat' => $cat
+					);
+				}
 			}
 		}
 		$data2 = array();
@@ -59,6 +104,8 @@ class Snapdeal extends Parsing{
 			$row['image'] = $img;
 			$data2[] = $row;
 		}
+		$data2 = $this->cleanData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query);
 		return $data2;
 	}
 }

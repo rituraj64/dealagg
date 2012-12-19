@@ -24,8 +24,23 @@ class Croma extends Parsing{
 				$url = pq($div)->find('.content_block-image')->find('a')->attr('href');
 				$name = strip_tags(pq($div)->find('.content_block')->find('.view-content')->find('a')->html());
 				$disc_price = strip_tags(pq($div)->find('.content_block')->find('.view-price')->find('.price')->html());
-				$org_price = 0;
-				$data[] = array('name'=>$name,'image'=>$image,'org_price'=>$org_price,'disc_price'=>$disc_price,'url'=>$url,'website'=>$this->getCode());
+				$offer = '';
+				$shipping = '';
+				$stock = 0;
+				$author = '';
+				$cat = '';
+				$data[] = array(
+					'name'=>$name,
+					'image'=>$image,
+					'disc_price'=>$disc_price,
+					'url'=>$url,
+					'website'=>$this->getCode(),
+					'offer'=>$offer,
+					'shipping'=>$shipping,
+					'stock'=>$stock,
+					'author' => $author,
+					'cat' => $cat
+			);
 			}
 		}
 		$data2 = array();

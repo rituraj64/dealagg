@@ -5,12 +5,12 @@ class Sulekha extends Parsing{
 	public function getAllowedCategory(){
 		return array(Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS);
 	}
-	
+
 	public function getWebsiteUrl(){
 		return 'http://shopping.indiatimes.com/';
 	}
 	public function getLogo(){
-		return $_SERVER["SERVER_NAME"].'scrapping/img/sulekha.png';
+		return $_SERVER["SERVER_NAME"].'scrapping/bestprice/img/sulekha.png';
 	}
 	public function getSearchURL($query,$category = false){
 		$query2 = urldecode($query);
@@ -48,6 +48,8 @@ class Sulekha extends Parsing{
 			$row['image'] = $img;
 			$data2[] = $row;
 		}
+		$data2 = $this->cleanData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query);
 		return $data2;
 	}
 }

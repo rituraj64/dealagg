@@ -37,8 +37,34 @@ class Homeshop extends Parsing{
 
 		if($category == Category::BOOKS){
 			foreach(pq('div.book_rock') as $div){
-				
-			}		
+				if(sizeof(pq($div)->find('.listView_image'))){
+					$image = pq($div)->find('.listView_image')->html();
+					$url = pq($div)->find('.listView_image')->attr('href');
+					$name = pq($div)->find('.listView_details')->find('.listView_title')->find('a')->html();
+					$disc_price = pq($div)->find('.listView_details')->find('.listView_price')->find('.our_price')->html();
+					$offer = '';
+					$shipping = pq($div)->find('.listView_info')->find('.listView_shipping')->html();
+					$stock = 0;
+					if(sizeof(pq($div)->find('.listView_info')->find('.in_stock')) > 0){
+						$stock = 1;
+					}else{
+						$stock = -1;
+					}
+					$author = pq($div)->find('.listView_details')->find('.listView_title')->find('span')->html();
+					$data[] = array(
+							'name'=>$name,
+							'image'=>$image,
+							'disc_price'=>$disc_price,
+							'url'=>$url,
+							'website'=>$this->getCode(),
+							'offer'=>$offer,
+							'shipping'=>$shipping,
+							'stock'=>$stock,
+							'author' => $author,
+							'cat' => Category::BOOKS
+					);
+				}
+			}
 		}else{
 			foreach(pq('div.product_div') as $div){
 				if(sizeof(pq($div)->find('.product_image'))){
@@ -46,8 +72,24 @@ class Homeshop extends Parsing{
 					$url = pq($div)->find('.product_image')->find('a')->attr('href');
 					$name = strip_tags(pq($div)->find('.product_title')->find('a')->html());
 					$disc_price = strip_tags(pq($div)->find('.product_price')->find('.product_old_price')->html());
-					$org_price = strip_tags(pq($div)->find('.product_price')->find('.product_new_price')->html());
-					$data[] = array('name'=>$name,'image'=>$image,'org_price'=>$org_price,'disc_price'=>$disc_price,'url'=>$url,'website'=>$this->getCode());
+					//$org_price = strip_tags(pq($div)->find('.product_price')->find('.product_new_price')->html());
+					$offer = '';
+					$shipping = '';
+					$stock = 0;
+					$author = '';
+					$cat = '';
+					$data[] = array(
+							'name'=>$name,
+							'image'=>$image,
+							'disc_price'=>$disc_price,
+							'url'=>$url,
+							'website'=>$this->getCode(),
+							'offer'=>$offer,
+							'shipping'=>$shipping,
+							'stock'=>$stock,
+							'author' => $author,
+							'cat' => $cat
+					);
 				}
 			}
 		}
@@ -63,9 +105,8 @@ class Homeshop extends Parsing{
 			$row['image'] = $img;
 			$data2[] = $row;
 		}
-		echo '<pre>';
-		print_r($data2);
-		die;
+		$data2 = $this->cleanData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query);
 		return $data2;
 	}
 }

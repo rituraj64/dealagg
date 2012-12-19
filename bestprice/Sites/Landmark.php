@@ -22,7 +22,7 @@ class Landmark extends Parsing{
 		return "http://www.landmarkonthenet.com/search/?q=".$query;
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/img/landmark.png';
+		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/landmark.png';
 	}
 	public function getData($html,$query,$category){
 		$data = array();
@@ -31,10 +31,32 @@ class Landmark extends Parsing{
 			if(sizeof(pq($div)->find('.image'))){
 				$image = pq($div)->find('.image')->find('a')->html();
 				$url = pq($div)->find('.image')->find('a')->attr('href');
-				$name = strip_tags(pq($div)->find('.info')->find('a')->html());
+				$name = pq($div)->find('.info')->children('h1')->find('a')->html();
 				$disc_price = strip_tags(pq($div)->find('.buttons')->find('.prices')->find('.oldprice')->html());
-				$org_price = strip_tags(pq($div)->find('.buttons')->find('.prices')->find('.pricelabel')->html());
-				$data[] = array('name'=>$name,'image'=>$image,'org_price'=>$org_price,'disc_price'=>$disc_price,'url'=>$url,'website'=>$this->getCode());
+				$offer = '';
+				$shipping = pq($div)->find('.stockinfo')->find('.despatch-time')->html() . ' '. pq($div)->find('.stockinfo')->find('.shipping-cost')->html() ;
+				$stock = 0;
+				if(sizeof(pq($div)->find('.stockinfo')->find('.instock'))){
+					$stock = 1;
+				}else{
+					$stock = -1;
+				}
+				if($category == Category::BOOKS){
+					$author = pq($div)->find('.info')->children('h2')->find('a')->html();
+				}
+				$cat ='';
+				$data[] = array(
+						'name'=>$name,
+						'image'=>$image,
+						'disc_price'=>$disc_price,
+						'url'=>$url,
+						'website'=>$this->getCode(),
+						'offer'=>$offer,
+						'shipping'=>$shipping,
+						'stock'=>$stock,
+						'author' => $author,
+						'cat' => $cat
+				);
 			}
 		}
 		$data2 = array();
@@ -49,6 +71,8 @@ class Landmark extends Parsing{
 			$row['image'] = $img;
 			$data2[] = $row;
 		}
+		$data2 = $this->cleanData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query);
 		return $data2;
 	}
 }

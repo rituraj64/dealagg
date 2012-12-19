@@ -4,7 +4,7 @@ class Indiatimes extends Parsing{
 
 
 	public function getAllowedCategory(){
-		return array(Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
+		return array(Category::BOOKS,Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
 	}
 
 	public function getWebsiteUrl(){
@@ -38,14 +38,70 @@ class Indiatimes extends Parsing{
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
-		foreach(pq('div.ProductList') as $div){
-			if(sizeof(pq($div)->find('.productthumb'))){
+		if(sizeof(pq('div.productlistview')) > 0){
+			foreach(pq('div.productlistview') as $div){
 				$image = pq($div)->find('.productthumb')->find("a")->html();
 				$url = pq($div)->find('.productthumb')->find('a')->attr('href');
-				$name = strip_tags(pq($div)->find('.productdetail')->find('a')->html());
-				$org_price = 0;
-				$disc_price = pq($div)->find('.productdetail')->find('.price')->html();
-				$data[] = array('name'=>$name,'image'=>$image,'org_price'=>$org_price,'disc_price'=>$disc_price,'url'=>$url,'website'=>$this->getCode());
+				$name = pq($div)->find('.itemname')->find('a')->html();
+				$disc_price = pq($div)->find('.productdescription')->find('.newprice')->find('.price')->html();
+				$offer = '';
+				$shipping = '';
+				$stock = 0;
+				if(sizeof(pq($div)->find('.productdescription')->find('.instock')) > 0){
+					$stock = 1;
+				}else{
+					$stock = -1;
+				}
+				$author = '';
+				$cat = '';
+				if($category == Category::BOOKS){
+					$detail = pq($div)->find('.productdescription')->find('.bookmore')->html();
+					$detail = strip_tags($detail);
+					$author = substr($detail, 0,strpos($detail, "ISBN"));
+					$isbn = substr($detail, strpos($detail, "ISBN"),strlen($detail));
+					$author = str_replace("Author:", "", $author);
+					$isbn = str_replace("ISBN:", "", $isbn);
+				}
+				$data[] = array(
+						'name'=>$name,
+						'image'=>$image,
+						'disc_price'=>$disc_price,
+						'url'=>$url,
+						'website'=>$this->getCode(),
+						'offer'=>$offer,
+						'shipping'=>$shipping,
+						'stock'=>$stock,
+						'author' => $author,
+						'isbn' => $isbn,
+						'cat' => $cat
+				);
+			}
+
+		}else{
+			foreach(pq('div.ProductList') as $div){
+				if(sizeof(pq($div)->find('.productthumb'))){
+					$image = pq($div)->find('.productthumb')->find("a")->html();
+					$url = pq($div)->find('.productthumb')->find('a')->attr('href');
+					$name = strip_tags(pq($div)->find('.productdetail')->find('a')->html());
+					$disc_price = pq($div)->find('.productdetail')->find('.price')->html();
+					$offer = '';
+					$shipping = '';
+					$stock = 0;
+					$author = '';
+					$cat = '';
+					$data[] = array(
+							'name'=>$name,
+							'image'=>$image,
+							'disc_price'=>$disc_price,
+							'url'=>$url,
+							'website'=>$this->getCode(),
+							'offer'=>$offer,
+							'shipping'=>$shipping,
+							'stock'=>$stock,
+							'author' => $author,
+							'cat' => $cat
+					);
+				}
 			}
 		}
 		$data2 = array();
@@ -60,6 +116,8 @@ class Indiatimes extends Parsing{
 			$row['image'] = $img;
 			$data2[] = $row;
 		}
+		$data2 = $this->cleanData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query);
 		return $data2;
 	}
 }
