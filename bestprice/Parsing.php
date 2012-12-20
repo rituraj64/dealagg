@@ -26,14 +26,15 @@ class Parsing{
 		$url = $this->getSearchURL($query,$category);
 		$website = $this->getCode();
 		if($this->hasCachedData($website, $query, $category,$url)){
-			$html = $this->getCachedData($website, $query,$category, $url);
-			return $this->getData($html,$query,$category);
+			$data = $this->getCachedData($website, $query,$category, $url);
+			return json_decode($data,true);
 		}else{
 			if(!$delay){
 				$parser = new Parser();
 				$html = $parser->getHtml($url);
-				$this->cacheData($website, $query,$category, $url, $html);
-				return $this->getData($html,$query,$category);
+				$data = $this->getData($html,$query,$category);
+				$this->cacheData($website, $query,$category, $url, json_encode($data));
+				return $data;
 			}else{
 				return false;
 			}
@@ -87,7 +88,7 @@ class Parsing{
 				$row[$key] = trim($value);
 			}
 
-			$row['disc_price'] = $this->removeAlpha($row['disc_price']);
+			$row['disc_price'] = $this->removeAlpha($row['disc_price'],true);
 
 			$row['image'] = $this->makeAbsUrl($row['image']);
 			$row['url'] = $this->makeAbsUrl($row['url']);
@@ -121,8 +122,16 @@ class Parsing{
 	public function removeNum($str){
 		return trim(preg_replace("![^a-z]+!i", "", $str));
 	}
-	public function removeAlpha($str){
-		return trim(preg_replace("![^0-9]+!i", "", $str));
+	public function removeAlpha($str,$isPrice){
+		if($isPrice){
+			$price  = trim(preg_replace("![^0-9.]+!i", "", $str));
+			if(strpos($price, '.') == 0 && strpos($price, '.') !== false){
+				$price = substr($price,1, strlen($price));
+			}
+			return $price;
+		}else{
+			return trim(preg_replace("![^0-9]+!i", "", $str));
+		}
 	}
 	public function removeSpecial($str){
 		return trim(preg_replace("![^0-9a-z ]+!i", "", $str));
@@ -131,7 +140,7 @@ class Parsing{
 		if(empty($img)){
 			return $img;
 		}
-		if(strpos($img, 'http') === false){
+		if(strpos($img, 'http') === false && strpos($img, '.com') === false){
 			$hasImage = false;
 			$hasUrl = false;
 			if($img[0] == '/'){

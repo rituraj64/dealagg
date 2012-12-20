@@ -53,6 +53,35 @@ class uRead extends Parsing{
 					);
 				}
 			}
+		}else{
+			if(sizeof(pq('.product-detail'))){
+				$image = pq('.product-image')->html();
+				$url = '';
+				$name = pq('.product-title')->children('h1')->html();
+				$disc_price = pq('.product-detail-summary')->find('.our-price')->html();
+				$shipping = pq('.additional-info')->html();
+				$offer = '' ;
+				$stock = 0;
+				if( sizeof(pq('.Addtocart')) == 0){
+					$stock = -1;
+				}else{
+					$stock = 1;
+				}
+				$cat ='';
+				$author = pq('.product-detail')->find('.product-title-author')->html();
+				$data[] = array(
+						'name'=>$name,
+						'image'=>$image,
+						'disc_price'=>$disc_price,
+						'url'=>$url,
+						'website'=>$this->getCode(),
+						'offer'=>$offer,
+						'shipping'=>$shipping,
+						'stock'=>$stock,
+						'author' => $author,
+						'cat' => $cat
+				);
+			}
 		}
 		$data2 = array();
 		foreach($data as $row){

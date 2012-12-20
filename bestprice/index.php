@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="http://cdn.webrupee.com/font">
     <script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"></script>
 	<script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>
+	<script type="text/javascript" src='js/ajax.js'></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -85,157 +86,11 @@
 		<div id='loading' style="display: none;">
 			<img src='img/loading.gif' alt='loading..'/>
 		</div>
+		<input id='progress_total' type="hidden"/>
+		<input id='progress_done' type="hidden"/>
 		<div class="progress progress-info progress-striped" style="display: none">
 		  <div class="bar" style="width: 0%;"></div>
 		</div>
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$('.popup').popover();
-			});
-			function hideError(){
-				$('#error_msg').hide();
-			}
-			function findPrice(){
-				if($('#category').val() == -1){
-					$('#error_msg').find('span').html('Select a category for accurate results!');
-					$('#error_msg').show();
-					setTimeout('hideError()',2000);
-					return;
-				}
-				if($('#q').val().length == 0){
-					$('#error_msg').find('span').html('Please write the product name!');
-					$('#error_msg').show();
-					setTimeout('hideError()',2000);
-					return;
-				}
-				$('#loading').show();
-				$('#results').hide();
-				$('#results').html('');
-				var query = $('#q').val();
-				var category = $('#category').val();
-				var url = 'find.php?q='+query+'&cat='+category;
-				$.getJSON(url,function(data){
-					$('#loading').hide();
-					var size = data.data.length;
-					if(size > 0){
-						for(var i=0;i<data.data.length;i++){
-							var logo = data.data[i].logo;
-							var name = data.data[i].name;
-							var price = data.data[i].disc_price;
-							var image = data.data[i].image;
-							var url = data.data[i].url;
-							var website = data.data[i].website;
-							var author = "";
-							var shipping = '';
-							var stock = 0;
-							var offer = '';
-							if(data.data[i].author){
-								author = data.data[i].author;
-							}
-							if(data.data[i].shipping){
-								shipping = data.data[i].shipping;
-							}
-							if(data.data[i].stock){
-								stock = data.data[i].stock;
-							}
-							if(data.data[i].offer){
-								offer = data.data[i].offer;
-							}
-
-							if($('#results').find('#'+website).length > 0){
-								var html = $('#smallItemTemplate').html();	
-								html = html.replace(/{website}/g,website);
-								html = html.replace(/{website_url}/g,logo);
-								html = html.replace(/{item_url}/g,url);
-								html = html.replace(/{item_image}/g,image);
-								html = html.replace(/{item_name}/g,name);
-								html = html.replace(/{item_price}/g,price);
-								html = html.replace(/{item_author}/g,author);
-								if(shipping.length > 60){
-									var shipping2 = shipping = shipping.substring(0,57)+'...';
-									shipping = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="'+shipping+'">'+shipping2+'</span>';
-								}
-								if(offer.length > 60){
-									var offer2 = shipping = offer.substring(0,57)+'...';
-									offer = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="'+offer+'">'+offer2+'</span>';
-								}
-								html = html.replace(/{item_shipping}/g,shipping);
-								html = html.replace(/{item_offer}/g,offer);
-
-								var item_details = 'Price: <span class="WebRupee"></span>'+price+' <br/>';
-								if(author.length > 0){
-									item_details += 'Author: by '+author+'<br/>';
-								}
-								if(shipping.length == 0){
-									item_details += 'Shipping:' + offer+'<br/>';
-								}
-								if(offer.length == 0){
-									item_details += 'Offer:' + offer+'<br/>';
-								}
-								var stock_color = 'btn-success';
-								if(stock == 0 || stock.length == 0){
-									item_details += 'Stock: No Info'+'<br/>';
-									stock_color = '';
-								}else if(stock == 1){
-									item_details += 'Stock: In Stock'+'<br/>';
-									stock_color = 'btn-success';
-								} else {
-									item_details += 'Stock: Out of Stock'+'<br/>';
-									stock_color = 'btn-danger';
-								}
-								html = html.replace(/{stock_color}/g,stock_color);
-								html = html.replace(/{item_details}/g,item_details);
-								$('#results').find('#'+website).find('#other_prod').append(html);
-							}else{
-								var html = $('#resultBodyTemplate').html();
-								html = html.replace(/{website}/g,website);
-								html = html.replace(/{website_url}/g,logo);
-								html = html.replace(/{item_url}/g,url);
-								html = html.replace(/{item_image}/g,image);
-								html = html.replace(/{item_name}/g,name);
-								html = html.replace(/{item_price}/g,price);
-								html = html.replace(/{item_author}/g,author);
-								if(shipping.length > 60){
-									var shipping2 = shipping = shipping.substring(0,57)+'...';
-									shipping = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="'+shipping+'">'+shipping2+'</span>';
-								}
-								if(offer.length > 60){
-									var offer2 = shipping = offer.substring(0,57)+'...';
-									offer = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="'+offer+'">'+offer2+'</span>';
-								}
-								html = html.replace(/{item_shipping}/g,shipping);
-								html = html.replace(/{item_offer}/g,offer);
-								
-								$('#results').append(html);
-								if(offer.length == 0){
-									$('#results').find('#'+website).find('.offer').remove();
-								}
-								if(author.length == 0){
-									$('#results').find('#'+website).find('.author').remove();
-								}
-								if(shipping.length == 0){
-									$('#results').find('#'+website).find('.shipping').remove();
-								}
-								if(stock == 0 || stock.length == 0){
-									$('#results').find('#'+website).find('.in_stock').remove();
-									$('#results').find('#'+website).find('.out_of_stock').remove();
-								}else if(stock == 1){
-									$('#results').find('#'+website).find('.no_info').remove();
-									$('#results').find('#'+website).find('.out_of_stock').remove();
-								} else {
-									$('#results').find('#'+website).find('.in_stock').remove();
-									$('#results').find('#'+website).find('.no_info').remove();
-								}
-								
-							}	
-						}
-					}
-					$('.apply_tooltip').tooltip();
-					$('.popup').popover();
-					$('#results').show();
-				});
-			}
-		</script>
       </div>
       <div id='results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;display:none">
 		     
@@ -272,22 +127,22 @@
   
   
   <div id='resultBodyTemplate' style="display: none">
-  		<div class="row-fluid clearfix" id="{website}" style="vertical-align: middle;height: 175px;margin-top:10px">
+  		<div class="row-fluid clearfix website" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
 				<div class="span2" style="line-height: 150px">
-					<img src="{website_url}" alt="{website}" title="{website}"/>
+					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
 				</div>
 				<div class="popup span4 table-bordered" style="margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
 					 	<div class="media">
 							<a class='pull-left' href="{item_url}" target="_blank">
 								<img style="width:100px;height:100px;margin:5px" class="img-rounded media-object" src="{item_image}" alt='{item_name}' title='{item_name}'/>
 							</a>
-							<div class="media-body pull-left" style="width: 175px;">
+							<div class="media-body pull-left" style="width: 175px;text-align:left">
 								<div class='pull-left' style="max-height:40px;overflow:hidden">
 									<a href="{item_url}" target="_blank" class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="{item_name}">{item_name}</a>
 								</div>
 								<div class='clearfix'></div>
 								<div class='pull-left'>
-									Price <span class="WebRupee">Rs.</span>{item_price}
+									Price <span class="WebRupee">Rs.</span><span class='main_price'>{item_price}</span>
 								</div>
 								<div class='clearfix'></div>
 								<div class='pull-left author'>
@@ -303,7 +158,7 @@
 						</div>
 						<div class='clearfix'></div>
 						<hr style="padding: 0px;margin: 0px;margin-top: 5px;"/>
-						<div style="font-size:12px;margin: 5px;text-align: left" class='other_info'>
+						<div style="font-size:12px;margin: 5px;text-align: left;max-height: 38px;overflow: hidden;float: left;" class='other_info'>
 							<div class='offer pull-left'>
 								Offer: {item_offer}
 							</div>
@@ -326,18 +181,40 @@
 					</div>
 				</div>
 			 </div>
-			 <hr style="padding: 0px;margin: 0px;margin-top: 5px;"/>
+  </div>
+  
+  <div id='emptyBodyTemplate' style="display: none">
+  		<div class="row-fluid clearfix website" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
+				<div class="span2" style="line-height: 150px">
+					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
+				</div>
+				<div class="popup span10 table-bordered" style="line-height:150px;margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
+					<div class="alert">
+					  <strong>Sorry!</strong> No Results Found...
+					</div>
+				</div>
+		</div>
+  </div>
+  
+  <div id='loadingBodyTemplate' style="display: none">
+  		<div class="row-fluid clearfix website website_loading" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
+				<div class="span2" style="line-height: 150px">
+					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
+				</div>
+				<div class="popup span10 table-bordered" style="line-height:150px;margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
+					Fetching Data... <img src='img/preload_small.gif' alt='loading..'/>
+				</div>
+		</div>
   </div>
   
   <div id='smallItemTemplate' style="display: none">
   		<div class='span3' style="margin-left: 5px;">
 			<div class='table-bordered' style="border-left: 1px solid #DDD;padding: 5px;text-align: center;">
 				<a href="{item_url}" target="_blank">
-					<img style="width: 50px;height: 50px;" width="50px" height="50px" class="img-rounded" src="{item_image}" alt='{item_name}' title='{item_name}'/>
+					<input type='hidden' value='{item_img_load_id}' id='lazy' />
+					<img class="lazy_load_img img-rounded" src="{item_image}" alt='{item_name}' title='{item_name}'/>
 				</a>
-				<a class='popup btn btn-mini {stock_color}' style="line-height: 14px" rel="popover" data-placement="right" data-html='true' data-trigger='click' data-content="{item_details}" data-original-title="{item_name}">
-					Details 
-				</a>
+				<a class='detail-popup popup btn btn-mini {stock_color}' style="line-height: 14px" rel="popover" data-placement="right" data-html='true' data-trigger='click' data-content="{item_details}" data-original-title="{item_name}">Details</a>
 			</div>
 		</div>
   </div>

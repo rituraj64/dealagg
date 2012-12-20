@@ -17,7 +17,7 @@ if(isset($_REQUEST['q'])){
 	$ajaxParseSite = array();
 	$errorSites = array();
 	$emptySites = array();
-	$delay = false;
+	$delay = true;
 	$sites = $parsing->getWebsites();
 
 	if(isset($_REQUEST['site'])){
@@ -32,8 +32,8 @@ if(isset($_REQUEST['q'])){
 		if($siteObj->allowCategory($cat)){
 			try{
 				$data1 = $siteObj->getPriceData($query,$cat,$delay);
-				if(!$data1){
-					$ajaxParseSite[] = $site;
+				if(!$data1 && $delay){
+					$ajaxParseSite[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat),'logo'=>$siteObj->getLogo());
 				}else{
 
 					$data2 = array();
@@ -51,6 +51,7 @@ if(isset($_REQUEST['q'])){
 						*/
 							
 						$row['logo'] = $siteObj->getLogo();
+						$row['searchurl'] = $siteObj->getSearchURL($query,$cat);
 							
 						$data2[] = $row;
 						$count++;
@@ -62,18 +63,22 @@ if(isset($_REQUEST['q'])){
 						$data = $data2;
 					}else{
 						if(empty($data2)){
-							$emptySites[] = array('site'=>$site);
+							$emptySites[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat),'logo'=>$siteObj->getLogo());
 						}else{
 							$data = array_merge($data,$data2);
 						}
 					}
 				}
 			}catch(Exception $e){
-				$errorSites[] = array('site'=>$site,'message'=>$e->getMessage());
+				$errorSites[] = array('site'=>$site,'message'=>$e->getMessage(),'searchurl'=>$siteObj->getSearchURL($query,$cat));
 			}
 		}
 	}
-	$return = array('ajax_parse'=>$ajaxParseSite,'data'=>$data,'error_sites'=>$errorSites,'empty_sites'=>$emptySites);
+	$site = '';
+	if(isset($_REQUEST['site'])){
+		$site = $_REQUEST['site'];
+	}
+	$return = array('ajax_parse'=>$ajaxParseSite,'data'=>$data,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site);
 	echo json_encode($return);
 }
 function priceSort($a,$b){

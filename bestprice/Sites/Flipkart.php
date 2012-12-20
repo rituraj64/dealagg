@@ -86,10 +86,12 @@ class Flipkart extends Parsing{
 					$shipping = pq($div)->find('.fk-sitem-info-section')->find('.shipping-period')->html();
 					$author = pq($div)->find('.fk-item-authorinfo-text')->find('a')->html();
 					$stock = pq($div)->find('.fk-sitem-info-section')->find('.search-shipping')->html();
-					if(strpos('Out Of Stock', $stock) !== false){
-						$stock = -1;
-					}else{
-						$stock = 1;
+					if($stock){
+						if(strpos('Out Of Stock', $stock) !== false){
+							$stock = -1;
+						}else{
+							$stock = 1;
+						}
 					}
 					$data[] = array(
 							'name'=>$name,
@@ -112,7 +114,7 @@ class Flipkart extends Parsing{
 			$html = $row['image'];
 			$html .= '</img>';
 			phpQuery::newDocumentHTML($html);
-			$row['image']= pq('img')->attr('src');
+			$row['image']= pq('img')->attr('data-src');
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
