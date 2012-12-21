@@ -14,11 +14,22 @@ class Parser{
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
 		$html = curl_exec($ch);
 		if (!$html || strpos($html, '<body') === false) {
-			$msg = "<br />cURL error number:" .curl_errno($ch);
-			$msg .= "<br />cURL error:" . curl_error($ch);
-			$msg .=  "<br>".$url;
-			$msg .=  "<br>".$html;
-			throw new Exception($msg);
+			$a = @simplexml_load_string($html);
+			if($a===FALSE) {
+				$zoomin = new Zoomin();
+				$a = $zoomin->jsonp_decode($html,true);
+				if(!is_array($a)){
+					$a = json_decode($html,true);
+					if(!is_array($a)){
+						$msg = "<br />cURL error number:" .curl_errno($ch);
+						$msg .= "<br />cURL error:" . curl_error($ch);
+						$msg .=  "<br>".$url;
+						$msg .=  "<br>".$html;
+						throw new Exception($msg);
+					}
+				}
+			}
+
 		}
 		curl_close($ch);
 		return $html;

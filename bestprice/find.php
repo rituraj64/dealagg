@@ -11,7 +11,8 @@ if(isset($_REQUEST['q'])){
 		session_start();
 		$_SESSION['prev_cat'] = $cat;
 	}
-
+	$cache = 1;
+	$max = 0;
 	$parsing = new Parsing();
 	$data = array();
 	$ajaxParseSite = array();
@@ -19,6 +20,10 @@ if(isset($_REQUEST['q'])){
 	$emptySites = array();
 	$delay = true;
 	$sites = $parsing->getWebsites();
+	
+	if(isset($_REQUEST['cache'])){
+		$cache = $_REQUEST['cache'];
+	}
 
 	if(isset($_REQUEST['site'])){
 		$delay = false;
@@ -31,17 +36,20 @@ if(isset($_REQUEST['q'])){
 		$siteObj = new $site;
 		if($siteObj->allowCategory($cat)){
 			try{
-				$data1 = $siteObj->getPriceData($query,$cat,$delay);
+				$data1 = $siteObj->getPriceData($query,$cat,$delay,$cache);
+				$resultTime = $siteObj->getResultTime();
+				if($resultTime > $max){
+					$max = $resultTime;
+				}
 				if(!$data1 && $delay){
 					$ajaxParseSite[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat),'logo'=>$siteObj->getLogo());
 				}else{
-
 					$data2 = array();
 					$count = 0;
 					foreach($data1 as $row){
 						$name = $row['name'];
 						/*
-						$row['levenshtein'] = levenshtein(strtolower($name), strtolower($query2));
+						 $row['levenshtein'] = levenshtein(strtolower($name), strtolower($query2));
 						$row['lendiff'] = abs( strlen($name) - strlen($query2) );
 						$row['levenshtein_score'] = $row['levenshtein'] - $row['lendiff'];
 						$per = 0;
@@ -59,18 +67,18 @@ if(isset($_REQUEST['q'])){
 					$data1 = array();
 					//uasort($data2, 'priceSort');
 
-					if(empty($data)){
-						$data = $data2;
+					if(empty($data2)){
+						$emptySites[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat),'logo'=>$siteObj->getLogo());
 					}else{
-						if(empty($data2)){
-							$emptySites[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat),'logo'=>$siteObj->getLogo());
+						if(empty($data)){
+							$data = $data2;
 						}else{
 							$data = array_merge($data,$data2);
 						}
 					}
 				}
 			}catch(Exception $e){
-				$errorSites[] = array('site'=>$site,'message'=>$e->getMessage(),'searchurl'=>$siteObj->getSearchURL($query,$cat));
+				$errorSites[] = array('site'=>$site,'message'=>$e->getMessage(),'searchurl'=>$siteObj->getSearchURL($query,$cat),'logo'=>$siteObj->getLogo());
 			}
 		}
 	}
@@ -78,7 +86,7 @@ if(isset($_REQUEST['q'])){
 	if(isset($_REQUEST['site'])){
 		$site = $_REQUEST['site'];
 	}
-	$return = array('ajax_parse'=>$ajaxParseSite,'data'=>$data,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site);
+	$return = array('ajax_parse'=>$ajaxParseSite,'data'=>$data,'result_time'=>date('d/m/y h:i a',$max),'result_number_time'=>$max,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site);
 	echo json_encode($return);
 }
 function priceSort($a,$b){

@@ -54,6 +54,7 @@ class Indiatimes extends Parsing{
 				}
 				$author = '';
 				$cat = '';
+				$isbn = '';
 				if($category == Category::BOOKS){
 					$detail = pq($div)->find('.productdescription')->find('.bookmore')->html();
 					$detail = strip_tags($detail);

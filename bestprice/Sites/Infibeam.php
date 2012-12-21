@@ -71,7 +71,7 @@ class Infibeam extends Parsing{
 					}
 				}
 			}
-		}else{
+		}else if(sizeof(pq('ul.search_result')->children('li')) > 0){
 			foreach(pq('ul.search_result')->children('li') as $div){
 				$image = pq($div)->find('.img')->find('a')->html();
 				$url = pq($div)->find('.img')->find('a')->attr('href');
@@ -100,6 +100,37 @@ class Infibeam extends Parsing{
 					$author = pq($div)->find('.title')->children('a')->html();
 				}
 				$cat ='';
+				$data[] = array(
+						'name'=>$name,
+						'image'=>$image,
+						'disc_price'=>$disc_price,
+						'url'=>$url,
+						'website'=>$this->getCode(),
+						'offer'=>$offer,
+						'shipping'=>$shipping,
+						'stock'=>$stock,
+						'author' => $author,
+						'cat' => $cat
+				);
+			}
+		}else if(pq('ul.srch_result')->children('li')){
+			foreach(pq('ul.srch_result')->children('li') as $div){
+				foreach(pq($div)->children('a:first')->children() as $tag){
+					$html = pq($tag)->html();
+					if(strpos($html, "<img") !== false){
+						$image = $html;
+						break;
+					}
+				}
+
+				$url = pq($div)->children('a:first')->attr('href');
+				$name = pq($div)->children('a:first')->children('.title')->html();
+				$disc_price = pq($div)->children('.price')->children('.normal')->html();
+				$offer = '';
+				$shipping = '';
+				$stock = 0;
+				$author = '';
+				$cat = pq('#resultsPane')->find('h1:first')->html();
 				$data[] = array(
 						'name'=>$name,
 						'image'=>$image,

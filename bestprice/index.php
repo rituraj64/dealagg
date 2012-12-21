@@ -91,6 +91,21 @@
 		<div class="progress progress-info progress-striped" style="display: none">
 		  <div class="bar" style="width: 0%;"></div>
 		</div>
+		<div class="alert alert-info" id='summary' style="text-align: left;color:black;display: none">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<div class='pull-left'>
+					Total Time Taken: <h4 id='time_taken'>65sec</h4>
+				</div>
+				<div class='pull-right'>
+					Results As On:
+					<input type='hidden' id='max_time' value="0" /> 
+					<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="Get Latest Results">
+						<span onclick='findPrice("",0);' style="cursor: pointer;" class='icon-refresh'></span>
+					</span> 
+					<h4 id='time'></h4>
+				</div>
+				<div class='clearfix'></div>
+		</div>
       </div>
       <div id='results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;display:none">
 		     
@@ -184,13 +199,26 @@
   </div>
   
   <div id='emptyBodyTemplate' style="display: none">
-  		<div class="row-fluid clearfix website" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
+  		<div class="row-fluid clearfix website website_loading" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
 				<div class="span2" style="line-height: 150px">
 					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
 				</div>
 				<div class="popup span10 table-bordered" style="line-height:150px;margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
 					<div class="alert">
 					  <strong>Sorry!</strong> No Results Found...
+					</div>
+				</div>
+		</div>
+  </div>
+  
+  <div id='errorBodyTemplate' style="display: none">
+  		<div class="row-fluid clearfix website website_loading" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
+				<div class="span2" style="line-height: 150px">
+					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
+				</div>
+				<div class="popup span10 table-bordered" style="height:150px;overflow:hidden;margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
+					<div class="alert alert-error">
+					  <strong>Error!</strong> {error_message}
 					</div>
 				</div>
 		</div>

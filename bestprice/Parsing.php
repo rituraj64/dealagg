@@ -2,6 +2,7 @@
 require_once 'phpQuery-onefile.php';
 require_once 'Parser.php';
 require_once 'Category.php';
+require_once 'Sorting.php';
 set_time_limit(10000);
 class Parsing{
 	//public $_code = 'Website';
@@ -22,22 +23,38 @@ class Parsing{
 		}
 		return false;
 	}
-	public function getPriceData($query,$category = false,$delay = true){
+	private $_resultTime = 0;
+	public function getResultTime(){
+		return $this->_resultTime;
+	}
+	public function getPriceData($query,$category = false,$delay = true,$cache = 1){
 		$url = $this->getSearchURL($query,$category);
 		$website = $this->getCode();
+		if($cache == 0){
+			$this->deleteCachedData($website, $query, $category,$url);
+		}
 		if($this->hasCachedData($website, $query, $category,$url)){
 			$data = $this->getCachedData($website, $query,$category, $url);
+			$this->_resultTime = $this->getCachedDataTime($website, $query, $category, $url);
 			return json_decode($data,true);
 		}else{
 			if(!$delay){
 				$parser = new Parser();
 				$html = $parser->getHtml($url);
 				$data = $this->getData($html,$query,$category);
+				$this->_resultTime = time();
 				$this->cacheData($website, $query,$category, $url, json_encode($data));
 				return $data;
 			}else{
 				return false;
 			}
+		}
+	}
+	public function deleteCachedData($website, $query, $category,$url){
+		$cacheKey = $this->getCacheKey($website, $query,$category, $url);
+		$filename = 'cache/'.$cacheKey;
+		if(file_exists($filename)){
+			unlink($filename);
 		}
 	}
 	public function getCachedData($website,$query,$category,$url){
@@ -48,6 +65,15 @@ class Parsing{
 			$content = file_get_contents('cache/'.$cacheKey);
 		}
 		return $content;
+	}
+	public function getCachedDataTime($website,$query,$category,$url){
+		$cacheKey = $this->getCacheKey($website, $query,$category, $url);
+		$filename = 'cache/'.$cacheKey;
+		if(file_exists($filename)){
+			$time = filemtime($filename);
+			return $time;
+		}
+		return false;
 	}
 	public function hasCachedData($website,$query,$category,$url){
 		$cacheKey = $this->getCacheKey($website, $query,$category, $url);
@@ -105,14 +131,29 @@ class Parsing{
 	public function bestMatchData($data,$query){
 		$data2 = array();
 		$i = 0;
+		$names = array();
 		foreach($data as $row){
 			$data2[] = $row;
+			$names[] = $row['name'];
 			if($i > 7){
 				break;
 			}
 			$i++;
 		}
-		return $data2;
+		$data3 = array();
+		$sorting = new Sorting();
+//		print_r($names);
+		$names = $sorting->sort($names, $query);
+	//	print_r($names);die;
+		foreach($names as $name){
+			foreach($data2 as $row){
+				if($row['name'] == $name){
+					$data3[] = $row;
+					break;
+				}
+			}
+		}
+		return $data3;
 	}
 	public function clearHtml($str){
 		$str = trim(strip_tags(str_replace(PHP_EOL, '', $str)));

@@ -40,6 +40,13 @@ class Tradus extends Parsing{
 	public function getData($html,$query,$category){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
+		$ele = pq('#search-result-main-heading')->children('h1');
+		if(sizeof($ele)){
+			$html = $ele->html();
+			if(strpos($html, 'Zero items found') !== false){
+				return $data;
+			}
+		}
 		foreach(pq('div.prod_main_div') as $div){
 			if(sizeof(pq($div)->find('.product_image'))){
 				$image = pq($div)->find('.product_image')->children()->html();
@@ -73,7 +80,7 @@ class Tradus extends Parsing{
 		$data2 = array();
 		foreach($data as $row){
 			$html = $row['image'];
-			$html .= '</img>';	
+			$html .= '</img>';
 			phpQuery::newDocumentHTML($html);
 			$row['image']= pq('img')->attr('data-original');
 			$data2[] = $row;

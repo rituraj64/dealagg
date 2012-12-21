@@ -13,7 +13,7 @@ class Zoomin extends Parsing{
 		return "http://camera.zoomin.com/index.php/search/ajax/query?r=select&q=".$query."&json.nl=map&facet=true&facet.field=oemname_facets%2Ccategory&defType=dismax&timestamp=1355584673850&qf=name_varchar%20oemname_int%20&wt=json&json.wrf=_prototypeJSONPCallback_1";
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/img/zoomin.png';
+		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/zoomin.png';
 	}
 	public function getData($html,$query,$category){
 

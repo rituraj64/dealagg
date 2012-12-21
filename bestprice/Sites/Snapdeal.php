@@ -21,7 +21,7 @@ class Snapdeal extends Parsing{
 		}else if($category == Category::HOME_APPLIANCE){
 			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=9&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=dslr&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
 		}else if($category == Category::MOBILE || $category == Category::TABLETS){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=17&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=washing+mat&prodCatId=250&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
+			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=12&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=washing+mat&prodCatId=250&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
 		}else if($category == Category::TV || $category == Category::GAMING){
 			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=7&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=washing+mat&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
 		}else if($category == Category::NUTRITION){
@@ -36,6 +36,9 @@ class Snapdeal extends Parsing{
 	public function getData($html,$query,$category){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
+		if(sizeof(pq('#filter-no-results-message')) > 0){
+			//return $data;  this div shows always
+		}
 		if(sizeof(pq('div.product_listing_cont'))){
 			foreach(pq('div.product_listing_cont') as $div){
 				if(sizeof(pq($div)->find('.product-image'))){
@@ -47,6 +50,7 @@ class Snapdeal extends Parsing{
 					$shipping = '' ;
 					$stock = 0;
 					$cat ='';
+					$author = '';
 					$data[] = array(
 							'name'=>$name,
 							'image'=>$image,

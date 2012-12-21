@@ -27,6 +27,12 @@ class Landmark extends Parsing{
 	public function getData($html,$query,$category){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
+		
+		$html = pq('#page-content')->children('h1')->html();
+		if(strpos($html, 'Sorry, no results were found for') !== false){
+			return $data;
+		}
+		
 		foreach(pq('div.searchresult') as $div){
 			if(sizeof(pq($div)->find('.image'))){
 				$image = pq($div)->find('.image')->find('a')->html();
@@ -41,6 +47,7 @@ class Landmark extends Parsing{
 				}else{
 					$stock = -1;
 				}
+				$author = '';
 				if($category == Category::BOOKS){
 					$author = pq($div)->find('.info')->children('h2')->find('a')->html();
 				}

@@ -39,13 +39,18 @@ class Flipkart extends Parsing{
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
+		
+		if(sizeof(pq('#noresults_info')) > 0){
+			return $data;
+		}
+		
 		if(sizeof(pq('div.search_results_preview_box')) > 0){
 			foreach(pq('div.search_results_preview_box') as $box){
 				$cat = pq($box)->find('.title')->find('a')->html();
 				$cat = $this->removeNum($cat);
 				foreach(pq($box)->find('div.size1of4') as $div){
 					if(sizeof(pq($div)->find('.fk-product-thumb'))){
-						$image = pq($div)->find('.fk-product-thumb')->children()->html();
+						$image = pq($div)->find('.fk-product-thumb')->children('a.prd-img')->html();
 						$a_link = pq($div)->find('.fk-anchor-link');
 						$name = strip_tags($a_link->html());
 						$url = $a_link->attr('href');
