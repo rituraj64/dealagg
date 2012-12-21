@@ -19,6 +19,7 @@ class Tradus extends Parsing{
 		$html = $parser->getHtml($url);
 		phpQuery::newDocumentHTML($html);
 		$data = array();
+		$data['logo'] = $this->getLogo();
 		foreach (pq(".cartList") as $item)
 		{
 			$class_Discount_bg = pq($item)->find(".Discount_bg");
@@ -28,9 +29,7 @@ class Tradus extends Parsing{
 			$price = trim(pq($item)->find(".signDiv2")->text());
 			$name = trim(pq($item)->find(".DiscountDiv>a")->text());
 			$time_left = pq($item)->find(".countdown_row")->text();
-			$logo = $this->getLogo();
 			$data[] = array(
-				'logo'		=>$logo,
 				'name'		=>$name,
 				'href'		=>$href,
 				'price'		=>$price,
