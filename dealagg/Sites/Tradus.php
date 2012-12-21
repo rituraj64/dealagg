@@ -1,10 +1,11 @@
 <?php
 class Tradus extends Parsing{
+	
 	public $_code = 'Tradus';
 
 	public function getWebsiteUrl(){
-		//return 'http://www.tradus.com/deals/';
-		return 'http://127.0.0.1/deals.htm';
+		return 'http://www.tradus.com/deals/';
+		//return 'http://127.0.0.1/deals.htm';
 	}
 	
 	public function getLogo(){
@@ -27,7 +28,9 @@ class Tradus extends Parsing{
 			$price = trim(pq($item)->find(".signDiv2")->text());
 			$name = trim(pq($item)->find(".DiscountDiv>a")->text());
 			$time_left = pq($item)->find(".countdown_row")->text();
+			$logo = $this->getLogo();
 			$data[] = array(
+				'logo'		=>$logo,
 				'name'		=>$name,
 				'href'		=>$href,
 				'price'		=>$price,
