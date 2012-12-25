@@ -23,3 +23,8 @@ for finding best match and grouping
 1. need to parse product page
 2. group by price range and name of product
 3. group by category 
+
+
+
+
+myprice shows coupon on email addr,, go idea to make users register

@@ -3,7 +3,7 @@ class Homeshop extends Parsing{
 	public $_code = 'Homeshop18';
 
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::TV,Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::BEAUTY);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS);
 	}
 
 	public function getWebsiteUrl(){
@@ -13,20 +13,12 @@ class Homeshop extends Parsing{
 		return "http://www.homeshop18.com/homeshop18/media/images/homeshop18_2011/header/hs18-logo.png";
 	}
 	public function getSearchURL($query,$category = false){
-		if($category == Category::BEAUTY){
-			return "http://www.homeshop18.com/$query/search:$query/categoryid:3471";
-		}else if($category == Category::BOOKS){
+		if($category == Category::BOOKS){
 			return "http://www.homeshop18.com/$query/search:$query/categoryid:10000";
-		}else if($category == Category::CAMERA){
-			return "http://www.homeshop18.com/$query/search:$query/categoryid:3159";
-		}else if($category == Category::COMP_ACC || $category == Category::COMP_LAPTOP || $category == Category::TABLETS){
-			return "http://www.homeshop18.com/$query/search:$query/categoryid:3254";
-		}else if($category == Category::HOME_APPLIANCE){
-			return "http://www.homeshop18.com/$query/search:$query/categoryid:3575";
 		}else if($category == Category::MOBILE){
-			return "http://www.homeshop18.com/$query/search:$query/categoryid:3024";
-		}else if($category == Category::TV){
-			return "http://www.homeshop18.com/$query/search:$query/categoryid:3203";
+			return "http://www.homeshop18.com/$query/mobiles/search:$query/categoryid:14569";
+		}else if($category == Category::MOBILE_ACC){
+			return "http://www.homeshop18.com/$query/accessories/categoryid:3032/search:$query/";
 		}else{
 			return "http://www.homeshop18.com/$query/search:$query";
 		}
@@ -68,10 +60,10 @@ class Homeshop extends Parsing{
 		}else{
 			foreach(pq('div.product_div') as $div){
 				if(sizeof(pq($div)->find('.product_image'))){
-					$image = pq($div)->find('.product_image')->find('a')->html();
-					$url = pq($div)->find('.product_image')->find('a')->attr('href');
-					$name = strip_tags(pq($div)->find('.product_title')->find('a')->html());
-					$disc_price = strip_tags(pq($div)->find('.product_price')->find('.product_old_price')->html());
+					$image = pq($div)->children('.product_image')->find('a')->html();
+					$url = pq($div)->children('.product_image')->find('a')->attr('href');
+					$name = pq($div)->children('.product_title')->children('a')->html();
+					$disc_price = strip_tags(pq($div)->find('.product_price')->find('.product_new_price')->html());
 					//$org_price = strip_tags(pq($div)->find('.product_price')->find('.product_new_price')->html());
 					$offer = '';
 					$shipping = '';
@@ -105,8 +97,9 @@ class Homeshop extends Parsing{
 			$row['image'] = $img;
 			$data2[] = $row;
 		}
+
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query,$category);
 		return $data2;
 	}
 }

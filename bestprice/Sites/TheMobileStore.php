@@ -3,12 +3,19 @@ class TheMobileStore extends Parsing{
 	public $_code = 'TheMobileStore';
 
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::TABLETS);
+		return array(Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC);
 	}
 	public function getWebsiteUrl(){
 		return 'http://www.themobilestore.in';
 	}
 	public function getSearchURL($query,$category = false){
+		if($category == Category::MOBILE){
+			return "http://www.themobilestore.in/home-mobiles-&-tablet/search?q=".$query;
+		}else if($category == Category::MOBILE_ACC){
+			return "http://www.themobilestore.in/home-accessories/search?q=".$query;
+		}else if($category == Category::TABLETS){
+			return "http://www.themobilestore.in/home-mobiles-&-tablet/search?q=".$query;
+		}
 		return "http://www.themobilestore.in/home/search?q=".$query;
 	}
 	public function getLogo(){
@@ -17,14 +24,35 @@ class TheMobileStore extends Parsing{
 	public function getData($html,$query,$category){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
-		foreach(pq('.search-result-items') as $div){
+		foreach(pq('ul#search-result-items')->children('li') as $div){
 			if(sizeof(pq($div)->find('.variant-image'))){
 				$image = pq($div)->find('.variant-image')->find('a')->html();
 				$url = pq($div)->find('.variant-image')->find('a')->attr('href');
 				$name = strip_tags(pq($div)->find('.variant-desc')->find('.variant-title')->find('a')->html());
 				$disc_price = strip_tags(pq($div)->find('.variant-desc')->find('.price')->find('.variant-list-price')->html());
-				$org_price = strip_tags(pq($div)->find('.variant-desc')->find('.price')->find('.variant-final-price')->html());
-				$data[] = array('name'=>$name,'image'=>$image,'org_price'=>$org_price,'disc_price'=>$disc_price,'url'=>$url,'website'=>$this->getCode());
+				$shipping = '';
+				$offer = '' ;
+				$stock = 0;
+				$h = pq($div)->children('.variant-desc')->children('.buy-now')->html();
+				if(strpos(strtolower($h), 'out of stock') !== false){
+					$stock = -1;
+				}else{
+					$stock = 1;
+				}
+				$cat ='';
+				$author = '';
+				$data[] = array(
+						'name'=>$name,
+						'image'=>$image,
+						'disc_price'=>$disc_price,
+						'url'=>$url,
+						'website'=>$this->getCode(),
+						'offer'=>$offer,
+						'shipping'=>$shipping,
+						'stock'=>$stock,
+						'author' => $author,
+						'cat' => $cat
+				);
 			}
 		}
 		$data2 = array();
@@ -40,7 +68,7 @@ class TheMobileStore extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query,$category);
 		return $data2;
 	}
 }

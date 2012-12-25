@@ -43,10 +43,10 @@
           <div class="navbar-inner">
             <div class="container">
               <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Downloads</a></li>
+                <li class="active"><a href="index.php">Home</a></li>
+                <li><a href="#">Coupons</a></li>
+                <li><a href="sites.php">Sites</a></li>
+                <li><a href="#">Recent Searches</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
               </ul>
@@ -146,8 +146,16 @@
 				<div class="span2" style="line-height: 150px">
 					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
 				</div>
-				<div class="popup span4 table-bordered" style="margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
-					 	<div class="media">
+				<div class="popup span4 table-bordered item" style="margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
+						<input type='hidden' id='item_url' value='{item_url}' />
+						<input type='hidden' id='item_name' value='{item_name}' />
+						<input type='hidden' id='item_image' value='{item_image}' />
+						<input type='hidden' id='item_price' value='{item_price}' />
+						<input type='hidden' id='item_author' value='{item_author}' />
+						<input type='hidden' id='item_stock' value='{item_stock}' />
+						<input type='hidden' id='item_offer' value='{item_offer_org}' />
+						<input type='hidden' id='item_shipping' value='{item_shipping_org}' />
+					 	<div class="media" style="margin-top: 0px">
 							<a class='pull-left' href="{item_url}" target="_blank">
 								<img style="width:100px;height:100px;margin:5px" class="img-rounded media-object" src="{item_image}" alt='{item_name}' title='{item_name}'/>
 							</a>
@@ -160,26 +168,26 @@
 									Price <span class="WebRupee">Rs.</span><span class='main_price'>{item_price}</span>
 								</div>
 								<div class='clearfix'></div>
-								<div class='pull-left author'>
+								<div class='pull-left author' style="{author_display}">
 									by <small>{item_author}</small>
 								</div>
 								<div class='clearfix'></div>
 								<div class='pull-left' class='stock'>
-									<span class="label label-success in_stock">In Stock</span>
-									<span class="label label-important out_of_stock">Out Of Stock</span>
-									<span class="label no_info">No Info</span>
+									<span style="{in_stock_hide}" class="label label-success in_stock">In Stock</span>
+									<span style="{out_stock_hide}" class="label label-important out_of_stock">Out Of Stock</span>
+									<span style="{no_stock_hide}" class="label no_info">No Info</span>
 								</div>
 							</div>
 						</div>
 						<div class='clearfix'></div>
 						<hr style="padding: 0px;margin: 0px;margin-top: 5px;"/>
 						<div style="font-size:12px;margin: 5px;text-align: left;max-height: 38px;overflow: hidden;float: left;" class='other_info'>
-							<div class='offer pull-left'>
+							<div class='offer pull-left' style="{offer_display}">
 								Offer: {item_offer}
 							</div>
 							<div class='clearfix'></div>
-							<div class='shipping'>
-								<div class='pull-left' style="font-size:12px">
+							<div class='shipping' style="font-size:12px">
+								<div class='pull-left' style="{shipping_display}">
 									Shipping: {item_shipping}
 								</div>
 							</div>
@@ -236,7 +244,15 @@
   </div>
   
   <div id='smallItemTemplate' style="display: none">
-  		<div class='span3' style="margin-left: 5px;">
+  		<div class='span3 item' style="margin-left: 5px;">
+  			<input type='hidden' id='item_url' value='{item_url}' />
+			<input type='hidden' id='item_name' value='{item_name}' />
+			<input type='hidden' id='item_image' value='{item_image}' />
+			<input type='hidden' id='item_price' value='{item_price}' />
+			<input type='hidden' id='item_author' value='{item_author}' />
+			<input type='hidden' id='item_stock' value='{item_stock}' />
+			<input type='hidden' id='item_offer' value='{item_offer}' />
+			<input type='hidden' id='item_shipping' value='{item_shipping}' />
 			<div class='table-bordered' style="border-left: 1px solid #DDD;padding: 5px;text-align: center;">
 				<a href="{item_url}" target="_blank">
 					<input type='hidden' value='{item_img_load_id}' id='lazy' />

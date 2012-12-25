@@ -3,7 +3,7 @@ class Snapdeal extends Parsing{
 	public $_code = 'Snapdeal';
 
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
+		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC);
 	}
 
 	public function getWebsiteUrl(){
@@ -20,8 +20,10 @@ class Snapdeal extends Parsing{
 			return "http://www.snapdeal.com/search?keyword=$query&catId=&categoryId=21&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=dslr&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}else if($category == Category::HOME_APPLIANCE){
 			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=9&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=dslr&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
-		}else if($category == Category::MOBILE || $category == Category::TABLETS){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=12&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=washing+mat&prodCatId=250&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
+		}else if($category == Category::MOBILE){
+			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=175&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=29&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
+		}else if($category == Category::MOBILE_ACC){
+			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=29&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=175&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}else if($category == Category::TV || $category == Category::GAMING){
 			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=7&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=washing+mat&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
 		}else if($category == Category::NUTRITION){
@@ -66,33 +68,62 @@ class Snapdeal extends Parsing{
 				}
 			}
 		}else{
-			foreach(pq('.product_grid_cont') as $div){
-				if(sizeof(pq($div)->find('.product-image'))){
-					$image = pq($div)->find('.product-image')->html();
-					$url = pq($div)->children('a:first')->attr('href');
-					$name = pq($div)->find('.product_grid_cont_heading')->html();
-					$org_price = $disc_price = pq($div)->find('.product_grid_cont_price_outer')->children('.product_price')->children('.originalprice ')->html();
-					$org_price = $this->clearHtml($org_price);
-					$disc_price = pq($div)->find('.product_grid_cont_price_outer')->children('.product_price')->html();;
-					$disc_price = $this->clearHtml($disc_price);
-					$disc_price = str_replace($org_price, '', $disc_price);
-					$offer = '';
-					$shipping = '';
-					$stock = 0;
-					$cat ='';
-					$author = '';
-					$data[] = array(
-							'name'=>$name,
-							'image'=>$image,
-							'disc_price'=>$disc_price,
-							'url'=>$url,
-							'website'=>$this->getCode(),
-							'offer'=>$offer,
-							'shipping'=>$shipping,
-							'stock'=>$stock,
-							'author' => $author,
-							'cat' => $cat
-					);
+			if(sizeof(pq('.product_grid_cont'))){
+				foreach(pq('.product_grid_cont') as $div){
+					if(sizeof(pq($div)->find('.product-image'))){
+						$image = pq($div)->find('.product-image')->html();
+						$url = pq($div)->children('a:first')->attr('href');
+						$name = pq($div)->find('.product_grid_cont_heading')->html();
+						$org_price = $disc_price = pq($div)->find('.product_grid_cont_price_outer')->children('.product_price')->children('.originalprice ')->html();
+						$org_price = $this->clearHtml($org_price);
+						$disc_price = pq($div)->find('.product_grid_cont_price_outer')->children('.product_price')->html();;
+						$disc_price = $this->clearHtml($disc_price);
+						$disc_price = str_replace($org_price, '', $disc_price);
+						$offer = '';
+						$shipping = '';
+						$stock = 0;
+						$cat ='';
+						$author = '';
+						$data[] = array(
+								'name'=>$name,
+								'image'=>$image,
+								'disc_price'=>$disc_price,
+								'url'=>$url,
+								'website'=>$this->getCode(),
+								'offer'=>$offer,
+								'shipping'=>$shipping,
+								'stock'=>$stock,
+								'author' => $author,
+								'cat' => $cat
+						);
+					}
+				}
+			}else{
+				if(sizeof(pq('.container'))){
+					foreach(pq('.container') as $div){
+						$image = pq($div)->find('.imgCont:first')->html();
+						$url = pq($div)->children('a:first')->attr('href');
+						$name = pq($div)->find('.product_listing_heading:first')->html();
+						pq($div)->find('.product_price')->children('.originalprice')->html('');
+						$disc_price = pq($div)->find('.product_price')->html();
+						$offer = '';
+						$shipping = '';
+						$stock = 0;
+						$cat ='';
+						$author = '';
+						$data[] = array(
+								'name'=>$name,
+								'image'=>$image,
+								'disc_price'=>$disc_price,
+								'url'=>$url,
+								'website'=>$this->getCode(),
+								'offer'=>$offer,
+								'shipping'=>$shipping,
+								'stock'=>$stock,
+								'author' => $author,
+								'cat' => $cat
+						);
+					}
 				}
 			}
 		}
@@ -109,7 +140,7 @@ class Snapdeal extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query,$category);
 		return $data2;
 	}
 }

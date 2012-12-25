@@ -161,6 +161,9 @@ function findPrice(site,cache) {
 					html = html.replace(/{item_name}/g, name);
 					html = html.replace(/{item_price}/g, price);
 					html = html.replace(/{website_search_url}/g, data.data[i].searchurl);
+					html = html.replace(/{item_offer_org}/g, offer);
+					html = html.replace(/{item_shipping_org}/g, shipping);
+					
 					var ship_len = 120;
 					if (offer.length != 0) {
 						ship_len = 60;
@@ -185,6 +188,34 @@ function findPrice(site,cache) {
 					}
 					html = html.replace(/{item_author}/g, author);
 
+					if (offer.length == 0) {
+						html = html.replace(/{offer_display}/g, 'display:none');
+					}else{
+						html = html.replace(/{offer_display}/g, '');
+					}
+					if (author.length == 0) {
+						html = html.replace(/{author_display}/g, 'display:none');
+					}else{
+						html = html.replace(/{author_display}/g, '');
+					}
+					if (shipping.length == 0) {
+						html = html.replace(/{shipping_display}/g, 'display:none');
+					}else{
+						html = html.replace(/{shipping_display}/g, '');
+					}
+					if (stock == 0 || stock.length == 0) {
+						html = html.replace(/{in_stock_hide}/g, 'display:none');
+						html = html.replace(/{out_stock_hide}/g, 'display:none');
+						html = html.replace(/{no_stock_hide}/g, '');
+					} else if (stock == 1) {
+						html = html.replace(/{in_stock_hide}/g, '');
+						html = html.replace(/{out_stock_hide}/g, 'display:none');
+						html = html.replace(/{no_stock_hide}/g, 'display:none');
+					} else {
+						html = html.replace(/{in_stock_hide}/g, 'display:none');
+						html = html.replace(/{out_stock_hide}/g, '');
+						html = html.replace(/{no_stock_hide}/g, 'display:none');
+					}
 					
 					var websites_actual = 0;
 					var last_actu_website = false;
@@ -226,26 +257,6 @@ function findPrice(site,cache) {
 							}
 						}
 					}
-					if (offer.length == 0) {
-						$('#results').find('#' + website).find('.offer').remove();
-					}
-					if (author.length == 0) {
-						$('#results').find('#' + website).find('.author').remove();
-					}
-					if (shipping.length == 0) {
-						$('#results').find('#' + website).find('.shipping').remove();
-					}
-					if (stock == 0 || stock.length == 0) {
-						$('#results').find('#' + website).find('.in_stock').remove();
-						$('#results').find('#' + website).find('.out_of_stock').remove();
-					} else if (stock == 1) {
-						$('#results').find('#' + website).find('.no_info').remove();
-						$('#results').find('#' + website).find('.out_of_stock').remove();
-					} else {
-						$('#results').find('#' + website).find('.in_stock').remove();
-						$('#results').find('#' + website).find('.no_info').remove();
-					}
-
 				}
 			}
 		}
@@ -355,4 +366,7 @@ function loadSmallImages(){
 			return false;
 		}
 	});
+}
+function copyItem(website,id1,id2){
+	
 }

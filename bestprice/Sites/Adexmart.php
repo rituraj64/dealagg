@@ -1,38 +1,39 @@
 <?php
-class Sulekha extends Parsing{
-	public $_code = 'Sulekha';
+class Adexmart extends Parsing{
+	public $_code = 'Adexmart';
 
 	public function getAllowedCategory(){
-		return array(Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS);
+		return array(Category::MOBILE,Category::MOBILE_ACC);
 	}
 
 	public function getWebsiteUrl(){
-		return 'http://deals.sulekha.com/';
-	}
-	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/sulekha.png';
+		return 'http://adexmart.com';
 	}
 	public function getSearchURL($query,$category = false){
-		$query2 = urldecode($query);
-		$query2 = preg_replace("![^a-z0-9]+!i", "-", $query2);
-		return "http://deals.sulekha.com/".$query2."_search?q=".$query;
+		return "http://adexmart.com/search?search_query=$query&n=10&orderby=position&orderway=desc&submit_search=Search";
+	}
+	public function getLogo(){
+		return "http://adexmart.com/img/logo.jpg";
 	}
 	public function getData($html,$query,$category){
 
-		//this redirects to category page many times so write code for that as well.
-
-
 		$data = array();
 		phpQuery::newDocumentHTML($html);
-		foreach(pq('div.productlistout')->children('.box') as $div){
-			if(sizeof(pq($div)->find('.dealimgst'))){
-				$image = pq($div)->find('.dealimgst')->find("a")->html();
-				$url = pq($div)->find('.dealimgst')->find('a')->attr('href');
-				$name = strip_tags(pq($div)->find('.deallstit')->find('a')->html());
-				$disc_price = strip_tags(pq($div)->find('.priceglg')->find('.hgtlgtorg')->html());
+		if(sizeof(pq('ul#product_list')->children('li')) > 0){
+			foreach(pq('ul#product_list')->children('li') as $div){
+				$image = pq($div)->find('.product_img_link')->html();
+				$url = pq($div)->find('.product_img_link')->attr('href');
+				$name = pq($div)->children('div.center_block')->children('h3')->children('a')->html();
+				$disc_price = pq($div)->find('.price')->html();
 				$offer = '';
 				$shipping = '';
 				$stock = 0;
+				$s = pq($div)->find('.availability')->html();
+				if(strpos( strtolower($s), 'out of stock') !== false){
+					$stock = -1;
+				}else{
+					$stock = 1;
+				}
 				$author = '';
 				$data[] = array(
 						'name'=>$name,

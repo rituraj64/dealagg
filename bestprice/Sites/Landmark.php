@@ -3,19 +3,17 @@ class Landmark extends Parsing{
 	public $_code = 'Landmark';
 
 	public function getAllowedCategory(){
-		return array(Category::CAMERA,Category::GAMING,Category::MOBILE,Category::BOOKS);
+		return array(Category::MOBILE,Category::BOOKS,Category::MOBILE_ACC);
 	}
 
 	public function getWebsiteUrl(){
 		return 'http://www.landmarkonthenet.com/';
 	}
 	public function getSearchURL($query,$category = false){
-		if($category == Category::CAMERA){
-			return "http://www.landmarkonthenet.com/cameras/search/?q=".$query;
-		}else if($category == Category::BOOKS){
+		if($category == Category::BOOKS){
 			return "http://www.landmarkonthenet.com/books/search/?q=".$query;
-		}else if($category == Category::GAMING){
-			return "http://www.landmarkonthenet.com/gaming/search/?q=".$query;
+		}else if($category == Category::MOBILE_ACC){
+			return "http://www.landmarkonthenet.com/mobile-accessories/search/?q=".$query;
 		}else if($category == Category::MOBILE){
 			return "http://www.landmarkonthenet.com/mobiles/search/?q=".$query;
 		}
@@ -79,7 +77,7 @@ class Landmark extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query,$category);
 		return $data2;
 	}
 }

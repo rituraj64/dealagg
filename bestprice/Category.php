@@ -11,18 +11,21 @@ class Category{
 	const BOOKS = 9;
 	const HOME_APPLIANCE = 10;
 	const BEAUTY  =11;
+	const MOBILE_ACC = 12;
+	const CAMERA_ACC = 13;
 
 	public function getStoreCategory(){
 		return array(
-				self::MOBILE=>'Mobiles',
-				self::MOBILE=>'Mobiles Accessories',
-				self::TABLETS=>'Tablets',
+				self::MOBILE =>'Mobiles',
+				self::MOBILE_ACC =>'Mobiles Accessories',
+				//self::TABLETS=>'Tablets, iPad',
 				//self::TV=>'TV, Video & Audio',
-				self::GAMING =>'Gaming',
+				//self::GAMING =>'Gaming',
 				//self::COMP_LAPTOP=>'Computer & Laptop',
 				//self::COMP_ACC=>'Computer Accessories & Software',
-				//self::CAMERA=>'Cameras',
-				self::NUTRITION=>'Nutrition',
+				self::CAMERA=>'Cameras',
+				self::CAMERA_ACC => 'Camera Accessories',
+				//self::NUTRITION=>'Nutrition',
 				self::BOOKS=>'Books',
 				//self::HOME_APPLIANCE=>'Home Appliances',
 				//self::BEAUTY=>'Health & Beauty'

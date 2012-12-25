@@ -3,13 +3,20 @@ class Saholic extends Parsing{
 	public $_code = 'Saholic';
 
 	public function getAllowedCategory(){
-		return array(Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::MOBILE);
+		return array(Category::MOBILE,Category::MOBILE_ACC);
 	}
 
 	public function getWebsiteUrl(){
 		return 'http://www.saholic.com/';
 	}
 	public function getSearchURL($query,$category = false){
+		if($category == Category::MOBILE){
+			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Mobile+Phones";
+		}else if($category == Category::MOBILE_ACC){
+			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Mobile+Accessories";
+		}else if($category == Category::TABLETS){
+			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Tablets";
+		}
 		return "http://www.saholic.com/search?q=".$query."&category=10000";
 	}
 	public function getLogo(){
@@ -41,7 +48,7 @@ class Saholic extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query,$category);
 		return $data2;
 	}
 }

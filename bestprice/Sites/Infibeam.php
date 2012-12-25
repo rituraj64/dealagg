@@ -3,33 +3,19 @@ class Infibeam extends Parsing{
 	public $_code = 'Infibeam';
 
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
+		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC);
 	}
 
 	public function getWebsiteUrl(){
 		return 'http://www.infibeam.com';
 	}
 	public function getSearchURL($query,$category = false){
-		if($category == Category::BEAUTY){
-			return "http://www.infibeam.com/Beauty/search?q=".$query;
-		}else if($category == Category::BOOKS){
+		if($category == Category::BOOKS){
 			return "http://www.infibeam.com/Books/search?q=".$query;
-		}else if($category == Category::CAMERA){
-			return "http://www.infibeam.com/Cameras/search?q=".$query;
-		}else if($category == Category::COMP_LAPTOP){
-			return "http://www.infibeam.com/Laptop_Computers_Accessories/search?q=".$query;
-		}else if($category == Category::TABLETS){
-			return "http://www.infibeam.com/Portable_Electronics/search?q=".$query;
-		}else if($category == Category::COMP_ACC){
-			return "http://www.infibeam.com/Computers_Accessories/search?q=".$query;
-		}else if($category == Category::HOME_APPLIANCE){
-			return "http://www.infibeam.com/Home_Appliances/search?q=".$query;
 		}else if($category == Category::MOBILE){
 			return "http://www.infibeam.com/Mobiles/search?q=".$query;
-		}else if($category == Category::TV){
-			return "http://www.infibeam.com/Home_Entertainment/search?q=".$query;
-		}else if($category == Category::GAMING){
-			return "http://www.infibeam.com/Gaming_Consoles/search?q=".$query;
+		}else if($category == Category::MOBILE_ACC){
+			return "http://www.infibeam.com/Mobile_Accessories/search?q=$query";
 		}else{
 			return "http://www.infibeam.com/search?q=".$query;
 		}
@@ -115,14 +101,6 @@ class Infibeam extends Parsing{
 			}
 		}else if(pq('ul.srch_result')->children('li')){
 			foreach(pq('ul.srch_result')->children('li') as $div){
-				foreach(pq($div)->children('a:first')->children() as $tag){
-					$html = pq($tag)->html();
-					if(strpos($html, "<img") !== false){
-						$image = $html;
-						break;
-					}
-				}
-
 				$url = pq($div)->children('a:first')->attr('href');
 				$name = pq($div)->children('a:first')->children('.title')->html();
 				$disc_price = pq($div)->children('.price')->children('.normal')->html();
@@ -130,6 +108,8 @@ class Infibeam extends Parsing{
 				$shipping = '';
 				$stock = 0;
 				$author = '';
+				pq($div)->children('a:first')->children()->remove('span');
+				$image = pq($div)->children('a:first')->html();
 				$cat = pq('#resultsPane')->find('h1:first')->html();
 				$data[] = array(
 						'name'=>$name,
@@ -158,7 +138,7 @@ class Infibeam extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query,$category);
 		return $data2;
 	}
 }

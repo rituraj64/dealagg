@@ -39,8 +39,20 @@ class Sorting{
 		return $sort;
 	}
 }
-$query  = 'samsung galaxy s';
+
+
+echo urldecode("http://www.edabba.com/search/site/sony?f[0]=im_taxonomy_catalog%3A5861&f[1]=im_taxonomy_catalog%3A5919");
+die;
+$per = 0;
+similar_text('angles & deamons', 'angles and deamons',$per);
+echo $per.'<br/>';
+similar_text('samsung galaxy s', 'samsung galaxy s2',$per);
+echo $per.'<br/>';
+
+/*
+ $query  = 'samsung galaxy s';
 $results = array('praveen pandey','praveen kumar','pandey praveen','kumar samsung');
 $sort = new Sorting();
 $r = $sort->sort($results,$query);
 print_r($r);
+*/

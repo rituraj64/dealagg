@@ -1,36 +1,35 @@
 <?php
-class Sulekha extends Parsing{
-	public $_code = 'Sulekha';
+class ManiacStore extends Parsing{
+	public $_code = 'ManiacStore';
 
 	public function getAllowedCategory(){
-		return array(Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS);
+		return array(Category::MOBILE,Category::MOBILE_ACC);
 	}
 
 	public function getWebsiteUrl(){
-		return 'http://deals.sulekha.com/';
-	}
-	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/sulekha.png';
+		return 'http://www.maniacstore.com';
 	}
 	public function getSearchURL($query,$category = false){
-		$query2 = urldecode($query);
-		$query2 = preg_replace("![^a-z0-9]+!i", "-", $query2);
-		return "http://deals.sulekha.com/".$query2."_search?q=".$query;
+		if($category == Category::MOBILE){
+			return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=bsbstore(text)=Mobile Store,alltypes(text)=Mobiles and Tablets,product type(text)=Mobile Phones";
+		}else{
+			return "http://www.yebhi.com/searchall.aspx?q=$query";
+		}
+	}
+	public function getLogo(){
+		return "http://www.yebhi.com/template/yebhi/img/ChrisYebhiLogo.jpg";
 	}
 	public function getData($html,$query,$category){
 
-		//this redirects to category page many times so write code for that as well.
-
-
 		$data = array();
 		phpQuery::newDocumentHTML($html);
-		foreach(pq('div.productlistout')->children('.box') as $div){
-			if(sizeof(pq($div)->find('.dealimgst'))){
-				$image = pq($div)->find('.dealimgst')->find("a")->html();
-				$url = pq($div)->find('.dealimgst')->find('a')->attr('href');
-				$name = strip_tags(pq($div)->find('.deallstit')->find('a')->html());
-				$disc_price = strip_tags(pq($div)->find('.priceglg')->find('.hgtlgtorg')->html());
-				$offer = '';
+		if(sizeof(pq('div.price_Reviews')) > 0){
+			foreach(pq('div.price_Reviews') as $div){
+				$image = pq($div)->find('.gotopage')->children('div')->html();
+				$url = pq($div)->find('.gotopage')->attr('href');
+				$name = pq($div)->children('p:first')->children('a')->html();
+				$disc_price = pq($div)->children('.priice')->children('.inr')->html();
+				$offer = pq($div)->children('.saving:last')->html();
 				$shipping = '';
 				$stock = 0;
 				$author = '';

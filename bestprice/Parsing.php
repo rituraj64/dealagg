@@ -2,18 +2,29 @@
 require_once 'phpQuery-onefile.php';
 require_once 'Parser.php';
 require_once 'Category.php';
-require_once 'Sorting.php';
 set_time_limit(10000);
 class Parsing{
 	//public $_code = 'Website';
 
+	public static function getReplace(){
+		return array('&amp;'=>'and','&'=>'and');
+	}
+
+	const DATA_NUM = 9;
 	public function getCode(){
 		return $this->_code;
 	}
 	public function getWebsites(){
-		//,'Sulekha','TheMobileStore'  the html is not valid is not included yet in list.
 		// indiaplaza gives page requested was moved.
-		return array('Snapdeal','ShopClues','Flipkart','Tradus','Indiatimes','Zoomin','Saholic','Landmark','Infibeam','Homeshop','Croma','Crossword','EBay','Rediff','uRead','Bookadda');
+		// check if these needs to be added samsungindiaestore.com,ezeekart.com,next.co.in,
+		// maniac store is search post form
+
+		// for greendust, its important to go to product page since they sell second hand stuff also
+		// naaptol product page need to get shop points and shipping charges
+		// buytheprice.com, process product page to get details about seller etc
+		// check if need to search ebay
+		//shopclues, need to parse product page to get coupon code and special offer
+		return array('Flipkart','Snapdeal','ShopClues','Tradus','Indiatimes','Zoomin','Saholic','Landmark','Infibeam','Homeshop','Croma','Crossword','EBay','Rediff','uRead','Bookadda','Justbooks','Letskart','Amegabooks','Simplebooks','Indianbooks','Yebhi','Greendust','Adexmart','Naaptol','BuyThePrice','FutureBazaar','CostPrize','Fosila','MirchiMart','Seventymm','TheMobileStore','Sulekha','TimTara','Bagittoday','Storeji','Letshop','eDabba','BitFang');
 	}
 	public function allowCategory($cat){
 		foreach($this->getAllowedCategory() as $key => $val){
@@ -36,11 +47,16 @@ class Parsing{
 		if($this->hasCachedData($website, $query, $category,$url)){
 			$data = $this->getCachedData($website, $query,$category, $url);
 			$this->_resultTime = $this->getCachedDataTime($website, $query, $category, $url);
+			//$data = $this->getData($data,$query,$category);
+			//return $data;
 			return json_decode($data,true);
 		}else{
 			if(!$delay){
 				$parser = new Parser();
 				$html = $parser->getHtml($url);
+
+				//$this->cacheData($website, $query,$category, $url, $html);
+
 				$data = $this->getData($html,$query,$category);
 				$this->_resultTime = time();
 				$this->cacheData($website, $query,$category, $url, json_encode($data));
@@ -111,6 +127,7 @@ class Parsing{
 		foreach($data as $row){
 			foreach($row as $key => $value){
 				$value = $this->clearHtml($value);
+				$value = $this->Convert_TO_Utf8($value);
 				$row[$key] = trim($value);
 			}
 
@@ -120,7 +137,12 @@ class Parsing{
 			$row['url'] = $this->makeAbsUrl($row['url']);
 
 			if(isset($row['author'])){
-				$row['author'] = trim(str_replace("by", '', $row['author']));
+				$row['author'] = trim(str_replace("by ", '', $row['author']));
+				$row['author'] = trim(str_replace("By ", '', $row['author']));
+				$row['author'] = trim(str_replace("By: ", '', $row['author']));
+				$row['author'] = trim(str_replace("by: ", '', $row['author']));
+				$row['author'] = trim(str_replace("BY ", '', $row['author']));
+				$row['author'] = trim(str_replace("BY: ", '', $row['author']));
 				$row['author'] = $this->removeSpecial($row['author']);
 			}
 
@@ -128,32 +150,36 @@ class Parsing{
 		}
 		return $data2;
 	}
-	public function bestMatchData($data,$query){
+	public function bestMatchData($data,$query,$category){
 		$data2 = array();
 		$i = 0;
-		$names = array();
 		foreach($data as $row){
-			$data2[] = $row;
-			$names[] = $row['name'];
-			if($i > 7){
-				break;
-			}
-			$i++;
-		}
-		$data3 = array();
-		$sorting = new Sorting();
-//		print_r($names);
-		$names = $sorting->sort($names, $query);
-	//	print_r($names);die;
-		foreach($names as $name){
-			foreach($data2 as $row){
-				if($row['name'] == $name){
-					$data3[] = $row;
-					break;
+			if($row['disc_price'] > 0 && $row['disc_price'] != ''){
+				$i++;
+				if($i > self::DATA_NUM){
+					//break;
 				}
+				$data2[] = $row;
 			}
 		}
-		return $data3;
+
+
+		/*
+		 $data3 = array();
+		$sorting = new Sorting();
+		//		print_r($names);
+		$names = $sorting->sort($names, $query);
+		//	print_r($names);die;
+		foreach($names as $name){
+		foreach($data2 as $row){
+		if($row['name'] == $name){
+		$data3[] = $row;
+		break;
+		}
+		}
+		}
+		*/
+		return $data2;
 	}
 	public function clearHtml($str){
 		$str = trim(strip_tags(str_replace(PHP_EOL, '', $str)));
@@ -174,7 +200,7 @@ class Parsing{
 			return trim(preg_replace("![^0-9]+!i", "", $str));
 		}
 	}
-	public function removeSpecial($str){
+	public static function removeSpecial($str){
 		return trim(preg_replace("![^0-9a-z ]+!i", "", $str));
 	}
 	public function makeAbsUrl($img){
@@ -200,5 +226,9 @@ class Parsing{
 		}else{
 			return $img;
 		}
+	}
+	public function Convert_TO_Utf8($text)
+	{
+		return iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
 	}
 }

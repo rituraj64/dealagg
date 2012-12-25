@@ -19,13 +19,15 @@ class Tradus extends Parsing{
 		}else if($category == Category::COMP_LAPTOP){
 			return "http://www.tradus.com/search?query=$query&cat=7684";
 		}else if($category == Category::TABLETS){
-			return "http://www.tradus.com/search?query=$query&cat=7684";
+			return "http://www.tradus.com/search?query=$query&cat=7762";
 		}else if($category == Category::COMP_ACC){
 			return "http://www.tradus.com/search?query=$query&cat=7684";
 		}else if($category == Category::HOME_APPLIANCE){
 			return "http://www.tradus.com/search?query=$query&cat=10000";
 		}else if($category == Category::MOBILE){
-			return "http://www.tradus.com/search?query=$query&cat=7756";
+			return "http://www.tradus.com/search?query=$query&cat=7844";
+		}else if($category == Category::MOBILE_ACC){
+			return "http://www.tradus.com/search?query=$query&cat=10465";
 		}else if($category == Category::TV){
 			return "http://www.tradus.com/search?query=$query&cat=7698";
 		}else if($category == Category::GAMING){
@@ -86,7 +88,7 @@ class Tradus extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query,$category);
 		return $data2;
 	}
 }

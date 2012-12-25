@@ -5,7 +5,7 @@ class Flipkart extends Parsing{
 	//need to integrate flipkart offers and cashback
 
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
+		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC);
 	}
 
 	public function getWebsiteUrl(){
@@ -16,9 +16,11 @@ class Flipkart extends Parsing{
 	}
 	public function getSearchURL($query,$category = false){
 		if($category == Category::MOBILE){
-			return "http://www.flipkart.com/search/a/mobiles?query=".$query."&vertical=mobiles&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=RsuiHvNUWzIGQmMYN5OGLg--&_l=Tnndui8JdMVk7CZmDKIfXQ--&ref=d832b8b3-e8f5-4e19-80f6-92c7f89da3a1&selmitem=Mobiles+%26+Accessories";
+			return "http://www.flipkart.com/mobiles/pr?sid=tyy%2C4io&q=$query&query=$query";
+		}else if($category == Category::MOBILE_ACC){
+			return "http://www.flipkart.com/mobile-accessories/pr?sid=tyy%2C4mr&q=$query&query=$query";
 		}else if($category == Category::BOOKS){
-			return "http://www.flipkart.com/search-books?query=".$query."&from=all&searchGroup=books-stationeries&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=default-search&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&selmitem=Books%2C+Pens+%26+Stationery&otracker=start&_l=dPxEw4fkCcmDR6VWspVbMg--&_r=tW_Yw+J1gITFkhfpIJ21Lw--&ref=32c27bfd-1256-4bf7-85a4-58adf61066d1";
+			return "http://www.flipkart.com/search-books?query=$query&searchGroup=books-stationeries&ref=6695f070-3c76-4c61-92bd-7bedc39b8873";
 		}else if($category == Category::CAMERA){
 			return "http://www.flipkart.com/search/a/cameras?query=".$query."&vertical=cameras&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=RsuiHvNUWzIGQmMYN5OGLg--&_l=Tnndui8JdMVk7CZmDKIfXQ--&ref=6fb555e9-d5cf-4aae-8c6b-e004173ec1d7&selmitem=Cameras";
 		}else if($category == Category::COMP_ACC || $category == Category::COMP_LAPTOP || $category == Category::TABLETS){
@@ -39,11 +41,17 @@ class Flipkart extends Parsing{
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
-		
+
 		if(sizeof(pq('#noresults_info')) > 0){
 			return $data;
 		}
-		
+		if(pq('.noSearchMatching-text')){
+			$html = pq('.noSearchMatching-text')->html();
+			if(strpos($html, 'No Results found for') !== false){
+				return $data;
+			}
+		}
+
 		if(sizeof(pq('div.search_results_preview_box')) > 0){
 			foreach(pq('div.search_results_preview_box') as $box){
 				$cat = pq($box)->find('.title')->find('a')->html();
@@ -112,6 +120,34 @@ class Flipkart extends Parsing{
 							'cat' => $cat
 					);
 				}
+			}else if(sizeof(pq('div.product')) > 0){
+				foreach(pq('div.product') as $div){
+					$image = pq($div)->find('.fk-product-thumb')->children('a.prd-img')->html();
+					$a_link = pq($div)->find('.fk-anchor-link');
+					$name = strip_tags($a_link->html());
+					$url = $a_link->attr('href');
+					$disc_price = pq($div)->find('.final-price')->html();
+					$offer = pq($div)->find('.fk-search-page-offers')->html();
+					$stock = 0;
+					$shipping = '';
+					$author = '';
+					if($category == 'Books'){
+						$author = pq($div)->find('.fk-item-category')->html();
+						$author = $this->clearHtml($author);
+					}
+					$data[] = array(
+							'name'=>$name,
+							'image'=>$image,
+							'disc_price'=>$disc_price,
+							'url'=>$url,
+							'website'=>$this->getCode(),
+							'offer'=>$offer,
+							'shipping'=>$shipping,
+							'stock'=>$stock,
+							'author' => $author,
+							'cat' => ''
+					);
+				}
 			}
 		}
 		$data2 = array();
@@ -120,10 +156,13 @@ class Flipkart extends Parsing{
 			$html .= '</img>';
 			phpQuery::newDocumentHTML($html);
 			$row['image']= pq('img')->attr('data-src');
+			if(empty($row['image'])){
+				$row['image'] = pq('img')->attr('src');
+			}
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query);
+		$data2 = $this->bestMatchData($data2, $query,$category);
 		return $data2;
 	}
 }
