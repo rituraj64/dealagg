@@ -22,7 +22,9 @@ class Flipkart extends Parsing{
 		}else if($category == Category::BOOKS){
 			return "http://www.flipkart.com/search-books?query=$query&searchGroup=books-stationeries&ref=6695f070-3c76-4c61-92bd-7bedc39b8873";
 		}else if($category == Category::CAMERA){
-			return "http://www.flipkart.com/search/a/cameras?query=".$query."&vertical=cameras&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=RsuiHvNUWzIGQmMYN5OGLg--&_l=Tnndui8JdMVk7CZmDKIfXQ--&ref=6fb555e9-d5cf-4aae-8c6b-e004173ec1d7&selmitem=Cameras";
+			return "http://www.flipkart.com/cameras/pr?sid=jek%2Cp31&q=$query&query=$query";
+		}else if($category == Category::CAMERA_ACC){
+			return "http://www.flipkart.com/camera-accessories/pr?sid=jek%2Cp31&q=$query&query=$query";
 		}else if($category == Category::COMP_ACC || $category == Category::COMP_LAPTOP || $category == Category::TABLETS){
 			return "http://www.flipkart.com/search/a/computers?query=".$query."&vertical=computers&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=RsuiHvNUWzIGQmMYN5OGLg--&_l=Tnndui8JdMVk7CZmDKIfXQ--&ref=de3e3b97-e0c3-4810-b670-fed8e7f132bd&selmitem=Computers";
 		}else if($category == Category::GAMING){

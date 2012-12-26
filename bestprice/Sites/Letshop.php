@@ -14,6 +14,10 @@ class Letshop extends Parsing{
 			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=4";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=12";
+		}else if($category == Category::CAMERA){
+			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=27";
+		}else if($category == Category::CAMERA_ACC){
+			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=34";
 		}
 		return "http://letsshop.in/catalogsearch/result/?q=$query";
 	}

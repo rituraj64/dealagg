@@ -1,41 +1,38 @@
 <?php
-class Fosila extends Parsing{
-	public $_code = 'Fosila';
+class Royalimages extends Parsing{
+	public $_code = 'Royalimages';
 
 	public function getAllowedCategory(){
-		return array(Category::MOBILE);
+		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC);
 	}
 
 	public function getWebsiteUrl(){
-		return 'http://www.fosila.com/';
+		return 'http://www.royalimages.in/';
 	}
 	public function getSearchURL($query,$category = false){
 		if($category == Category::MOBILE){
-			return "http://www.fosila.com/mobiles?search=".$query;
+			return "http://www.royalimages.in/catalogsearch/result/index/?cat=13&q=$query";
+		}else if($category == Category::MOBILE_ACC){
+			return "http://www.royalimages.in/catalogsearch/result/index/?cat=15&q=$query";
 		}else if($category == Category::CAMERA){
-			return "http://www.fosila.com/digitalcameras?search=$query";
-			return "http://www.fosila.com/slr?search=$query";
-		}else if($category == Category::CAMERA_ACC){
-			return "http://www.fosila.com/batteries?search=$query";
-			return "http://www.fosila.com/lenses?search=$query";
-			return "http://www.fosila.com/memorycards?search=$query";
+			return "http://www.royalimages.in/catalogsearch/result/index/?cat=32&q=$query";
 		}
-		return "http://www.fosila.com/all?key=".$query;;
+		return "http://www.royalimages.in/catalogsearch/result/?q=$query";
 	}
 	public function getLogo(){
-		return 'http://www.fosila.com/assets/fosila_logo-4cf0c01116ac6c3dab120d73e5e97cb5.jpg';
+		return 'http://www.royalimages.in/skin/frontend/default/royalimages/images/Royalimages.jpg';
 	}
 	public function getData($html,$query,$category){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
-		if(sizeof(pq('ul.product_info')) > 0){
-			foreach(pq('ul.product_info') as $ul){
-				foreach(pq($ul)->children('li') as $div){
-					$image = pq($div)->children('.product_img')->html();
-					$url = pq($div)->children('.product_img')->attr('href');
-					$name = pq($div)->children('.procuct_info_name')->html();
-					$disc_price = pq($div)->children('.procuct_info_price')->children('.our_cost')->html();
+		if(sizeof(pq('ul.products-grid')) > 0){
+			foreach(pq('ul.products-grid') as $div){
+				foreach(pq($div)->children('li.item') as $div){
+					$image = pq($div)->children('a:first')->html();
+					$url = pq($div)->children('a:first')->attr('href');
+					$name = pq($div)->children('.product-name')->children('a')->html();
+					$disc_price = pq($div)->children('.info')->children('.price-box')->find('.price')->html();
 					$offer = '';
 					$shipping = '';
 					$stock = 0;

@@ -4,7 +4,7 @@ class Indiatimes extends Parsing{
 
 
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
+		return array(Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
 	}
 
 	public function getWebsiteUrl(){
@@ -30,6 +30,15 @@ class Indiatimes extends Parsing{
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10004";
 		}else if($category == Category::GAMING){
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10021";
+		}else if($category == Category::CAMERA){
+			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:20012"; //camcorder
+			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:20011"; //cameras
+		}else if($category == Category::CAMERA_ACC){
+			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:40538"; // lenses
+			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:40537"; // memory
+			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:40535"; //cables and charges
+			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:40534"; // camera pouchse
+			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:40532"; // battery
 		}else{
 			return "http://shopping.indiatimes.com/control/mtkeywordsearch?SEARCH_STRING=".$query;
 		}

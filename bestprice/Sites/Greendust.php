@@ -3,7 +3,7 @@ class Greendust extends Parsing{
 	public $_code = 'Greendust';
 
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA);
 	}
 
 	public function getWebsiteUrl(){
@@ -14,6 +14,8 @@ class Greendust extends Parsing{
 			return "http://www.greendust.com/advanced_search_result.php?cata_id=105&product_list=$query&keywords=&x=0&y=0";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.greendust.com/advanced_search_result.php?cata_id=106,126,127,128,129,130,131&product_list=$query&keywords=&x=0&y=0";
+		}else if($category == Category::CAMERA){
+			return "http://www.greendust.com/advanced_search_result.php?cata_id=137,144,147&product_list=$query&keywords=&x=0&y=0";
 		}else{
 			return "http://www.greendust.com/advanced_search_result.php?cata_id=0&product_list=$query&keywords=&x=0&y=0";
 		}

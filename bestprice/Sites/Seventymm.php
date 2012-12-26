@@ -16,7 +16,14 @@ class Seventymm extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://shop.seventymm.com/Search/$q/Tablets-and-Mobiles/2829/Mobiles/2369/All-Price/0/Any/0/Any/0/1/1/3/Go";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://shop.seventymm.com/Search/microsd-card/Tablets-and-Mobiles/2829/All-Classification/0/All-Price/0/Any/0/Any/0/1/1/3/Go";
+			return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/All-Classification/0/All-Price/0/Any/0/Any/0/1/1/3/Go";
+		}else if($category == Category::CAMERA){
+			return "http://shop.seventymm.com/Search/$query/Electronics/2235/Point-and-Shoot/2375/All-Price/0/Any/0/Any/0/1/1/3/Go"; //digital camera
+			return "http://shop.seventymm.com/Search/$query/Electronics/2235/D-SLR/2377/All-Price/0/Any/0/Any/0/1/1/3/Go"; // dslr
+			return "http://shop.seventymm.com/Search/$query/Electronics/2235/Camcorders/2378/All-Price/0/Any/0/Any/0/1/1/3/Go"; //camcorders
+		}else if($category == Category::CAMERA_ACC){
+			return "http://shop.seventymm.com/Search/$query/Electronics/2235/Lenses/2619/All-Price/0/Any/0/Any/0/1/1/3/Go"; //lenses
+			return "http://shop.seventymm.com/Search/$query/Electronics/2235/Accessories/2629/All-Price/0/Any/0/Any/0/1/1/3/Go"; //acc
 		}
 		return "http://shop.seventymm.com/Search/$q/All-Categories/0/All-Classification/0/All-Price/0/Any/0/Any/0/1/1/3/Go";
 	}

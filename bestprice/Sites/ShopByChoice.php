@@ -3,7 +3,7 @@ class ShopByChoice extends Parsing{
 	public $_code = 'ShopByChoice';
 
 	public function getAllowedCategory(){
-		return array(Category::MOBILE);
+		return array(Category::MOBILE,Category::CAMERA);
 	}
 
 	public function getWebsiteUrl(){
@@ -14,6 +14,10 @@ class ShopByChoice extends Parsing{
 		$query = trim(preg_replace("![^0-9a-z]+!i", "-", $query));
 		if($category == Category::MOBILE){
 			return "http://www.shopbychoice.com/search/result+category-smartphones+searchtext-$query";
+		}else if($category == Category::CAMERA){
+			return "http://www.shopbychoice.com/search/result+category-dslr+searchtext-$query"; //dslr
+			return "http://www.shopbychoice.com/search/result+category-compact-cameras+searchtext-$query"; //digital
+			return "http://www.shopbychoice.com/search/result+category-camcorders+searchtext-sony-$query"; //cam
 		}
 		return "http://www.shopbychoice.com/search/result+searchtext-".$query;
 	}

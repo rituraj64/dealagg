@@ -3,7 +3,7 @@ class TimTara extends Parsing{
 	public $_code = 'TimTara';
 
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}
 
 	public function getWebsiteUrl(){
@@ -14,6 +14,14 @@ class TimTara extends Parsing{
 			return "http://www.timtara.com/search.php?catLevel=0&category[]=1021&category[]=1022&search_query=$query&x=0&y=0";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.timtara.com/search.php?catLevel=1&search_query=$query&x=0&y=0&category[]=1023&category[]=1025&category[]=1027&category[]=1028&category[]=1029";
+		}else if($category == Category::CAMERA){
+			return "http://www.timtara.com/search.php?catLevel=1&search_query=$query&x=0&y=0&category[]=1066"; //digital camera
+			return "http://www.timtara.com/search.php?catLevel=1&search_query=$query&x=0&y=0&category[]=1067"; //digital slr
+			return "http://www.timtara.com/search.php?catLevel=1&search_query=$query&x=0&y=0&category[]=1068"; //video camer
+		}else if($category == Category::CAMERA_ACC){
+			return "http://www.timtara.com/search.php?catLevel=1&search_query=$query&x=0&y=0&category[]=1070&category[]=1069"; //memory
+			return "http://www.timtara.com/search.php?catLevel=1&search_query=$query&x=0&y=0&category[]=1071&category[]=1069"; //battery
+			return "http://www.timtara.com/search.php?catLevel=1&search_query=$query&x=0&y=0&category[]=1073&category[]=1069"; //lens
 		}
 		return "http://www.timtara.com/search.php?catLevel=0&category[]=&search_query=$query&x=0&y=0";
 	}

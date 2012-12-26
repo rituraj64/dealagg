@@ -13,7 +13,12 @@ class Zoomin extends Parsing{
 		if($category == Category::MOBILE){
 			return 'http://camera.zoomin.com/index.php/search/ajax/query?r=select&q='.$query.'&json.nl=map&rows=24&fl=name_varchar%2Cimage_varchar%2Cproducts_id%2Cdescription_text&qf=name_varchar%20oemname_int%20&spellcheck=true&currentUrl=http%3A%2F%2Fcamera.zoomin.com%2Fsearch%2F%3Fq%3D'.$query.'&spellcheck.collate=true&facet=true&facet.field=category&defType=dismax&timestamp=1356259576033&fq=category%3A%22Phones%22&wt=json&json.wrf=_prototypeJSONPCallback_2';
 		}else if($category == Category::MOBILE_ACC){
-			return 'http://camera.zoomin.com/index.php/search/ajax/query?r=select&q='.$query.'&json.nl=map&rows=24&fl=name_varchar%2Cimage_varchar%2Cproducts_id%2Cdescription_text&qf=name_varchar%20oemname_int%20&spellcheck=true&currentUrl=http%3A%2F%2Fcamera.zoomin.com%2Fsearch%2F%3Fq%3D'.$query.'&spellcheck.collate=true&facet=true&facet.field=category&defType=dismax&timestamp=1356413422571&wt=json&json.wrf=_prototypeJSONPCallback_4';;
+			return 'http://camera.zoomin.com/index.php/search/ajax/query?r=select&q='.$query.'&json.nl=map&rows=24&fl=name_varchar%2Cimage_varchar%2Cproducts_id%2Cdescription_text&qf=name_varchar%20oemname_int%20&spellcheck=true&currentUrl=http%3A%2F%2Fcamera.zoomin.com%2Fsearch%2F%3Fq%3D'.$query.'&spellcheck.collate=true&facet=true&facet.field=category&defType=dismax&timestamp=1356413422571&wt=json&json.wrf=_prototypeJSONPCallback_4';
+		}else if($category == Category::CAMERA){
+			echo 'camera urls not completed';die;
+			return 'http://camera.zoomin.com/index.php/search/ajax/query?r=select&q='.$query.'&json.nl=map&rows=24&fl=name_varchar%2Cimage_varchar%2Cproducts_id%2Cdescription_text&qf=name_varchar%20oemname_int%20&spellcheck=true&currentUrl=http%3A%2F%2Fcamera.zoomin.com%2Fsearch%2F%3Fq%3D'.$query.'&spellcheck.collate=true&facet=true&facet.field=category&defType=dismax&timestamp=1356413422571&wt=json&json.wrf=_prototypeJSONPCallback_4';
+		}else if($category == Category::CAMERA_ACC){
+			return "http://camera.zoomin.com/index.php/search/ajax/query?r=select&q=sony&json.nl=map&rows=24&fl=name_varchar%2Cimage_varchar%2Cproducts_id%2Cdescription_text&qf=name_varchar%20oemname_int%20&spellcheck=true&currentUrl=http%3A%2F%2Fcamera.zoomin.com%2Fsearch%2F%3Fq%3Dsony&spellcheck.collate=true&facet=true&facet.field=category&defType=dismax&timestamp=1356499583280&fq=category%3A%22Lenses%22&wt=json&json.wrf=_prototypeJSONPCallback_10"; //lenses
 		}else{
 			return "http://camera.zoomin.com/index.php/search/ajax/query?r=select&q=".$query."&json.nl=map&facet=true&facet.field=oemname_facets%2Ccategory&defType=dismax&timestamp=1355584673850&qf=name_varchar%20oemname_int%20&wt=json&json.wrf=_prototypeJSONPCallback_1";
 		}

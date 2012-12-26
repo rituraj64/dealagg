@@ -15,6 +15,12 @@ class Rediff extends Parsing{
 		}else if($category == Category::MOBILE){
 			$query = urldecode($query);
 			return "http://shopping.rediff.com/productv2/$query/cat-mobile phones & accessories|mobile accessories";
+		}else if($category == Category::CAMERA){
+			return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|digital cameras";
+			return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|digital slr cameras";
+			return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|camcorders";
+		}else if($category == Category::CAMERA_ACC){
+			return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|camera accessories";
 		}else{
 			return "http://shopping.rediff.com/shopping/index.html#!".urldecode($query);
 		}

@@ -3,7 +3,7 @@ class Saholic extends Parsing{
 	public $_code = 'Saholic';
 
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA);
 	}
 
 	public function getWebsiteUrl(){
@@ -16,6 +16,8 @@ class Saholic extends Parsing{
 			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Mobile+Accessories";
 		}else if($category == Category::TABLETS){
 			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Tablets";
+		}else if($category == Category::CAMERA){
+			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Cameras";
 		}
 		return "http://www.saholic.com/search?q=".$query."&category=10000";
 	}

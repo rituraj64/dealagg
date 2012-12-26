@@ -3,7 +3,7 @@ class Bagittoday extends Parsing{
 	public $_code = 'Bagittoday';
 
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC);
+		return array(Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::CAMERA);
 	}
 
 	public function getWebsiteUrl(){

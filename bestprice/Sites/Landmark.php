@@ -3,7 +3,7 @@ class Landmark extends Parsing{
 	public $_code = 'Landmark';
 
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::BOOKS,Category::MOBILE_ACC);
+		return array(Category::MOBILE,Category::BOOKS,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}
 
 	public function getWebsiteUrl(){
@@ -16,6 +16,10 @@ class Landmark extends Parsing{
 			return "http://www.landmarkonthenet.com/mobile-accessories/search/?q=".$query;
 		}else if($category == Category::MOBILE){
 			return "http://www.landmarkonthenet.com/mobiles/search/?q=".$query;
+		}else if($category == Category::CAMERA){
+			return "http://www.landmarkonthenet.com/cameras/search/?q=$query";
+		}else if($category == Category::CAMERA_ACC){
+			return "http://www.landmarkonthenet.com/camera-accessories/search/?q=$query";
 		}
 		return "http://www.landmarkonthenet.com/search/?q=".$query;
 	}
@@ -25,12 +29,12 @@ class Landmark extends Parsing{
 	public function getData($html,$query,$category){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
-		
+
 		$html = pq('#page-content')->children('h1')->html();
 		if(strpos($html, 'Sorry, no results were found for') !== false){
 			return $data;
 		}
-		
+
 		foreach(pq('div.searchresult') as $div){
 			if(sizeof(pq($div)->find('.image'))){
 				$image = pq($div)->find('.image')->find('a')->html();

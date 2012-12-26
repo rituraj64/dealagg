@@ -3,7 +3,7 @@ class FutureBazaar extends Parsing{
 	public $_code = 'FutureBazaar';
 
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}
 
 	public function getWebsiteUrl(){
@@ -14,6 +14,14 @@ class FutureBazaar extends Parsing{
 			return "http://www.futurebazaar.com/search/?q=$query&c=2459&NormalSearch=enabled";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.futurebazaar.com/search/?q=$query&c=2464&NormalSearch=enabled";
+		}else if($category == Category::CAMERA){
+			return "http://www.futurebazaar.com/search/?q=$query&c=3172&NormalSearch=enabled"; //cam corder
+			return "http://www.futurebazaar.com/search/?q=$query&c=2487&NormalSearch=enabled"; //digtal camera
+		}else if($category == Category::CAMERA_ACC){
+			return "http://www.futurebazaar.com/search/?q=$query&c=2750&NormalSearch=enabled"; //lenses
+			return "http://www.futurebazaar.com/search/?q=$query&c=2749&NormalSearch=enabled"; //tripod and monopods
+			return "http://www.futurebazaar.com/search/?q=$query&c=2490&NormalSearch=enabled"; //camera acc
+			return "http://www.futurebazaar.com/search/?q=$query&c=3132&NormalSearch=enabled"; //lense acc
 		}
 		return "http://www.futurebazaar.com/search/?q=$query&c=0&NormalSearch=enabled";
 	}

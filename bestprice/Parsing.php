@@ -18,13 +18,14 @@ class Parsing{
 		// indiaplaza gives page requested was moved.
 		// check if these needs to be added samsungindiaestore.com,ezeekart.com,next.co.in,
 		// maniac store is search post form
+		// http://www.imagestore.co.in its offiec cannon store
 
 		// for greendust, its important to go to product page since they sell second hand stuff also
 		// naaptol product page need to get shop points and shipping charges
 		// buytheprice.com, process product page to get details about seller etc
 		// check if need to search ebay
 		//shopclues, need to parse product page to get coupon code and special offer
-		return array('Flipkart','Snapdeal','ShopClues','Tradus','Indiatimes','Zoomin','Saholic','Landmark','Infibeam','Homeshop','Croma','Crossword','EBay','Rediff','uRead','Bookadda','Justbooks','Letskart','Amegabooks','Simplebooks','Indianbooks','Yebhi','Greendust','Adexmart','Naaptol','BuyThePrice','FutureBazaar','CostPrize','Fosila','MirchiMart','Seventymm','TheMobileStore','Sulekha','TimTara','Bagittoday','Storeji','Letshop','eDabba','BitFang');
+		return array('Flipkart','Snapdeal','ShopClues','Tradus','Indiatimes','Zoomin','Saholic','Landmark','Infibeam','Homeshop','Croma','Crossword','EBay','Rediff','uRead','Bookadda','Justbooks','Letskart','Amegabooks','Simplebooks','Indianbooks','Yebhi','Greendust','Adexmart','Naaptol','BuyThePrice','FutureBazaar','CostPrize','Fosila','MirchiMart','Seventymm','TheMobileStore','Sulekha','TimTara','Bagittoday','Storeji','Letshop','eDabba','Royalimages','Suzalin','Giffiks');
 	}
 	public function allowCategory($cat){
 		foreach($this->getAllowedCategory() as $key => $val){

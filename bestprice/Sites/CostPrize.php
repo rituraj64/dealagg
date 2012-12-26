@@ -3,7 +3,7 @@ class CostPrize extends Parsing{
 	public $_code = 'CostPrize';
 
 	public function getAllowedCategory(){
-		return array(Category::HOME_APPLIANCE,Category::TV,Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::CAMERA,Category::GAMING);
+		return array(Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}
 
 	public function getWebsiteUrl(){

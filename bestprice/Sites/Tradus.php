@@ -3,35 +3,29 @@ class Tradus extends Parsing{
 	public $_code = 'Tradus';
 
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
+		return array(Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::MOBILE,Category::MOBILE_ACC);
 	}
 
 	public function getWebsiteUrl(){
 		return 'http://www.tradus.com/';
 	}
 	public function getSearchURL($query,$category = false){
-		if($category == Category::BEAUTY){
-			return "http://www.tradus.com/search?query=$query&cat=7763";
-		}else if($category == Category::BOOKS){
+		if($category == Category::BOOKS){
 			return "http://www.tradus.com/search?query=$query&cat=357";
 		}else if($category == Category::CAMERA){
 			return "http://www.tradus.com/search?query=$query&cat=7666";
-		}else if($category == Category::COMP_LAPTOP){
-			return "http://www.tradus.com/search?query=$query&cat=7684";
-		}else if($category == Category::TABLETS){
-			return "http://www.tradus.com/search?query=$query&cat=7762";
-		}else if($category == Category::COMP_ACC){
-			return "http://www.tradus.com/search?query=$query&cat=7684";
-		}else if($category == Category::HOME_APPLIANCE){
-			return "http://www.tradus.com/search?query=$query&cat=10000";
 		}else if($category == Category::MOBILE){
 			return "http://www.tradus.com/search?query=$query&cat=7844";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.tradus.com/search?query=$query&cat=10465";
-		}else if($category == Category::TV){
-			return "http://www.tradus.com/search?query=$query&cat=7698";
-		}else if($category == Category::GAMING){
-			return "http://www.tradus.com/search?query=$query&cat=7666";
+		}else if($category == Category::CAMERA){
+			return "http://www.tradus.com/search?query=$query&cat=10305"; //digital camera
+			return "http://www.tradus.com/search?query=$query&cat=7671"; //camcorder
+		}else if($category == Category::CAMERA_ACC){
+			return "http://www.tradus.com/search?query=$query&cat=7667"; // acc
+			return "http://www.tradus.com/search?query=$query&cat=8101"; // filters
+			return "http://www.tradus.com/search?query=$query&cat=8108"; // lens
+			
 		}else{
 			return "http://www.tradus.com/search?query=".$query;
 		}

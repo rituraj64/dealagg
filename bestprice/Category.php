@@ -34,5 +34,8 @@ class Category{
 		//other section we can see
 		//1. gift 2. baby care 3. music 4. toys 5. ebooks 6. Movies 7. mobile recharge 8. automobile acc
 		//9. baby products
+		
+		
+		//can include photo digital frame, binoculars,
 	}
 }

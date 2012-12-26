@@ -41,7 +41,7 @@ class Sorting{
 }
 
 
-echo urldecode("http://www.edabba.com/search/site/sony?f[0]=im_taxonomy_catalog%3A5861&f[1]=im_taxonomy_catalog%3A5919");
+echo urldecode("http://shopping.rediff.com/productv2/camcorder/cat-cameras+%26amp%3B+optics%7Ccamcorders");
 die;
 $per = 0;
 similar_text('angles & deamons', 'angles and deamons',$per);

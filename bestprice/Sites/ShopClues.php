@@ -4,7 +4,7 @@ class ShopClues extends Parsing{
 	public $_code = 'ShopClues';
 
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC);
 	}
 
 	public function getWebsiteUrl(){
@@ -12,24 +12,22 @@ class ShopClues extends Parsing{
 	}
 
 	public function getSearchURL($query,$category = false){
-		if($category == Category::BEAUTY){
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=480&q=$query&dispatch=products.search";
-		}else if($category == Category::BOOKS){
+		if($category == Category::BOOKS){
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1383&q=$query&dispatch=products.search";
 		}else if($category == Category::CAMERA){
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=682&q=$query&dispatch=products.search";
-		}else if($category == Category::COMP_ACC || $category == Category::COMP_LAPTOP){
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=85&q=$query&dispatch=products.search";
-		}else if($category == Category::HOME_APPLIANCE){
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=368&q=$query&dispatch=products.search";
 		}else if($category == Category::MOBILE){
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=455&q=$query&dispatch=products.search";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1471&q=$query&dispatch=products.search";
-		}else if($category == Category::TV){
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=460&q=$query&dispatch=products.search";
-		}else if($category == Category::BEAUTY){
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=480&q=$query&dispatch=products.search";
+		}else if($category == Category::CAMERA){
+			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=461&q=$query&dispatch=products.search"; //digtal camere,point&shoot
+			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1475&q=$query&dispatch=products.search"; //mirror less
+			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=683&q=$query&dispatch=products.search"; //dslr
+			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1174&q=$query&dispatch=products.search"; //camcorder
+			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1174&q=$query&dispatch=products.search"; //camcorder
+		}elseif($category == Category::CAMERA_ACC){
+			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=688&q=$query&dispatch=products.search"; //camcorder
 		}else{
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=0&dispatch=products.search&q=".$query;
 		}

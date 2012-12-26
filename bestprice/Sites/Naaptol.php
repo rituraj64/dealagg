@@ -16,6 +16,17 @@ class Naaptol extends Parsing{
 			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2578&kw=$query&sb=49,9,8&req=ajax";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=4&kw=$query&sb=49,9,8&req=ajax";
+		}else if($category == Category::CAMERA){
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=9&kw=sony&sb=49,9,8&req=ajax"; // camcorders
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=6&kw=sony&sb=49,9,8&req=ajax"; // digital camera
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=7&kw=sony&sb=49,9,8&req=ajax"; //slr
+		}else if($category == Category::CAMERA_ACC){
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=37&kw=sony&sb=49,9,8&req=ajax"; //battery
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=108&kw=sony&sb=49,9,8&req=ajax"; //chargers
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=38&kw=sony&sb=49,9,8&req=ajax"; // camera pouch
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2495&kw=sony&sb=49,9,8&req=ajax"; //misc
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=252&kw=sony&sb=49,9,8&req=ajax"; //lens
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=39&kw=sony&sb=49,9,8&req=ajax"; //tripods
 		}
 		return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&kw=samsung&sb=49,9,8&req=ajax";
 	}
@@ -50,7 +61,7 @@ class Naaptol extends Parsing{
 				);
 			}
 		}
-		
+
 		$data = $this->cleanData($data, $query);
 		$data = $this->bestMatchData($data, $query,$category);
 		return $data;

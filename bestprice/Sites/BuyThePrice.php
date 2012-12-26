@@ -3,7 +3,7 @@ class BuyThePrice extends Parsing{
 	public $_code = 'BuyThePrice';
 
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::TABLETS);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::TABLETS,Category::CAMERA,Category::CAMERA_ACC);
 	}
 
 	public function getWebsiteUrl(){
@@ -16,6 +16,13 @@ class BuyThePrice extends Parsing{
 			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=78&bid=0";
 		}else if($category == Category::TABLETS){
 			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=78&bid=0";
+		}else if($category == Category::CAMERA){
+			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=91&bid=0"; //digial camera
+			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=92&bid=0"; //digial dslr
+			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=95&bid=0"; //camcorder
+			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=96&bid=0"; //optics
+		}else if($category == Category::CAMERA_ACC){
+			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=97&bid=0";
 		}
 		return "http://www.buytheprice.com/search__".$query;
 	}

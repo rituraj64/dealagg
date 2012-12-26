@@ -15,11 +15,10 @@ class eDabba extends Parsing{
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5860&f[1]=im_taxonomy_catalog:5922";
 		}else if($category == Category::CAMERA){
-			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5917";
-			//CAMCODERS is a seperate category, so its not parsed right now
+			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5917"; //digial camera & slr
+			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5918"; //camcorders
 		}else if($category == Category::CAMERA_ACC){
 			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5919";
-			//CAMCODERS is a seperate category, so its not parsed right now
 		}
 		return "http://www.edabba.com/search/site/$query";
 	}

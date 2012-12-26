@@ -3,7 +3,7 @@ class Infibeam extends Parsing{
 	public $_code = 'Infibeam';
 
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC);
+		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}
 
 	public function getWebsiteUrl(){
@@ -16,6 +16,10 @@ class Infibeam extends Parsing{
 			return "http://www.infibeam.com/Mobiles/search?q=".$query;
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.infibeam.com/Mobile_Accessories/search?q=$query";
+		}else if($category == Category::CAMERA){
+			return "http://www.infibeam.com/Cameras/search?q=$query";
+		}else if($category == Category::CAMERA_ACC){
+			return "http://www.infibeam.com/Camera_Accessories/search?q=$query";
 		}else{
 			return "http://www.infibeam.com/search?q=".$query;
 		}

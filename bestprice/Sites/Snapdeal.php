@@ -10,24 +10,19 @@ class Snapdeal extends Parsing{
 		return 'http://www.snapdeal.com/';
 	}
 	public function getSearchURL($query,$category = false){
-		if($category == Category::BEAUTY){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=&categoryId=31&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
-		}else if($category == Category::BOOKS){
+		if($category == Category::BOOKS){
 			return "http://www.snapdeal.com/search?keyword=$query&catId=&categoryId=364&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=cream&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}else if($category == Category::CAMERA){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=&categoryId=290&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
-		}else if($category == Category::COMP_ACC || $category == Category::COMP_LAPTOP){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=&categoryId=21&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=dslr&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
-		}else if($category == Category::HOME_APPLIANCE){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=9&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=dslr&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
+			return "http://www.snapdeal.com/search?keyword=$query&catId=&categoryId=291&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; // digital camera
+			return "http://www.snapdeal.com/search?keyword=$query&catId=&categoryId=292&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; // digital srls
+			return "http://www.snapdeal.com/search?keyword=$query&catId=&categoryId=293&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; // camcorder
+		}else if($category == Category::CAMERA_ACC){
+			return "http://www.snapdeal.com/search?keyword=$query&catId=&categoryId=296&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; //acc
+			return "http://www.snapdeal.com/search?keyword=$query&catId=&categoryId=304&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; //memory card
 		}else if($category == Category::MOBILE){
 			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=175&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=29&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=29&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=175&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
-		}else if($category == Category::TV || $category == Category::GAMING){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=7&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=washing+mat&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
-		}else if($category == Category::NUTRITION){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=318&suggested=false&vertical=p&noOfResults=20&clickSrc=go_header&lastKeyword=washing+mat&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
 		}else{
 			return "http://www.snapdeal.com/search?keyword=".$query."&catId=&categoryId=0&suggested=false&vertical=&noOfResults=20&clickSrc=go_header&lastKeyword=&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}

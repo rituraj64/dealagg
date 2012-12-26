@@ -1,41 +1,36 @@
 <?php
-class Fosila extends Parsing{
-	public $_code = 'Fosila';
+class Suzalin extends Parsing{
+	public $_code = 'Suzalin';
 
 	public function getAllowedCategory(){
-		return array(Category::MOBILE);
+		return array(Category::MOBILE,Category::CAMERA);
 	}
 
 	public function getWebsiteUrl(){
-		return 'http://www.fosila.com/';
+		return 'http://www.suzalin.com/';
 	}
 	public function getSearchURL($query,$category = false){
 		if($category == Category::MOBILE){
-			return "http://www.fosila.com/mobiles?search=".$query;
+			return "http://www.suzalin.com/Search/1_2_$query";
 		}else if($category == Category::CAMERA){
-			return "http://www.fosila.com/digitalcameras?search=$query";
-			return "http://www.fosila.com/slr?search=$query";
-		}else if($category == Category::CAMERA_ACC){
-			return "http://www.fosila.com/batteries?search=$query";
-			return "http://www.fosila.com/lenses?search=$query";
-			return "http://www.fosila.com/memorycards?search=$query";
+			return "http://www.suzalin.com/Search/1_7_$query";
 		}
-		return "http://www.fosila.com/all?key=".$query;;
+		return "http://www.suzalin.com/Search/1_0_$query";
 	}
 	public function getLogo(){
-		return 'http://www.fosila.com/assets/fosila_logo-4cf0c01116ac6c3dab120d73e5e97cb5.jpg';
+		return 'http://www.suzalin.com/images/suzalin-logo.gif';
 	}
 	public function getData($html,$query,$category){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
-		if(sizeof(pq('ul.product_info')) > 0){
-			foreach(pq('ul.product_info') as $ul){
-				foreach(pq($ul)->children('li') as $div){
-					$image = pq($div)->children('.product_img')->html();
-					$url = pq($div)->children('.product_img')->attr('href');
-					$name = pq($div)->children('.procuct_info_name')->html();
-					$disc_price = pq($div)->children('.procuct_info_price')->children('.our_cost')->html();
+		if(sizeof(pq('ul.productData')) > 0){
+			foreach(pq('ul.productData') as $div){
+				foreach(pq($div)->find('li') as $div){
+					$image = pq($div)->children('.productWidget')->children('.productWidgetImage')->children('a')->html();
+					$url = pq($div)->children('.productWidget')->children('.productWidgetImage')->children('a')->attr('href');
+					$name = pq($div)->children('.productWidget')->children('.productWidgetTitle')->children('a')->html();
+					$disc_price = pq($div)->children('.productWidget')->children('.productWidgetPriceContainer')->children('.ourPrice')->html();
 					$offer = '';
 					$shipping = '';
 					$stock = 0;
