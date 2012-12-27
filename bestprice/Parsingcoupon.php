@@ -1,9 +1,9 @@
 <?php
-require_once 'phpQuery-onefile.php';
-require_once 'Parser.php';
-class Parsingcoupon
+require_once 'Parsing.php';
+
+class Parsingcoupon extends Parsing
 {
-	public function getWebsites()
+	public function getCouponWebsites()
 	{
 		return array('FreeKaaMaal');
 	}

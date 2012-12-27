@@ -2,7 +2,7 @@
 require_once 'Parsingcoupon.php';
 
 $parsing = new Parsingcoupon();
-$sites = $parsing->getWebsites();
+$sites = $parsing->getCouponWebsites();
 
 foreach ($sites as $site)
 {
