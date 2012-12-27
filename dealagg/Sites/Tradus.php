@@ -1,17 +1,17 @@
 <?php
 class Tradus extends Parsing{
-	
+
 	public $_code = 'Tradus';
 
 	public function getWebsiteUrl(){
 		return 'http://www.tradus.com/deals/';
 		//return 'http://127.0.0.1/deals.htm';
 	}
-	
+
 	public function getLogo(){
 		return "http://www.tradus.com/sites/all/themes/basic/images/ci_images/tradus_logo/tradus_new_logo.jpg";
 	}
-	
+
 	public function getAllData()
 	{
 		$url = $this->getWebsiteUrl();

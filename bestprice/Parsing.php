@@ -19,6 +19,7 @@ class Parsing{
 		// check if these needs to be added samsungindiaestore.com,ezeekart.com,next.co.in,
 		// maniac store is search post form
 		// http://www.imagestore.co.in its offiec cannon store
+		// add kaunsa.com
 
 		// for greendust, its important to go to product page since they sell second hand stuff also
 		// naaptol product page need to get shop points and shipping charges
