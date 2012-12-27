@@ -11,7 +11,7 @@ foreach ($sites as $site)
 	try
 	{
 		$pagecount = 1;
-		$siteData = $siteObj->getAllData($pagecount);
+		$siteData[] = $siteObj->getAllData($pagecount);
 	}
 	catch(Exception $e)
 	{
