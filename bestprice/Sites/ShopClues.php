@@ -11,23 +11,54 @@ class ShopClues extends Parsing{
 		return 'http://www.shopclues.com';
 	}
 
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::BOOKS){
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1383&q=$query&dispatch=products.search";
-		}else if($category == Category::CAMERA){
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=682&q=$query&dispatch=products.search";
 		}else if($category == Category::MOBILE){
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=455&q=$query&dispatch=products.search";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1471&q=$query&dispatch=products.search";
 		}else if($category == Category::CAMERA){
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=461&q=$query&dispatch=products.search"; //digtal camere,point&shoot
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1475&q=$query&dispatch=products.search"; //mirror less
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=683&q=$query&dispatch=products.search"; //dslr
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1174&q=$query&dispatch=products.search"; //camcorder
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1174&q=$query&dispatch=products.search"; //camcorder
+			if($subcat == Category::NOT_SURE){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=682&q=$query&dispatch=products.search";
+			}else if($subcat == Category::CAM_DIGITAL_CAMERA){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=461&q=$query&dispatch=products.search"; //digtal camere,point&shoot
+			}else if($subcat == Category::CAM_DIGITAL_SLR){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=683&q=$query&dispatch=products.search"; //dslr
+			}else if($subcat == Category::CAM_CAMCORDER){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1174&q=$query&dispatch=products.search"; //camcorder
+			}else if($subcat == Category::CAM_MIRRORLESS){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1475&q=$query&dispatch=products.search"; //mirror less
+			}else{
+				return '';
+			}
+
 		}elseif($category == Category::CAMERA_ACC){
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=688&q=$query&dispatch=products.search"; //camcorder
+			if($subcat == Category::NOT_SURE){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=688&q=$query&dispatch=products.search"; //camcorder
+			}else if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1625&q=$query&dispatch=products.search"; //camcorder
+			}else if($subcat == Category::CAM_ACC_BAGS){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1317&q=$query&dispatch=products.search"; //camcorder
+			}else if($subcat == Category::CAM_ACC_BATTERY){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=114&q=$query&dispatch=products.search"; //camcorder
+			}else if($subcat == Category::CAM_ACC_FLASH_LIGHTS){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1642&q=$query&dispatch=products.search"; //camcorder
+			}else if($subcat == Category::CAM_ACC_LENSEFILTER){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1315&q=$query&dispatch=products.search"; //camcorder
+			}else if($subcat == Category::CAM_ACC_LENSES){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=681&q=$query&dispatch=products.search"; //camcorder
+			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1344&q=$query&dispatch=products.search"; //camcorder
+			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=688&q=$query&dispatch=products.search"; //camcorder
+			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1623&q=$query&dispatch=products.search"; //camcorder
+			}else if($subcat == Category::CAM_ACC_TRIPODS){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1313&q=$query&dispatch=products.search"; //camcorder
+			}else{
+				return '';
+			}
 		}else{
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=0&dispatch=products.search&q=".$query;
 		}
@@ -35,7 +66,7 @@ class ShopClues extends Parsing{
 	public function getLogo(){
 		return "http://www.shopclues.com/images/skin/diwali-logo-fevicon.gif";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 
 		$i = 0;
 		$data = array();
@@ -65,7 +96,7 @@ class ShopClues extends Parsing{
 			$i++;
 		}
 		$data = $this->cleanData($data, $query);
-		$data = $this->bestMatchData($data, $query,$category);
+		$data = $this->bestMatchData($data, $query,$category,$subcat);
 		return $data;
 	}
 }

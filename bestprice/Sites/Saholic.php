@@ -9,7 +9,7 @@ class Saholic extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.saholic.com/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
 			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Mobile+Phones";
 		}else if($category == Category::MOBILE_ACC){
@@ -17,14 +17,20 @@ class Saholic extends Parsing{
 		}else if($category == Category::TABLETS){
 			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Tablets";
 		}else if($category == Category::CAMERA){
-			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Cameras";
+			if($subcat == Category::CAM_DIGITAL_SLR){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3ACameras&fq=F_50011:DSLR+Cameras";
+			}else if($subcat == Category::CAM_DIGITAL_CAMERA || $subcat == Category::CAM_MIRRORLESS){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3ACameras&fq=F_50011:Compact+Cameras";
+			}else if($subcat == Category::NOT_SURE){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Cameras";
+			}
 		}
 		return "http://www.saholic.com/search?q=".$query."&category=10000";
 	}
 	public function getLogo(){
 		return "http://www.saholic.com/images/saholic-logo-5648.jpg";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		foreach(pq('li.search-deals-items') as $div){
@@ -50,7 +56,7 @@ class Saholic extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

@@ -9,7 +9,7 @@ class uRead extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.uread.com/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat){
 		$q = urldecode($query);
 		$q = str_replace(" ", '-', $q);
 		$q = urlencode($q);
@@ -18,7 +18,7 @@ class uRead extends Parsing{
 	public function getLogo(){
 		return "http://www.uread.com/images/logos/logo.gif";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat=false){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		if(sizeof(pq('div.product-vert-list-item'))){
@@ -96,7 +96,7 @@ class uRead extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

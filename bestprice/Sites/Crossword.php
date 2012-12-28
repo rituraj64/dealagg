@@ -12,12 +12,12 @@ class Crossword extends Parsing{
 	public function getLogo(){
 		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/crossword.png';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::BOOKS){
 			return "http://www.crossword.in/books/search?q=$query";
 		}
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		foreach(pq('ul#search-result-items')->children('li') as $div){
@@ -57,7 +57,7 @@ class Crossword extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2,$query);
-		$data2 = $this->bestMatchData($data2,$query,$category);
+		$data2 = $this->bestMatchData($data2,$query,$category,$subcat);
 		return $data2;
 	}
 }

@@ -9,13 +9,13 @@ class Justbooks extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://justbooks.in/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat){
 		return "http://justbooks.in/search/node/".$query;
 	}
 	public function getLogo(){
 		return "http://justbooks.in/sites/all/themes/justbooks/logo.png";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat=false){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		if(sizeof(pq('.jb-cat-des'))){
@@ -59,7 +59,7 @@ class Justbooks extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

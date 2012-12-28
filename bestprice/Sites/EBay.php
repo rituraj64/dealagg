@@ -12,12 +12,12 @@ class EBay extends Parsing{
 	public function getLogo(){
 		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/ebay.png';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::BOOKS){
 			return "http://read.ebay.in/decksearchresults?frm=1&q=spell:$query&rows=10&key=$query&catid=267";
 		}
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat=false){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		foreach(pq('table')->find('tr') as $div){
@@ -69,7 +69,7 @@ class EBay extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2,$query);
-		$data2 = $this->bestMatchData($data2,$query,$category);
+		$data2 = $this->bestMatchData($data2,$query,$category,$subcat);
 		return $data2;
 	}
 }

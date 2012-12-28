@@ -9,7 +9,7 @@ class Giffiks extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.royalimages.in/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::MOBILE || $category == Category::MOBILE_ACC){
 			return "http://www.giffiks.com/search.php?category=mobile&search=$query&go=";
 		}else if($category == Category::CAMERA || $category == Category::CAMERA_ACC){
@@ -22,7 +22,7 @@ class Giffiks extends Parsing{
 	public function getLogo(){
 		return 'http://www.giffiks.com/images/logo.jpg';
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat=false){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		if(sizeof(pq('.product_box_new')) > 0){
@@ -67,7 +67,7 @@ class Giffiks extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

@@ -5,7 +5,7 @@ class Flipkart extends Parsing{
 	//need to integrate flipkart offers and cashback
 
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC);
+		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}
 
 	public function getWebsiteUrl(){
@@ -14,7 +14,7 @@ class Flipkart extends Parsing{
 	public function getLogo(){
 		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/flipkart.png';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
 			return "http://www.flipkart.com/mobiles/pr?sid=tyy%2C4io&q=$query&query=$query";
 		}else if($category == Category::MOBILE_ACC){
@@ -22,9 +22,45 @@ class Flipkart extends Parsing{
 		}else if($category == Category::BOOKS){
 			return "http://www.flipkart.com/search-books?query=$query&searchGroup=books-stationeries&ref=6695f070-3c76-4c61-92bd-7bedc39b8873";
 		}else if($category == Category::CAMERA){
-			return "http://www.flipkart.com/cameras/pr?sid=jek%2Cp31&q=$query&query=$query";
+			if($subcat == Category::NOT_SURE){
+				return "http://www.flipkart.com/cameras/pr?sid=jek%2Cp31&q=$query&query=$query"; //all cam and acc
+			}else if($subcat == Category::CAM_DIGITAL_CAMERA){
+				return "http://www.flipkart.com/cameras/pr?p%5B%5D=facets.type%255B%255D%3DPoint%2B%2526%2BShoot&sid=jek%2Cp31&layout=grid&q=$query";
+			}else if($subcat == Category::CAM_DIGITAL_SLR){
+				return "http://www.flipkart.com/cameras/pr?p%5B%5D=facets.type%255B%255D%3DSLR&sid=jek%2Cp31&layout=grid&q=$query";
+			}else if($subcat == Category::CAM_MIRRORLESS){
+				return "http://www.flipkart.com/cameras/pr?p%5B%5D=facets.type%255B%255D%3DMirrorless&sid=jek%2Cp31&layout=grid&q=$query";
+			}else if($subcat == Category::CAM_CAMCORDER){
+				return "http://www.flipkart.com/cameras/pr?p%5B%5D=facets.type%255B%255D%3DCamcorder&sid=jek%2Cp31&layout=grid&q=$query";
+			}else{
+				return '';
+			}
 		}else if($category == Category::CAMERA_ACC){
-			return "http://www.flipkart.com/camera-accessories/pr?sid=jek%2Cp31&q=$query&query=$query";
+			if($subcat == Category::NOT_SURE){
+				return "http://www.flipkart.com/camera-accessories/pr?sid=jek%2Cp31&q=$query&query=$query";
+			}else if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
+				return "http://www.flipkart.com/camera-accessories/battery-chargers/pr?sid=jek%2C6l2%2Ckrc&layout=grid&q=$query&ajax=true";
+			}else if($subcat == Category::CAM_ACC_BAGS){
+				return "http://www.flipkart.com/camera-accessories/camera-bags/pr?sid=jek%2C6l2%2C6ts&layout=grid&q=$query"; //memory cards
+			}else if($subcat == Category::CAM_ACC_BATTERY){
+				return "http://www.flipkart.com/camera-accessories/batteries/pr?sid=jek%2C6l2%2Cw65&layout=grid&q=$query";
+			}else if($subcat == Category::CAM_ACC_FLASH_LIGHTS){
+				return "http://www.flipkart.com/camera-accessories/flashes/pr?sid=jek%2C6l2%2Cmx9&layout=grid&q=$query";
+			}else if($subcat == Category::CAM_ACC_LENSEFILTER){
+				return "http://www.flipkart.com/camera-accessories/filters/pr?sid=jek%2C6l2%2Cowv&layout=grid&q=$query";
+			}else if($subcat == Category::CAM_ACC_LENSES){
+				return "http://www.flipkart.com/camera-accessories/lenses/pr?sid=jek%2C6l2%2Ce9y&layout=grid&q=$query";
+			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
+				return "http://www.flipkart.com/camera-accessories/memory-cards/pr?sid=jek%2C6l2%2C7y6&layout=grid&q=$query";
+			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
+				return "http://www.flipkart.com/camera-accessories/pr?sid=jek%2Cp31&q=$query&query=$query";
+			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){
+				return "http://www.flipkart.com/camera-accessories/pr?sid=jek%2Cp31&q=$query&query=$query";
+			}else if($subcat == Category::CAM_ACC_TRIPODS){
+				return "http://www.flipkart.com/camera-accessories/tripods/pr?sid=jek%2C6l2%2Cce6&layout=grid&q=$query";
+			}else{
+				return '';
+			}
 		}else if($category == Category::COMP_ACC || $category == Category::COMP_LAPTOP || $category == Category::TABLETS){
 			return "http://www.flipkart.com/search/a/computers?query=".$query."&vertical=computers&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=RsuiHvNUWzIGQmMYN5OGLg--&_l=Tnndui8JdMVk7CZmDKIfXQ--&ref=de3e3b97-e0c3-4810-b670-fed8e7f132bd&selmitem=Computers";
 		}else if($category == Category::GAMING){
@@ -39,7 +75,7 @@ class Flipkart extends Parsing{
 			return "http://www.flipkart.com/search/a/all?query=".$query."&vertical=all&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=RxkVRuKj3BrMxTJVu9LopA--&_l=pMHn9vNCOBi05LKC_PwHFQ--&ref=fab6e824-24af-4177-b599-75ec8406cf5f&selmitem=All+Categories";
 		}
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
@@ -164,7 +200,7 @@ class Flipkart extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

@@ -9,23 +9,61 @@ class Tradus extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.tradus.com/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::BOOKS){
 			return "http://www.tradus.com/search?query=$query&cat=357";
-		}else if($category == Category::CAMERA){
-			return "http://www.tradus.com/search?query=$query&cat=7666";
 		}else if($category == Category::MOBILE){
 			return "http://www.tradus.com/search?query=$query&cat=7844";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.tradus.com/search?query=$query&cat=10465";
 		}else if($category == Category::CAMERA){
-			return "http://www.tradus.com/search?query=$query&cat=10305"; //digital camera
-			return "http://www.tradus.com/search?query=$query&cat=7671"; //camcorder
+
+			if($subcat == Category::NOT_SURE){
+				return "http://www.tradus.com/search?query=$query&cat=10305";
+			}else if($subcat == Category::CAM_DIGITAL_CAMERA){
+				return "http://www.tradus.com/search?query=$query&cat=7668";
+			}else if($subcat == Category::CAM_DIGITAL_SLR){
+				return "http://www.tradus.com/search?query=$query&cat=7670";
+			}else if($subcat == Category::CAM_CAMCORDER){
+				return "http://www.tradus.com/search?query=$query&cat=7671";
+			}else if($subcat == Category::CAM_MIRRORLESS){
+				return "http://www.tradus.com/search?query=$query&cat=7668";
+			}else{
+				return '';
+			}
+
+
+
+
 		}else if($category == Category::CAMERA_ACC){
-			return "http://www.tradus.com/search?query=$query&cat=7667"; // acc
-			return "http://www.tradus.com/search?query=$query&cat=8101"; // filters
-			return "http://www.tradus.com/search?query=$query&cat=8108"; // lens
-			
+			if($subcat == Category::NOT_SURE){
+				return "http://www.tradus.com/search?query=$query&cat=7667"; // acc
+			}else if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
+				return "http://www.tradus.com/search?query=$query&cat=8106"; // acc
+			}else if($subcat == Category::CAM_ACC_BAGS){
+				return "http://www.tradus.com/search?query=$query&cat=8099"; // acc
+			}else if($subcat == Category::CAM_ACC_BATTERY){
+				return "http://www.tradus.com/search?query=$query&cat=8106"; // acc
+			}else if($subcat == Category::CAM_ACC_FLASH_LIGHTS){
+				return "http://www.tradus.com/search?query=$query&cat=8104"; // acc
+			}else if($subcat == Category::CAM_ACC_LENSEFILTER){
+				return "http://www.tradus.com/search?query=$query&cat=8101"; // filters
+			}else if($subcat == Category::CAM_ACC_LENSES){
+				return "http://www.tradus.com/search?query=$query&cat=8108"; // lens
+			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
+				return "http://www.tradus.com/search?query=$query&cat=8100"; // lens
+			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
+				return ""; //acc
+			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){
+				return '';
+			}else if($subcat == Category::CAM_ACC_TRIPODS){
+				return "http://www.tradus.com/search?query=$query&cat=8102"; // lens
+			}else{
+				return '';
+			}
+
+
+
 		}else{
 			return "http://www.tradus.com/search?query=".$query;
 		}
@@ -33,7 +71,7 @@ class Tradus extends Parsing{
 	public function getLogo(){
 		return "http://www.tradus.com/sites/all/themes/basic/images/ci_images/tradus_logo/tradus_new_logo.jpg";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat=false){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		$ele = pq('#search-result-main-heading')->children('h1');
@@ -82,7 +120,7 @@ class Tradus extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

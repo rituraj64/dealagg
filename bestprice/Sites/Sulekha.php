@@ -12,12 +12,12 @@ class Sulekha extends Parsing{
 	public function getLogo(){
 		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/sulekha.png';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		$query2 = urldecode($query);
 		$query2 = preg_replace("![^a-z0-9]+!i", "-", $query2);
 		return "http://deals.sulekha.com/".$query2."_search?q=".$query;
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 
 		//this redirects to category page many times so write code for that as well.
 
@@ -61,7 +61,7 @@ class Sulekha extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

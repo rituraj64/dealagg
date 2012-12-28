@@ -9,13 +9,13 @@ class Indianbooks extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.indianbooks.co.in/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat){
 		return "http://www.indianbooks.co.in/bookmart/?subcats=Y&status=A&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=$query&dispatch=products.search";
 	}
 	public function getLogo(){
 		return "http://www.indianbooks.co.in/bookmart/skins/basic/customer/images/indianbooks3.gif";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat=false){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		if(sizeof(pq('.product-container'))){
@@ -53,7 +53,7 @@ class Indianbooks extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

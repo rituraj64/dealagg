@@ -16,14 +16,24 @@ function hideError() {
 }
 var timeout = false;
 var starttime = 0;
-function findPrice(site,cache) {
-	
-	if(cache === undefined){
+function closeModel(subcat) {
+	console.log(subcat + 'closeModel');
+	$('#subcategory').val(subcat);
+	$('#subcategory_model').modal('toggle');
+	$('.modal-backdrop').remove();
+	findPrice("",1,false);
+}
+function findPrice(site, cache,changeSubCat) {
+
+	if (cache === undefined) {
 		cache = 1;
 	}
-	
+	if(changeSubCat == undefined){
+		changeSubCat = true;
+	}
+
 	$('.jumbotron').children('h1').remove();
-	
+
 	if ($('#category').val() == -1) {
 		$('#error_msg').find('span').html('Select a category for accurate results!');
 		$('#error_msg').show();
@@ -36,10 +46,27 @@ function findPrice(site,cache) {
 		setTimeout('hideError()', 2000);
 		return;
 	}
+	
+	console.log(site+'xx');
+	
 	var query = $('#q').val();
 	var category = $('#category').val();
+	var subcat = $('#subcategory').val();
+	console.log(subcat + "find Price Start");
+	if ($('#category_data').children('#' + category + "_sub").length > 0) {
+		if (subcat * 1 <= 0) {
+			var html2 = '';
+			$('#category_data').children('#' + category + "_sub").children().each(function() {
+				html2 += '<li><a tabindex="-1" href="#" onclick="closeModel(\'' + $(this).attr('id') + '\');return false;">' + $(this).val() + '</a></li>';
+			});
+			$('#subcat_dropdown_content').html(html2);
+			//$('#dropdown-sub').dropdown('toggle');
+			$('#subcategory_model').modal('show');
+			return;
+		}
+	}
 	if (site && site.length > 0) {
-		var url = 'find.php?q=' + query + '&cat=' + category + "&site=" + site + "&cache="+cache;
+		var url = 'find.php?q=' + query + '&cat=' + category + "&site=" + site + "&cache=" + cache + "&subcat=" + subcat;
 	} else {
 		$('#loading').show();
 		$('#results').hide();
@@ -52,8 +79,12 @@ function findPrice(site,cache) {
 		$('#summary').find('#time_taken').html('');
 		$('#summary').find('#time').html('');
 		$('#summary').hide();
+		if(changeSubCat == 1){
+			console.log(1 + 'Find Price Else');
+			$('#subcategory').val('-1');
+		}
 		starttime = new Date().getTime();
-		var url = 'find.php?q=' + query + '&cat=' + category+ "&cache="+cache;
+		var url = 'find.php?q=' + query + '&cat=' + category + "&cache=" + cache + "&subcat=" + subcat;
 	}
 	$.getJSON(url, function(data) {
 		$('#loading').hide();
@@ -66,21 +97,21 @@ function findPrice(site,cache) {
 			$('.progress').children('.bar').first().attr('style', 'width: ' + per + '%');
 			$('#results').find('#' + site).next('hr').remove();
 			$('#results').find('#' + site).remove();
-			
+
 			var max_time = $('#summary').find('#max_time').val();
-			if(data.result_number_time > max_time){
+			if (data.result_number_time > max_time) {
 				max_time = data.result_number_time;
 				$('#summary').find('#time').html(data.result_time);
 			}
-			
+
 			if (psize == pcur) {
 				$('.progress').hide();
 				$('.progress').children('.bar').first().attr('style', 'width:0%');
 				$('#progress_total').val(0);
 				$('#progress_done').val(0);
-				
+
 				var t = new Date().getTime() - starttime;
-				t = Math.ceil(t/1000);
+				t = Math.ceil(t / 1000);
 				$('#summary').find('#time_taken').html(t + "sec");
 				$('#summary').show();
 			}
@@ -112,14 +143,13 @@ function findPrice(site,cache) {
 				if (data.data[i].offer) {
 					offer = data.data[i].offer;
 				}
-				
 
 				if ($('#results').find('#' + website).length > 0) {
 					var html = $('#smallItemTemplate').html();
 					html = html.replace(/{website}/g, website);
 					html = html.replace(/{website_url}/g, logo);
 					html = html.replace(/{item_url}/g, url);
-					
+
 					html = html.replace(/{item_img_load_id}/g, image);
 					html = html.replace(/{item_image}/g, lazyimage);
 					html = html.replace(/{item_name}/g, name);
@@ -163,7 +193,7 @@ function findPrice(site,cache) {
 					html = html.replace(/{website_search_url}/g, data.data[i].searchurl);
 					html = html.replace(/{item_offer_org}/g, offer);
 					html = html.replace(/{item_shipping_org}/g, shipping);
-					
+
 					var ship_len = 120;
 					if (offer.length != 0) {
 						ship_len = 60;
@@ -190,17 +220,17 @@ function findPrice(site,cache) {
 
 					if (offer.length == 0) {
 						html = html.replace(/{offer_display}/g, 'display:none');
-					}else{
+					} else {
 						html = html.replace(/{offer_display}/g, '');
 					}
 					if (author.length == 0) {
 						html = html.replace(/{author_display}/g, 'display:none');
-					}else{
+					} else {
 						html = html.replace(/{author_display}/g, '');
 					}
 					if (shipping.length == 0) {
 						html = html.replace(/{shipping_display}/g, 'display:none');
-					}else{
+					} else {
 						html = html.replace(/{shipping_display}/g, '');
 					}
 					if (stock == 0 || stock.length == 0) {
@@ -216,13 +246,13 @@ function findPrice(site,cache) {
 						html = html.replace(/{out_stock_hide}/g, '');
 						html = html.replace(/{no_stock_hide}/g, 'display:none');
 					}
-					
+
 					var websites_actual = 0;
 					var last_actu_website = false;
-					$('#results').find('.website').each(function(){
+					$('#results').find('.website').each(function() {
 						if ($(this).hasClass('website_loading')) {
 
-						}else{
+						} else {
 							last_actu_website = $(this);
 							websites_actual++;
 						}
@@ -250,9 +280,9 @@ function findPrice(site,cache) {
 						});
 						if (!done) {
 							html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
-							if(last_actu_website){
+							if (last_actu_website) {
 								last_actu_website.after(html);
-							}else{
+							} else {
 								websites.last().after(html);
 							}
 						}
@@ -272,19 +302,19 @@ function findPrice(site,cache) {
 				html = html.replace(/{website_url}/g, logo);
 				var websites_actual = 0;
 				var last_actu_website = false;
-				$('#results').find('.website').each(function(){
+				$('#results').find('.website').each(function() {
 					if ($(this).hasClass('website_loading')) {
 
-					}else{
+					} else {
 						last_actu_website = $(this);
 						websites_actual++;
 					}
 				});
 				if (websites_actual > 0) {
 					html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
-					if(last_actu_website){
+					if (last_actu_website) {
 						last_actu_website.after(html);
-					}else{
+					} else {
 						websites.last().after(html);
 					}
 				} else {
@@ -304,7 +334,7 @@ function findPrice(site,cache) {
 					html = html.replace(/{website}/g, website);
 					html = html.replace(/{website_search_url}/g, searchurl);
 					html = html.replace(/{website_url}/g, logo);
-					findPrice(website,cache);
+					findPrice(website, cache);
 					var websites = $('#results').find('.website');
 					if (websites.length > 0) {
 						html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
@@ -316,9 +346,9 @@ function findPrice(site,cache) {
 				$('#progress_total').val(size);
 				$('#progress_done').val(0);
 				$('.progress').show();
-			}else{
+			} else {
 				var t = new Date().getTime() - starttime;
-				t = Math.ceil(t/1000);
+				t = Math.ceil(t / 1000);
 				$('#summary').find('#time_taken').html(t + "sec");
 				$('#summary').find('#time').html(data.result_time);
 				$('#summary').show();
@@ -344,29 +374,29 @@ function findPrice(site,cache) {
 				}
 			}
 		}
-		
+
 		$('.apply_tooltip').tooltip();
 		$('.popup').popover();
 		$('#results').show();
-		setTimeout('loadSmallImages();',2000);
+		setTimeout('loadSmallImages();', 2000);
 	});
 }
 
-function loadSmallImages(){
+function loadSmallImages() {
 	var i = 0;
-	$('.lazy_load_img').each(function(){
-		$(this).attr('src',$(this).siblings('input#lazy').val());
-		$(this).attr('width','50px');
-		$(this).attr('height','50px');
-		$(this).attr('style',$(this).attr('style')+"width: 50px;height: 50px;")
+	$('.lazy_load_img').each(function() {
+		$(this).attr('src', $(this).siblings('input#lazy').val());
+		$(this).attr('width', '50px');
+		$(this).attr('height', '50px');
+		$(this).attr('style', $(this).attr('style') + "width: 50px;height: 50px;")
 		$(this).removeClass('lazy_load_img');
 		i++;
-		if(i > 10){
-			setTimeout('loadSmallImages();',2000);
+		if (i > 10) {
+			setTimeout('loadSmallImages();', 2000);
 			return false;
 		}
 	});
 }
-function copyItem(website,id1,id2){
-	
+function copyItem(website, id1, id2) {
+
 }

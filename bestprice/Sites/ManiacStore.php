@@ -9,7 +9,7 @@ class ManiacStore extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.maniacstore.com';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
 			return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=bsbstore(text)=Mobile Store,alltypes(text)=Mobiles and Tablets,product type(text)=Mobile Phones";
 		}else{
@@ -19,7 +19,7 @@ class ManiacStore extends Parsing{
 	public function getLogo(){
 		return "http://www.yebhi.com/template/yebhi/img/ChrisYebhiLogo.jpg";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
@@ -60,7 +60,7 @@ class ManiacStore extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

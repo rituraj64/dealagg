@@ -9,13 +9,13 @@ class Amegabooks extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.amegabooks.com/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		return "http://www.amegabooks.com/search/ALL/".$query;
 	}
 	public function getLogo(){
 		return "http://www.amegabooks.com/images/logo.png";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		foreach(pq('form') as $div){
@@ -51,7 +51,7 @@ class Amegabooks extends Parsing{
 			}
 		}
 		$data = $this->cleanData($data, $query);
-		$data = $this->bestMatchData($data, $query,$category);
+		$data = $this->bestMatchData($data, $query,$category,$subcat);
 		return $data;
 	}
 }

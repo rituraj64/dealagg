@@ -9,7 +9,7 @@ class Indiaplaza extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.indiaplaza.com';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::BOOKS){
 			return "http://www.indiaplaza.com/searchproducts.aspx?sn=books&q=".$query;
 		}
@@ -17,7 +17,7 @@ class Indiaplaza extends Parsing{
 	public function getLogo(){
 		return "http://images.indiaplaza.com/indiaplazaimages/logo.png";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat=false){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		if(sizeof(pq('table#ContentPlaceHolder1_repBrowseLst'))){
@@ -61,7 +61,7 @@ class Indiaplaza extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

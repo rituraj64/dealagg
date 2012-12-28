@@ -8,7 +8,7 @@ class TheMobileStore extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.themobilestore.in';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
 			return "http://www.themobilestore.in/home-mobiles-&-tablet/search?q=".$query;
 		}else if($category == Category::MOBILE_ACC){
@@ -21,7 +21,7 @@ class TheMobileStore extends Parsing{
 	public function getLogo(){
 		return "http://a02-tata.buildabazaar.com/img/lookandfeel/31103/2e19ed541909556e27f03_999x350x.png.999xx.png";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		foreach(pq('ul#search-result-items')->children('li') as $div){
@@ -68,7 +68,7 @@ class TheMobileStore extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

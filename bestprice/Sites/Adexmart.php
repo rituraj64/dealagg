@@ -9,13 +9,13 @@ class Adexmart extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://adexmart.com';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		return "http://adexmart.com/search?search_query=$query&n=10&orderby=position&orderway=desc&submit_search=Search";
 	}
 	public function getLogo(){
 		return "http://adexmart.com/img/logo.jpg";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
@@ -62,7 +62,7 @@ class Adexmart extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

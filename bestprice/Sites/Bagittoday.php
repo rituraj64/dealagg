@@ -9,13 +9,13 @@ class Bagittoday extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.bagittoday.com/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		return "http://www.bagittoday.com/searchForProductsFromWeb.htm?param=searchForProducts&searchStr=$query";
 	}
 	public function getLogo(){
 		return 'http://images.bagittoday.intoday.in/images/itbc/eventv1/images/logo.jpg';
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
@@ -54,7 +54,7 @@ class Bagittoday extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

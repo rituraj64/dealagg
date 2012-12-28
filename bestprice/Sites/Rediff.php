@@ -9,18 +9,52 @@ class Rediff extends Parsing{
 	public function getWebsiteUrl(){
 		return 'rediff.com';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::BOOKS){
 			return "http://books.rediff.com/search/$query?&output=xml&src=search_$query";
 		}else if($category == Category::MOBILE){
 			$query = urldecode($query);
 			return "http://shopping.rediff.com/productv2/$query/cat-mobile phones & accessories|mobile accessories";
 		}else if($category == Category::CAMERA){
-			return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|digital cameras";
-			return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|digital slr cameras";
-			return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|camcorders";
+			if($subcat == Category::NOT_SURE){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|digital cameras";
+			}else if($subcat == Category::CAM_DIGITAL_CAMERA){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|digital cameras";
+			}else if($subcat == Category::CAM_DIGITAL_SLR){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|digital slr cameras";
+			}else if($subcat == Category::CAM_CAMCORDER){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|camcorders";
+			}else if($subcat == Category::CAM_MIRRORLESS){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|digital cameras";
+			}else{
+				return '';
+			}
 		}else if($category == Category::CAMERA_ACC){
-			return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|camera accessories";
+			if($subcat == Category::NOT_SURE){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|camera accessories";
+			}else if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras+%26amp%3B+optics%7Ccamera+accessories%7Cbatteries+%26amp%3B+chargers?ref_src=topnav_Cameras";
+			}else if($subcat == Category::CAM_ACC_BAGS){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras+%26amp%3B+optics%7Ccamera+accessories%7Ccamera+bags?ref_src=topnav_Cameras";
+			}else if($subcat == Category::CAM_ACC_BATTERY){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras+%26amp%3B+optics%7Ccamera+accessories%7Cbatteries+%26amp%3B+chargers?ref_src=topnav_Cameras";
+			}else if($subcat == Category::CAM_ACC_FLASH_LIGHTS){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras+%26amp%3B+optics%7Ccamera+accessories%7Cother+camera+accessories?ref_src=topnav_Cameras";
+			}else if($subcat == Category::CAM_ACC_LENSEFILTER){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras+%26amp%3B+optics%7Ccamera+accessories%7Ccamera+lenses?ref_src=topnav_Cameras";
+			}else if($subcat == Category::CAM_ACC_LENSES){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras+%26amp%3B+optics%7Ccamera+accessories%7Ccamera+lenses?ref_src=topnav_Cameras";
+			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras+%26amp%3B+optics%7Ccamera+accessories%7Cmemory+cards?ref_src=topnav_Cameras";
+			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras+%26amp%3B+optics%7Ccamera+accessories%7Cother+camera+accessories?ref_src=topnav_Cameras";
+			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras+%26amp%3B+optics%7Ccamera+accessories%7Cother+camera+accessories?ref_src=topnav_Cameras";
+			}else if($subcat == Category::CAM_ACC_TRIPODS){
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras+%26amp%3B+optics%7Ccamera+accessories%7Ctripods?ref_src=topnav_Cameras";
+			}else{
+				return '';
+			}
 		}else{
 			return "http://shopping.rediff.com/shopping/index.html#!".urldecode($query);
 		}
@@ -28,7 +62,7 @@ class Rediff extends Parsing{
 	public function getLogo(){
 		return "http://books.rediff.com/booksrediff/pix/rediff.png";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 		if($category == Category::BOOKS){
 			$data = array();
 
@@ -101,7 +135,7 @@ class Rediff extends Parsing{
 				$data2[] = $row;
 			}
 			$data2 = $this->cleanData($data2, $query);
-			$data2 = $this->bestMatchData($data2, $query,$category);
+			$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 			return $data2;
 		}
 	}

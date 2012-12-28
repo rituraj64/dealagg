@@ -3,13 +3,13 @@ class Storeji extends Parsing{
 	public $_code = 'Storeji';
 
 	public function getAllowedCategory(){
-		return array(Category::HOME_APPLIANCE,Category::TV,Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::CAMERA,Category::GAMING);
+		return array(Category::HOME_APPLIANCE,Category::TV,Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::GAMING);
 	}
 
 	public function getWebsiteUrl(){
 		return 'http://www.ezoneonline.in/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::MOBILE || $category == Category::MOBILE_ACC){
 			return "http://www.storeji.com/catalogsearch/result/index/?cat=19&q=$query";
 		}
@@ -18,7 +18,7 @@ class Storeji extends Parsing{
 	public function getLogo(){
 		return 'http://www.storeji.com/skin/frontend/default/ma_camerastore/images/logo.png';
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat=false){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
@@ -62,7 +62,7 @@ class Storeji extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

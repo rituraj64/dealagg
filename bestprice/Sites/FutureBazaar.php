@@ -9,26 +9,61 @@ class FutureBazaar extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.futurebazaar.com';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
 			return "http://www.futurebazaar.com/search/?q=$query&c=2459&NormalSearch=enabled";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.futurebazaar.com/search/?q=$query&c=2464&NormalSearch=enabled";
 		}else if($category == Category::CAMERA){
-			return "http://www.futurebazaar.com/search/?q=$query&c=3172&NormalSearch=enabled"; //cam corder
-			return "http://www.futurebazaar.com/search/?q=$query&c=2487&NormalSearch=enabled"; //digtal camera
+			if($subcat == Category::NOT_SURE){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2486";
+			}else if($subcat == Category::CAM_DIGITAL_CAMERA){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2487&NormalSearch=enabled"; //digtal camera
+			}else if($subcat == Category::CAM_DIGITAL_SLR){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2488";
+			}else if($subcat == Category::CAM_MIRRORLESS){
+				return '';
+			}else if($subcat == Category::CAM_CAMCORDER){
+				return "http://www.futurebazaar.com/search/?q=$query&c=3172&NormalSearch=enabled"; //cam corder
+			}else{
+				return '';
+			}
+
+
 		}else if($category == Category::CAMERA_ACC){
-			return "http://www.futurebazaar.com/search/?q=$query&c=2750&NormalSearch=enabled"; //lenses
-			return "http://www.futurebazaar.com/search/?q=$query&c=2749&NormalSearch=enabled"; //tripod and monopods
-			return "http://www.futurebazaar.com/search/?q=$query&c=2490&NormalSearch=enabled"; //camera acc
-			return "http://www.futurebazaar.com/search/?q=$query&c=3132&NormalSearch=enabled"; //lense acc
+			if($subcat == Category::NOT_SURE){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2490&NormalSearch=enabled"; //camera acc
+			}else if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2490&NormalSearch=enabled"; //camera acc
+			}else if($subcat == Category::CAM_ACC_BAGS){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2751&NormalSearch=enabled"; //bags
+			}else if($subcat == Category::CAM_ACC_BATTERY){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2490&NormalSearch=enabled"; //camera acc
+			}else if($subcat == Category::CAM_ACC_FLASH_LIGHTS){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2490&NormalSearch=enabled"; //camera acc
+			}else if($subcat == Category::CAM_ACC_LENSEFILTER){
+				return "http://www.futurebazaar.com/search/?q=$query&c=3132&NormalSearch=enabled"; //lense acc
+			}else if($subcat == Category::CAM_ACC_LENSES){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2750&NormalSearch=enabled"; //lenses
+			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2490&NormalSearch=enabled"; //camera acc
+			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2490&NormalSearch=enabled"; //camera acc
+			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2490&NormalSearch=enabled"; //camera acc
+			}else if($subcat == Category::CAM_ACC_TRIPODS){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2749&NormalSearch=enabled"; //tripod and monopods
+			}else{
+				return '';
+			}
+				
 		}
 		return "http://www.futurebazaar.com/search/?q=$query&c=0&NormalSearch=enabled";
 	}
 	public function getLogo(){
 		return 'http://www.futurebazaar.com/media/images/futurebazaar-logo-xmas.png';
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
@@ -71,7 +106,7 @@ class FutureBazaar extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

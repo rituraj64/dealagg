@@ -9,21 +9,28 @@ class Gud2Buy extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://gud2buy.com/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::MOBILE){
 			return "http://gud2buy.com/mobiles-and-accessories/mobiles&filter_name=$query&sort=stock_status_id+desc";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://gud2buy.com/mobiles-and-accessories/accessories&filter_name=$query&sort=stock_status_id+desc";
 		}else if($category == Category::CAMERA){
-			return "http://gud2buy.com/cameras/digital-camera&filter_name=$query&sort=stock_status_id+desc";
-			return "http://gud2buy.com/cameras/camcorder&filter_name=$query&sort=stock_status_id+desc";
+			if($subcat == Category::NOT_SURE){
+				return '';
+			}else if($category == Category::CAM_DIGITAL_CAMERA || $category == Category::CAM_DIGITAL_SLR){
+				return "http://gud2buy.com/cameras/digital-camera&filter_name=$query&sort=stock_status_id+desc";
+			}else if($category == Category::CAM_CAMCORDER){
+				return "http://gud2buy.com/cameras/camcorder&filter_name=$query&sort=stock_status_id+desc";
+			}else {
+				return '';
+			}
 		}
 		return "http://gud2buy.com/search&sort=stock_status_id+desc&filter_name=$query&filters=";
 	}
 	public function getLogo(){
 		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/guy2buy.png';
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat=false){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
@@ -67,7 +74,7 @@ class Gud2Buy extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

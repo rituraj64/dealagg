@@ -9,22 +9,33 @@ class ShopByChoice extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.shopbychoice.com/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat){
 		$query = urldecode($query);
 		$query = trim(preg_replace("![^0-9a-z]+!i", "-", $query));
 		if($category == Category::MOBILE){
 			return "http://www.shopbychoice.com/search/result+category-smartphones+searchtext-$query";
 		}else if($category == Category::CAMERA){
-			return "http://www.shopbychoice.com/search/result+category-dslr+searchtext-$query"; //dslr
-			return "http://www.shopbychoice.com/search/result+category-compact-cameras+searchtext-$query"; //digital
-			return "http://www.shopbychoice.com/search/result+category-camcorders+searchtext-sony-$query"; //cam
+			
+			if($subcat == Category::NOT_SURE){
+				return "http://www.shopbychoice.com/search/result+category-compact-cameras+searchtext-$query"; //digital
+			}else if($subcat == Category::CAM_DIGITAL_CAMERA){
+				return "http://www.shopbychoice.com/search/result+category-compact-cameras+searchtext-$query"; //digital
+			}else if($subcat == Category::CAM_DIGITAL_SLR){
+				return "http://www.shopbychoice.com/search/result+category-dslr+searchtext-$query"; //dslr
+			}else if($subcat == Category::CAM_CAMCORDER){
+				return "http://www.shopbychoice.com/search/result+category-camcorders+searchtext-sony-$query"; //cam
+			}else if($subcat == Category::CAM_MIRRORLESS){
+				return "http://www.shopbychoice.com/search/result+category-compact-cameras+searchtext-$query"; //digital
+			}else{
+				return '';
+			}
 		}
 		return "http://www.shopbychoice.com/search/result+searchtext-".$query;
 	}
 	public function getLogo(){
 		return 'http://www.shopbychoice.com/images/logo.png';
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat=false){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
@@ -72,7 +83,7 @@ class ShopByChoice extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

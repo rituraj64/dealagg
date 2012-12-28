@@ -12,10 +12,10 @@ class Croma extends Parsing{
 	public function getLogo(){
 		return 'http://www.cromaretail.com/images/logo.jpg';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		return "http://www.cromaretail.com/productsearch.aspx?txtSearch=$query&x=0&y=0";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		foreach(pq('ul.grid_view li') as $div){
@@ -56,7 +56,7 @@ class Croma extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2,$query);
-		$data2 = $this->bestMatchData($data2,$query,$category);
+		$data2 = $this->bestMatchData($data2,$query,$category,$subcat);
 		return $data2;
 	}
 }

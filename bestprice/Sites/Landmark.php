@@ -9,7 +9,7 @@ class Landmark extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.landmarkonthenet.com/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::BOOKS){
 			return "http://www.landmarkonthenet.com/books/search/?q=".$query;
 		}else if($category == Category::MOBILE_ACC){
@@ -17,7 +17,20 @@ class Landmark extends Parsing{
 		}else if($category == Category::MOBILE){
 			return "http://www.landmarkonthenet.com/mobiles/search/?q=".$query;
 		}else if($category == Category::CAMERA){
-			return "http://www.landmarkonthenet.com/cameras/search/?q=$query";
+			if($subcat == Category::NOT_SURE){
+				return "http://www.landmarkonthenet.com/cameras/search/?q=$query";
+			}else if($subcat == Category::CAM_DIGITAL_CAMERA){
+				return "http://www.landmarkonthenet.com/cameras/search/?q=sony&type=Point+%26+Shoot";
+			}else if($subcat == Category::CAM_DIGITAL_SLR){
+				return "http://www.landmarkonthenet.com/cameras/search/?q=sony&type=D-SLR";
+			}else if($subcat == Category::CAM_MIRRORLESS){
+				return "http://www.landmarkonthenet.com/cameras/search/?q=$query";
+			}else if($subcat == Category::CAM_CAMCORDER){
+				return "http://www.landmarkonthenet.com/cameras/search/?q=sony&type=Camcorder";
+
+			}else{
+				return '';
+			}
 		}else if($category == Category::CAMERA_ACC){
 			return "http://www.landmarkonthenet.com/camera-accessories/search/?q=$query";
 		}
@@ -26,7 +39,7 @@ class Landmark extends Parsing{
 	public function getLogo(){
 		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/landmark.png';
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat=false){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 
@@ -81,7 +94,7 @@ class Landmark extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

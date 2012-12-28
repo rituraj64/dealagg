@@ -9,13 +9,13 @@ class Simplebooks extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.simplybooks.in/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		return "http://www.simplybooks.in/search.php?search_keyword=$query&x=0&y=0";
 	}
 	public function getLogo(){
 		return "http://www.simplybooks.in/images-new/logo.png";
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		if(sizeof(pq('.bookbox_tube'))){
@@ -63,7 +63,7 @@ class Simplebooks extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

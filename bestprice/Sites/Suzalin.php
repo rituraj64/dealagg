@@ -9,7 +9,7 @@ class Suzalin extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.suzalin.com/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
 			return "http://www.suzalin.com/Search/1_2_$query";
 		}else if($category == Category::CAMERA){
@@ -20,7 +20,7 @@ class Suzalin extends Parsing{
 	public function getLogo(){
 		return 'http://www.suzalin.com/images/suzalin-logo.gif';
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
@@ -60,7 +60,7 @@ class Suzalin extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

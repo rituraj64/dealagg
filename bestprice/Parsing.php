@@ -26,6 +26,10 @@ class Parsing{
 		// buytheprice.com, process product page to get details about seller etc
 		// check if need to search ebay
 		//shopclues, need to parse product page to get coupon code and special offer
+
+
+		//for snapdeal need to think something about brands pages, if you search sony it goes to its brand page and not that perticular category
+
 		return array('Flipkart','Snapdeal','ShopClues','Tradus','Indiatimes','Zoomin','Saholic','Landmark','Infibeam','Homeshop','Croma','Crossword','EBay','Rediff','uRead','Bookadda','Justbooks','Letskart','Amegabooks','Simplebooks','Indianbooks','Yebhi','Greendust','Adexmart','Naaptol','BuyThePrice','FutureBazaar','CostPrize','Fosila','MirchiMart','Seventymm','TheMobileStore','Sulekha','TimTara','Bagittoday','Storeji','Letshop','eDabba','Royalimages','Suzalin','Giffiks');
 	}
 	public function allowCategory($cat){
@@ -40,15 +44,19 @@ class Parsing{
 	public function getResultTime(){
 		return $this->_resultTime;
 	}
-	public function getPriceData($query,$category = false,$delay = true,$cache = 1){
-		$url = $this->getSearchURL($query,$category);
+	public function getPriceData($query,$category = false,$subcat = 0,$delay = true,$cache = 1){
+		$url = $this->getSearchURL($query,$category,$subcat);
+		if(empty($url)){
+			return array(); //no result
+		}
+		
 		$website = $this->getCode();
 		if($cache == 0){
-			$this->deleteCachedData($website, $query, $category,$url);
+			$this->deleteCachedData($website, $query, $category,$subcat,$url);
 		}
-		if($this->hasCachedData($website, $query, $category,$url)){
-			$data = $this->getCachedData($website, $query,$category, $url);
-			$this->_resultTime = $this->getCachedDataTime($website, $query, $category, $url);
+		if($this->hasCachedData($website, $query, $category,$subcat,$url)){
+			$data = $this->getCachedData($website, $query,$category,$subcat, $url);
+			$this->_resultTime = $this->getCachedDataTime($website, $query, $category,$subcat, $url);
 			//$data = $this->getData($data,$query,$category);
 			//return $data;
 			return json_decode($data,true);
@@ -59,24 +67,24 @@ class Parsing{
 
 				//$this->cacheData($website, $query,$category, $url, $html);
 
-				$data = $this->getData($html,$query,$category);
+				$data = $this->getData($html,$query,$category,$subcat);
 				$this->_resultTime = time();
-				$this->cacheData($website, $query,$category, $url, json_encode($data));
+				$this->cacheData($website, $query,$category,$subcat, $url, json_encode($data));
 				return $data;
 			}else{
 				return false;
 			}
 		}
 	}
-	public function deleteCachedData($website, $query, $category,$url){
-		$cacheKey = $this->getCacheKey($website, $query,$category, $url);
+	public function deleteCachedData($website, $query, $category,$subcat,$url){
+		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
 		$filename = 'cache/'.$cacheKey;
 		if(file_exists($filename)){
 			unlink($filename);
 		}
 	}
-	public function getCachedData($website,$query,$category,$url){
-		$cacheKey = $this->getCacheKey($website, $query,$category, $url);
+	public function getCachedData($website,$query,$category,$subcat,$url){
+		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
 		$filename = 'cache/'.$cacheKey;
 		$content = '';
 		if(file_exists($filename)){
@@ -84,8 +92,8 @@ class Parsing{
 		}
 		return $content;
 	}
-	public function getCachedDataTime($website,$query,$category,$url){
-		$cacheKey = $this->getCacheKey($website, $query,$category, $url);
+	public function getCachedDataTime($website,$query,$category,$subcat,$url){
+		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
 		$filename = 'cache/'.$cacheKey;
 		if(file_exists($filename)){
 			$time = filemtime($filename);
@@ -93,8 +101,8 @@ class Parsing{
 		}
 		return false;
 	}
-	public function hasCachedData($website,$query,$category,$url){
-		$cacheKey = $this->getCacheKey($website, $query,$category, $url);
+	public function hasCachedData($website,$query,$category,$subcat,$url){
+		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
 		$filename = 'cache/'.$cacheKey;
 		if(file_exists($filename)){
 			$time = filemtime($filename);
@@ -109,19 +117,21 @@ class Parsing{
 		return false;
 	}
 
-	public function cacheData($website,$query,$category,$url,$html){
-		$cacheKey = $this->getCacheKey($website, $query,$category, $url);
+	public function cacheData($website,$query,$category,$subcat,$url,$html){
+		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
 		file_put_contents('cache/'.$cacheKey,$html);
 	}
-	private function getCacheKey($website,$query,$category,$url){
+	private function getCacheKey($website,$query,$category,$subcat,$url){
 		$query2 = urldecode($query);
 		$query2 = preg_replace("![^a-z0-9]+!i", "-", $query2);
 
 		$category = urldecode($category);
 		$category = preg_replace("![^a-z0-9]+!i", "-", $category);
 
+		$subcat  = urldecode($subcat );
+		$subcat  = preg_replace("![^a-z0-9]+!i", "-", $subcat );
 
-		$cacheKey = $website.'-'.$query2.'-'.$category.'-'.md5($url);
+		$cacheKey = $website.'-'.$query2.'-'.$category.'-'.$subcat.'-'.md5($url);
 		return $cacheKey;
 	}
 	public function cleanData($data,$query){
@@ -152,7 +162,7 @@ class Parsing{
 		}
 		return $data2;
 	}
-	public function bestMatchData($data,$query,$category){
+	public function bestMatchData($data,$query,$category,$subcat){
 		$data2 = array();
 		$i = 0;
 		foreach($data as $row){

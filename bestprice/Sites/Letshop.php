@@ -9,22 +9,38 @@ class Letshop extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://letsshop.in/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::MOBILE){
 			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=4";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=12";
 		}else if($category == Category::CAMERA){
-			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=27";
+			if($subcat == Category::NOT_SURE){
+				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=27";
+			}else if($subcat == Category::CAM_DIGITAL_CAMERA){
+				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=28";
+			}else if($subcat == Category::CAM_DIGITAL_SLR){
+				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=29";
+			}else if($subcat == Category::CAM_MIRRORLESS){
+				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=76";
+			}else if($subcat == Category::CAM_CAMCORDER){
+				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=33";
+			}else{
+				return '';
+			}
 		}else if($category == Category::CAMERA_ACC){
-			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=34";
+			if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
+				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=34";
+			}else{
+				return '';
+			}
 		}
 		return "http://letsshop.in/catalogsearch/result/?q=$query";
 	}
 	public function getLogo(){
 		return 'http://letsshop.in/media/images/default/letsshop_1_1.png';
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat=false){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
@@ -73,7 +89,7 @@ class Letshop extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

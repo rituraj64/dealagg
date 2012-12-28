@@ -3,7 +3,7 @@ require_once 'Parsing.php';
 if(isset($_REQUEST['q'])){
 	$query = urlencode($_REQUEST['q']);
 	$query2 = urldecode($_REQUEST['q']);
-
+	$subcat = $_REQUEST['subcat'];
 
 	$cat = false;
 	if(isset($_REQUEST['cat'])){
@@ -31,25 +31,26 @@ if(isset($_REQUEST['q'])){
 		$sites = array($site);
 	}
 
+//	$sites = array('Flipkart');
 	foreach($sites as $site){
 		require_once 'Sites/'.$site.'.php';
 		$siteObj = new $site;
 		if($siteObj->allowCategory($cat)){
 			try{
-				$data1 = $siteObj->getPriceData($query,$cat,$delay,$cache);
+				$data1 = $siteObj->getPriceData($query,$cat,$subcat,$delay,$cache);
 				$resultTime = $siteObj->getResultTime();
 				if($resultTime > $max){
 					$max = $resultTime;
 				}
 				if(!$data1 && $delay){
-					$ajaxParseSite[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat),'logo'=>$siteObj->getLogo());
+					$ajaxParseSite[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat,$subcat),'logo'=>$siteObj->getLogo());
 				}else{
 					$data2 = array();
 					$count = 0;
 					foreach($data1 as $row){
 						$name = $row['name'];
 						$row['logo'] = $siteObj->getLogo();
-						$row['searchurl'] = $siteObj->getSearchURL($query,$cat);
+						$row['searchurl'] = $siteObj->getSearchURL($query,$cat,$subcat);
 							
 						$data2[] = $row;
 						$count++;
@@ -58,7 +59,7 @@ if(isset($_REQUEST['q'])){
 					//uasort($data2, 'priceSort');
 
 					if(empty($data2)){
-						$emptySites[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat),'logo'=>$siteObj->getLogo());
+						$emptySites[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat,$subcat),'logo'=>$siteObj->getLogo());
 					}else{
 						if(empty($data)){
 							$data = $data2;
@@ -68,7 +69,7 @@ if(isset($_REQUEST['q'])){
 					}
 				}
 			}catch(Exception $e){
-				$errorSites[] = array('site'=>$site,'message'=>$e->getMessage(),'searchurl'=>$siteObj->getSearchURL($query,$cat),'logo'=>$siteObj->getLogo());
+				$errorSites[] = array('site'=>$site,'message'=>$e->getMessage(),'searchurl'=>$siteObj->getSearchURL($query,$cat,$subcat),'logo'=>$siteObj->getLogo());
 			}
 		}
 	}

@@ -9,23 +9,54 @@ class eDabba extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.edabba.com/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
 			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5860&f[1]=im_taxonomy_catalog:5921";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5860&f[1]=im_taxonomy_catalog:5922";
 		}else if($category == Category::CAMERA){
-			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5917"; //digial camera & slr
-			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5918"; //camcorders
+			if($subcat == Category::NOT_SURE){
+				return "http://www.edabba.com/search/site/$query?f%5B0%5D=im_taxonomy_catalog%3A5861"; //all cam and acc
+			}else if($subcat == Category::CAM_DIGITAL_CAMERA || $subcat == Category::CAM_DIGITAL_SLR || $subcat == Category::CAM_MIRRORLESS){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5917"; //digial camera & slr
+			}else if($subcat == Category::CAM_CAMCORDER){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5918"; //camcorders
+			}else{
+				return '';
+			}
 		}else if($category == Category::CAMERA_ACC){
-			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5919";
+			if($subcat == Category::NOT_SURE){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5919"; //all acc
+			}else if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:6145"; //memory cards
+			}else if($subcat == Category::CAM_ACC_BAGS){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:6146"; //memory cards
+			}else if($subcat == Category::CAM_ACC_BATTERY){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:6155";
+			}else if($subcat == Category::CAM_ACC_FLASH_LIGHTS){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:6154";
+			}else if($subcat == Category::CAM_ACC_LENSEFILTER){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:6149";
+			}else if($subcat == Category::CAM_ACC_LENSES){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:6148";
+			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:6145";
+			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5919";
+			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:6153";
+			}else if($subcat == Category::CAM_ACC_TRIPODS){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5919";
+			}else{
+				return '';
+			}
 		}
 		return "http://www.edabba.com/search/site/$query";
 	}
 	public function getLogo(){
 		return 'http://d43w3023ueaau.cloudfront.net/sites/default/files/images/logo.png';
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
@@ -67,7 +98,7 @@ class eDabba extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

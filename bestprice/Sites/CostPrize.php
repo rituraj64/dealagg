@@ -9,7 +9,7 @@ class CostPrize extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.costprize.com/';
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
 		}
 		return "http://www.costprize.com/search_results.php?search_str=$query";
@@ -17,7 +17,7 @@ class CostPrize extends Parsing{
 	public function getLogo(){
 		return 'http://www.costprize.com/images/costprize_small.png';
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
@@ -63,7 +63,7 @@ class CostPrize extends Parsing{
 			$data2[] = $row;
 		}
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

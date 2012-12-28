@@ -12,7 +12,7 @@ class Homeshop extends Parsing{
 	public function getLogo(){
 		return "http://www.homeshop18.com/homeshop18/media/images/homeshop18_2011/header/hs18-logo.png";
 	}
-	public function getSearchURL($query,$category = false){
+	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::BOOKS){
 			return "http://www.homeshop18.com/$query/search:$query/categoryid:10000";
 		}else if($category == Category::MOBILE){
@@ -20,18 +20,48 @@ class Homeshop extends Parsing{
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.homeshop18.com/$query/accessories/categoryid:3032/search:$query/";
 		}else if($category == Category::CAMERA){
-			return "http://www.homeshop18.com/$query/camcorders/categoryid:3164/search:$query/";
-			return "http://www.homeshop18.com/sony/digital-cameras/categoryid:3178/search:sony/";
+			if($subcat == Category::NOT_SURE){
+				return "http://www.homeshop18.com/$query/digital-cameras/categoryid:3178/search:$query/";
+			}else if($subcat == Category::CAM_CAMCORDER){
+				return "http://www.homeshop18.com/$query/camcorders/categoryid:3164/search:$query/";
+			}else if($subcat == Category::CAM_DIGITAL_CAMERA){
+				return "http://www.homeshop18.com/$query/digital-cameras/categoryid:3178/search:$query/";
+			}else if($subcat == Category::CAM_DIGITAL_SLR){
+				return "http://www.homeshop18.com/$query/digital-cameras/categoryid:3188/search:$query/";
+			}else {
+				return '';
+			}
 		}else if($category == Category::CAMERA_ACC){
-			return "http://www.homeshop18.com/sony/accessories/categoryid:3170/search:sony/";
-			return "http://www.homeshop18.com/sony/memory-storage-media/categoryid:3192/search:sony/";
-			return "http://www.homeshop18.com/sony/binoculars-telescopes/categoryid:3161/search:sony/";
-			return "http://www.homeshop18.com/sony/digital-slrs/categoryid:3188/search:sony/";
+			if($subcat == Category::NOT_SURE){
+				return "http://www.homeshop18.com/$query/accessories/categoryid:3170/search:$query/";
+			}else if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
+				return "http://www.homeshop18.com/$query/accessories/categoryid:3172/search:$query/";
+			}else if($subcat == Category::CAM_ACC_BAGS){
+				return "http://www.homeshop18.com/$query/accessories/categoryid:3175/search:$query/";
+			}else if($subcat == Category::CAM_ACC_BATTERY){
+				return "http://www.homeshop18.com/$query/accessories/categoryid:3172/search:$query/";
+			}else if($subcat == Category::CAM_ACC_FLASH_LIGHTS){
+				return "http://www.homeshop18.com/$query/accessories/categoryid:8933/search:$query/";
+			}else if($subcat == Category::CAM_ACC_LENSEFILTER){
+				return "http://www.homeshop18.com/$query/accessories/categoryid:8935/search:$query/";
+			}else if($subcat == Category::CAM_ACC_LENSES){
+				return "http://www.homeshop18.com/$query/accessories/categoryid:8931/search:$query/";
+			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
+				return "http://www.homeshop18.com/$query/memory-storage-media/categoryid:3192/search:$query/";
+			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
+				return "http://www.homeshop18.com/$query/accessories/categoryid:3170/search:$query/";
+			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){
+				return "http://www.homeshop18.com/$query/accessories/categoryid:3176/search:$query/";
+			}else if($subcat == Category::CAM_ACC_TRIPODS){
+				return "http://www.homeshop18.com/$query/accessories/categoryid:3177/search:$query/";
+			}else{
+				return '';
+			}
 		}else{
 			return "http://www.homeshop18.com/$query/search:$query";
 		}
 	}
-	public function getData($html,$query,$category){
+	public function getData($html,$query,$category,$subcat){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 
@@ -107,7 +137,7 @@ class Homeshop extends Parsing{
 		}
 
 		$data2 = $this->cleanData($data2, $query);
-		$data2 = $this->bestMatchData($data2, $query,$category);
+		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
 }

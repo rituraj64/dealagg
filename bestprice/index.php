@@ -65,7 +65,7 @@
         		Find cheapest price for 
 		  		<input type="text" name='q' id='q' class="input-xlarge" style="font-size: 27px;height: 39px;">
 		  		in 
-		  	 	<select id='category' style="font-size: 18px;height: 39px;">
+		  	 	<select id='category' style="font-size: 18px;height: 39px;" onchange="$('#subcategory').val('-1');">
 		  	 		<option value="-1">Select Category..</option>
 		  	 		<?php
 		  	 			require_once 'Category.php';
@@ -73,12 +73,15 @@
 		  	 			$cats = $catObj->getStoreCategory();
 		  	 			$i = 0;
 		  	 			foreach($cats as $key => $cat){
+		  	 				if(is_array($cat)){$cat = key($cat);}
 		  	 		?>
 		  	 			<option value="<?php echo $key;?>" <?php if(isset($_SESSION['prev_cat']) && $_SESSION['prev_cat'] == $key){echo 'selected="selected";';} ?>><?php echo $cat;?></option>
 		  	 		<?php $i++;} ?>
 		  		</select>
+		  		<input type="hidden" id='subcategory' name='subcategory' value='-1' />
 		  		<button type="submit" class="btn btn-large btn-danger">NOW!</button>
 		</form>
+		
 		 <div id='error_msg' class="alert" style="display: none">
 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
 		  <strong>Warning!</strong> <span></span>
@@ -100,7 +103,7 @@
 					Results As On:
 					<input type='hidden' id='max_time' value="0" /> 
 					<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="Get Latest Results">
-						<span onclick='findPrice("",0);' style="cursor: pointer;" class='icon-refresh'></span>
+						<span onclick='findPrice("",0,false);' style="cursor: pointer;" class='icon-refresh'></span>
 					</span> 
 					<h4 id='time'></h4>
 				</div>
@@ -136,6 +139,26 @@
       <div class="footer">
         <p>&copy; Company 2012</p>
       </div>
+      
+        <div class="modal hide fade" id='subcategory_model'>
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		    <h3>Refine to further improve the results!</h3>
+		  </div>
+		  <div class="modal-body">
+		    <div class="dropdown open">
+		      <a class="dropdown-toggle" id="dropdown-sub" style="display: none">
+			    Open
+			  </a>
+			  <ul id='subcat_dropdown_content' class="dropdown-menu" style="position: relative;float: none">
+			    
+			  </ul>
+			</div>
+		  </div>
+		  <div class="modal-footer">
+		    <a href="#" data-dismiss="modal" onclick='closeModel(0);return false;' class="btn">Not Sure!</a>
+		  </div>
+		</div>
 
     </div> <!-- /container -->
   </body>
@@ -261,5 +284,20 @@
 				<a class='detail-popup popup btn btn-mini {stock_color}' style="line-height: 14px" rel="popover" data-placement="right" data-html='true' data-trigger='click' data-content="{item_details}" data-original-title="{item_name}">Details</a>
 			</div>
 		</div>
+  </div>
+  <div id='category_data'>
+	<?php
+		foreach ($cats as $key => $value){
+			if(is_array($value)){
+	?>	
+			<div id='<?php echo $key?>_sub'>
+				<?php foreach($value[key($value)] as $k => $v){ ?>
+					<input type='hidden' id='<?php echo $k;?>' value='<?php echo $v;?>' />
+				<?php } ?>		
+			</div>
+	<?php			 
+			} 
+		}
+	?>
   </div>
 </html>
