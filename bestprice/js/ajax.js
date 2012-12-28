@@ -17,7 +17,6 @@ function hideError() {
 var timeout = false;
 var starttime = 0;
 function closeModel(subcat) {
-	console.log(subcat + 'closeModel');
 	$('#subcategory').val(subcat);
 	$('#subcategory_model').modal('toggle');
 	$('.modal-backdrop').remove();
@@ -47,12 +46,10 @@ function findPrice(site, cache,changeSubCat) {
 		return;
 	}
 	
-	console.log(site+'xx');
 	
 	var query = $('#q').val();
 	var category = $('#category').val();
 	var subcat = $('#subcategory').val();
-	console.log(subcat + "find Price Start");
 	if ($('#category_data').children('#' + category + "_sub").length > 0) {
 		if (subcat * 1 <= 0) {
 			var html2 = '';
@@ -80,7 +77,6 @@ function findPrice(site, cache,changeSubCat) {
 		$('#summary').find('#time').html('');
 		$('#summary').hide();
 		if(changeSubCat == 1){
-			console.log(1 + 'Find Price Else');
 			$('#subcategory').val('-1');
 		}
 		starttime = new Date().getTime();
@@ -179,6 +175,14 @@ function findPrice(site, cache,changeSubCat) {
 						item_details += 'Stock: Out of Stock' + '<br/>';
 						stock_color = 'btn-danger';
 					}
+					
+					var item_name_html = name;
+					if (name.length > 37) {
+						var item_name_html = item_name_html.substring(0, 37 - 3) + '...';
+						item_name_html = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="' + name + '">' + item_name_html + '</span>';
+					}
+					html = html.replace(/{item_name_html}/g, item_name_html);
+					
 					html = html.replace(/{stock_color}/g, stock_color);
 					html = html.replace(/{item_details}/g, item_details);
 					$('#results').find('#' + website).find('#other_prod').prepend(html);
@@ -388,7 +392,7 @@ function loadSmallImages() {
 		$(this).attr('src', $(this).siblings('input#lazy').val());
 		$(this).attr('width', '50px');
 		$(this).attr('height', '50px');
-		$(this).attr('style', $(this).attr('style') + "width: 50px;height: 50px;")
+		$(this).attr('style', $(this).attr('style') + ";width: 50px;height: 50px;")
 		$(this).removeClass('lazy_load_img');
 		i++;
 		if (i > 10) {

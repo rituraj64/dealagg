@@ -10,7 +10,7 @@ class Parsing{
 		return array('&amp;'=>'and','&'=>'and');
 	}
 
-	const DATA_NUM = 9;
+	const DATA_NUM = 4;
 	public function getCode(){
 		return $this->_code;
 	}
