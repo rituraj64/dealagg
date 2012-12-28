@@ -1,5 +1,7 @@
 <?php
 require_once 'Parsingcoupon.php';
+require_once 'phpMailer/class.phpmailer.php';
+require_once 'phpMailer/class.smtp.php';
 
 $parsing = new Parsingcoupon();
 $sites = $parsing->getCouponWebsites();
@@ -57,8 +59,30 @@ foreach ($siteData as $eachSiteData)
 $to = 'isvarified@gmail.com';
 $today = date("D M j Y");
 $subject = 'coupons parsed on '.$today;
-$headers = 'From: webmaster@example.com';
-mail($to, $subject, $message, $headers);
+
+$mail = new phpmailer();
+$mail->IsSMTP();
+//$mail->Host = 'ssl://smtp.gmail.com:465';
+$mail->SMTPAuth   = true;                 
+$mail->SMTPSecure = "ssl";                
+$mail->Host       = "smtp.gmail.com";     
+$mail->Port       = 465; 
+$mail->Username   = "isvarified@gmail.com";
+$mail->Password   = "alpha1-1";
+$mail->setFrom('isvarified@yourdomain.com', 'First Last');
+$mail->Subject    =$subject;
+$mail->MsgHTML('123');
+
+$address = "isvarified@gmail.com";
+$mail->AddAddress($address, "hugo mishra");
+
+if(!$mail->Send()) {
+  echo "Mailer Error: " . $mail->ErrorInfo;
+} else {
+  echo "Message sent!";
+}
+// $headers = 'From: webmaster@example.com';
+// mail($to, $subject, $message, $headers);
 	/*  echo"<pre>";
 	print_r($siteData);
 	echo"</pre>";  */
