@@ -18,7 +18,26 @@ class Flipkart extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://www.flipkart.com/mobiles/pr?sid=tyy%2C4io&q=$query&query=$query";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.flipkart.com/mobile-accessories/pr?sid=tyy%2C4mr&q=$query&query=$query";
+			//return "http://www.flipkart.com/mobile-accessories/pr?sid=tyy%2C4mr&q=$query&query=$query";
+			if ($subcat == Category::MOB_SCREEN_GUARD){
+				return "www.flipkart.com/mobile-accessories/screen-guards/pr?sid=tyy%2C4mr%2Clrv&q=$query";
+			}elseif ($subcat == Category::MOB_HANDSFREE){
+				return "http://www.flipkart.com/mobile-accessories/headsets/wired-headsets/pr?sid=tyy%2C4mr%2Cyhg%2C8d4&layout=grid&q=$query";
+			}elseif ($subcat == Category::MOB_HEADSETS){
+				return "http://www.flipkart.com/mobile-accessories/headsets/bluetooth-headsets/pr?sid=tyy%2C4mr%2Cyhg%2Cqtx&q=$query";
+			}elseif ($subcat == Category::MOB_BATTERY){
+				return "http://www.flipkart.com/mobile-accessories/batteries/pr?sid=tyy%2C4mr%2Cw65&q=$query";
+			}elseif ($subcat == Category::MOB_CHARGER){
+				return "http://www.flipkart.com/mobile-accessories/chargers/pr?sid=tyy%2C4mr%2Ctp2&q=$query";
+			}elseif ($subcat == Category::MOB_SPEAKER){
+				return "http://www.flipkart.com/mobile-accessories/speakers/pr?sid=tyy%2C4mr%2C5ev&q=$query";
+			}return ($subcat == Category::MOB_CABLE){
+				return "http://www.flipkart.com/mobile-accessories/cables/pr?sid=tyy%2C4mr%2C3nu&q=$query";
+			}elseif ($subcat == Category::MOB_CASES){
+				return "http://www.flipkart.com/mobile-accessories/cases-and-covers/pr?sid=tyy%2C4mr%2Cq2u&q=$query";
+			}elseif ($subcat == Category::MOB_OTHERS){
+				return "http://www.flipkart.com/mobile-accessories/pr?sid=tyy%2C4mr&q=$query&otracker=from-multi&ref=5f05d1cc-662f-416b-9e01-6888bfc0603f&query=$query";
+			}else return "";
 		}else if($category == Category::BOOKS){
 			return "http://www.flipkart.com/search-books?query=$query&searchGroup=books-stationeries&ref=6695f070-3c76-4c61-92bd-7bedc39b8873";
 		}else if($category == Category::CAMERA){

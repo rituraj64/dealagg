@@ -13,7 +13,20 @@ class eDabba extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5860&f[1]=im_taxonomy_catalog:5921";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5860&f[1]=im_taxonomy_catalog:5922";
+			//return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5860&f[1]=im_taxonomy_catalog:5922";
+			if ($subcat == Category::MOB_BATTERY){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5860&f[1]=im_taxonomy_catalog%3A5922&f[2]=im_taxonomy_catalog%3A6175";
+			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5860&f[1]=im_taxonomy_catalog%3A5922&f[2]=im_taxonomy_catalog%3A6174";
+			}elseif ($subcat == Category::MOB_HANDSFREE){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5860&f[1]=im_taxonomy_catalog%3A5922&f[2]=im_taxonomy_catalog%3A6171";
+			}elseif ($subcat == Category::MOB_CASES){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5860&f[1]=im_taxonomy_catalog%3A5922&f[2]=im_taxonomy_catalog%3A6173";
+			}elseif ($subcat == Category::NOT_SURE || $subcat == Category::MOB_OTHERS){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5860&f[1]=im_taxonomy_catalog:5922"; //a mobile acc
+			}else{
+				return '';
+			}
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.edabba.com/search/site/$query?f%5B0%5D=im_taxonomy_catalog%3A5861"; //all cam and acc
