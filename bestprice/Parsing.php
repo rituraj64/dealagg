@@ -5,7 +5,7 @@ require_once 'Category.php';
 set_time_limit(10000);
 class Parsing{
 	//public $_code = 'Website';
-
+	
 	public static function getReplace(){
 		return array('&amp;'=>'and','&'=>'and');
 	}

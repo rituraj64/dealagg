@@ -3,7 +3,7 @@
 
 <?php
 require_once 'model/Search.php';
-require_once '../../SmartModel/UI.php';
+require_once 'smartmodel/UI.php';
 $searchModel = new Search();
 $usersTable=new UI($searchModel,UI::STYLE_LIGHT_GREY);
 

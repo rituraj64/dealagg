@@ -59,7 +59,7 @@ class BuyThePrice extends Parsing{
 		return "http://www.buytheprice.com/search__".$query;
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/buytheprice.png';
+		return Parser::SITE_URL.'img/buytheprice.png';
 	}
 	public function getData($html,$query,$category,$subcat){
 

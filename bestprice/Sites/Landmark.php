@@ -37,7 +37,7 @@ class Landmark extends Parsing{
 		return "http://www.landmarkonthenet.com/search/?q=".$query;
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/landmark.png';
+		return Parser::SITE_URL.'img/landmark.png';
 	}
 	public function getData($html,$query,$category,$subcat=false){
 		$data = array();

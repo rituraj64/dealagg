@@ -1,6 +1,11 @@
 <?php
 class Parser{
-
+	//const SITE_URL = 'http://pricegenie.in/';
+	//const AJAX_URL = 'http://site.pricegenie.in/';
+	
+	const SITE_URL = 'http://localhost/scrapping/bestprice/';
+	const AJAX_URL = 'http://localhost/scrapping/bestprice/';
+	
 	public function getHtml($url){
 		$userAgent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
 		//fetch a random list of user agents here instead of 1.

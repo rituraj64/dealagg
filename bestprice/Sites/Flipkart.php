@@ -12,7 +12,7 @@ class Flipkart extends Parsing{
 		return 'http://www.flipkart.com';
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/flipkart.png';
+		return Parser::SITE_URL.'img/flipkart.png';
 	}
 	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){

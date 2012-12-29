@@ -192,7 +192,11 @@ if(isset($_REQUEST['q'])){
 	}
 	$return = array('query_id'=>$query_id,'ajax_parse'=>$ajaxParseSite,'data'=>$data,'result_time'=>date('d/m/y h:i a',$max),'result_number_time'=>$max,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site);
 	if(!isset($_REQUEST['silent'])){
-		echo json_encode($return);
+		if(isset($_GET['callback'])){
+			echo $_GET['callback'] . '(' . json_encode($return) . ')';
+		}else{
+			echo json_encode($return);
+		}
 	}
 }
 function scoreSort($a,$b){

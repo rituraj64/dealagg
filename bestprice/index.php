@@ -238,7 +238,7 @@
 					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
 				</div>
 				<div class="popup span10 table-bordered" style="line-height:150px;margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
-					Fetching Data... <img src='<?php echo 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/';?>img/preload_small.gif' alt='loading..'/>
+					Fetching Data... <img src='<?php echo Parser::SITE_URL;?>img/preload_small.gif' alt='loading..'/>
 				</div>
 		</div>
   </div>

@@ -10,7 +10,7 @@ class EBay extends Parsing{
 		return 'http://read.ebay.in/';
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/ebay.png';
+		return Parser::SITE_URL.'img/ebay.png';
 	}
 	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::BOOKS){

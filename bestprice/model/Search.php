@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__).'/../../smartmodel/SmartModel.php';
+require_once dirname(__FILE__).'/../smartmodel/SmartModel.php';
 class Search extends SmartModel{
 	public $id;
 	public $query;

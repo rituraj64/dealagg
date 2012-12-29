@@ -10,7 +10,7 @@ class Crossword extends Parsing{
 		return 'http://www.crossword.in/';
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/crossword.png';
+		return Parser::SITE_URL.'img/crossword.png';
 	}
 	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::BOOKS){

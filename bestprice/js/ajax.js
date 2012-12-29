@@ -16,6 +16,7 @@ function hideError() {
 }
 var timeout = false;
 var starttime = new Date().getTime();
+var ajaxReq = new Array();
 function closeModel(subcat) {
 	$('#subcategory').val(subcat);
 	$('#subcategory_model').modal('toggle');
@@ -62,7 +63,7 @@ function findPrice(site, cache, changeSubCat) {
 		}
 	}
 	if (site && site.length > 0) {
-		var url = 'find.php?q=' + query + '&cat=' + category + "&site=" + site + "&cache=" + cache + "&subcat=" + subcat;
+			var url = $('#ajax_url').val().replace('site',site) +  'find.php?q=' + query + '&cat=' + category + "&site=" + site + "&cache=" + cache + "&subcat=" + subcat + "&callback=?";
 	} else {
 		$('#loading').show();
 		$('#results').hide();
@@ -78,12 +79,19 @@ function findPrice(site, cache, changeSubCat) {
 		$('#share').hide();
 		$('#share_url').val('');
 		if (changeSubCat == 1) {
-			$('#subcategory').val('-1');
+			$('#subcategory').val(-1);
 		}
+		var aj = 0;
+		for(aj =0;aj<ajaxReq.length;aj++){
+			if(ajaxReq[aj]){
+				ajaxReq[aj].abort();
+			}
+		}
+		ajaxReq = new Array();
 		starttime = new Date().getTime();
 		var url = 'find.php?q=' + query + '&cat=' + category + "&cache=" + cache + "&subcat=" + subcat;
 	}
-	$.getJSON(url, function(data) {
+	ajaxReq[ajaxReq.length] = $.getJSON(url, function(data) {
 		processData(data, site, cache, changeSubCat);
 	});
 }
@@ -93,7 +101,11 @@ function processData(data, site, cache, changeSubCat, preloaded) {
 	if(data.query_id && data.query_id.length > 0){
 		var q = $('#q').val();
 		q = q.replace(/[^a-zA-Z0-9]/g, "-");
-		$('#share_url').val($('#site_url').val() + 'search/lowest-price-of-'+q + '/'+ data.query_id);
+		var share_url = $('#site_url').val() + 'search/lowest-price-of-'+q + '/'+ data.query_id;
+		if(history){
+			history.pushState('Price Genie', '', share_url);
+		}
+		$('#share_url').val(share_url);
 		$('#share').show();
 	}
 	

@@ -10,7 +10,7 @@ class Sulekha extends Parsing{
 		return 'http://deals.sulekha.com/';
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/sulekha.png';
+		return Parser::SITE_URL.'img/sulekha.png';
 	}
 	public function getSearchURL($query,$category = false,$subcat=false){
 		$query2 = urldecode($query);

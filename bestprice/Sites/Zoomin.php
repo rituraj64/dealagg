@@ -59,7 +59,7 @@ class Zoomin extends Parsing{
 		}
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/zoomin.png';
+		return Parser::SITE_URL.'img/zoomin.png';
 	}
 	public function getData($html,$query,$category,$subcat){
 

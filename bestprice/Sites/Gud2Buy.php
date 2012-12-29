@@ -28,7 +28,7 @@ class Gud2Buy extends Parsing{
 		return "http://gud2buy.com/search&sort=stock_status_id+desc&filter_name=$query&filters=";
 	}
 	public function getLogo(){
-		return 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/img/guy2buy.png';
+		return Parser::SITE_URL.'img/guy2buy.png';
 	}
 	public function getData($html,$query,$category,$subcat=false){
 
