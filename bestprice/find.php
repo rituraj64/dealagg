@@ -8,7 +8,9 @@ if(isset($_REQUEST['q'])){
 	$cat = false;
 	if(isset($_REQUEST['cat'])){
 		$cat = $_REQUEST['cat'];
-		session_start();
+		if(!isset($_SESSION)){
+			session_start();
+		}
 		$_SESSION['prev_cat'] = $cat;
 	}
 	$cache = 1;
@@ -25,13 +27,25 @@ if(isset($_REQUEST['q'])){
 		$cache = $_REQUEST['cache'];
 	}
 
+	$query_id = '';
 	if(isset($_REQUEST['site'])){
 		$delay = false;
 		$site = urldecode($_REQUEST['site']);
 		$sites = array($site);
+	}else{
+		$query_id = md5($query2.time());
+		require_once 'model/Search.php';
+		$searchModel = new Search();
+		$searchModel->setQuery($query2);
+		$searchModel->setCategory($cat);
+		$searchModel->setSubcat($subcat);
+		$searchModel->query_id = $query_id;
+		$searchModel->created_at = time();
+		$searchModel->setHits(0);
+		$searchModel->insert();
 	}
 
-//	$sites = array('Flipkart');
+	//	$sites = array('Flipkart');
 	foreach($sites as $site){
 		require_once 'Sites/'.$site.'.php';
 		$siteObj = new $site;
@@ -176,8 +190,10 @@ if(isset($_REQUEST['q'])){
 			}
 		}
 	}
-	$return = array('ajax_parse'=>$ajaxParseSite,'data'=>$data,'result_time'=>date('d/m/y h:i a',$max),'result_number_time'=>$max,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site);
-	echo json_encode($return);
+	$return = array('query_id'=>$query_id,'ajax_parse'=>$ajaxParseSite,'data'=>$data,'result_time'=>date('d/m/y h:i a',$max),'result_number_time'=>$max,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site);
+	if(!isset($_REQUEST['silent'])){
+		echo json_encode($return);
+	}
 }
 function scoreSort($a,$b){
 	return $a['score'] <= $b['score'];

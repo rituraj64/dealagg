@@ -1,69 +1,44 @@
 <?php
 	session_start(); 
+	if(isset($_REQUEST['query_id'])){
+		$query_id = $_REQUEST['query_id'];
+		require_once 'model/Search.php';
+		$searchObj = new Search();
+		$searchObj->query_id = $query_id;
+		$row = $searchObj->read();
+		if(isset($row[0])){
+			$searchObj->smartAssign($row[0]);
+			
+			$_REQUEST['q'] = $searchObj->getQuery();
+			$_REQUEST['cat'] = $searchObj->getCategory();
+			$_REQUEST['subcat'] = $searchObj->getSubcat();;
+			$_REQUEST['cache'] = 1;
+			$_REQUEST['silent'] = 1;
+			
+			require_once 'find.php';
+			$result = $return;
+		}else{
+			$error = 'Search Query Doesnt Exist';
+		}
+	}
 ?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Find Cheapest Price</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://cdn.webrupee.com/font">
-    <script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"></script>
-	<script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>
-	<script type="text/javascript" src='js/ajax.js'></script>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="bootstrap/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="bootstrap/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="bootstrap/ico/favicon.png">
-                                   
-	 
-  </head>
-
-  <body>
-
-    <div class="container">
-
-      <div class="masthead">
-        <h3 class="muted">Project name</h3>
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <ul class="nav">
-                <li class="active"><a href="index.php">Home</a></li>
-                <li><a href="#">Coupons</a></li>
-                <li><a href="sites.php">Sites</a></li>
-                <li><a href="#">Recent Searches</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-            </div>
-          </div>
-        </div><!-- /.navbar -->
-      </div>
+<?php require_once 'header.php';?>
 
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h1>Ask Me!</h1>
-        <!-- 
-        <p class="lead">Write the name, model number or any identifier the item you want to buy and our system will try to find the best possible price available online.</p>
-         -->
+      	<?php if(isset($result)){ ?>
+      		<script type="text/javascript">
+        	$(document).ready(function(){
+        		processData(eval(<?php echo json_encode($result)?>),'','','',true);
+        	});
+        	</script>
+        <?php }else{ ?>
+        	<h1>Ask Me!</h1>
+        <?php } ?>
         <form class="form-search" onsubmit="findPrice();return false;" style="font-size: 27px">
         		Find cheapest price for 
-		  		<input type="text" name='q' id='q' class="input-xlarge" style="font-size: 27px;height: 39px;">
+		  		<input type="text" name='q' id='q' class="input-xlarge" style="font-size: 27px;height: 39px;" value='<?php if(isset($result)){echo $searchObj->getQuery();} ?>'>
 		  		in 
 		  	 	<select id='category' style="font-size: 18px;height: 39px;" onchange="$('#subcategory').val('-1');">
 		  	 		<option value="-1">Select Category..</option>
@@ -72,19 +47,22 @@
 		  	 			$catObj = new Category();
 		  	 			$cats = $catObj->getStoreCategory();
 		  	 			$i = 0;
+		  	 			if(isset($result)){
+		  	 				$_SESSION['prev_cat'] = $searchObj->category;
+		  	 			}
 		  	 			foreach($cats as $key => $cat){
 		  	 				if(is_array($cat)){$cat = key($cat);}
 		  	 		?>
 		  	 			<option value="<?php echo $key;?>" <?php if(isset($_SESSION['prev_cat']) && $_SESSION['prev_cat'] == $key){echo 'selected="selected";';} ?>><?php echo $cat;?></option>
 		  	 		<?php $i++;} ?>
 		  		</select>
-		  		<input type="hidden" id='subcategory' name='subcategory' value='-1' />
+		  		<input type="hidden" id='subcategory' name='subcategory' value='<?php if(isset($result)){echo $searchObj->getSubcat();}else{echo -1;} ?>' />
 		  		<button type="submit" class="btn btn-large btn-danger">NOW!</button>
 		</form>
 		
-		 <div id='error_msg' class="alert" style="display: none">
+		 <div id='error_msg' class="alert" <?php if(!isset($error)){echo 'style="display: none';}?>">
 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-		  <strong>Warning!</strong> <span></span>
+		  <strong>Warning!</strong> <span><?php if(isset($error)){echo $error;}?></span>
 		</div>
 		<div id='loading' style="display: none;">
 			<img src='img/loading.gif' alt='loading..'/>
@@ -94,10 +72,14 @@
 		<div class="progress progress-info progress-striped" style="display: none">
 		  <div class="bar" style="width: 0%;"></div>
 		</div>
+		<div class="alert alert-success" id='share' style="text-align: left;color:black;display: none">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			Share Results: <input type='text' id='share_url' value='' style="width: 100%"/>
+		</div>
 		<div class="alert alert-info" id='summary' style="text-align: left;color:black;display: none">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 				<div class='pull-left'>
-					Total Time Taken: <h4 id='time_taken'>65sec</h4>
+					Total Time Taken: <h4 id='time_taken'></h4>
 				</div>
 				<div class='pull-right'>
 					Results As On:
@@ -136,9 +118,7 @@
 
       <hr>
 
-      <div class="footer">
-        <p>&copy; Company 2012</p>
-      </div>
+      
       
         <div class="modal hide fade" id='subcategory_model'>
 		  <div class="modal-header">
@@ -159,10 +139,7 @@
 		    <a href="#" data-dismiss="modal" onclick='closeModel(0);return false;' class="btn">Not Sure!</a>
 		  </div>
 		</div>
-
-    </div> <!-- /container -->
-  </body>
-  
+	<?php require_once 'footer.php';?>  
   
   <div id='resultBodyTemplate' style="display: none">
   		<div class="row-fluid clearfix website" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
@@ -261,7 +238,7 @@
 					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
 				</div>
 				<div class="popup span10 table-bordered" style="line-height:150px;margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
-					Fetching Data... <img src='img/preload_small.gif' alt='loading..'/>
+					Fetching Data... <img src='<?php echo 'http://'.$_SERVER["SERVER_NAME"].'/scrapping/bestprice/';?>img/preload_small.gif' alt='loading..'/>
 				</div>
 		</div>
   </div>

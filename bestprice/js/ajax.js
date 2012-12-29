@@ -15,19 +15,19 @@ function hideError() {
 	$('#error_msg').hide();
 }
 var timeout = false;
-var starttime = 0;
+var starttime = new Date().getTime();
 function closeModel(subcat) {
 	$('#subcategory').val(subcat);
 	$('#subcategory_model').modal('toggle');
 	$('.modal-backdrop').remove();
-	findPrice("",1,false);
+	findPrice("", 1, false);
 }
-function findPrice(site, cache,changeSubCat) {
+function findPrice(site, cache, changeSubCat) {
 
 	if (cache === undefined) {
 		cache = 1;
 	}
-	if(changeSubCat == undefined){
+	if (changeSubCat == undefined) {
 		changeSubCat = true;
 	}
 
@@ -45,8 +45,7 @@ function findPrice(site, cache,changeSubCat) {
 		setTimeout('hideError()', 2000);
 		return;
 	}
-	
-	
+
 	var query = $('#q').val();
 	var category = $('#category').val();
 	var subcat = $('#subcategory').val();
@@ -57,7 +56,7 @@ function findPrice(site, cache,changeSubCat) {
 				html2 += '<li><a tabindex="-1" href="#" onclick="closeModel(\'' + $(this).attr('id') + '\');return false;">' + $(this).val() + '</a></li>';
 			});
 			$('#subcat_dropdown_content').html(html2);
-			//$('#dropdown-sub').dropdown('toggle');
+			// $('#dropdown-sub').dropdown('toggle');
 			$('#subcategory_model').modal('show');
 			return;
 		}
@@ -76,234 +75,196 @@ function findPrice(site, cache,changeSubCat) {
 		$('#summary').find('#time_taken').html('');
 		$('#summary').find('#time').html('');
 		$('#summary').hide();
-		if(changeSubCat == 1){
+		$('#share').hide();
+		$('#share_url').val('');
+		if (changeSubCat == 1) {
 			$('#subcategory').val('-1');
 		}
 		starttime = new Date().getTime();
 		var url = 'find.php?q=' + query + '&cat=' + category + "&cache=" + cache + "&subcat=" + subcat;
 	}
 	$.getJSON(url, function(data) {
-		$('#loading').hide();
-		if (site && site.length > 0) {
-			var psize = $('#progress_total').val();
-			var pcur = $('#progress_done').val() * 1;
-			pcur++;
-			$('#progress_done').val(pcur);
-			var per = Math.ceil((pcur / psize) * 100);
-			$('.progress').children('.bar').first().attr('style', 'width: ' + per + '%');
-			$('#results').find('#' + site).next('hr').remove();
-			$('#results').find('#' + site).remove();
+		processData(data, site, cache, changeSubCat);
+	});
+}
 
-			var max_time = $('#summary').find('#max_time').val();
-			if (data.result_number_time > max_time) {
-				max_time = data.result_number_time;
-				$('#summary').find('#time').html(data.result_time);
-			}
+function processData(data, site, cache, changeSubCat, preloaded) {
+	
+	if(data.query_id && data.query_id.length > 0){
+		var q = $('#q').val();
+		q = q.replace(/[^a-zA-Z0-9]/g, "-");
+		$('#share_url').val($('#site_url').val() + 'search/lowest-price-of-'+q + '/'+ data.query_id);
+		$('#share').show();
+	}
+	
+	$('#loading').hide();
+	if (site && site.length > 0) {
+		var psize = $('#progress_total').val();
+		var pcur = $('#progress_done').val() * 1;
+		pcur++;
+		$('#progress_done').val(pcur);
+		var per = Math.ceil((pcur / psize) * 100);
+		$('.progress').children('.bar').first().attr('style', 'width: ' + per + '%');
+		$('#results').find('#' + site).next('hr').remove();
+		$('#results').find('#' + site).remove();
 
-			if (psize == pcur) {
-				$('.progress').hide();
-				$('.progress').children('.bar').first().attr('style', 'width:0%');
-				$('#progress_total').val(0);
-				$('#progress_done').val(0);
-
-				var t = new Date().getTime() - starttime;
-				t = Math.ceil(t / 1000);
-				$('#summary').find('#time_taken').html(t + "sec");
-				$('#summary').show();
-			}
+		var max_time = $('#summary').find('#max_time').val();
+		if (data.result_number_time > max_time) {
+			max_time = data.result_number_time;
+			$('#summary').find('#time').html(data.result_time);
 		}
 
-		var lazyimage = 'img/preload_small.gif';
-		var size = data.data.length;
-		if (size > 0) {
-			for ( var i = 0; i < data.data.length; i++) {
-				var logo = data.data[i].logo;
-				var name = data.data[i].name;
-				var price = data.data[i].disc_price;
-				var image = data.data[i].image;
-				var url = data.data[i].url;
-				var website = data.data[i].website;
-				var author = "";
-				var shipping = '';
-				var stock = 0;
-				var offer = '';
-				if (data.data[i].author) {
-					author = data.data[i].author;
-				}
-				if (data.data[i].shipping) {
-					shipping = data.data[i].shipping;
-				}
-				if (data.data[i].stock) {
-					stock = data.data[i].stock;
-				}
-				if (data.data[i].offer) {
-					offer = data.data[i].offer;
-				}
+		if (psize == pcur) {
+			$('.progress').hide();
+			$('.progress').children('.bar').first().attr('style', 'width:0%');
+			$('#progress_total').val(0);
+			$('#progress_done').val(0);
 
-				if ($('#results').find('#' + website).length > 0) {
-					var html = $('#smallItemTemplate').html();
-					html = html.replace(/{website}/g, website);
-					html = html.replace(/{website_url}/g, logo);
-					html = html.replace(/{item_url}/g, url);
-
-					html = html.replace(/{item_img_load_id}/g, image);
-					html = html.replace(/{item_image}/g, lazyimage);
-					html = html.replace(/{item_name}/g, name);
-					html = html.replace(/{item_price}/g, price);
-					html = html.replace(/{item_author}/g, author);
-					html = html.replace(/{item_shipping}/g, shipping);
-					html = html.replace(/{item_offer}/g, offer);
-
-					var item_details = "Price: <span class='WebRupee'></span>" + price + "<br/>";
-					if (author.length > 0) {
-						item_details += 'Author: by ' + author + '<br/>';
-					}
-					if (shipping.length > 0) {
-						item_details += 'Shipping:' + offer + '<br/>';
-					}
-					if (offer.length > 0) {
-						item_details += 'Offer:' + offer + '<br/>';
-					}
-					var stock_color = 'btn-success';
-					if (stock == 0 || stock.length == 0) {
-						item_details += 'Stock: No Info' + '<br/>';
-						stock_color = '';
-					} else if (stock == 1) {
-						item_details += 'Stock: In Stock' + '<br/>';
-						stock_color = 'btn-success';
-					} else {
-						item_details += 'Stock: Out of Stock' + '<br/>';
-						stock_color = 'btn-danger';
-					}
-					
-					var item_name_html = name;
-					if (name.length > 37) {
-						var item_name_html = item_name_html.substring(0, 37 - 3) + '...';
-						item_name_html = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="' + name + '">' + item_name_html + '</span>';
-					}
-					html = html.replace(/{item_name_html}/g, item_name_html);
-					
-					html = html.replace(/{stock_color}/g, stock_color);
-					html = html.replace(/{item_details}/g, item_details);
-					$('#results').find('#' + website).find('#other_prod').prepend(html);
-				} else {
-					var html = $('#resultBodyTemplate').html();
-					html = html.replace(/{website}/g, website);
-					html = html.replace(/{website_url}/g, logo);
-					html = html.replace(/{item_url}/g, url);
-					html = html.replace(/{item_image}/g, image);
-					html = html.replace(/{item_name}/g, name);
-					html = html.replace(/{item_price}/g, price);
-					html = html.replace(/{website_search_url}/g, data.data[i].searchurl);
-					html = html.replace(/{item_offer_org}/g, offer);
-					html = html.replace(/{item_shipping_org}/g, shipping);
-
-					var ship_len = 120;
-					if (offer.length != 0) {
-						ship_len = 60;
-					}
-					if (shipping.length > ship_len) {
-						var shipping2 = shipping.substring(0, ship_len - 3) + '...';
-						shipping = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="' + shipping + '">' + shipping2 + '</span>';
-					}
-					var of_len = 120;
-					if (offer.length != 0) {
-						of_len = 60;
-					}
-					if (offer.length > of_len) {
-						var offer2 = offer.substring(0, of_len - 3) + '...';
-						offer = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="' + offer + '">' + offer2 + '</span>';
-					}
-					html = html.replace(/{item_shipping}/g, shipping);
-					html = html.replace(/{item_offer}/g, offer);
-					if (author.length > 40) {
-						var author2 = offer.substring(0, 37) + '...';
-						author = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="' + offer + '">' + author2 + '</span>';
-					}
-					html = html.replace(/{item_author}/g, author);
-
-					if (offer.length == 0) {
-						html = html.replace(/{offer_display}/g, 'display:none');
-					} else {
-						html = html.replace(/{offer_display}/g, '');
-					}
-					if (author.length == 0) {
-						html = html.replace(/{author_display}/g, 'display:none');
-					} else {
-						html = html.replace(/{author_display}/g, '');
-					}
-					if (shipping.length == 0) {
-						html = html.replace(/{shipping_display}/g, 'display:none');
-					} else {
-						html = html.replace(/{shipping_display}/g, '');
-					}
-					if (stock == 0 || stock.length == 0) {
-						html = html.replace(/{in_stock_hide}/g, 'display:none');
-						html = html.replace(/{out_stock_hide}/g, 'display:none');
-						html = html.replace(/{no_stock_hide}/g, '');
-					} else if (stock == 1) {
-						html = html.replace(/{in_stock_hide}/g, '');
-						html = html.replace(/{out_stock_hide}/g, 'display:none');
-						html = html.replace(/{no_stock_hide}/g, 'display:none');
-					} else {
-						html = html.replace(/{in_stock_hide}/g, 'display:none');
-						html = html.replace(/{out_stock_hide}/g, '');
-						html = html.replace(/{no_stock_hide}/g, 'display:none');
-					}
-
-					var websites_actual = 0;
-					var last_actu_website = false;
-					$('#results').find('.website').each(function() {
-						if ($(this).hasClass('website_loading')) {
-
-						} else {
-							last_actu_website = $(this);
-							websites_actual++;
-						}
-					});
-					if (websites_actual == 0) {
-						$('#results').prepend(html);
-					} else {
-						var done = false;
-						var websites = $('#results').find('.website');
-						websites.each(function() {
-							if ($(this).hasClass('website_loading')) {
-
-							} else {
-								if (!done) {
-									var web_price = $(this).find('.main_price').html() * 1;
-									if (price.length > 0) {
-										if (price < web_price) {
-											html += '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>';
-											$(this).before(html);
-											done = true;
-										}
-									}
-								}
-							}
-						});
-						if (!done) {
-							html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
-							if (last_actu_website) {
-								last_actu_website.after(html);
-							} else {
-								websites.last().after(html);
-							}
-						}
-					}
-				}
-			}
+			var t = new Date().getTime() - starttime;
+			t = Math.ceil(t / 1000);
+			$('#summary').find('#time_taken').html(t + "sec");
+			$('#summary').show();
 		}
-		size = data.empty_sites.length;
-		if (size > 0) {
-			for ( var j = 0; j < data.empty_sites.length; j++) {
-				var website = data.empty_sites[j].site;
-				var searchurl = data.empty_sites[j].searchurl;
-				var logo = data.empty_sites[j].logo;
-				var html = $('#emptyBodyTemplate').html();
+	}
+
+	var lazyimage = $('#site_url').val() + 'img/preload_small.gif';
+	var size = data.data.length;
+	if (size > 0) {
+		for ( var i = 0; i < data.data.length; i++) {
+			var logo = data.data[i].logo;
+			var name = data.data[i].name;
+			var price = data.data[i].disc_price;
+			var image = data.data[i].image;
+			var url = data.data[i].url;
+			var website = data.data[i].website;
+			var author = "";
+			var shipping = '';
+			var stock = 0;
+			var offer = '';
+			if (data.data[i].author) {
+				author = data.data[i].author;
+			}
+			if (data.data[i].shipping) {
+				shipping = data.data[i].shipping;
+			}
+			if (data.data[i].stock) {
+				stock = data.data[i].stock;
+			}
+			if (data.data[i].offer) {
+				offer = data.data[i].offer;
+			}
+
+			if ($('#results').find('#' + website).length > 0) {
+				var html = $('#smallItemTemplate').html();
 				html = html.replace(/{website}/g, website);
-				html = html.replace(/{website_search_url}/g, searchurl);
 				html = html.replace(/{website_url}/g, logo);
+				html = html.replace(/{item_url}/g, url);
+
+				html = html.replace(/{item_img_load_id}/g, image);
+				html = html.replace(/{item_image}/g, lazyimage);
+				html = html.replace(/{item_name}/g, name);
+				html = html.replace(/{item_price}/g, price);
+				html = html.replace(/{item_author}/g, author);
+				html = html.replace(/{item_shipping}/g, shipping);
+				html = html.replace(/{item_offer}/g, offer);
+
+				var item_details = "Price: <span class='WebRupee'></span>" + price + "<br/>";
+				if (author.length > 0) {
+					item_details += 'Author: by ' + author + '<br/>';
+				}
+				if (shipping.length > 0) {
+					item_details += 'Shipping:' + offer + '<br/>';
+				}
+				if (offer.length > 0) {
+					item_details += 'Offer:' + offer + '<br/>';
+				}
+				var stock_color = 'btn-success';
+				if (stock == 0 || stock.length == 0) {
+					item_details += 'Stock: No Info' + '<br/>';
+					stock_color = '';
+				} else if (stock == 1) {
+					item_details += 'Stock: In Stock' + '<br/>';
+					stock_color = 'btn-success';
+				} else {
+					item_details += 'Stock: Out of Stock' + '<br/>';
+					stock_color = 'btn-danger';
+				}
+
+				var item_name_html = name;
+				if (name.length > 37) {
+					var item_name_html = item_name_html.substring(0, 37 - 3) + '...';
+					item_name_html = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="' + name + '">' + item_name_html + '</span>';
+				}
+				html = html.replace(/{item_name_html}/g, item_name_html);
+
+				html = html.replace(/{stock_color}/g, stock_color);
+				html = html.replace(/{item_details}/g, item_details);
+				$('#results').find('#' + website).find('#other_prod').prepend(html);
+			} else {
+				var html = $('#resultBodyTemplate').html();
+				html = html.replace(/{website}/g, website);
+				html = html.replace(/{website_url}/g, logo);
+				html = html.replace(/{item_url}/g, url);
+				html = html.replace(/{item_image}/g, image);
+				html = html.replace(/{item_name}/g, name);
+				html = html.replace(/{item_price}/g, price);
+				html = html.replace(/{website_search_url}/g, data.data[i].searchurl);
+				html = html.replace(/{item_offer_org}/g, offer);
+				html = html.replace(/{item_shipping_org}/g, shipping);
+
+				var ship_len = 120;
+				if (offer.length != 0) {
+					ship_len = 60;
+				}
+				if (shipping.length > ship_len) {
+					var shipping2 = shipping.substring(0, ship_len - 3) + '...';
+					shipping = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="' + shipping + '">' + shipping2 + '</span>';
+				}
+				var of_len = 120;
+				if (offer.length != 0) {
+					of_len = 60;
+				}
+				if (offer.length > of_len) {
+					var offer2 = offer.substring(0, of_len - 3) + '...';
+					offer = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="' + offer + '">' + offer2 + '</span>';
+				}
+				html = html.replace(/{item_shipping}/g, shipping);
+				html = html.replace(/{item_offer}/g, offer);
+				if (author.length > 40) {
+					var author2 = offer.substring(0, 37) + '...';
+					author = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="' + offer + '">' + author2 + '</span>';
+				}
+				html = html.replace(/{item_author}/g, author);
+
+				if (offer.length == 0) {
+					html = html.replace(/{offer_display}/g, 'display:none');
+				} else {
+					html = html.replace(/{offer_display}/g, '');
+				}
+				if (author.length == 0) {
+					html = html.replace(/{author_display}/g, 'display:none');
+				} else {
+					html = html.replace(/{author_display}/g, '');
+				}
+				if (shipping.length == 0) {
+					html = html.replace(/{shipping_display}/g, 'display:none');
+				} else {
+					html = html.replace(/{shipping_display}/g, '');
+				}
+				if (stock == 0 || stock.length == 0) {
+					html = html.replace(/{in_stock_hide}/g, 'display:none');
+					html = html.replace(/{out_stock_hide}/g, 'display:none');
+					html = html.replace(/{no_stock_hide}/g, '');
+				} else if (stock == 1) {
+					html = html.replace(/{in_stock_hide}/g, '');
+					html = html.replace(/{out_stock_hide}/g, 'display:none');
+					html = html.replace(/{no_stock_hide}/g, 'display:none');
+				} else {
+					html = html.replace(/{in_stock_hide}/g, 'display:none');
+					html = html.replace(/{out_stock_hide}/g, '');
+					html = html.replace(/{no_stock_hide}/g, 'display:none');
+				}
+
 				var websites_actual = 0;
 				var last_actu_website = false;
 				$('#results').find('.website').each(function() {
@@ -314,20 +275,47 @@ function findPrice(site, cache,changeSubCat) {
 						websites_actual++;
 					}
 				});
-				if (websites_actual > 0) {
-					html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
-					if (last_actu_website) {
-						last_actu_website.after(html);
-					} else {
-						websites.last().after(html);
-					}
-				} else {
+				if (websites_actual == 0) {
 					$('#results').prepend(html);
+				} else {
+					var done = false;
+					var websites = $('#results').find('.website');
+					websites.each(function() {
+						if ($(this).hasClass('website_loading')) {
+
+						} else {
+							if (!done) {
+								var web_price = $(this).find('.main_price').html() * 1;
+								if (price.length > 0) {
+									if (price < web_price) {
+										html += '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>';
+										$(this).before(html);
+										done = true;
+									}
+								}
+							}
+						}
+					});
+					if (!done) {
+						html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
+						if (last_actu_website) {
+							last_actu_website.after(html);
+						} else {
+							websites.last().after(html);
+						}
+					}
 				}
 			}
 		}
-		size = data.ajax_parse.length;
-		if (site && site.length > 0) {
+	}
+
+	size = data.ajax_parse.length;
+	if (site && site.length > 0) {
+	} else {
+		if (preloaded && preloaded == 1) {
+			for ( var k = 0; k < size; k++) {
+				data.empty_sites[data.empty_sites.length] = data.ajax_parse[k];
+			}
 		} else {
 			if (size > 0) {
 				for ( var k = 0; k < size; k++) {
@@ -358,32 +346,65 @@ function findPrice(site, cache,changeSubCat) {
 				$('#summary').show();
 			}
 		}
-		size = data.error_sites.length;
-		if (size > 0) {
-			for ( var l = 0; l < size; l++) {
-				var website = data.error_sites[l].site;
-				var searchurl = data.error_sites[l].searchurl;
-				var logo = data.error_sites[l].logo;
-				var html = $('#errorBodyTemplate').html();
-				html = html.replace(/{website}/g, website);
-				html = html.replace(/{website_search_url}/g, searchurl);
-				html = html.replace(/{website_url}/g, logo);
-				html = html.replace(/{error_message}/g, data.error_sites[l].message);
-				var websites = $('#results').find('.website');
-				if (websites.length > 0) {
-					html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
-					websites.last().after(html);
+	}
+	size = data.empty_sites.length;
+	if (size > 0) {
+		for ( var j = 0; j < data.empty_sites.length; j++) {
+			var website = data.empty_sites[j].site;
+			var searchurl = data.empty_sites[j].searchurl;
+			var logo = data.empty_sites[j].logo;
+			var html = $('#emptyBodyTemplate').html();
+			html = html.replace(/{website}/g, website);
+			html = html.replace(/{website_search_url}/g, searchurl);
+			html = html.replace(/{website_url}/g, logo);
+			var websites_actual = 0;
+			var last_actu_website = false;
+			$('#results').find('.website').each(function() {
+				if ($(this).hasClass('website_loading')) {
+
 				} else {
-					$('#results').prepend(html);
+					last_actu_website = $(this);
+					websites_actual++;
 				}
+			});
+			if (websites_actual > 0) {
+				html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
+				if (last_actu_website) {
+					last_actu_website.after(html);
+				} else {
+					websites.last().after(html);
+				}
+			} else {
+				$('#results').prepend(html);
 			}
 		}
+	}
 
-		$('.apply_tooltip').tooltip();
-		$('.popup').popover();
-		$('#results').show();
-		setTimeout('loadSmallImages();', 2000);
-	});
+	size = data.error_sites.length;
+	if (size > 0) {
+		for ( var l = 0; l < size; l++) {
+			var website = data.error_sites[l].site;
+			var searchurl = data.error_sites[l].searchurl;
+			var logo = data.error_sites[l].logo;
+			var html = $('#errorBodyTemplate').html();
+			html = html.replace(/{website}/g, website);
+			html = html.replace(/{website_search_url}/g, searchurl);
+			html = html.replace(/{website_url}/g, logo);
+			html = html.replace(/{error_message}/g, data.error_sites[l].message);
+			var websites = $('#results').find('.website');
+			if (websites.length > 0) {
+				html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
+				websites.last().after(html);
+			} else {
+				$('#results').prepend(html);
+			}
+		}
+	}
+
+	$('.apply_tooltip').tooltip();
+	$('.popup').popover();
+	$('#results').show();
+	setTimeout('loadSmallImages();', 2000);
 }
 
 function loadSmallImages() {
