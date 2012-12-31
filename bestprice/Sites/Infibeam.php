@@ -5,6 +5,9 @@ class Infibeam extends Parsing{
 	public function getAllowedCategory(){
 		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}
+	public function isTrusted($category){
+		return true;
+	}
 
 	public function getWebsiteUrl(){
 		return 'http://www.infibeam.com';

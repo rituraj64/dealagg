@@ -1,7 +1,9 @@
 <?php
 class Tradus extends Parsing{
 	public $_code = 'Tradus';
-
+	public function isTrusted($category){
+		return true;
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::MOBILE,Category::MOBILE_ACC);
 	}

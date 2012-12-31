@@ -14,6 +14,10 @@ class Parsing{
 	public function getCode(){
 		return $this->_code;
 	}
+	
+	public function isTrusted($category){
+		return false;
+	}
 	public function getWebsites(){
 		// indiaplaza gives page requested was moved.
 		// check if these needs to be added samsungindiaestore.com,ezeekart.com,next.co.in,
@@ -147,6 +151,8 @@ class Parsing{
 
 			$row['image'] = $this->makeAbsUrl($row['image']);
 			$row['url'] = $this->makeAbsUrl($row['url']);
+			
+			$row['name'] = ucwords($row['name']);
 
 			if(isset($row['author'])){
 				$row['author'] = trim(str_replace("by ", '', $row['author']));
@@ -166,7 +172,7 @@ class Parsing{
 		$data2 = array();
 		$i = 0;
 		foreach($data as $row){
-			if($row['disc_price'] > 0 && $row['disc_price'] != ''){
+			if($row['disc_price'] > 0 && $row['disc_price'] != '' || true){ //removed price check, cos flipkart has item with price N/A
 				$i++;
 				if($i > self::DATA_NUM){
 					//break;

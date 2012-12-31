@@ -5,6 +5,9 @@ class Homeshop extends Parsing{
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC);
 	}
+	public function isTrusted($category){
+		return true;
+	}
 
 	public function getWebsiteUrl(){
 		return 'http://www.homeshop18.com/';

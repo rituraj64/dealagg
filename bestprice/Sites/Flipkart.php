@@ -2,6 +2,10 @@
 class Flipkart extends Parsing{
 	public $_code = 'Flipkart';
 
+	public function isTrusted($category){
+		return true;
+	}
+
 	//need to integrate flipkart offers and cashback
 
 	public function getAllowedCategory(){
@@ -31,13 +35,15 @@ class Flipkart extends Parsing{
 				return "http://www.flipkart.com/mobile-accessories/chargers/pr?sid=tyy%2C4mr%2Ctp2&q=$query";
 			}elseif ($subcat == Category::MOB_SPEAKER){
 				return "http://www.flipkart.com/mobile-accessories/speakers/pr?sid=tyy%2C4mr%2C5ev&q=$query";
-			}return ($subcat == Category::MOB_CABLE){
+			}elseif ($subcat == Category::MOB_CABLE){
 				return "http://www.flipkart.com/mobile-accessories/cables/pr?sid=tyy%2C4mr%2C3nu&q=$query";
 			}elseif ($subcat == Category::MOB_CASES){
 				return "http://www.flipkart.com/mobile-accessories/cases-and-covers/pr?sid=tyy%2C4mr%2Cq2u&q=$query";
 			}elseif ($subcat == Category::MOB_OTHERS){
 				return "http://www.flipkart.com/mobile-accessories/pr?sid=tyy%2C4mr&q=$query&otracker=from-multi&ref=5f05d1cc-662f-416b-9e01-6888bfc0603f&query=$query";
-			}else return "";
+			}else {
+				return "";
+			}
 		}else if($category == Category::BOOKS){
 			return "http://www.flipkart.com/search-books?query=$query&searchGroup=books-stationeries&ref=6695f070-3c76-4c61-92bd-7bedc39b8873";
 		}else if($category == Category::CAMERA){

@@ -21,10 +21,13 @@ function closeModel(subcat) {
 	$('#subcategory').val(subcat);
 	$('#subcategory_model').modal('toggle');
 	$('.modal-backdrop').remove();
-	findPrice("", 1, false);
+	findPrice("", 1, 1, false);
 }
-function findPrice(site, cache, changeSubCat) {
+function findPrice(site, cache, trust, changeSubCat) {
 
+	if (trust == undefined) {
+		trust = 1;
+	}
 	if (cache === undefined) {
 		cache = 1;
 	}
@@ -63,11 +66,14 @@ function findPrice(site, cache, changeSubCat) {
 		}
 	}
 	if (site && site.length > 0) {
-			var url = $('#ajax_url').val().replace('site',site) +  'find.php?q=' + query + '&cat=' + category + "&site=" + site + "&cache=" + cache + "&subcat=" + subcat + "&callback=?";
+		var url = $('#ajax_url').val().replace('site', site) + 'find.php?q=' + query + '&cat=' + category + "&site=" + site + "&cache=" + cache + "&subcat=" + subcat + "&callback=?";
 	} else {
+		// reset all here on first button click
 		$('#loading').show();
 		$('#results').hide();
 		$('#results').html('');
+		$('#step').hide();
+		$('#step_items').html('');
 		$('.progress').hide();
 		$('.progress').children('.bar').first().attr('style', 'width:0%');
 		$('#progress_total').val(0);
@@ -78,37 +84,41 @@ function findPrice(site, cache, changeSubCat) {
 		$('#summary').hide();
 		$('#share').hide();
 		$('#share_url').val('');
+		untrusted = new Array();
 		if (changeSubCat == 1) {
 			$('#subcategory').val(-1);
 		}
 		var aj = 0;
-		for(aj =0;aj<ajaxReq.length;aj++){
-			if(ajaxReq[aj]){
+		for (aj = 0; aj < ajaxReq.length; aj++) {
+			if (ajaxReq[aj]) {
 				ajaxReq[aj].abort();
 			}
 		}
 		ajaxReq = new Array();
 		starttime = new Date().getTime();
-		var url = 'find.php?q=' + query + '&cat=' + category + "&cache=" + cache + "&subcat=" + subcat;
+		var url = $('#site_url').val() + 'find.php?q=' + query + '&cat=' + category + "&cache=" + cache + "&subcat=" + subcat;
 	}
 	ajaxReq[ajaxReq.length] = $.getJSON(url, function(data) {
-		processData(data, site, cache, changeSubCat);
+		processData(data, site, cache, trust, changeSubCat);
 	});
 }
 
-function processData(data, site, cache, changeSubCat, preloaded) {
-	
-	if(data.query_id && data.query_id.length > 0){
+function processData(data, site, cache, trust ,changeSubCat, preloaded) {
+
+	if (preloaded == undefined) {
+		preloaded = false;
+	}
+
+	if (data.query_id && data.query_id.length > 0) {
 		var q = $('#q').val();
 		q = q.replace(/[^a-zA-Z0-9]/g, "-");
-		var share_url = $('#site_url').val() + 'search/lowest-price-of-'+q + '/'+ data.query_id;
-		if(history){
+		var share_url = $('#site_url').val() + 'search/lowest-price-of-' + q + '/' + data.query_id;
+		if (history) {
 			history.pushState('Price Genie', '', share_url);
 		}
 		$('#share_url').val(share_url);
-		$('#share').show();
 	}
-	
+
 	$('#loading').hide();
 	if (site && site.length > 0) {
 		var psize = $('#progress_total').val();
@@ -328,6 +338,12 @@ function processData(data, site, cache, changeSubCat, preloaded) {
 			for ( var k = 0; k < size; k++) {
 				data.empty_sites[data.empty_sites.length] = data.ajax_parse[k];
 			}
+			data.ajax_parse = new Array();
+			var t = new Date().getTime() - starttime;
+			t = Math.ceil(t / 1000);
+			$('#summary').find('#time_taken').html(t + "sec");
+			$('#summary').find('#time').html(data.result_time);
+			$('#summary').show();
 		} else {
 			if (size > 0) {
 				for ( var k = 0; k < size; k++) {
@@ -338,7 +354,7 @@ function processData(data, site, cache, changeSubCat, preloaded) {
 					html = html.replace(/{website}/g, website);
 					html = html.replace(/{website_search_url}/g, searchurl);
 					html = html.replace(/{website_url}/g, logo);
-					findPrice(website, cache);
+					findPrice(website, cache, 1);
 					var websites = $('#results').find('.website');
 					if (websites.length > 0) {
 						html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
@@ -413,10 +429,212 @@ function processData(data, site, cache, changeSubCat, preloaded) {
 		}
 	}
 
+	size = data.untrusted.length;
+	if (size > 0) {
+
+		for ( var m = 0; m < size; m++) {
+			var len = untrusted.length
+			untrusted[len] = new Array();
+			untrusted[len]['site'] = data.untrusted[m].site;
+			untrusted[len]['searchurl'] = data.untrusted[m].searchurl;
+			untrusted[len]['logo'] = data.untrusted[m].logo;
+		}
+	}
+
+	var showResult = false;
+	// there are sites in ajax parse, so ajax has been called or each ajax is
+	// still loading and has not finished.
+	// only after calcResult() results should be shown
+
+	// check price variation
+	size = data.ajax_parse.length;
+	if (trust == 1) {
+		//trust == 0 only when untrusted sites are parsed during continueSearch() or preloaded results are shown
+		if (site && site.length > 0) {
+			// this mean its an individual ajax request
+			// so we need to check if all ajax requests have completed
+			var len = 0;
+			$('#results').children('.website_loading').each(function() {
+				if ($(this).hasClass('website_error') || $(this).hasClass('website_noresult')) {
+
+				} else {
+					len++;
+				}
+			})
+			if (len == 0) {
+				showResult = calcResult();
+			}
+		} else {
+			if (size == 0) {
+				// this means, this is the first search request and all trusted
+				// site
+				// data is here. from php caching
+				// since ajax_parse = 0 no more ajax data is comming so we can
+				// calculate the price variation
+
+				showResult = calcResult();
+				/*
+				 * var min_price =
+				 * $('#results').children('.website:first').children('.span4:first').children('#item_price').val();
+				 * var max_price =
+				 * $('#results').children('.website:last').children('.span4:first').children('#item_price').val();
+				 * 
+				 * var variation = Math.ceil(((max_price - min_price) /
+				 * min_price) * 100); 
+				 */
+			}
+		}
+	}else{
+		showResult = true;
+	}
+
 	$('.apply_tooltip').tooltip();
 	$('.popup').popover();
-	$('#results').show();
+	if (showResult) {
+		$('#results').show();
+		continueSearch();
+	} else {
+		//$('#results').hide();
+	}
 	setTimeout('loadSmallImages();', 2000);
+}
+
+var untrusted = new Array();
+
+function continueSearch() {
+	$('#share').show(); // show url now, since all results will come now
+	$('#results').show();
+	$('#step').hide();
+	var size = untrusted.length;
+	for ( var m = 0; m < size; m++) {
+		var website = untrusted[m]['site'];
+		var searchurl = untrusted[m]['searchurl'];
+		var logo = untrusted[m]['logo'];
+		var html = $('#loadingBodyTemplate').html();
+		html = html.replace(/{website}/g, website);
+		html = html.replace(/{website_search_url}/g, searchurl);
+		html = html.replace(/{website_url}/g, logo);
+		findPrice(website, 1, 0);
+		// here trust = 0 since all untrusted sites only come here
+		var websites = $('#results').find('.website');
+		if (websites.length > 0) {
+			html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
+			websites.last().after(html);
+		} else {
+			$('#results').prepend(html);
+		}
+	}
+	untrusted = new Array();
+}
+function searchThis($text) {
+	$('#q').val($text);
+	findPrice();
+}
+function calcResult() {
+
+	var init_price = 0;
+	var diff_sites = 0;
+
+	var no_result = 0;
+	var total_sites = 0;
+
+
+	/*
+	 * $('#results').children('.website').each(function() { if
+	 * ($(this).hasClass('website_error')) { } else if
+	 * ($(this).hasClass('website_noresult')) { no_result++; } else {
+	 * total_sites++; if (init_price == 0) { init_price =
+	 * $(this).children('.span4:first').children('#item_price').val(); } else {
+	 * new_price =
+	 * $(this).children('.span4:first').children('#item_price').val(); variation =
+	 * Math.ceil(((new_price - init_price) / init_price) * 100); if (variation >
+	 * 10) { diff_sites++; } init_price = new_price; } } });
+	 */
+	var pricesArr = new Array();
+	$('#results').children('.website').each(function() {
+		if ($(this).hasClass('website_error')) {
+		} else if ($(this).hasClass('website_noresult')) {
+			no_result++;
+		} else {
+			total_sites++;
+			pricesArr[pricesArr.length] = $(this).children('.span4:first').children('#item_price').val();
+		}
+	});
+	var i = 0;
+	var out = 0;
+	for (i = 0; i < pricesArr.length; i++) {
+		out = 0;
+		for (j = 0; j < pricesArr.length; j++) {
+			if (i == j) {
+				continue;
+			}
+
+			var variation = Math.abs(Math.ceil(((pricesArr[i] - pricesArr[j]) / pricesArr[i]) * 100));
+			if (variation > 20) {
+				out++;
+			}
+		}
+		if (out > Math.floor(pricesArr.length / 2)) {
+			diff_sites++;
+		}
+	}
+	var fine = true;
+	if (no_result >= Math.floor($('#results').children('.website').length / 2)) {
+		fine = false; // product not found in more than 50% sites.
+	} else {
+		if (diff_sites >= Math.floor(total_sites / 2)) {
+			fine = false;
+		} else {
+			fine = true;
+		}
+	}
+	if (!fine) {
+		showStep();
+	}
+	return fine;
+}
+
+function showStep() {
+	$('#results').hide();
+	$('#step_items').html('');
+	$('#results').children('.website').each(function() {
+		if ($(this).hasClass('website_error')) {
+		} else if ($(this).hasClass('website_noresult')) {
+		} else {
+			var website = $(this).attr('id');
+			var logo = $(this).children('.span2:first').children('a').children('img').attr('src');
+			var website_search_url = $(this).children('.span2:first').children('a').attr('href');
+
+			var url = $(this).children('.span4:first').children('#item_url').val();
+			var image = $(this).children('.span4:first').children('#item_image').val();
+			var name = $(this).children('.span4:first').children('#item_name').val();
+			var price = $(this).children('.span4:first').children('#item_price').val();
+			var author = $(this).children('.span4:first').children('#item_author').val();
+			var offer = '';
+			var shipping = '';
+
+			var html = $('#stepItem').html();
+			html = html.replace(/{website}/g, website);
+			html = html.replace(/{website_url}/g, logo);
+			html = html.replace(/{item_url}/g, url);
+			html = html.replace(/{item_image}/g, image);
+			html = html.replace(/{item_name}/g, name);
+			html = html.replace(/{item_price}/g, price);
+			html = html.replace(/{website_search_url}/g, website_search_url);
+			html = html.replace(/{item_offer_org}/g, offer);
+			html = html.replace(/{item_shipping_org}/g, shipping);
+
+			html = html.replace(/{item_author}/g, author);
+
+			if (author.length == 0) {
+				html = html.replace(/{author_display}/g, 'display:none');
+			} else {
+				html = html.replace(/{author_display}/g, '');
+			}
+			$('#step_items').append(html);
+		}
+	});
+	$('#step').show();
 }
 
 function loadSmallImages() {

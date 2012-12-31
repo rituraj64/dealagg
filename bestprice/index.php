@@ -30,7 +30,7 @@
       	<?php if(isset($result)){ ?>
       		<script type="text/javascript">
         	$(document).ready(function(){
-        		processData(eval(<?php echo json_encode($result)?>),'','','',true);
+        		processData(eval(<?php echo json_encode($result)?>),'','',0,'',true);
         	});
         	</script>
         <?php }else{ ?>
@@ -65,7 +65,7 @@
 		  <strong>Warning!</strong> <span><?php if(isset($error)){echo $error;}?></span>
 		</div>
 		<div id='loading' style="display: none;">
-			<img src='img/loading.gif' alt='loading..'/>
+			<img src='<?php echo Parser::SITE_URL;?>img/loading.gif' alt='loading..' title='loading..'/>
 		</div>
 		<input id='progress_total' type="hidden"/>
 		<input id='progress_done' type="hidden"/>
@@ -85,13 +85,32 @@
 					Results As On:
 					<input type='hidden' id='max_time' value="0" /> 
 					<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="Get Latest Results">
-						<span onclick='findPrice("",0,false);' style="cursor: pointer;" class='icon-refresh'></span>
+						<span onclick='findPrice("",0,1,false);' style="cursor: pointer;" class='icon-refresh'></span>
 					</span> 
 					<h4 id='time'></h4>
 				</div>
 				<div class='clearfix'></div>
 		</div>
       </div>
+      <div id='step' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;display: none">
+		     <div>
+		     	We have detected your search term is generic, please write an accurate search term to get a better result or 
+		     	<span class="label">choose below!</span> from our sugessions.
+		     	<br/>
+		     	If your search term is correct and you want to <span style="cursor: pointer;" onclick='continueSearch();return false;' class="label label-success">continue click here</span>
+		     </div>
+		     <div style="text-align: center;padding-left: 10px;">
+			     <h2>Are you looking for?</h2>
+			     <div id='step_items'>
+				     
+			     </div>
+			      <div class='clearfix'></div>
+			     <h2>OR</h2>
+			     <button type="button" class='btn btn-large' onclick='continueSearch();return false;'>Continue Search!</button>
+		     </div>
+		    
+	  </div>
+	  
       <div id='results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;display:none">
 		     
 	  </div>
@@ -207,7 +226,7 @@
   </div>
   
   <div id='emptyBodyTemplate' style="display: none">
-  		<div class="row-fluid clearfix website website_loading" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
+  		<div class="row-fluid clearfix website website_loading website_noresult" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
 				<div class="span2" style="line-height: 150px">
 					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
 				</div>
@@ -220,7 +239,7 @@
   </div>
   
   <div id='errorBodyTemplate' style="display: none">
-  		<div class="row-fluid clearfix website website_loading" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
+  		<div class="row-fluid clearfix website website_loading website_error" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
 				<div class="span2" style="line-height: 150px">
 					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
 				</div>
@@ -275,6 +294,32 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
+  </div>
+  <div id='stepItem' style="display: none">
+  	<div  class='table-bordered pull-left' style="border-left: 1px solid #DDD;padding: 10px;margin-right: 20px;width: 150px;margin-top: 5px;height: 235px">
+     	<div>
+     		<a href="{item_url}" target="_blank">
+				<img class="img-rounded" src="{item_image}" alt='{item_name}' title='{item_name}' style="max-width: 100px;max-height: 100px;" />
+			</a>
+     	</div>
+     	<div style="height: 40px;overflow: hidden">
+	     	<a href="{item_url}" target="_blank" class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="{item_name}">
+	     		{item_name}
+	     	</a>
+     	</div>
+     	<div>
+			Price <span class="WebRupee">Rs.</span><span class='main_price'>{item_price}</span>
+		</div>
+		<div class='author' style="{author_display}">
+			by <small>{item_author}</small>
+		</div>
+		<button type="button" onclick='searchThis("{item_name}");return false;' class='btn btn-small btn-info'>Search This!</button>
+		<div style="padding-top: 20px;height: 30px">
+			<a href='{website_search_url}'>
+				<img style="max-width: 100px;max-height: 30px" class="img-rounded" src='{website_url}' alt='{website}' title='{website}'/>
+			</a>
+		</div>
+     </div>
   </div>
   <div id='category_data'>
 	<?php

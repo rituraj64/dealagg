@@ -3,6 +3,9 @@
 class ShopClues extends Parsing{
 	public $_code = 'ShopClues';
 
+	public function isTrusted($category){
+		return true;
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC);
 	}

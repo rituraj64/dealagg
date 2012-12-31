@@ -5,6 +5,9 @@ class Naaptol extends Parsing{
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS);
 	}
+	public function isTrusted($category){
+		return true;
+	}
 
 	public function getWebsiteUrl(){
 		return 'http://www.naaptol.com';

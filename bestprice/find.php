@@ -44,46 +44,55 @@ if(isset($_REQUEST['q'])){
 		$searchModel->setHits(0);
 		$searchModel->insert();
 	}
+	$untrusted = array();
 
 	//	$sites = array('Flipkart');
 	foreach($sites as $site){
 		require_once 'Sites/'.$site.'.php';
 		$siteObj = new $site;
 		if($siteObj->allowCategory($cat)){
-			try{
-				$data1 = $siteObj->getPriceData($query,$cat,$subcat,$delay,$cache);
-				$resultTime = $siteObj->getResultTime();
-				if($resultTime > $max){
-					$max = $resultTime;
-				}
-				if(!$data1 && $delay){
-					$ajaxParseSite[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat,$subcat),'logo'=>$siteObj->getLogo());
-				}else{
-					$data2 = array();
-					$count = 0;
-					foreach($data1 as $row){
-						$name = $row['name'];
-						$row['logo'] = $siteObj->getLogo();
-						$row['searchurl'] = $siteObj->getSearchURL($query,$cat,$subcat);
-							
-						$data2[] = $row;
-						$count++;
+			$trust = $siteObj->isTrusted($cat);
+			if(isset($_REQUEST['site'])){
+				$trust = true;
+			}
+			if($trust){
+				try{
+					$data1 = $siteObj->getPriceData($query,$cat,$subcat,$delay,$cache);
+					$resultTime = $siteObj->getResultTime();
+					if($resultTime > $max){
+						$max = $resultTime;
 					}
-					$data1 = array();
-					//uasort($data2, 'priceSort');
-
-					if(empty($data2)){
-						$emptySites[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat,$subcat),'logo'=>$siteObj->getLogo());
+					if(!$data1 && $delay){
+						$ajaxParseSite[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat,$subcat),'logo'=>$siteObj->getLogo());
 					}else{
-						if(empty($data)){
-							$data = $data2;
+						$data2 = array();
+						$count = 0;
+						foreach($data1 as $row){
+							$name = $row['name'];
+							$row['logo'] = $siteObj->getLogo();
+							$row['searchurl'] = $siteObj->getSearchURL($query,$cat,$subcat);
+
+							$data2[] = $row;
+							$count++;
+						}
+						$data1 = array();
+						//uasort($data2, 'priceSort');
+
+						if(empty($data2)){
+							$emptySites[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat,$subcat),'logo'=>$siteObj->getLogo());
 						}else{
-							$data = array_merge($data,$data2);
+							if(empty($data)){
+								$data = $data2;
+							}else{
+								$data = array_merge($data,$data2);
+							}
 						}
 					}
+				}catch(Exception $e){
+					$errorSites[] = array('site'=>$site,'message'=>$e->getMessage(),'searchurl'=>$siteObj->getSearchURL($query,$cat,$subcat),'logo'=>$siteObj->getLogo());
 				}
-			}catch(Exception $e){
-				$errorSites[] = array('site'=>$site,'message'=>$e->getMessage(),'searchurl'=>$siteObj->getSearchURL($query,$cat,$subcat),'logo'=>$siteObj->getLogo());
+			}else{
+				$untrusted[] = array('site'=>$site,'searchurl'=>$siteObj->getSearchURL($query,$cat,$subcat),'logo'=>$siteObj->getLogo());
 			}
 		}
 	}
@@ -190,7 +199,7 @@ if(isset($_REQUEST['q'])){
 			}
 		}
 	}
-	$return = array('query_id'=>$query_id,'ajax_parse'=>$ajaxParseSite,'data'=>$data,'result_time'=>date('d/m/y h:i a',$max),'result_number_time'=>$max,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site);
+	$return = array('untrusted'=>$untrusted,'query_id'=>$query_id,'ajax_parse'=>$ajaxParseSite,'data'=>$data,'result_time'=>date('d/m/y h:i a',$max),'result_number_time'=>$max,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site);
 	if(!isset($_REQUEST['silent'])){
 		if(isset($_GET['callback'])){
 			echo $_GET['callback'] . '(' . json_encode($return) . ')';

@@ -5,7 +5,9 @@ class uRead extends Parsing{
 	public function getAllowedCategory(){
 		return array(Category::BOOKS);
 	}
-
+	public function isTrusted($category){
+		return true;
+	}
 	public function getWebsiteUrl(){
 		return 'http://www.uread.com/';
 	}

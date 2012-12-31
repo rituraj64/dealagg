@@ -2,6 +2,11 @@
 class EBay extends Parsing{
 	public $_code = 'eBay';
 
+	public function isTrusted($category){
+		if($category == Category::BOOKS){
+			return true;
+		}
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS);
 	}

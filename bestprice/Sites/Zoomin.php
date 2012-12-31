@@ -5,7 +5,11 @@ class Zoomin extends Parsing{
 	public function getAllowedCategory(){
 		return array(Category::CAMERA,Category::MOBILE,Category::CAMERA_ACC,Category::MOBILE_ACC);
 	}
-
+	public function isTrusted($category){
+		if($category == Category::CAMERA){
+			return true;
+		}
+	}
 	public function getWebsiteUrl(){
 		return 'http://camera.zoomin.com';
 	}

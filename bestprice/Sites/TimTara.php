@@ -1,7 +1,9 @@
 <?php
 class TimTara extends Parsing{
 	public $_code = 'TimTara';
-
+	public function isTrusted($category){
+		return true;
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}

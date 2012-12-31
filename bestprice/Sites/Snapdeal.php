@@ -2,6 +2,10 @@
 class Snapdeal extends Parsing{
 	public $_code = 'Snapdeal';
 
+	public function isTrusted($category){
+		return true;
+	}
+
 	public function getAllowedCategory(){
 		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA);
 	}
