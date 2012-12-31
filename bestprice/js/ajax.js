@@ -98,6 +98,9 @@ function findPrice(site, cache, trust, changeSubCat) {
 		starttime = new Date().getTime();
 		var url = $('#site_url').val() + 'find.php?q=' + query + '&cat=' + category + "&cache=" + cache + "&subcat=" + subcat;
 	}
+	if(trust == 5){
+		url += '&trust=1';
+	}
 	ajaxReq[ajaxReq.length] = $.getJSON(url, function(data) {
 		processData(data, site, cache, trust, changeSubCat);
 	});
@@ -529,7 +532,7 @@ function continueSearch() {
 }
 function searchThis($text) {
 	$('#q').val($text);
-	findPrice();
+	findPrice('','',5);
 }
 function calcResult() {
 
