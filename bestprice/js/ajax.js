@@ -103,7 +103,7 @@ function findPrice(site, cache, trust, changeSubCat) {
 	});
 }
 
-function processData(data, site, cache, trust ,changeSubCat, preloaded) {
+function processData(data, site, cache, trust, changeSubCat, preloaded) {
 
 	if (preloaded == undefined) {
 		preloaded = false;
@@ -449,7 +449,9 @@ function processData(data, site, cache, trust ,changeSubCat, preloaded) {
 	// check price variation
 	size = data.ajax_parse.length;
 	if (trust == 1) {
-		//trust == 0 only when untrusted sites are parsed during continueSearch() or preloaded results are shown
+		$('#results').show();
+		// trust == 0 only when untrusted sites are parsed during
+		// continueSearch() or preloaded results are shown
 		if (site && site.length > 0) {
 			// this mean its an individual ajax request
 			// so we need to check if all ajax requests have completed
@@ -480,21 +482,20 @@ function processData(data, site, cache, trust ,changeSubCat, preloaded) {
 				 * $('#results').children('.website:last').children('.span4:first').children('#item_price').val();
 				 * 
 				 * var variation = Math.ceil(((max_price - min_price) /
-				 * min_price) * 100); 
+				 * min_price) * 100);
 				 */
 			}
 		}
-	}else{
+	} else {
 		showResult = true;
 	}
 
 	$('.apply_tooltip').tooltip();
 	$('.popup').popover();
 	if (showResult) {
-		$('#results').show();
 		continueSearch();
 	} else {
-		//$('#results').hide();
+		// $('#results').hide();
 	}
 	setTimeout('loadSmallImages();', 2000);
 }
@@ -538,7 +539,6 @@ function calcResult() {
 	var no_result = 0;
 	var total_sites = 0;
 
-
 	/*
 	 * $('#results').children('.website').each(function() { if
 	 * ($(this).hasClass('website_error')) { } else if
@@ -572,17 +572,20 @@ function calcResult() {
 			var variation = Math.abs(Math.ceil(((pricesArr[i] - pricesArr[j]) / pricesArr[i]) * 100));
 			if (variation > 20) {
 				out++;
+				console.log(pricesArr[i] + ' compare ' + pricesArr[j] + " variation is more than 20%")
 			}
 		}
-		if (out > Math.floor(pricesArr.length / 2)) {
+		if (out > Math.ceil(pricesArr.length / 2)) {
+			console.log('site ' + i + ' is out with number' + out);
 			diff_sites++;
 		}
 	}
+	console.log('Total different sites is ' + diff_sites + ' and total sitse ' + total_sites);
 	var fine = true;
 	if (no_result >= Math.floor($('#results').children('.website').length / 2)) {
 		fine = false; // product not found in more than 50% sites.
 	} else {
-		if (diff_sites >= Math.floor(total_sites / 2)) {
+		if (diff_sites >= Math.ceil(total_sites / 2)) {
 			fine = false;
 		} else {
 			fine = true;

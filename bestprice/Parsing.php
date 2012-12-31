@@ -5,7 +5,7 @@ require_once 'Category.php';
 set_time_limit(10000);
 class Parsing{
 	//public $_code = 'Website';
-	
+
 	public static function getReplace(){
 		return array('&amp;'=>'and','&'=>'and');
 	}
@@ -14,7 +14,7 @@ class Parsing{
 	public function getCode(){
 		return $this->_code;
 	}
-	
+
 	public function isTrusted($category){
 		return false;
 	}
@@ -53,7 +53,7 @@ class Parsing{
 		if(empty($url)){
 			return array(); //no result
 		}
-		
+
 		$website = $this->getCode();
 		if($cache == 0){
 			$this->deleteCachedData($website, $query, $category,$subcat,$url);
@@ -149,9 +149,13 @@ class Parsing{
 
 			$row['disc_price'] = $this->removeAlpha($row['disc_price'],true);
 
-			$row['image'] = $this->makeAbsUrl($row['image']);
+			if(empty($row['image'])){
+				$row['image'] = Parser::AJAX_URL . 'img/50x50.gif';
+			}else{
+				$row['image'] = $this->makeAbsUrl($row['image']);
+			}
 			$row['url'] = $this->makeAbsUrl($row['url']);
-			
+				
 			$row['name'] = ucwords($row['name']);
 
 			if(isset($row['author'])){
