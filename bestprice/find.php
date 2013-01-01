@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Calcutta');
 require_once 'Parsing.php';
 if(isset($_REQUEST['q'])){
 	$query = urlencode($_REQUEST['q']);

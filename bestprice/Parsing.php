@@ -20,10 +20,10 @@ class Parsing{
 	}
 	public function getWebsites(){
 		// indiaplaza gives page requested was moved.
-		// check if these needs to be added samsungindiaestore.com,ezeekart.com,next.co.in,
-		// maniac store is search post form
+		// check if these needs to be added samsungindiaestore.com,next.co.in,
+		//uread shows price in USD, right now i am multiping with exchange rate, but that doesnt give correct amt in INR as per site
 		// http://www.imagestore.co.in its offiec cannon store
-		// add kaunsa.com
+		// add http://www.shoperskart.com/
 
 		// for greendust, its important to go to product page since they sell second hand stuff also
 		// naaptol product page need to get shop points and shipping charges
@@ -34,7 +34,7 @@ class Parsing{
 
 		//for snapdeal need to think something about brands pages, if you search sony it goes to its brand page and not that perticular category
 
-		return array('Flipkart','Snapdeal','ShopClues','Tradus','Indiatimes','Zoomin','Saholic','Landmark','Infibeam','Homeshop','Croma','Crossword','EBay','Rediff','uRead','Bookadda','Justbooks','Letskart','Amegabooks','Simplebooks','Indianbooks','Yebhi','Greendust','Adexmart','Naaptol','BuyThePrice','FutureBazaar','CostPrize','Fosila','MirchiMart','Seventymm','TheMobileStore','Sulekha','TimTara','Bagittoday','Storeji','Letshop','eDabba','Royalimages','Suzalin','Giffiks');
+		return array('Flipkart','Snapdeal','ShopClues','Tradus','Indiatimes','Zoomin','Saholic','Landmark','Infibeam','Homeshop','Croma','Crossword','EBay','Rediff','uRead','Bookadda','Justbooks','Letskart','Amegabooks','Simplebooks','Indianbooks','Yebhi','Greendust','Adexmart','Naaptol','BuyThePrice','FutureBazaar','CostPrize','Fosila','MirchiMart','Seventymm','TheMobileStore','Sulekha','TimTara','Bagittoday','Storeji','Letshop','eDabba','Royalimages','Suzalin','Giffiks','ManiacStore','ezeekart','Kaunsa');
 	}
 	public function allowCategory($cat){
 		foreach($this->getAllowedCategory() as $key => $val){
@@ -67,8 +67,9 @@ class Parsing{
 		}else{
 			if(!$delay){
 				$parser = new Parser();
-				$html = $parser->getHtml($url);
 
+					
+				$html = $parser->getHtml($url,$this->getPostFields($query));
 				//$this->cacheData($website, $query,$category, $url, $html);
 
 				$data = $this->getData($html,$query,$category,$subcat);
@@ -155,7 +156,7 @@ class Parsing{
 				$row['image'] = $this->makeAbsUrl($row['image']);
 			}
 			$row['url'] = $this->makeAbsUrl($row['url']);
-				
+
 			$row['name'] = ucwords($row['name']);
 
 			if(isset($row['author'])){
@@ -252,5 +253,8 @@ class Parsing{
 	public function Convert_TO_Utf8($text)
 	{
 		return iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
+	}
+	public function getPostFields($query,$category = false,$subcat=false){
+		return array();
 	}
 }

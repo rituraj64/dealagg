@@ -9,29 +9,66 @@ class ManiacStore extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.maniacstore.com';
 	}
-	public function getSearchURL($query,$category = false,$subcat=false){
+	public function getPostFields($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
-			return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=bsbstore(text)=Mobile Store,alltypes(text)=Mobiles and Tablets,product type(text)=Mobile Phones";
-		}else{
-			return "http://www.yebhi.com/searchall.aspx?q=$query";
+			$cat_id = 251;
+		}else if($category == Category::MOBILE_ACC){
+			if($subcat == Category::NOT_SURE){
+				$cat_id = 252;
+			}else if ($subcat == Category::MOB_SCREEN_GUARD){
+				$cat_id = 598;
+			}elseif ($subcat == Category::MOB_HANDSFREE){
+				$cat_id = 254;
+			}elseif ($subcat == Category::MOB_HEADSETS){
+				$cat_id = 253;
+			}elseif ($subcat == Category::MOB_BATTERY){
+				$cat_id = 601;
+			}elseif ($subcat == Category::MOB_CHARGER){
+				$cat_id = 599;
+			}elseif ($subcat == Category::MOB_SPEAKER){
+				$cat_id = 252;
+			}elseif ($subcat == Category::MOB_CABLE){
+				$cat_id = 599;
+			}elseif ($subcat == Category::MOB_CASES){
+				$cat_id = 254;
+			}elseif ($subcat == Category::MOB_OTHERS){
+			}else {
+				return array();
+			}
 		}
+		$str = 'simple_search=Y&mode=search&posted_data%5Bcategoryid%5D='.$cat_id.'&posted_data%5Bby_title%5D=Y&posted_data%5Bby_descr%5D=Y&posted_data%5Bby_sku%5D=Y&posted_data%5Bsearch_in_subcategories%5D=Y&posted_data%5Bincluding%5D=all&posted_data%5Bsubstring%5D='.$query;
+		$a = array();
+		$str = explode('&',$str);
+		foreach($str as $s){
+			$s = explode('=',$s);
+			$a[$s[0]] = $s[1];
+		}
+		return $a;
+	}
+	public function getSearchURL($query,$category = false,$subcat=false){
+		return "http://www.maniacstore.com/search.php?mode=search&page=1";
 	}
 	public function getLogo(){
-		return "http://www.yebhi.com/template/yebhi/img/ChrisYebhiLogo.jpg";
+		return "http://www.maniacstore.com/skin/common_files/images/logo.jpg";
 	}
 	public function getData($html,$query,$category,$subcat){
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
-		if(sizeof(pq('div.price_Reviews')) > 0){
-			foreach(pq('div.price_Reviews') as $div){
-				$image = pq($div)->find('.gotopage')->children('div')->html();
-				$url = pq($div)->find('.gotopage')->attr('href');
-				$name = pq($div)->children('p:first')->children('a')->html();
-				$disc_price = pq($div)->children('.priice')->children('.inr')->html();
-				$offer = pq($div)->children('.saving:last')->html();
+		if(sizeof(pq('div.proImg')) > 0){
+			foreach(pq('div.proImg') as $div){
+				$image = pq($div)->children('a')->html();
+				$url = pq($div)->children('a')->attr('href');
+				$name = pq($div)->siblings('b:first')->html();
+				$disc_price = pq($div)->siblings('span:first')->html();
+				$offer = '';
 				$shipping = '';
 				$stock = 0;
+				if(sizeof(pq($div)->siblings('.soldOut'))){
+					$stock = -1;
+				}else{
+					$stock = 1;	
+				}
 				$author = '';
 				$data[] = array(
 						'name'=>$name,

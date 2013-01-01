@@ -11,7 +11,7 @@ class Indiaplaza extends Parsing{
 	}
 	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::BOOKS){
-			return "http://www.indiaplaza.com/searchproducts.aspx?sn=books&q=".$query;
+			return "http://www.indiaplaza.com/searchproducts.aspx?sn=all&q=$query&dn=books";
 		}
 	}
 	public function getLogo(){

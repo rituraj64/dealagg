@@ -1,5 +1,6 @@
 <?php
 	session_start(); 
+	date_default_timezone_set('Asia/Calcutta');
 	if(isset($_REQUEST['query_id'])){
 		$query_id = $_REQUEST['query_id'];
 		require_once 'model/Search.php';

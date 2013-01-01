@@ -98,7 +98,7 @@ function findPrice(site, cache, trust, changeSubCat) {
 		starttime = new Date().getTime();
 		var url = $('#site_url').val() + 'find.php?q=' + query + '&cat=' + category + "&cache=" + cache + "&subcat=" + subcat;
 	}
-	if(trust == 5){
+	if (trust == 5) {
 		url += '&trust=1';
 	}
 	ajaxReq[ajaxReq.length] = $.getJSON(url, function(data) {
@@ -506,6 +506,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded) {
 var untrusted = new Array();
 
 function continueSearch() {
+	return;
 	$('#share').show(); // show url now, since all results will come now
 	$('#results').show();
 	$('#step').hide();
@@ -532,7 +533,7 @@ function continueSearch() {
 }
 function searchThis($text) {
 	$('#q').val($text);
-	findPrice('','',5);
+	findPrice('', '', 5);
 }
 function calcResult() {
 
@@ -565,6 +566,19 @@ function calcResult() {
 	});
 	var i = 0;
 	var out = 0;
+
+	var avg = 0;
+	for (i = 0; i < pricesArr.length; i++) {
+		avg += (pricesArr[i]*1);
+	}
+	avg = avg / pricesArr.length;
+	console.log('avg' + avg);
+	for (i = 0; i < pricesArr.length; i++) {
+		var variation = Math.abs(Math.ceil(((pricesArr[i] - avg) / avg) * 100));
+		
+		console.log(pricesArr[i] + " variation is " + variation)
+		
+	}
 	for (i = 0; i < pricesArr.length; i++) {
 		out = 0;
 		for (j = 0; j < pricesArr.length; j++) {
@@ -575,7 +589,7 @@ function calcResult() {
 			var variation = Math.abs(Math.ceil(((pricesArr[i] - pricesArr[j]) / pricesArr[i]) * 100));
 			if (variation > 20) {
 				out++;
-				console.log(pricesArr[i] + ' compare ' + pricesArr[j] + " variation is more than 20%")
+				console.log(pricesArr[i] + ' compare ' + pricesArr[j] + " variation is more than 20% at " + variation)
 			}
 		}
 		if (out > Math.ceil(pricesArr.length / 2)) {
@@ -588,7 +602,7 @@ function calcResult() {
 	if (no_result >= Math.floor($('#results').children('.website').length / 2)) {
 		fine = false; // product not found in more than 50% sites.
 	} else {
-		if (diff_sites >= Math.ceil(total_sites / 2)) {
+		if (diff_sites > Math.ceil(total_sites / 2)) {
 			fine = false;
 		} else {
 			fine = true;
