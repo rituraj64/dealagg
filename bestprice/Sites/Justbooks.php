@@ -1,5 +1,6 @@
 <?php
 class Justbooks extends Parsing{
+
 	public $_code = 'Justbooks';
 
 	public function getAllowedCategory(){

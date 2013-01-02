@@ -1,5 +1,6 @@
 <?php
 class Letskart extends Parsing{
+
 	public $_code = 'Letskart';
 	
 	public function getAllowedCategory(){

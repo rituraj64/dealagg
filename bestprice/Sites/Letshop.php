@@ -9,6 +9,7 @@ class Letshop extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://letsshop.in/';
 	}
+	
 	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::MOBILE){
 			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=4";

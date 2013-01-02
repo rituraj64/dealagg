@@ -18,7 +18,29 @@ class Infibeam extends Parsing{
 		}else if($category == Category::MOBILE){
 			return "http://www.infibeam.com/Mobiles/search?q=".$query;
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.infibeam.com/Mobile_Accessories/search?q=$query";
+			//return "http://www.infibeam.com/Mobile_Accessories/search?q=$query";
+			if($subcat == Category::MOB_BATTERY){
+				return "http://www.infibeam.com/Mobile_Accessories/search?q=$query&category=Batteries";
+			}elseif($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADSETS || $subcat == Category::MOB_HEADPHONE){
+				return "http://www.infibeam.com/Mobile_Accessories/search?q=$query#category=Bluetooth%20Devices&category=Handset&category=Handsfree&category=Headsets&q=$query&store=Mobile_Accessories";
+			}elseif($subcat == Category::MOB_CABLE){
+				return "http://www.infibeam.com/Mobile_Accessories/search?q=$query&category=Cables";
+			}elseif($subcat == Category::MOB_CHARGER){
+				return "http://www.infibeam.com/Mobile_Accessories/search?q=$query&category=Chargers";
+			}elseif($subcat == Category::MOB_CASES){
+				return "http://www.infibeam.com/Mobile_Accessories/search?q=$query&category=Covers";
+			}elseif($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://www.infibeam.com/Mobile_Accessories/search?q=$query&category=Screen%20Protectors";
+			}elseif($subcat == Category::MOB_SPEAKER){
+				return "http://www.infibeam.com/Mobile_Accessories/search?q=$query#category=Speakers&q=$query&store=Mobile_Accessories";
+			}elseif($subcat == Category::MOB_CAR_ACC){
+				return "http://www.infibeam.com/Mobile_Accessories/search?q=$query#category=Car%20Accessories&q=$query&store=Mobile_Accessories";
+			}elseif($subcat == Category::MOB_MEMORY){
+				return "http://www.infibeam.com/Mobile_Accessories/search?q=$query#category=Memory%20Cards&q=$query&store=Mobile_Accessories";
+			}elseif($subcat == Category::MOB_OTHERS){
+				return "http://www.infibeam.com/Mobile_Accessories/search?q=$query";
+			}
+			else return "";
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.infibeam.com/Cameras/search?q=$query";

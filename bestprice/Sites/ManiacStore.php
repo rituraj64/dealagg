@@ -9,6 +9,7 @@ class ManiacStore extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.maniacstore.com';
 	}
+	
 	public function getPostFields($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
 			$cat_id = 251;

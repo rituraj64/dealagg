@@ -13,7 +13,28 @@ class Gud2Buy extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://gud2buy.com/mobiles-and-accessories/mobiles&filter_name=$query&sort=stock_status_id+desc";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://gud2buy.com/mobiles-and-accessories/accessories&filter_name=$query&sort=stock_status_id+desc";
+			//return "http://gud2buy.com/mobiles-and-accessories/accessories&filter_name=$query&sort=stock_status_id+desc";
+			if($subcat == Category::MOB_HANDSFREE){
+				return "http://gud2buy.com/mobiles-and-accessories&filter_name=$query&sort=newprice%20asc&filters=type:Bluetooth";
+			}elseif($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://gud2buy.com/mobiles-and-accessories&filter_name=$query&sort=newprice%20asc&filters=type:Screen_Guard";
+			}elseif($subcat == Category::MOB_CASES){
+				return "http://gud2buy.com/mobiles-and-accessories&filter_name=$query&sort=newprice%20asc&filters=type:Cover";
+			}elseif($subcat == Category::MOB_BATTERY){
+				return "http://gud2buy.com/mobiles-and-accessories&filter_name=$query&sort=newprice%20asc&filters=type:Batteries";
+			}elseif($subcat == Category::MOB_CABLE){
+				return "http://gud2buy.com/mobiles-and-accessories&filter_name=$query&sort=newprice%20asc&filters=type:Data_Cable";
+			}elseif($subcat == Category::MOB_CAR_ACC){
+				return "http://gud2buy.com/mobiles-and-accessories&filter_name=$query&sort=newprice%20asc&filters=type:Car_Charger";
+			}elseif($subcat == Category::MOB_CHARGER){
+				return "http://gud2buy.com/mobiles-and-accessories&filter_name=$query&sort=newprice%20asc&filters=type:Charger";
+			}elseif($subcat == Category::MOB_HEADSETS){
+				return "http://gud2buy.com/mobiles-and-accessories&filter_name=$query&sort=newprice%20asc&filters=type:Earphones";
+			}elseif ($subcat == Category::MOB_OTHERS){
+				return "http://gud2buy.com/mobiles-and-accessories/accessories&filter_name=$query&sort=stock_status_id+desc";
+			}else{
+				return "";
+			}
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return '';

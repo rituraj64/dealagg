@@ -24,6 +24,28 @@ class Indiatimes extends Parsing{
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10004";
 		}else if($category == Category::MOBILE){
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10001";
+		}else if($category == Category::MOBILE_ACC){
+			if($subcat == Category::MOB_BATTERY){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:20003";
+			}elseif($subcat == Category::MOB_CABLE){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:20005";
+			}elseif($subcat == Category::MOB_CASES){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:10016";
+			}elseif($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:20007";
+			}elseif($subcat == Category::MOB_MEMORY){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:20006";
+			}elseif($subcat == Category::MOB_OTHERS){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:20009";
+			}elseif($subcat == Category::MOB_SPEAKER){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10001";
+			}elseif($subcat == Category::MOB_HANDSFREE){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10001";
+			}elseif($subcat == Category::MOB_CAR_ACC){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:41853";
+			}elseif($subcat == Category::MOB_HEADPHONE || $subcat == Category::MOB_HEADSETS){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=WH-930&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:20002";
+			}else return "";
 		}else if($category == Category::TV){
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10004";
 		}else if($category == Category::GAMING){

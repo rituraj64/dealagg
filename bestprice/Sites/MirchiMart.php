@@ -16,7 +16,31 @@ class MirchiMart extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=Mobiles&searchText=$query";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MbAccess&searchText=$query";
+			//return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MbAccess&searchText=$query";
+			if($subcat == Category::MOB_BATTERY){
+				return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=MbAccessBatteries&selectedCategory=MbAccess&searchText=$query";
+			}elseif ($subcat == Category::MOB_CAR_ACC){
+				return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MMCatalog_ROOT&searchText=$query";
+			}elseif ($subcat == Category::MOB_HEADPHONE){
+				return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MMCatalog_ROOT&searchText=$query";
+			}elseif ($subcat == Category::MOB_HEADSETS){
+				return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=BluetoothHeadsets&selectedCategory=MMCatalog_ROOT&searchText=$query";
+			}elseif ($subcat == Category::MOB_SPEAKER){
+				return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=CPSpeakers&selectedCategory=MMCatalog_ROOT&searchText=$query";
+			}elseif ($subcat == Category::MOB_HANDSFREE){
+				return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=EarPhones&selectedCategory=MMCatalog_ROOT&searchText=$query";
+			}elseif ($subcat == Category::MOB_CASES){
+				return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=CasesNCov&selectedCategory=MbAccess&searchText=$query";
+			}
+			elseif ($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=ScreenGuards&selectedCategory=MbAccess&searchText=$query";
+			}
+			elseif ($subcat == Category::MOB_OTHERS){
+				return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MMCatalog_ROOT&searchText=$query";
+			}
+			else{
+				return "";
+			}
 		}
 		return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MMCatalog_ROOT&searchText=$query";
 	}

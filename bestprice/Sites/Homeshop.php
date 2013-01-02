@@ -21,7 +21,22 @@ class Homeshop extends Parsing{
 		}else if($category == Category::MOBILE){
 			return "http://www.homeshop18.com/$query/mobiles/search:$query/categoryid:14569";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.homeshop18.com/$query/accessories/categoryid:3032/search:$query/";
+			//return "http://www.homeshop18.com/$query/accessories/categoryid:3032/search:$query/";
+			if($subcat == Category::MOB_CASES){
+				return "http://www.homeshop18.com/$query/cases-pouches/categoryid:3036/search:$query/";
+			}elseif($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://www.homeshop18.com/$query/scratch-guard-screen-protector/categoryid:3042/search:$query/";
+			}($subcat == Category::MOB_CHARGER){
+				return "http://www.homeshop18.com/$query/chargers/categoryid:3037/search:$query/";
+			}($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADSETS $subcat == Category::MOB_HEADPHONE){
+				return "http://www.homeshop18.com/$query/handsfree-headsets/categoryid:3039/search:$query/";
+			}($subcat == Category::MOB_BATTERY){
+				return "http://www.homeshop18.com/$query/batteries/categoryid:3033/search:$query/";
+			}($subcat == Category::MOB_MEMORY){
+				return "http://www.homeshop18.com/$query/memory-cards/categoryid:3040/search:$query/";
+			}($subcat == Category::MOB_OTHERS){
+				return "http://www.homeshop18.com/$query/others/categoryid:3043/search:$query/";
+			}else return "";
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.homeshop18.com/$query/digital-cameras/categoryid:3178/search:$query/";

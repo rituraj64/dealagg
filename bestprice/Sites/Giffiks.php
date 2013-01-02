@@ -1,5 +1,6 @@
 <?php
 class Giffiks extends Parsing{
+
 	public $_code = 'Giffiks';
 
 	public function getAllowedCategory(){

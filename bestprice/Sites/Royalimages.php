@@ -13,7 +13,26 @@ class Royalimages extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://www.royalimages.in/catalogsearch/result/index/?cat=13&q=$query";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.royalimages.in/catalogsearch/result/index/?cat=15&q=$query";
+			//return "http://www.royalimages.in/catalogsearch/result/index/?cat=15&q=$query";
+			if($subcat == Category::MOB_HANDSFREE){
+				return "http://www.royalimages.in/catalogsearch/result/index/?cat=19&q=$query";
+			}elseif ($subcat == Category::MOB_CHARGER){
+				return "http://www.royalimages.in/catalogsearch/result/index/?cat=21&q=$query";
+			}elseif($subcat == Category::MOB_SPEAKER){
+				return "http://www.royalimages.in/catalogsearch/result/index/?cat=24&q=$query";
+			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://www.royalimages.in/catalogsearch/result/index/?cat=17&q=$query";
+			}elseif ($subcat == Category::MOB_CASES){
+				return "http://www.royalimages.in/catalogsearch/result/index/?cat=16&q=$query";
+			}elseif ($subcat == Category::MOB_MEMORY){
+				return "http://www.royalimages.in/catalogsearch/result/index/?cat=22&q=$query";
+			}elseif ($subcat == Category::MOB_HEADPHONE){
+				return "http://www.royalimages.in/catalogsearch/result/index/?cat=18&q=$query";
+			}elseif ($subcat == Category::MOB_OTHERS){
+				return "http://www.royalimages.in/catalogsearch/result/index/?cat=15&q=$query";
+			}else{
+				return "";
+			}
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.royalimages.in/catalogsearch/result/index/?cat=32&q=$query";
