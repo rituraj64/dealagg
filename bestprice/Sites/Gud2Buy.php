@@ -1,5 +1,6 @@
 <?php
 class Gud2Buy extends Parsing{
+	
 	public $_code = 'Gud2Buy';
 
 	public function getAllowedCategory(){
@@ -30,7 +31,7 @@ class Gud2Buy extends Parsing{
 				return "http://gud2buy.com/mobiles-and-accessories&filter_name=$query&sort=newprice%20asc&filters=type:Charger";
 			}elseif($subcat == Category::MOB_HEADSETS){
 				return "http://gud2buy.com/mobiles-and-accessories&filter_name=$query&sort=newprice%20asc&filters=type:Earphones";
-			}elseif ($subcat == Category::MOB_OTHERS){
+			}elseif ($subcat == Category::NOT_SURE || $subcat == Category::MOB_OTHERS){
 				return "http://gud2buy.com/mobiles-and-accessories/accessories&filter_name=$query&sort=stock_status_id+desc";
 			}else{
 				return "";

@@ -36,6 +36,8 @@ class Homeshop extends Parsing{
 				return "http://www.homeshop18.com/$query/memory-cards/categoryid:3040/search:$query/";
 			}($subcat == Category::MOB_OTHERS){
 				return "http://www.homeshop18.com/$query/others/categoryid:3043/search:$query/";
+			}elseif($subcat == Category::NOT_SURE){
+				return "http://www.homeshop18.com/$query/accessories/categoryid:3032/search:$query/";
 			}else return "";
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){

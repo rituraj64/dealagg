@@ -13,7 +13,18 @@ class FutureBazaar extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://www.futurebazaar.com/search/?q=$query&c=2459&NormalSearch=enabled";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.futurebazaar.com/search/?q=$query&c=2464&NormalSearch=enabled";
+			//return "http://www.futurebazaar.com/search/?q=$query&c=2464&NormalSearch=enabled";
+			if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2464&NormalSearch=enabled";
+			}elseif($subcat == Category::MOB_BATTERY || $subcat == Category::MOB_CHARGER){
+				return "http://www.futurebazaar.com/search/?q=nokia&c=3115";
+			}elseif($subcat == Category::MOB_HEADSETS){
+				return "http://www.futurebazaar.com/search/?q=nokia&c=3118";
+			}elseif($subcat == Category::MOB_CASES){
+				return "http://www.futurebazaar.com/search/?q=nokia&c=3114";
+			}elseif($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADPHONE){
+				return "http://www.futurebazaar.com/search/?q=nokia&c=3116";
+			}else return "";
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.futurebazaar.com/search/?q=$query&c=2486";

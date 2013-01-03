@@ -1,5 +1,6 @@
 <?php
 class Indiatimes extends Parsing{
+	
 	public $_code = 'Indiatimes';
 
 

@@ -1,5 +1,6 @@
 <?php
 class ManiacStore extends Parsing{
+	
 	public $_code = 'ManiacStore';
 
 	public function getAllowedCategory(){

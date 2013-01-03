@@ -1,5 +1,6 @@
 <?php
 class EBay extends Parsing{
+	
 	public $_code = 'eBay';
 
 	public function isTrusted($category){

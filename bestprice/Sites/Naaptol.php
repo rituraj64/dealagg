@@ -1,5 +1,6 @@
 <?php
 class Naaptol extends Parsing{
+	
 	public $_code = 'Naaptol';
 
 	public function getAllowedCategory(){

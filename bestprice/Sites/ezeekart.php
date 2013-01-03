@@ -1,5 +1,6 @@
 <?php
 class ezeekart extends Parsing{
+	
 	public $_code = 'ezeekart';
 
 	public function getAllowedCategory(){

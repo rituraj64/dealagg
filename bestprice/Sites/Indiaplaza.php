@@ -1,5 +1,6 @@
 <?php
 class Indiaplaza extends Parsing{
+	
 	public $_code = 'Indiaplaza';
 
 	public function getAllowedCategory(){

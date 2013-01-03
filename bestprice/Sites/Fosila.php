@@ -1,5 +1,6 @@
 <?php
 class Fosila extends Parsing{
+	
 	public $_code = 'Fosila';
 
 	public function getAllowedCategory(){

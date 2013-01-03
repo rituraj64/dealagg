@@ -1,5 +1,6 @@
 <?php
 class eDabba extends Parsing{
+	
 	public $_code = 'eDabba';
 
 	public function getAllowedCategory(){

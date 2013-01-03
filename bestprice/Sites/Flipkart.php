@@ -19,6 +19,7 @@ class Flipkart extends Parsing{
 		return Parser::SITE_URL.'img/flipkart.png';
 	}
 	public function getSearchURL($query,$category = false,$subcat=false){
+		echo"321";die;
 		if($category == Category::MOBILE){
 			return "http://www.flipkart.com/mobiles/pr?sid=tyy%2C4io&q=$query&query=$query";
 		}else if($category == Category::MOBILE_ACC){
