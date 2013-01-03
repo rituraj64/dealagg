@@ -21,7 +21,27 @@ class Naaptol extends Parsing{
 		}else if($category == Category::BOOKS){
 			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2578&kw=$query&sb=49,9,8&req=ajax";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=4&kw=$query&sb=49,9,8&req=ajax";
+			if($subcat == Category::NOT_SURE){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=4&kw=$query&sb=49,9,8&req=ajax";
+			}elseif ($subcat == Category::MOB_OTHERS){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2494&kw=$query&sb=49,9,8";
+			}elseif($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=279&kw=$query&sb=49,9,8";
+			}elseif ($subcat == Category::MOB_CASES){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=104&kw=$query&sb=49,9,8";
+			}elseif ($subcat == Category::MOB_HEADSETS){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=103&kw=$query&sb=49,9,8";
+			}elseif($subcat == Category::MOB_BATTERY){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=106&kw=$query&sb=49,9,8";
+			}elseif($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADPHONE){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=105&kw=$query&sb=49,9,8";
+			}elseif($subcat == Category::MOB_CHARGER){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=101&kw=$query&sb=49,9,8";
+			}elseif($subcat == Category::MOB_CABLE){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=102&kw=$query&sb=49,9,8";
+			}elseif ($subcat == Category::MOB_CAR_ACC){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=186&kw=$query&sb=49,9,8";
+			}else return "";
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=1&kw=$query&sb=49,9,8&req=ajax";

@@ -16,6 +16,21 @@ class ShopByChoice extends Parsing{
 		$query = trim(preg_replace("![^0-9a-z]+!i", "-", $query));
 		if($category == Category::MOBILE){
 			return "http://www.shopbychoice.com/search/result+category-smartphones+searchtext-$query";
+		}else if($category == Category::MOBILE_ACC){
+			$query = str_replace(" ", "-", $query);
+			if($subcat == Category::NOT_SURE || $subcat == Category::MOB_OTHERS){
+				return "http://www.shopbychoice.com/search/result+category-accessories+searchtext-$query";
+			}elseif($subcat == Category::MOB_CASES){
+				return "http://www.shopbychoice.com/search/result+category-mobile-cases-and-skins+searchtext-$query";
+			}elseif($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://www.shopbychoice.com/search/result+category-screen-protectors+searchtext-$query";
+			}elseif($subcat == Category::MOB_HEADPHONE){
+				return "http://www.shopbychoice.com/search/result+category-earphones+searchtext-$query";
+			}elseif($subcat == Category::MOB_HEADSETS){
+				return "http://www.shopbychoice.com/search/result+category-bluetooth+searchtext-$query";
+			}elseif($subcat == Category::MOB_MEMORY){
+				return "http://www.shopbychoice.com/search/result+category-micro-memory-cards+searchtext-$query";
+			}else return "";
 		}else if($category == Category::CAMERA){
 				
 			if($subcat == Category::NOT_SURE){

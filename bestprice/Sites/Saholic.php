@@ -15,7 +15,29 @@ class Saholic extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Mobile+Phones";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Mobile+Accessories";
+			if($subcat == Category::NOT_SURE){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Mobile+Accessories";
+			}elseif ($subcat == Category::MOB_CASES){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Carrying+Case";
+			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Screen+Guard";
+			}elseif ($subcat == Category::MOB_BATTERY){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Battery";
+			}elseif ($subcat == Category::MOB_HEADSETS){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Bluetooth+Headset";
+			}elseif ($subcat == Category::MOB_HANDSFREE){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Headset";
+			}elseif ($subcat == Category::MOB_CAR_ACC){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Car+Charger";
+			}elseif ($subcat == Category::MOB_CHARGER){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Charger";
+			}elseif ($subcat == Category::MOB_MEMORY){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Memory+Card";
+			}elseif ($subcat == Category::MOB_CABLE){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Data+Cable";
+			}elseif ($subcat == Category::MOB_HEADPHONE){
+				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Headphones";
+			}else return "";
 		}else if($category == Category::TABLETS){
 			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Tablets";
 		}else if($category == Category::CAMERA){

@@ -30,7 +30,7 @@ class Royalimages extends Parsing{
 				return "http://www.royalimages.in/catalogsearch/result/index/?cat=22&q=$query";
 			}elseif ($subcat == Category::MOB_HEADPHONE){
 				return "http://www.royalimages.in/catalogsearch/result/index/?cat=18&q=$query";
-			}elseif ($subcat == Category::MOB_OTHERS){
+			}elseif ($subcat == Category::NOT_SURE || $subcat == Category::MOB_OTHERS){
 				return "http://www.royalimages.in/catalogsearch/result/index/?cat=15&q=$query";
 			}else{
 				return "";

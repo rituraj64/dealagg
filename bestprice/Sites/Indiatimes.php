@@ -47,7 +47,7 @@ class Indiatimes extends Parsing{
 			}elseif($subcat == Category::MOB_CAR_ACC){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:41853";
 			}elseif($subcat == Category::MOB_HEADPHONE || $subcat == Category::MOB_HEADSETS){
-				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=WH-930&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:20002";
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:20002";
 			}else return "";
 		}else if($category == Category::TV){
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10004";
