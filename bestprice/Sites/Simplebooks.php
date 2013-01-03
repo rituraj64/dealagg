@@ -1,7 +1,9 @@
 <?php
 class Simplebooks extends Parsing{
 	public $_code = 'Simplebooks';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/simplybooks';
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS);
 	}

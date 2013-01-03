@@ -1,7 +1,9 @@
 <?php
 class Zoomin extends Parsing{
 	public $_code = 'Zoomin';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/zoomin';
+	}
 	public function getAllowedCategory(){
 		return array(Category::CAMERA,Category::MOBILE,Category::CAMERA_ACC,Category::MOBILE_ACC);
 	}

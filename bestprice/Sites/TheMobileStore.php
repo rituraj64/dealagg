@@ -1,7 +1,9 @@
 <?php
 class TheMobileStore extends Parsing{
 	public $_code = 'TheMobileStore';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/themobilestorebd';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC);
 	}

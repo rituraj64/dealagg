@@ -2,7 +2,9 @@
 class eDabba extends Parsing{
 	
 	public $_code = 'eDabba';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/edabbamall';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC);
 	}

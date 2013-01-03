@@ -1,7 +1,9 @@
 <?php
 class Sulekha extends Parsing{
 	public $_code = 'Sulekha';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/Sulekhadotcom';
+	}
 	public function getAllowedCategory(){
 		return array(Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS);
 	}

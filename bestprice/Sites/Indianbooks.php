@@ -1,7 +1,9 @@
 <?php
 class Indianbooks extends Parsing{
 	public $_code = 'Indianbooks';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/IndiaBookStore';
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS);
 	}

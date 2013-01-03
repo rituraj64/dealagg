@@ -1,6 +1,9 @@
 <?php
 class TimTara extends Parsing{
 	public $_code = 'TimTara';
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/timtara';
+	}
 	public function isTrusted($category){
 		return true;
 	}

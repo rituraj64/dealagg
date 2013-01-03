@@ -2,7 +2,9 @@
 class EBay extends Parsing{
 	
 	public $_code = 'eBay';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/ebaydotin';
+	}
 	public function isTrusted($category){
 		if($category == Category::BOOKS){
 			return true;

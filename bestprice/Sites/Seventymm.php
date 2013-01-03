@@ -1,7 +1,9 @@
 <?php
 class Seventymm extends Parsing{
 	public $_code = 'Seventymm';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/SeventymmCom';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC);
 	}
@@ -57,7 +59,7 @@ class Seventymm extends Parsing{
 			}else{
 				return '';
 			}
-				
+
 		}
 		return "http://shop.seventymm.com/Search/$q/All-Categories/0/All-Classification/0/All-Price/0/Any/0/Any/0/1/1/3/Go";
 	}

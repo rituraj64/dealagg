@@ -1,7 +1,9 @@
 <?php
 class Kaunsa extends Parsing{
 	public $_code = 'Kaunsa';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/kaunsa.buysell';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_ACC);
 	}

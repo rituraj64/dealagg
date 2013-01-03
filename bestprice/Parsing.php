@@ -36,7 +36,11 @@ class Parsing{
 
 		//for snapdeal need to think something about brands pages, if you search sony it goes to its brand page and not that perticular category
 
-		return array('Flipkart','Snapdeal','ShopClues','Tradus','Indiatimes','Zoomin','Saholic','Landmark','Infibeam','Homeshop','Croma','Crossword','EBay','Rediff','uRead','Bookadda','Justbooks','Letskart','Amegabooks','Simplebooks','Indianbooks','Yebhi','Greendust','Adexmart','Naaptol','BuyThePrice','FutureBazaar','CostPrize','Fosila','MirchiMart','Seventymm','TheMobileStore','Sulekha','TimTara','Bagittoday','Storeji','Letshop','eDabba','Royalimages','Suzalin','Giffiks','ManiacStore','ezeekart','Kaunsa');
+		
+		
+		//CostPrize this is disabled right now, cos site doesnt look good
+		
+		return array('Flipkart','Snapdeal','ShopClues','Tradus','Indiatimes','Zoomin','Saholic','Landmark','Infibeam','Homeshop','Croma','Crossword','EBay','Rediff','uRead','Bookadda','Justbooks','Letskart','Amegabooks','Simplebooks','Indianbooks','Yebhi','Greendust','Adexmart','Naaptol','BuyThePrice','FutureBazaar','Fosila','MirchiMart','Seventymm','TheMobileStore','Sulekha','TimTara','Bagittoday','Storeji','Letshop','eDabba','Royalimages','Suzalin','Giffiks','ManiacStore','ezeekart','Kaunsa');
 	}
 	public function allowCategory($cat){
 		foreach($this->getAllowedCategory() as $key => $val){
@@ -258,5 +262,8 @@ class Parsing{
 	}
 	public function getPostFields($query,$category = false,$subcat=false){
 		return array();
+	}
+	public function getFacebookUrl(){
+		return false;
 	}
 }

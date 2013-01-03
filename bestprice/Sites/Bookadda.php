@@ -2,6 +2,9 @@
 class Bookadda extends Parsing{
 	public $_code = 'Bookadda';
 
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/bookadda';
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS);
 	}

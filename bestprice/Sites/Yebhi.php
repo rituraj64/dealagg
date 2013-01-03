@@ -1,7 +1,9 @@
 <?php
 class Yebhi extends Parsing{
 	public $_code = 'Yebhi';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/YebhiIndia';
+	}
 	public function getAllowedCategory(){
 		return array(Category::HOME_APPLIANCE,Category::TV,Category::BEAUTY,Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC);
 	}

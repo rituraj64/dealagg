@@ -1,7 +1,9 @@
 <?php
 class Croma extends Parsing{
 	public $_code = 'Croma';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/CromaRetail';
+	}
 	public function getAllowedCategory(){
 		return array(Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV);
 	}

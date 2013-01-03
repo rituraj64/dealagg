@@ -1,7 +1,9 @@
 <?php
 class Homeshop extends Parsing{
 	public $_code = 'Homeshop18';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/homeshop18';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC);
 	}

@@ -1,7 +1,9 @@
 <?php
 class Flipkart extends Parsing{
 	public $_code = 'Flipkart';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/flipkart';
+	}
 	public function isTrusted($category){
 		return true;
 	}

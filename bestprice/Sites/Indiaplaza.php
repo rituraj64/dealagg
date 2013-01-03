@@ -2,7 +2,9 @@
 class Indiaplaza extends Parsing{
 	
 	public $_code = 'Indiaplaza';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/indiaplaza';
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS);
 	}

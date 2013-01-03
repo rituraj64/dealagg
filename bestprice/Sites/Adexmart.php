@@ -2,6 +2,10 @@
 class Adexmart extends Parsing{
 	public $_code = 'Adexmart';
 
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/adexmart';
+	}
+	
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC);
 	}

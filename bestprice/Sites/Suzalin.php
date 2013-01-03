@@ -1,7 +1,9 @@
 <?php
 class Suzalin extends Parsing{
 	public $_code = 'Suzalin';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/SuzalinOnlineShopping';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::CAMERA);
 	}

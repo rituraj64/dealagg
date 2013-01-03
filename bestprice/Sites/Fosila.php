@@ -1,8 +1,10 @@
 <?php
 class Fosila extends Parsing{
-	
-	public $_code = 'Fosila';
 
+	public $_code = 'Fosila';
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/fosiladotcom';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE);
 	}

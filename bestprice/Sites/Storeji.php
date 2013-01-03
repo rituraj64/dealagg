@@ -1,7 +1,9 @@
 <?php
 class Storeji extends Parsing{
 	public $_code = 'Storeji';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/storejifan';
+	}
 	public function getAllowedCategory(){
 		return array(Category::HOME_APPLIANCE,Category::TV,Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::GAMING);
 	}

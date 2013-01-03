@@ -2,7 +2,9 @@
 class Letskart extends Parsing{
 
 	public $_code = 'Letskart';
-	
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/letskart';
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC);
 	}

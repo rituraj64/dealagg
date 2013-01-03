@@ -1,6 +1,9 @@
 <?php
 class Tradus extends Parsing{
 	public $_code = 'Tradus';
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/tradus';
+	}
 	public function isTrusted($category){
 		return true;
 	}

@@ -1,7 +1,9 @@
 <?php
 class Greendust extends Parsing{
 	public $_code = 'Greendust';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/GreenDustShopping';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA);
 	}

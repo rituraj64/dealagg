@@ -1,7 +1,9 @@
 <?php
 class Saholic extends Parsing{
 	public $_code = 'Saholic';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/mysaholic';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA);
 	}

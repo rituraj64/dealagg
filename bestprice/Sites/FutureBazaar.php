@@ -1,7 +1,9 @@
 <?php
 class FutureBazaar extends Parsing{
 	public $_code = 'FutureBazaar';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/FutureBazaar';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}

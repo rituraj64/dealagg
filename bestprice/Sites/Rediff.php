@@ -1,7 +1,6 @@
 <?php
 class Rediff extends Parsing{
 	public $_code = 'Rediff';
-
 	public function getAllowedCategory(){
 		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC);
 	}

@@ -2,7 +2,9 @@
 
 class ShopClues extends Parsing{
 	public $_code = 'ShopClues';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/ShopClues';
+	}
 	public function isTrusted($category){
 		return true;
 	}

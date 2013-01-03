@@ -1,7 +1,9 @@
 <?php
 class Letshop extends Parsing{
 	public $_code = 'Letsshop';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/LetsShopFans';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC);
 	}

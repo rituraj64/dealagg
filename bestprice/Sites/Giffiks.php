@@ -2,7 +2,9 @@
 class Giffiks extends Parsing{
 
 	public $_code = 'Giffiks';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/GIFFIKS';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::CAMERA_ACC,Category::BOOKS);
 	}

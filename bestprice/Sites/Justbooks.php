@@ -2,7 +2,9 @@
 class Justbooks extends Parsing{
 
 	public $_code = 'Justbooks';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/justbooks.in';
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS);
 	}

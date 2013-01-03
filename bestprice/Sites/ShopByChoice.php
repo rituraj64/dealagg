@@ -1,7 +1,9 @@
 <?php
 class ShopByChoice extends Parsing{
 	public $_code = 'ShopByChoice';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/shopbychoice';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::CAMERA);
 	}
@@ -15,7 +17,7 @@ class ShopByChoice extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://www.shopbychoice.com/search/result+category-smartphones+searchtext-$query";
 		}else if($category == Category::CAMERA){
-			
+				
 			if($subcat == Category::NOT_SURE){
 				return "http://www.shopbychoice.com/search/result+category-compact-cameras+searchtext-$query"; //digital
 			}else if($subcat == Category::CAM_DIGITAL_CAMERA){

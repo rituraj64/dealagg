@@ -2,6 +2,9 @@
 class Amegabooks extends Parsing{
 	public $_code = 'Amegabooks';
 
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/amegabooks';
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS);
 	}

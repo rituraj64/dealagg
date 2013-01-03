@@ -1,7 +1,9 @@
 <?php
 class MirchiMart extends Parsing{
 	public $_code = 'MirchiMart';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/MirchiMart';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC);
 	}

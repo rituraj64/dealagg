@@ -3,7 +3,9 @@ class Indiatimes extends Parsing{
 	
 	public $_code = 'Indiatimes';
 
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/indiatimesshopping';
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
 	}

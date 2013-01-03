@@ -1,8 +1,10 @@
 <?php
 class Naaptol extends Parsing{
-	
-	public $_code = 'Naaptol';
 
+	public $_code = 'Naaptol';
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/ShopRight';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS);
 	}

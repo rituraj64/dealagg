@@ -2,7 +2,9 @@
 class ManiacStore extends Parsing{
 	
 	public $_code = 'ManiacStore';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/maniacstores';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC);
 	}

@@ -1,7 +1,9 @@
 <?php
 class Royalimages extends Parsing{
 	public $_code = 'Royalimages';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/RoyalImages.in';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC);
 	}

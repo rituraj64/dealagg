@@ -2,7 +2,9 @@
 class ezeekart extends Parsing{
 	
 	public $_code = 'ezeekart';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/ezeekart';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}

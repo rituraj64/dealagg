@@ -1,7 +1,9 @@
 <?php
 class Landmark extends Parsing{
 	public $_code = 'Landmark';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/landmarkstores';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::BOOKS,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}

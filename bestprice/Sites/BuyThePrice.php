@@ -1,7 +1,9 @@
 <?php
 class BuyThePrice extends Parsing{
 	public $_code = 'BuyThePrice';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/buytheprice';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::TABLETS,Category::CAMERA,Category::CAMERA_ACC);
 	}

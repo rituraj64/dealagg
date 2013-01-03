@@ -1,7 +1,9 @@
 <?php
 class Infibeam extends Parsing{
 	public $_code = 'Infibeam';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/infibeam';
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}

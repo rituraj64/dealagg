@@ -1,7 +1,9 @@
 <?php
 class Crossword extends Parsing{
 	public $_code = 'Crossword';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/Crosswordbookstores';
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS);
 	}

@@ -1,7 +1,9 @@
 <?php
 class Snapdeal extends Parsing{
 	public $_code = 'Snapdeal';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/SnapDeal';
+	}
 	public function isTrusted($category){
 		return true;
 	}

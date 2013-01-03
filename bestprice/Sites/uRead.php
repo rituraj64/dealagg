@@ -1,7 +1,9 @@
 <?php
 class uRead extends Parsing{
 	public $_code = 'uRead';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/uread';
+	}
 	public function getAllowedCategory(){
 		return array(Category::BOOKS);
 	}

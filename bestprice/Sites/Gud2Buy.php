@@ -2,7 +2,9 @@
 class Gud2Buy extends Parsing{
 	
 	public $_code = 'Gud2Buy';
-
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/gud2buy';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC);
 	}

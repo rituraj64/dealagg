@@ -2,6 +2,9 @@
 class Bagittoday extends Parsing{
 	public $_code = 'Bagittoday';
 
+	public function getFacebookUrl(){
+		return 'http://www.facebook.com/bagittodayoffers';
+	}
 	public function getAllowedCategory(){
 		return array(Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::CAMERA);
 	}
