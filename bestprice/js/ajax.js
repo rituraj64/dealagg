@@ -506,7 +506,6 @@ function processData(data, site, cache, trust, changeSubCat, preloaded) {
 var untrusted = new Array();
 
 function continueSearch() {
-	return;
 	$('#share').show(); // show url now, since all results will come now
 	$('#results').show();
 	$('#step').hide();
@@ -567,6 +566,7 @@ function calcResult() {
 	var i = 0;
 	var out = 0;
 
+	/*
 	var avg = 0;
 	for (i = 0; i < pricesArr.length; i++) {
 		avg += (pricesArr[i]*1);
@@ -579,6 +579,7 @@ function calcResult() {
 		console.log(pricesArr[i] + " variation is " + variation)
 		
 	}
+	*/
 	for (i = 0; i < pricesArr.length; i++) {
 		out = 0;
 		for (j = 0; j < pricesArr.length; j++) {
@@ -586,11 +587,20 @@ function calcResult() {
 				continue;
 			}
 
-			var variation = Math.abs(Math.ceil(((pricesArr[i] - pricesArr[j]) / pricesArr[i]) * 100));
+			var a = 0;
+			var b = 0;
+			if(pricesArr[i] > pricesArr[j]){
+				a = pricesArr[i];
+				b = pricesArr[j];
+			}else{
+				a = pricesArr[j];
+				b = pricesArr[i];
+			}
+			var variation = Math.abs(Math.ceil(((a - b) / b) * 100));
 			if (variation > 20) {
 				out++;
-				console.log(pricesArr[i] + ' compare ' + pricesArr[j] + " variation is more than 20% at " + variation)
 			}
+			console.log(pricesArr[i] + ' compare ' + pricesArr[j] + " variation is more than 20% at " + variation)
 		}
 		if (out > Math.ceil(pricesArr.length / 2)) {
 			console.log('site ' + i + ' is out with number' + out);
@@ -602,7 +612,8 @@ function calcResult() {
 	if (no_result >= Math.floor($('#results').children('.website').length / 2)) {
 		fine = false; // product not found in more than 50% sites.
 	} else {
-		if (diff_sites > Math.ceil(total_sites / 2)) {
+		console.log(total_sites + ' tatal sites and  correct sites '+ (total_sites - diff_sites) + " <= " + Math.ceil(total_sites * .6));
+		if ( (total_sites - diff_sites) < Math.ceil(total_sites * .5)) { //its better if its less sensitive
 			fine = false;
 		} else {
 			fine = true;

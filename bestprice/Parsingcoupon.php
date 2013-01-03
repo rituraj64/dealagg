@@ -5,9 +5,9 @@ class Parsingcoupon extends Parsing
 {
 	public function getCouponWebsites()
 	{
-		return array('Indiafreestuff','FreeKaaMaal');
+		return array('Coupons27','CouponDunia','Freekaamaal','Indiafreestuff');
 	}
-	
+
 	public function shouldParse($text,$span)
 	{
 		$text = strtolower($text);

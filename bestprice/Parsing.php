@@ -24,6 +24,8 @@ class Parsing{
 		//uread shows price in USD, right now i am multiping with exchange rate, but that doesnt give correct amt in INR as per site
 		// http://www.imagestore.co.in its offiec cannon store
 		// add http://www.shoperskart.com/
+		// add pepperfry
+		// add egully
 
 		// for greendust, its important to go to product page since they sell second hand stuff also
 		// naaptol product page need to get shop points and shipping charges
