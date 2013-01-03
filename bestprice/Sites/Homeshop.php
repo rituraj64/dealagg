@@ -30,7 +30,7 @@ class Homeshop extends Parsing{
 				return "http://www.homeshop18.com/$query/scratch-guard-screen-protector/categoryid:3042/search:$query/";
 			}elseif($subcat == Category::MOB_CHARGER){
 				return "http://www.homeshop18.com/$query/chargers/categoryid:3037/search:$query/";
-			}elseif($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADSETS $subcat == Category::MOB_HEADPHONE){
+			}elseif($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADSETS || $subcat == Category::MOB_HEADPHONE){
 				return "http://www.homeshop18.com/$query/handsfree-headsets/categoryid:3039/search:$query/";
 			}elseif($subcat == Category::MOB_BATTERY){
 				return "http://www.homeshop18.com/$query/batteries/categoryid:3033/search:$query/";
