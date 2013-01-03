@@ -1,7 +1,9 @@
 <?php
+set_time_limit(300000);
 require_once 'Parsingcoupon.php';
 require_once 'phpMailer/class.phpmailer.php';
 require_once 'phpMailer/class.smtp.php';
+require_once 'model/CouponParse.php';
 
 $parsing = new Parsingcoupon();
 $sites = $parsing->getCouponWebsites();
@@ -13,7 +15,11 @@ foreach ($sites as $site)
 {
 	require_once 'Coupon/'.$site.'.php';
 	$siteObj = new $site;
-	$html = $parser->getHtml($siteObj->getUrl());
+	$html = '';
+	$url = $siteObj->getUrl();
+	if($url){
+		$html = $parser->getHtml($url);
+	}
 	try
 	{
 		$pagecount = 1;
@@ -48,7 +54,7 @@ if(sizeof($siteData) > 0){
 
 	//echo $message;
 	$to = 'manish@excellencetechnologies.in';
-	$today = date("D M j Y");
+	$today = date("D M j Y h:i");
 	$subject = 'Found New Coupons ' . $siteData . ' on '.$today;
 	$message = '';
 	$mail = new phpmailer();
@@ -58,11 +64,11 @@ if(sizeof($siteData) > 0){
 	$mail->SMTPSecure = "ssl";
 	$mail->Host       = "smtp.gmail.com";
 	$mail->Port       = 465;
-	$mail->Username   = "isvarified@gmail.com";
-	$mail->Password   = "alpha1-1";
-	$mail->setFrom('isvarified@yourdomain.com', 'First Last');
+	$mail->Username   = "excellenceseo@gmail.com";
+	$mail->Password   = "seo@1234";
+	$mail->setFrom('excellenceseo@gmail.com', 'PriceGenie');
 	$mail->Subject    =$subject;
-	$mail->MsgHTML('123');
+	$mail->MsgHTML($message);
 
 	$mail->AddAddress($to, "Manish");
 

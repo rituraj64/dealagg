@@ -864,7 +864,7 @@ abstract class BaseFacebook
     } else {
       $domainKey = 'graph';
     }
-
+    $json = preg_replace('/("\w+"):(\d+)(.\d+)?/', '\\1:"\\2\\3"', $json);
     $result = json_decode($this->_oauthRequest(
       $this->getUrl($domainKey, $path),
       $params

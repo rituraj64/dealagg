@@ -5,9 +5,19 @@ class Parsingcoupon extends Parsing
 {
 	public function getCouponWebsites()
 	{
-		return array('Coupons27','CouponDunia','Freekaamaal','Indiafreestuff');
+		return array('FacebookSites','Coupons27','CouponDunia','Freekaamaal','Indiafreestuff');
 	}
 
+	public function isCoupon($msg){
+
+		$pattern = array('/[0-9]+%/','/.*offer.*/i','/.*coupon.*/i','/.*promo.*/i','/.*sale.*/i','/.*discount.*/i');
+		foreach($pattern as $p){
+			if(preg_match($p, $msg)){
+				return true;
+			}
+		}
+		return false;
+	}
 	public function shouldParse($text,$span)
 	{
 		$text = strtolower($text);
