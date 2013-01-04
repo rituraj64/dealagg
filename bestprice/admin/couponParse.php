@@ -31,6 +31,41 @@
 			
 			
 		});
+		$(".ovalbutton").click(function(){
+			var aa=$(this).attr("href");
+			var readStatus=$("#read-status").val();
+
+			if(readStatus==0)
+			{
+				var trail='&status=0';
+				aa=aa+trail;
+				$(this).attr("href",aa);
+			}
+			else
+			{
+				var trail='&status=1';
+				aa=aa+trail;
+				$(this).attr("href",aa);
+			}
+		});
+		$("#paging-form").submit(function(){
+			
+			var form_attr=$(this).attr("action");
+			var readStatus=$("#read-status").val();
+			if(readStatus==0)
+			{
+				var trail='?status=0';
+				form_attr=form_attr+trail;
+				$(this).attr("href",form_attr);
+			}
+			else
+			{
+				var trail='?status=1';
+				form_attr=form_attr+trail;
+				$(this).attr("href",form_attr);
+			}
+			alert(form_attr);
+		});
 	});
 
 </script>
@@ -47,8 +82,6 @@ require_once '../smartmodel/UI.php';
 	<option  value=1>Read</option>
 	<option <?php if(isset($_REQUEST['status'])){ if($_REQUEST['status']==0) { ?> selected <?php  }  } ?> value=0>Ignore</option>
 </select>
-
-
 <?php 
 
 $user = new coupon_parse();
@@ -63,6 +96,7 @@ if(isset($_REQUEST['status']))
 		$user->read = '0';
 	}
 }
+
 else
 {
 	$user->read = '1';
@@ -111,5 +145,13 @@ $table=$usersTable->generateTable($user);
 <?php 
 echo $table;
 ?>
+<?php 
+	if(isset($_REQUEST['status']))
+	{
+?>
+		<input type="hidden" value="<?php echo $_REQUEST['status']; ?>" name="read-status" id="read-status"></input>
+<?php 
+	}
+?>"
 </div>
 </html>
