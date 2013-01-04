@@ -60,6 +60,18 @@
 				$(this).append("<input type='hidden' name='status' value='1'></input>");
 			}
 		});
+
+		$(".form-noindent form").submit(function(){
+			var readStatus=$("#read-status").val();
+			if(readStatus==0)
+			{
+				$(this).append("<input type='hidden' name='status' value='0'></input>");
+			}
+			else
+			{
+				$(this).append("<input type='hidden' name='status' value='1'></input>");
+			}
+		});
 	});
 
 </script>
