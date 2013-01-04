@@ -23,6 +23,27 @@ class ShopClues extends Parsing{
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=455&q=$query&dispatch=products.search";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1471&q=$query&dispatch=products.search";
+			/*
+			 * for mobile acc catogeries later
+			*
+			* if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
+			return "";
+			}elseif ($subcat == Category::MOB_BATTERY){
+			return "";
+			}elseif ($subcat == Category::MOB_HEADSETS){
+			return "";
+			}elseif ($subcat == Category::MOB_CASES){
+			return "";
+			}elseif ($subcat == Category::MOB_CHARGER){
+			return "";
+			}elseif ($subcat == Category::MOB_HANDSFREE){
+			return "";
+			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
+			return "";
+			}elseif ($subcat == Category::MOB_HEADPHONE){
+			return "";
+			}else return "";
+			*/
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=682&q=$query&dispatch=products.search";

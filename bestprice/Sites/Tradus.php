@@ -21,6 +21,27 @@ class Tradus extends Parsing{
 			return "http://www.tradus.com/search?query=$query&cat=7844";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.tradus.com/search?query=$query&cat=10465";
+			/*
+			 * for mobile acc catogeries later
+			*
+			* if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
+			return "";
+			}elseif ($subcat == Category::MOB_BATTERY){
+			return "";
+			}elseif ($subcat == Category::MOB_HEADSETS){
+			return "";
+			}elseif ($subcat == Category::MOB_CASES){
+			return "";
+			}elseif ($subcat == Category::MOB_CHARGER){
+			return "";
+			}elseif ($subcat == Category::MOB_HANDSFREE){
+			return "";
+			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
+			return "";
+			}elseif ($subcat == Category::MOB_HEADPHONE){
+			return "";
+			}else return "";
+			*/
 		}else if($category == Category::CAMERA){
 
 			if($subcat == Category::NOT_SURE){

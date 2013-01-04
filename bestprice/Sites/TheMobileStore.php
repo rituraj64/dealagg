@@ -14,7 +14,28 @@ class TheMobileStore extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://www.themobilestore.in/home-mobiles-&-tablet/search?q=".$query;
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.themobilestore.in/home-accessories/search?q=".$query;
+			if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
+				return "http://www.themobilestore.in/home-accessories/search?q=".$query;
+			}elseif($subcat == Category::MOB_MEMORY){
+				return "http://www.themobilestore.in/home-accessories-memory-card/search?q=$query";
+			}elseif($subcat == Category::MOB_BATTERY){
+				return "http://www.themobilestore.in/home-accessories-battery/search?q=$query";
+			}elseif($subcat == Category::MOB_CHARGER){
+				return "http://www.themobilestore.in/home-accessories-charger/search?q=$query";
+			}elseif($subcat == Category::MOB_HEADSETS){
+				return "http://www.themobilestore.in/home-accessories-bluetooth/search?q=$query";
+			}elseif($subcat == Category::MOB_CAR_ACC){
+				return "http://www.themobilestore.in/home-accessories-car-gadgets/search?q=$query";
+			}elseif($subcat == Category::MOB_CASES){
+				return "http://www.themobilestore.in/home-accessories-cover/search?q=$query";
+			}elseif($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADPHONE){
+				return "http://www.themobilestore.in/home-accessories-handsfree-or-headphones/search?q=$query";
+			}elseif($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://www.themobilestore.in/home-accessories-screen-guard/search?q=$query";
+			}elseif($subcat == Category::MOB_CABLE){
+				return "http://www.themobilestore.in/home-accessories-cables/search?q=$query";
+			}else return "";
+			
 		}else if($category == Category::TABLETS){
 			return "http://www.themobilestore.in/home-mobiles-&-tablet/search?q=".$query;
 		}

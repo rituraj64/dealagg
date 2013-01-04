@@ -15,7 +15,25 @@ class BuyThePrice extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=75&bid=0";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=78&bid=0";
+			if($subcat == Category::NOT_SURE || $subcat == Category::MOB_OTHERS){
+				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=78&bid=0";
+			}elseif($subcat == Category::MOB_BATTERY){
+				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=424&bid=0";
+			}elseif($subcat == Category::MOB_CABLE){
+				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=425&bid=0";
+			}elseif($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=428&bid=0";
+			}elseif($subcat == Category::MOB_CHARGER){
+				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=426&bid=0";
+			}elseif($subcat == Category::MOB_CASES){
+				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=427&bid=0";
+			}elseif($subcat == Category::MOB_HEADSETS){
+				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=429&bid=0";
+			}elseif($subcat == Category::MOB_HEADPHONE || $subcat == Category::MOB_HANDSFREE){
+				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=431&bid=0";
+			}else{
+				return "";
+			}
 		}else if($category == Category::TABLETS){
 			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=78&bid=0";
 		}else if($category == Category::CAMERA){

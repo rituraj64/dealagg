@@ -44,6 +44,27 @@ class Snapdeal extends Parsing{
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=29&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=29&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; //acc
 			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=228&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=29&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; // memory cards
+			/*
+			 * for mobile acc catogeries later
+			 * 
+			 * if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
+				return "";
+			}elseif ($subcat == Category::MOB_BATTERY){
+				return "";
+			}elseif ($subcat == Category::MOB_HEADSETS){
+				return "";
+			}elseif ($subcat == Category::MOB_CASES){
+				return "";
+			}elseif ($subcat == Category::MOB_CHARGER){
+				return "";
+			}elseif ($subcat == Category::MOB_HANDSFREE){
+				return "";
+			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
+				return "";
+			}elseif ($subcat == Category::MOB_HEADPHONE){
+				return "";
+			}else return "";
+			 */
 		}else{
 			return "http://www.snapdeal.com/search?keyword=".$query."&catId=12&categoryId=0&suggested=false&vertical=&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}

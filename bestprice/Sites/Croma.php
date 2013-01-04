@@ -15,6 +15,17 @@ class Croma extends Parsing{
 		return 'http://www.cromaretail.com/images/logo.jpg';
 	}
 	public function getSearchURL($query,$category = false,$subcat=false){
+		if($category == Category::MOBILE_ACC){
+			 if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
+			 	return "http://www.cromaretail.com/productsearch.aspx?txtSearch=$query";
+			 }elseif ($subcat == Category::MOB_HEADSETS){
+			 	return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=540";
+			 }elseif ($subcat == Category::MOB_CASES){
+			 	return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=533";
+			 }elseif ($subcat == Category::MOB_CHARGER){
+			 	return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=534";
+			 }else return "";
+		}
 		return "http://www.cromaretail.com/productsearch.aspx?txtSearch=$query&x=0&y=0";
 	}
 	public function getData($html,$query,$category,$subcat){
