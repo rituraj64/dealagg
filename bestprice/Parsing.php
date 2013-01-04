@@ -186,7 +186,7 @@ class Parsing{
 			if($row['disc_price'] > 0 && $row['disc_price'] != '' || true){ //removed price check, cos flipkart has item with price N/A
 				$i++;
 				if($i > self::DATA_NUM){
-					//break;
+					break;
 				}
 				$data2[] = $row;
 			}

@@ -100,105 +100,6 @@ if(isset($_REQUEST['q'])){
 	$site = '';
 	if(isset($_REQUEST['site'])){
 		$site = $_REQUEST['site'];
-		$data2 = array();
-		$i=0;
-		foreach($data as $r){
-			if($i >= Parsing::DATA_NUM){
-				break;
-			}
-			$data2[] = $r;
-			$i++;
-		}
-		$data = $data2;
-	}else if(isset($data[0])){
-
-		$index = 0;
-		$prev_website = $data[0]['website'];
-		$score = array();
-		foreach($data as $row){
-			$website = $row['website'];
-			$name = $row['name'];
-
-			if($website != $prev_website){
-				$prev_website = $website;
-				$index = 1;
-			}else{
-				$index++;
-			}
-
-			$defscore = Parsing::DATA_NUM + 1 - $index;
-			$defscore = 0;
-
-			for($i=0;$i<sizeof($score);$i++){
-				if($score[$i]['website'] != $website){
-					$name_new = $score[$i]['name'];
-					$website_new = $score[$i]['website'];
-					$score_new = $score[$i]['score'];
-
-					$name_new_comp = $name_new;
-					$name_comp = $name;
-					$par = Parsing::getReplace();
-					foreach($par as $key => $value){
-						if(strpos($name_new_comp, $key) !== false){
-							$name_new_comp = str_replace($key, $value, $name_new_comp);
-						}
-						if(strpos($name_comp, $key) !== false){
-							$name_comp = str_replace($key, $value, $name_comp);
-						}
-					}
-					if(strtolower($name_new_comp) == strtolower($name_comp)){
-
-						//$defscore += $score_new;
-						//$score_new += $defscore;
-						$score[$i]['score'] = $score_new + 1;
-						$defscore = $score_new + 1;
-
-					}
-				}
-			}
-			$score[] = array('website'=>$website,'name'=>$name,'score'=>$defscore);
-		}
-
-		$score2 = array();
-		foreach($score as $r){
-			if(!isset($score2[$r['website']])){
-				$score2[$r['website']] = array();
-			}
-			$score2[$r['website']][] = array('name'=>$r['name'],'score'=>$r['score']);
-		}
-		$data2 = array();
-		foreach($data as $row){
-			$website = $row['website'];
-			$name = $row['name'];
-			if(!isset($data2[$website])){
-				$data2[$website] = array();
-			}
-			$name = $row['name'];
-			$score = 0;
-			foreach($score2[$website] as $r){
-				if($r['name'] == $name){
-					$score = $r['score'];
-					$row['score'] = $score;
-				}
-			}
-			$data2[$website][] = $row;
-		}
-		foreach($data2 as $website => $rows){
-			uasort($rows, 'scoreSort');
-			$data2[$website] = $rows;
-		}
-
-		$data = array();
-		foreach($data2 as $website => $rows){
-			$i = 0;
-			foreach($rows as $r){
-				if($i >= Parsing::DATA_NUM){
-					break;
-				}
-				$data[] = $r;
-				$i++;
-			}
-		}
 	}
 	$return = array('untrusted'=>$untrusted,'query_id'=>$query_id,'ajax_parse'=>$ajaxParseSite,'data'=>$data,'result_time'=>date('d/m/y h:i a',$max),'result_number_time'=>$max,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site);
 	if(!isset($_REQUEST['silent'])){
@@ -251,4 +152,81 @@ function longest_common_substring($words)
 	usort($longest_common_substring, $sort_by_strlen);
 	return array_pop($longest_common_substring);
 }
+/*
+ $index = 0;
+$prev_website = $data[0]['website'];
+$score = array();
+foreach($data as $row){
+$website = $row['website'];
+$name = $row['name'];
+
+if($website != $prev_website){
+$prev_website = $website;
+$index = 1;
+}else{
+$index++;
+}
+
+//$defscore = Parsing::DATA_NUM + 1 - $index;
+$defscore = 0;
+
+for($i=0;$i<sizeof($score);$i++){
+if($score[$i]['website'] != $website){
+$name_new = $score[$i]['name'];
+$website_new = $score[$i]['website'];
+$score_new = $score[$i]['score'];
+
+$name_new_comp = $name_new;
+$name_comp = $name;
+$par = Parsing::getReplace();
+foreach($par as $key => $value){
+if(strpos($name_new_comp, $key) !== false){
+$name_new_comp = str_replace($key, $value, $name_new_comp);
+}
+if(strpos($name_comp, $key) !== false){
+$name_comp = str_replace($key, $value, $name_comp);
+}
+}
+if(strtolower($name_new_comp) == strtolower($name_comp)){
+
+//$defscore += $score_new;
+//$score_new += $defscore;
+$score[$i]['score'] = $score_new + 1;
+$defscore = $score_new + 1;
+
+}
+}
+}
+$score[] = array('website'=>$website,'name'=>$name,'score'=>$defscore);
+}
+
+$score2 = array();
+foreach($score as $r){
+if(!isset($score2[$r['website']])){
+$score2[$r['website']] = array();
+}
+$score2[$r['website']][] = array('name'=>$r['name'],'score'=>$r['score']);
+}
+$data2 = array();
+foreach($data as $row){
+$website = $row['website'];
+$name = $row['name'];
+if(!isset($data2[$website])){
+$data2[$website] = array();
+}
+$name = $row['name'];
+$score = 0;
+foreach($score2[$website] as $r){
+if($r['name'] == $name){
+$score = $r['score'];
+$row['score'] = $score;
+}
+}
+$data2[$website][] = $row;
+}
+foreach($data2 as $website => $rows){
+uasort($rows, 'scoreSort');
+$data2[$website] = $rows;
+}
+*/
 ?>

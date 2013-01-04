@@ -45,6 +45,9 @@ class Category{
 	const MOB_OTHERS = 1211;
 	const MOB_HANDSFREE = 1212;
 
+	const COMP_COMPUTER = 501;
+	const COMP_LAPTOP = 502;
+
 	public function getStoreCategory(){
 		return array(
 				self::MOBILE =>'Mobiles',
@@ -65,7 +68,10 @@ class Category{
 				//self::TABLETS=>'Tablets, iPad',
 				//self::TV=>'TV, Video & Audio',
 				//self::GAMING =>'Gaming',
-				//self::COMP_LAPTOP=>'Computer & Laptop',
+				self::COMP_LAPTOP=>array('Computer & Laptop'=>array(
+						self::COMP_COMPUTER => 'Computers - Desktops',
+						self::COMP_LAPTOP => 'Laptops'
+				)),
 				//self::COMP_ACC=>'Computer Accessories & Software',
 				self::CAMERA=>array('Cameras'=>array(
 						self::CAM_DIGITAL_CAMERA => 'Digital Camera - Point & Shoot',

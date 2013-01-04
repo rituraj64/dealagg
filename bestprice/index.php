@@ -166,9 +166,23 @@
 				<div class="span2" style="line-height: 150px">
 					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
 				</div>
-				<div class="popup span4 table-bordered item" style="margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
+				{main_item_html}
+				<div class="span4" style="margin-left:10px;">
+					<div class='row-fluid' id="other_prod">
+					</div>
+					<div style="padding-top: 10px;"></div>
+				</div>
+			 	<div class='span2 table-bordered' style="border-left: 1px solid #DDD;margin-left:10px;">
+			 		<div style="font-size:12px">
+						Coupons:
+					</div>
+				</div>
+			 </div>
+  </div>
+  <div id="mainItemTemplate" style="display: none">
+  				<div class="popup span4 table-bordered item item_main" id='{item_id}' style="margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
 						<input type='hidden' id='item_url' value='{item_url}' />
-						<input type='hidden' id='item_name' value='{item_name}' />
+						<input type='hidden' id='item_name' class='item_name' value='{item_name}' />
 						<input type='hidden' id='item_image' value='{item_image}' />
 						<input type='hidden' id='item_price' value='{item_price}' />
 						<input type='hidden' id='item_author' value='{item_author}' />
@@ -213,17 +227,6 @@
 							</div>
 						</div>
 				</div>
-				<div class="span4" style="margin-left:10px;">
-					<div class='row-fluid' id="other_prod">
-					</div>
-					<div style="padding-top: 10px;"></div>
-				</div>
-			 	<div class='span2 table-bordered' style="border-left: 1px solid #DDD;margin-left:10px;">
-			 		<div style="font-size:12px">
-						Coupons:
-					</div>
-				</div>
-			 </div>
   </div>
   
   <div id='emptyBodyTemplate' style="display: none">
@@ -264,10 +267,10 @@
   </div>
   
   <div id='smallItemTemplate' style="display: none">
-  		<div class='item' style="margin-left: 5px;">
+  		<div class='item item_small' id='{item_id}' style="margin-left: 5px;">
   			<input type='hidden' id='item_url' value='{item_url}' />
-			<input type='hidden' id='item_name' value='{item_name}' />
-			<input type='hidden' id='item_image' value='{item_image}' />
+			<input type='hidden' id='item_name' class='item_name' value='{item_name}' />
+			<input type='hidden' id='item_image' value='{item_img_load_id}' />
 			<input type='hidden' id='item_price' value='{item_price}' />
 			<input type='hidden' id='item_author' value='{item_author}' />
 			<input type='hidden' id='item_stock' value='{item_stock}' />
@@ -296,14 +299,14 @@
 			</div>
 		</div>
   </div>
-  <div id='stepItem' style="display: none">
+  <div id='stepItem' id='{step_id}' style="display: none">
   	<div  class='table-bordered pull-left' style="border-left: 1px solid #DDD;padding: 10px;margin-right: 20px;width: 150px;margin-top: 5px;height: 235px">
      	<div>
      		<a href="{item_url}" target="_blank">
 				<img class="img-rounded" src="{item_image}" alt='{item_name}' title='{item_name}' style="max-width: 100px;max-height: 100px;" />
 			</a>
      	</div>
-     	<div style="height: 40px;overflow: hidden">
+     	<div style="height: {name_height};overflow: hidden">
 	     	<a href="{item_url}" target="_blank" class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="{item_name}">
 	     		{item_name}
 	     	</a>
@@ -311,7 +314,7 @@
      	<div>
 			Price <span class="WebRupee">Rs.</span><span class='main_price'>{item_price}</span>
 		</div>
-		<div class='author' style="{author_display}">
+		<div class='author' style="{author_display};height: 22px;overflow:hidden;">
 			by <small>{item_author}</small>
 		</div>
 		<button type="button" onclick='searchThis("{item_name}");return false;' class='btn btn-small btn-info'>Search This!</button>
