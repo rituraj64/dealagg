@@ -1,8 +1,8 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css"></link>
-<script type="text/javascript" src="../js/jQuery.js"></script>
-<script src="../js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../js/jquery.fancybox.pack.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox1.css"></link>
 
 <script>
