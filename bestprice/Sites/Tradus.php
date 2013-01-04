@@ -20,28 +20,28 @@ class Tradus extends Parsing{
 		}else if($category == Category::MOBILE){
 			return "http://www.tradus.com/search?query=$query&cat=7844";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.tradus.com/search?query=$query&cat=10465";
-			/*
-			 * for mobile acc catogeries later
-			*
-			* if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
-			return "";
+			//return "http://www.tradus.com/search?query=$query&cat=10465";
+			if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
+				return "http://www.tradus.com/search?query=$query&cat=10465";
 			}elseif ($subcat == Category::MOB_BATTERY){
-			return "";
+				return "http://www.tradus.com/search?query=$query&cat=10469";
 			}elseif ($subcat == Category::MOB_HEADSETS){
-			return "";
+				return "http://www.tradus.com/search?query=$query&cat=10477";
 			}elseif ($subcat == Category::MOB_CASES){
-			return "";
+				return "http://www.tradus.com/search?query=$query&cat=10472";
 			}elseif ($subcat == Category::MOB_CHARGER){
-			return "";
-			}elseif ($subcat == Category::MOB_HANDSFREE){
-			return "";
+				return "http://www.tradus.com/search?query=$query&cat=10473";
+			}elseif ($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADPHONE){
+				return "http://www.tradus.com/search?query=$query&cat=10476";
 			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
-			return "";
-			}elseif ($subcat == Category::MOB_HEADPHONE){
-			return "";
+				return "http://www.tradus.com/search?query=$query&cat=10480";
+			}elseif ($subcat == Category::MOB_CAR_ACC){
+				return "http://www.tradus.com/search?query=$query&cat=10471";
+			}elseif ($subcat == Category::MOB_CABLE){
+				return "http://www.tradus.com/search?query=$query&cat=10470";
+			}elseif($subcat == Category::MOB_SPEAKER){
+				return "http://www.tradus.com/search?query=$query&cat=10483";
 			}else return "";
-			*/
 		}else if($category == Category::CAMERA){
 
 			if($subcat == Category::NOT_SURE){

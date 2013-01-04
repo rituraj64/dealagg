@@ -9,7 +9,7 @@ class Storeji extends Parsing{
 	}
 
 	public function getWebsiteUrl(){
-		return 'http://www.ezoneonline.in/';
+		return 'http://www.storeji.com/';
 	}
 	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::MOBILE || $category == Category::MOBILE_ACC){

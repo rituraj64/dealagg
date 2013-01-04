@@ -14,6 +14,27 @@ class Rediff extends Parsing{
 		}else if($category == Category::MOBILE){
 			$query = urldecode($query);
 			return "http://shopping.rediff.com/productv2/$query/cat-mobile phones & accessories|mobile accessories";
+		}else if($category == Category::MOBILE_ACC){
+			$query = urldecode($query);
+			 if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
+				return "http://shopping.rediff.com/productv2/$query/cat-mobile phones & accessories|mobile accessories";
+			}elseif ($subcat == Category::MOB_BATTERY){
+				return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|mobile+accessories|battery?ref_src=inhome_srch";
+			}elseif ($subcat == Category::MOB_HEADSETS){
+				return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|mobile+accessories|bluetooth?ref_src=inhome_srch";
+			}elseif ($subcat == Category::MOB_CASES){
+				return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|mobile+accessories|carry+cases%2C+pouches?ref_src=inhome_srch";
+			}elseif ($subcat == Category::MOB_CHARGER){
+				return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|mobile+accessories|chargers?ref_src=inhome_srch";
+			}elseif ($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADPHONE){
+				return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|mobile+accessories|handsfree?ref_src=inhome_srch";
+			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
+				return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|mobile+accessories|screen+protector?ref_src=inhome_srch|search_screen%20guard";
+			}elseif ($subcat == Category::MOB_MEMORY){
+				return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|mobile+accessories|memory+card?ref_src=inhome_srch";
+			}elseif ($subcat == Category::MOB_CABLE){
+				return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|mobile+accessories|datacables?ref_src=inhome_srch";
+			}else return "";
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|digital cameras";

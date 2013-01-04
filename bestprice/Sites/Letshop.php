@@ -16,7 +16,16 @@ class Letshop extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=4";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=12";
+			$query = str_replace(" ", "-", $query);
+			if($subcat == Category::MOB_MEMORY){
+				return "http://letsshop.in/catalogsearch/result/index/?cat=77&q=$query";
+			}elseif ($subcat == Category::MOB_CHARGER){
+				return "http://letsshop.in/catalogsearch/result/index/?cat=16&q=Nokia+battery";
+			}elseif($subcat == Category::MOB_CAR_ACC){
+				return "http://letsshop.in/catalogsearch/result/index/?cat=20&q=Nokia+battery";
+			}else 
+				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=12";
+			}
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=27";
