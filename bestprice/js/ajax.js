@@ -621,8 +621,14 @@ function calcResult() {
 	}
 	if (!fine) {
 		showStep();
+	}else{
+		sortResult();
 	}
 	return fine;
+}
+
+function sortResult(){
+	
 }
 
 function showStep() {
