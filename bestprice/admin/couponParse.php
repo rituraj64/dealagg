@@ -50,21 +50,15 @@
 		});
 		$("#paging-form").submit(function(){
 			
-			var form_attr=$(this).attr("action");
 			var readStatus=$("#read-status").val();
 			if(readStatus==0)
 			{
-				var trail='?status=0';
-				form_attr=form_attr+trail;
-				$(this).attr("href",form_attr);
+				$(this).append("<input type='hidden' name='status' value='0'></input>");
 			}
 			else
 			{
-				var trail='?status=1';
-				form_attr=form_attr+trail;
-				$(this).attr("href",form_attr);
+				$(this).append("<input type='hidden' name='status' value='1'></input>");
 			}
-			alert(form_attr);
 		});
 	});
 
@@ -150,8 +144,10 @@ echo $table;
 	{
 ?>
 		<input type="hidden" value="<?php echo $_REQUEST['status']; ?>" name="read-status" id="read-status"></input>
+		
 <?php 
 	}
-?>"
+?>
+"
 </div>
 </html>
