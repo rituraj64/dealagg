@@ -46,7 +46,7 @@ class Category{
 	const MOB_HANDSFREE = 1212;
 
 	const COMP_COMPUTER = 501;
-	const COMP_LAPTOP = 502;
+	const LAPTOP_ACC = 502;
 
 	public function getStoreCategory(){
 		return array(
