@@ -1,10 +1,49 @@
 <html>
 <head>
 
-<script type="text/javascript" src="../js/jQuery.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../js/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.fancybox1.css"></link>
 
-<script>
+<script type="text/javascript">
 	$(document).ready(function(){
+		
+		$(".add_coupon").click(function(event){
+			event.preventDefault();
+						
+			$(".fancybox").fancybox({
+				'type'			  	: 'iframe',
+				'autoSize'		    : false,
+				'width'		   		:500,
+				'height'			:250,
+				'showOverlay'		:false,
+				
+			});
+			
+			$.ajax({
+				url:'addCouponParse.php',
+				method:'get',
+				success:function(xyz){
+					$.fancybox(xyz);
+				}
+			});
+		});
+
+		$("#bus table tbody tr td table td:nth-child(5)").each(function(i){
+			var deal_url=$(this).text();
+			$(this).html("<a href="+deal_url+" target+_blank>"+deal_url+"</a>");
+		});
+
+		$("#bus table tbody tr td table td:nth-child(7)").each(function(i){
+			var website=$(this).text();
+			$(this).html("<a href="+website+" target+_blank>"+website+"</a>");
+		});
+		
+//		$("#bus table tbody tr td table td:nth-child(8)").each(function(i){
+//			var title=$(this).text().substr(0,10);
+//			$(this).html(title);
+//		});
+
 		
 		$("#bus table tbody tr td table td").attr("align","center");
 		$("#bus table").attr("border","1");
@@ -75,6 +114,25 @@
 	});
 
 </script>
+<style>
+	#bus table tbody tr td table td:nth-child(1n+1)
+	{
+		width:30px;
+	}
+	#bus table tbody tr td table td:last-child
+	{
+		width:60px;
+	}
+	#bus table tbody tr td table td:nth-child(8)
+	{
+		width:900px;
+	}
+	#bus table tbody tr td table td:nth-child(6)
+	{
+		width:200px;
+	}
+</style>
+
 
 </head>
 
@@ -88,14 +146,51 @@ require_once '../smartmodel/UI.php';
 			<a href="index.php" id="add_coupon">Coupon Active</a>
 			<a href="couponParse.php" id="add_coupon">Coupon Parse</a>
 	</div>
-	<select style="float:right; width:150px;" id="status">
-		<option  value=0>Read</option>
-		<option <?php if(isset($_REQUEST['status'])){ if($_REQUEST['status']==1) { ?> selected <?php  }  } ?> value=1>Ignore</option>
-	</select>
+	
+	<div>
+		<select style="float:right; width:150px;" id="status">
+			<option  value=0>Read</option>
+			<option <?php if(isset($_REQUEST['status'])){ if($_REQUEST['status']==1) { ?> selected <?php  }  } ?> value=1>Ignore</option>
+		</select>
+	</div>
+	<div style="float:right; border:solid 1px; margin-right:10px; background-color:#494949;border-radius:3px;">
+		<a class="add_coupon" style="text-decoration:none;color:white;" href="#">Add Coupon</a>
+	</div>
 </div>
 <?php 
 
 $user = new coupon_parse();
+
+if(isset($_REQUEST['submit_coupon_parse']))
+{
+	$uniq_id=$_REQUEST['uniq_id'];
+	$coupon_code=$_REQUEST['coupon_code'];
+	$coupon_type=$_REQUEST['coupon_type'];
+	$deal_url=$_REQUEST['deal_url'];
+	$title=$_REQUEST['title'];
+	$website=$_REQUEST['website'];
+	$desc=$_REQUEST['desc'];
+	$success=$_REQUEST['success'];
+	$code=$_REQUEST['code'];
+	$status=$_REQUEST['status'];
+	
+	$user->uniq_id=$uniq_id;
+	$user->coupon_code=$coupon_code;
+	$user->coupon_type=$coupon_type;
+	$user->deal_url=$deal_url;
+	$user->title=$title;
+	$user->website=$website;
+	$user->desc=$desc;
+	$user->success=$success;
+	$user->code=$code;
+	$user->status=$status;
+	$id = $user->insert();
+	?>
+	<script> window.location.href='couponParse.php';</script>
+	<?php 
+}
+
+$orderBy=array('desc'=>'id');
 if(isset($_REQUEST['status']))
 {
 	if($_REQUEST['status']==1)
@@ -111,6 +206,10 @@ else
 {
 	$user->read = '0';
 }
+
+
+
+$data=$user->read(null,null,$orderBy);
 
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
 
@@ -155,6 +254,11 @@ $usersTable->sorting='desc';
 //code ends here for sorting the column ID in descending order
 
 $table=$usersTable->generateTable($user);
+
+//code starts here for hiding the column read
+//$hide=array('id');
+//$usersTable->setColumnNameMapping($hide);
+//code ends here for hiding the column read
 
 ?>
 <div id="table">

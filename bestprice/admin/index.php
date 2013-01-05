@@ -5,7 +5,7 @@
 <script type="text/javascript" src="../js/jquery.fancybox.pack.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox1.css"></link>
 
-<script>
+<script type="text/javascript">
 	$(document).ready(function(){
 		$("#bus table tbody tr td table td").attr("align","center");
 		$("#bus table").attr("border","1");
@@ -46,6 +46,7 @@ $user = new coupon_active();
 $orderBy = array('desc'=>'id');
 $user->read(null,null,$orderBy);
 
+//code starts here for inserting the coupon into the database
 if(isset($_REQUEST['submit_coupon_active']))
 {
 	$active_from=$_REQUEST['active_from'];
@@ -74,11 +75,14 @@ if(isset($_REQUEST['submit_coupon_active']))
 	<script> window.location.href='index.php';</script>
 	<?php 
 }
+//code ends here for inserting the coupon into the database
 
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
 
+//code starts here for sorting the column ID in desc order
 $usersTable->sortCol='id'; 
 $usersTable->sorting='desc';
+//code ends here for sorting the column ID in desc order
 
 $table=$usersTable->generateTable($user);
 

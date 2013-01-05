@@ -33,7 +33,7 @@
 		public $read;
 		
 		public $_table = "coupon_parse";
-		public $_fields = array('id','uniq_id','coupon_code','coupon_type','deal_url','title','website','success','code','read');
+		public $_fields = array('id','uniq_id','coupon_code','coupon_type','deal_url','title','website','desc','success','code','read');
 		
 	}
 ?>
