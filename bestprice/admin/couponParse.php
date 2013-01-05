@@ -99,20 +99,17 @@ $user = new coupon_parse();
 if(isset($_REQUEST['status']))
 {
 	if($_REQUEST['status']==1)
-	{
-		echo "1";
+	{	
 		$user->read = '1';
 	}	
 	else
-	{
-		echo "0";
+	{		
 		$user->read = '0';
 	}
 }
 
 else
 {
-	echo "12";
 	$user->read = '0';
 }
 
