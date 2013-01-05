@@ -44,7 +44,6 @@
 //			$(this).html(title);
 //		});
 
-		
 		$("#bus table tbody tr td table td").attr("align","center");
 		$("#bus table").attr("border","1");
 		$(".form").attr("border","0");
@@ -115,21 +114,29 @@
 
 </script>
 <style>
+	#bus table tbody tr td table
+	{
+		table-layout:fixed;
+	}
 	#bus table tbody tr td table td:nth-child(1n+1)
 	{
-		width:30px;
+		min-width:30px !important;
+		overflow:hidden;
 	}
 	#bus table tbody tr td table td:last-child
 	{
-		width:60px;
+		width:60px !important;
+		overflow:hidden
 	}
 	#bus table tbody tr td table td:nth-child(8)
 	{
-		width:900px;
+		width:900px !important;
+		overflow:hidden
 	}
 	#bus table tbody tr td table td:nth-child(6)
 	{
-		width:200px;
+		width:200px !important;
+		overflow:hidden	
 	}
 </style>
 
