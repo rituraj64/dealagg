@@ -35,15 +35,15 @@
 			var aa=$(this).attr("href");
 			var readStatus=$("#read-status").val();
 
-			if(readStatus==0)
+			if(readStatus==1)
 			{
-				var trail='&status=0';
+				var trail='&status=1';
 				aa=aa+trail;
 				$(this).attr("href",aa);
 			}
 			else
 			{
-				var trail='&status=1';
+				var trail='&status=0';
 				aa=aa+trail;
 				$(this).attr("href",aa);
 			}
@@ -51,25 +51,25 @@
 		$("#paging-form").submit(function(){
 			
 			var readStatus=$("#read-status").val();
-			if(readStatus==0)
+			if(readStatus==1)
 			{
-				$(this).append("<input type='hidden' name='status' value='0'></input>");
+				$(this).append("<input type='hidden' name='status' value='1'></input>");
 			}
 			else
 			{
-				$(this).append("<input type='hidden' name='status' value='1'></input>");
+				$(this).append("<input type='hidden' name='status' value='0'></input>");
 			}
 		});
 
 		$(".form-noindent form").submit(function(){
 			var readStatus=$("#read-status").val();
-			if(readStatus==0)
+			if(readStatus==1)
 			{
-				$(this).children("table").before("<input type='hidden' name='status' value='0'></input>");
+				$(this).children("table").before("<input type='hidden' name='status' value='1'></input>");
 			}
 			else
 			{
-				$(this).children("table").before("<input type='hidden' name='status' value='1'></input>");
+				$(this).children("table").before("<input type='hidden' name='status' value='0'></input>");
 			}
 		});
 	});
@@ -100,16 +100,19 @@ if(isset($_REQUEST['status']))
 {
 	if($_REQUEST['status']==1)
 	{
+		echo "1";
 		$user->read = '1';
 	}	
 	else
 	{
+		echo "0";
 		$user->read = '0';
 	}
 }
 
 else
 {
+	echo "12";
 	$user->read = '0';
 }
 
