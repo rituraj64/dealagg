@@ -122,21 +122,25 @@
 	{
 		min-width:30px !important;
 		overflow:hidden;
+		word-wrap:break-word;
 	}
 	#bus table tbody tr td table td:last-child
 	{
 		width:60px !important;
-		overflow:hidden
+		overflow:hidden;
+		word-wrap:break-word;
 	}
 	#bus table tbody tr td table td:nth-child(8)
 	{
 		width:900px !important;
-		overflow:hidden
+		overflow:hidden;
+		word-wrap:break-word;
 	}
 	#bus table tbody tr td table td:nth-child(6)
 	{
 		width:200px !important;
-		overflow:hidden	
+		overflow:hidden;
+		word-wrap:break-word;
 	}
 </style>
 
