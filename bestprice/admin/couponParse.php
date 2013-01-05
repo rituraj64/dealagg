@@ -65,11 +65,11 @@
 			var readStatus=$("#read-status").val();
 			if(readStatus==0)
 			{
-				$(this).append("<input type='hidden' name='status' value='0'></input>");
+				$(this).children("table").before("<input type='hidden' name='status' value='0'></input>");
 			}
 			else
 			{
-				$(this).append("<input type='hidden' name='status' value='1'></input>");
+				$(this).children("table").before("<input type='hidden' name='status' value='1'></input>");
 			}
 		});
 	});
@@ -83,11 +83,16 @@ require_once 'couponClass.php';
 require_once '../smartmodel/UI.php';
 
 ?>
-
-<select style="float:right; width:150px;" id="status">
-	<option  value=1>Read</option>
-	<option <?php if(isset($_REQUEST['status'])){ if($_REQUEST['status']==0) { ?> selected <?php  }  } ?> value=0>Ignore</option>
-</select>
+<div>
+	<div style="float:left">
+			<a href="index.php" id="add_coupon">Coupon Active</a>
+			<a href="couponParse.php" id="add_coupon">Coupon Parse</a>
+	</div>
+	<select style="float:right; width:150px;" id="status">
+		<option  value=0>Read</option>
+		<option <?php if(isset($_REQUEST['status'])){ if($_REQUEST['status']==1) { ?> selected <?php  }  } ?> value=1>Ignore</option>
+	</select>
+</div>
 <?php 
 
 $user = new coupon_parse();
@@ -105,7 +110,7 @@ if(isset($_REQUEST['status']))
 
 else
 {
-	$user->read = '1';
+	$user->read = '0';
 }
 
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
@@ -115,20 +120,20 @@ $usersTable->addCustomColumn($array);
 Function read_stat($row){
 	if(isset($_REQUEST['status']))
 	{ 
-		if($_REQUEST['status']==0)
+		if($_REQUEST['status']==1)
 		{
 			Return
 			"<select class=read_status>
-				<option value=1>Read</option>
-				<option selected value=0>Ignore</option>
+				<option value=0>Read</option>
+				<option selected value=1>Ignore</option>
 			</select>";
 		}
 		else
 		{
 			Return
 			"<select class=read_status>
-				<option value=1>Read</option>
-				<option value=0>Ignore</option>
+				<option value=0>Read</option>
+				<option value=1>Ignore</option>
 			</select>";
 			
 		}
@@ -137,8 +142,8 @@ Function read_stat($row){
 		{
 			Return
 			"<select class=read_status>
-				<option value=1>Read</option>
-				<option value=0>Ignore</option>
+				<option value=0>Read</option>
+				<option value=1>Ignore</option>
 			</select>";
 		}
 }
@@ -160,6 +165,6 @@ echo $table;
 <?php 
 	}
 ?>
-"
+
 </div>
 </html>
