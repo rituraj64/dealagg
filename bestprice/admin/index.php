@@ -86,9 +86,14 @@ $field = array('id'=>'ID','active_from'=>'Active From','active_to'=>'Active To',
 $usersTable-> setColumnNameMapping($field);
 
 ?>
-
-<div style="float:right; border:solid 1px; margin-bottom:10px; background-color:#494949;border-radius:5px;">
-	<a class="add_coupon" style="text-decoration:none;color:white;" href="#">Add Coupon</a>
+<div>
+	<div style="float:left">
+		<a href="index.php" id="add_coupon">Coupon Active</a>
+		<a href="couponParse.php" id="add_coupon">Coupon Parse</a>
+	</div>
+	<div style="float:right; border:solid 1px; margin-bottom:10px; background-color:#494949;border-radius:5px;">
+		<a class="add_coupon" style="text-decoration:none;color:white;" href="#">Add Coupon</a>
+	</div>
 </div>
 <?php 
 	echo $table;
