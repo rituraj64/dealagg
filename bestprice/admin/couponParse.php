@@ -99,7 +99,7 @@ $user = new coupon_parse();
 if(isset($_REQUEST['status']))
 {
 	if($_REQUEST['status']==1)
-	{	
+	{			
 		$user->read = '1';
 	}	
 	else
@@ -107,7 +107,6 @@ if(isset($_REQUEST['status']))
 		$user->read = '0';
 	}
 }
-
 else
 {
 	$user->read = '0';
@@ -115,6 +114,7 @@ else
 
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
 
+//code starts here for adding a new column to a table
 $array=array('Read'=>'read_stat');
 $usersTable->addCustomColumn($array);
 Function read_stat($row){
@@ -138,19 +138,24 @@ Function read_stat($row){
 			
 		}
 	}
-		else
-		{
-			Return
-			"<select class=read_status>
-				<option value=0>Read</option>
-				<option value=1>Ignore</option>
-			</select>";
-		}
+	else
+	{
+		Return
+		"<select class=read_status>
+			<option value=0>Read</option>
+			<option value=1>Ignore</option>
+		</select>";
+	}
 }
+//code ends here for adding a new column to a table
+
+//code starts here for sorting the column ID in descending order
 $usersTable->sortCol='id'; 
 $usersTable->sorting='desc';
+//code ends here for sorting the column ID in descending order
 
 $table=$usersTable->generateTable($user);
+
 ?>
 <div id="table">
 <?php 
@@ -164,6 +169,7 @@ echo $table;
 		
 <?php 
 	}
+	
 ?>
 
 </div>
