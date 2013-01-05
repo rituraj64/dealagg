@@ -7,7 +7,7 @@ class Indiatimes extends Parsing{
 		return 'http://www.facebook.com/indiatimesshopping';
 	}
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
+		return array(Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV,Category::BEAUTY);
 	}
 
 	public function getWebsiteUrl(){
@@ -21,7 +21,7 @@ class Indiatimes extends Parsing{
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10010";
 		}else if($category == Category::BOOKS){
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10011";
-		}else if($category == Category::COMP_ACC || $category == Category::COMP_LAPTOP || $category == Category::TABLETS){
+		}else if($category == Category::COMP_ACC || $category == Category::TABLETS){
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10013";
 		}else if($category == Category::HOME_APPLIANCE){
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10004";
@@ -92,6 +92,10 @@ class Indiatimes extends Parsing{
 			}else{
 				return '';
 			}
+		}elseif ($category == Category::COMP_COMPUTER){
+			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10013&filter=PRIMARY_CATEGORY_ID:40599";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10013";
 		}else{
 			return "http://shopping.indiatimes.com/control/mtkeywordsearch?SEARCH_STRING=".$query;
 		}

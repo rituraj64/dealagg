@@ -5,7 +5,7 @@ class ShopByChoice extends Parsing{
 		return 'http://www.facebook.com/shopbychoice';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::CAMERA);
+		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -46,6 +46,10 @@ class ShopByChoice extends Parsing{
 			}else{
 				return '';
 			}
+		}elseif ($category == Category::COMP_COMPUTER){
+			return "http://www.shopbychoice.com/search/result+category-desktops+searchtext-$query";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.shopbychoice.com/search/result+searchtext-$query+category-laptops";
 		}
 		return "http://www.shopbychoice.com/search/result+searchtext-".$query;
 	}

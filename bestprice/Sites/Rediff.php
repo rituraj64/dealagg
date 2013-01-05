@@ -2,7 +2,7 @@
 class Rediff extends Parsing{
 	public $_code = 'Rediff';
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC);
+		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -13,7 +13,8 @@ class Rediff extends Parsing{
 			return "http://books.rediff.com/search/$query?&output=xml&src=search_$query";
 		}else if($category == Category::MOBILE){
 			$query = urldecode($query);
-			return "http://shopping.rediff.com/productv2/$query/cat-mobile phones & accessories|mobile accessories";
+			//return "http://shopping.rediff.com/productv2/$query/cat-mobile phones & accessories|mobile accessories";
+			return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|gsm+handsets";
 		}else if($category == Category::MOBILE_ACC){
 			$query = urldecode($query);
 			 if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
@@ -75,6 +76,10 @@ class Rediff extends Parsing{
 			}else{
 				return '';
 			}
+		}elseif ($category == Category::COMP_COMPUTER){
+			return "http://shopping.rediff.com/productv2/$query/cat-computers+%26amp%3B+it+peripherals|desktop+pcs?ref_src=topnav_Computer|browse";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://shopping.rediff.com/productv2/$query/cat-computers+%26amp%3B+it+peripherals|laptops?ref_src=topnav_Computer|browse";
 		}else{
 			return "http://shopping.rediff.com/shopping/index.html#!".urldecode($query);
 		}

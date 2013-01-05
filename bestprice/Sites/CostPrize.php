@@ -12,8 +12,8 @@ class CostPrize extends Parsing{
 		return 'http://www.costprize.com/';
 	}
 	public function getSearchURL($query,$category = false,$subcat=false){
-		if($category == Category::MOBILE){
-		}
+		/* if($category == Category::MOBILE){
+		} */
 		return "http://www.costprize.com/search_results.php?search_str=$query";
 	}
 	public function getLogo(){

@@ -5,7 +5,7 @@ class Seventymm extends Parsing{
 		return 'http://www.facebook.com/SeventymmCom';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
@@ -77,6 +77,8 @@ class Seventymm extends Parsing{
 				return '';
 			}
 
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://shop.seventymm.com/search/$query/all-categories/0/laptops/2371/all-price/0/any/0/any/0/1/1/3/go";
 		}
 		return "http://shop.seventymm.com/Search/$q/All-Categories/0/All-Classification/0/All-Price/0/Any/0/Any/0/1/1/3/Go";
 	}

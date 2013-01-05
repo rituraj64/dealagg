@@ -5,7 +5,7 @@ class Infibeam extends Parsing{
 		return 'http://www.facebook.com/infibeam';
 	}
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
+		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 	public function isTrusted($category){
 		return true;
@@ -84,6 +84,10 @@ class Infibeam extends Parsing{
 				return '';
 			}
 
+		}elseif ($category == Category::COMP_COMPUTER){
+			return "http://www.infibeam.com/Desktop_Computers_Accessories/search?q=$query";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.infibeam.com/Laptop_Computers_Accessories/search?q=$query";
 		}else{
 			return "http://www.infibeam.com/search?q=".$query;
 		}

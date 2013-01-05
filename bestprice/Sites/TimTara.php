@@ -8,7 +8,7 @@ class TimTara extends Parsing{
 		return true;
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -59,6 +59,8 @@ class TimTara extends Parsing{
 			}else{
 				return '';
 			}
+		}elseif ($category == Category::COMP_COMPUTER || $category == Category::COMP_LAPTOP){
+			return "http://www.timtara.com/search.php?catLevel=0&category[]=1001&category[]=1001&category[]=1002&category[]=1003&category[]=1004&category[]=1005&category[]=1006&category[]=1007&category[]=1008&category[]=1009&category[]=1010&category[]=1011&category[]=1012&category[]=1013&category[]=1014&category[]=1015&category[]=1016&category[]=1017&category[]=1018&category[]=1019&category[]=1397&category[]=1403&category[]=1405&category[]=1407&category[]=1409&category[]=1411&category[]=1413&category[]=1415&category[]=1417&category[]=1419&category[]=1431&category[]=1433&category[]=1947&category[]=1949&category[]=1951&category[]=1953&category[]=1955&category[]=1957&category[]=1959&category[]=1961&category[]=1963&category[]=1965&category[]=1967&search_query=$query&x=0&y=0"
 		}
 		return "http://www.timtara.com/search.php?catLevel=0&category[]=&search_query=$query&x=0&y=0";
 	}

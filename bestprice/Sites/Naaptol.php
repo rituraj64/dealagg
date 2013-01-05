@@ -6,7 +6,7 @@ class Naaptol extends Parsing{
 		return 'http://www.facebook.com/ShopRight';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 	public function isTrusted($category){
 		return true;
@@ -83,6 +83,10 @@ class Naaptol extends Parsing{
 				return '';
 			}
 
+		}elseif ($category == Category::COMP_COMPUTER){
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=12&kw=$query&sb=49,9,8";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=13&kw=$query&sb=49,9,8";
 		}
 		return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&kw=samsung&sb=49,9,8&req=ajax";
 	}

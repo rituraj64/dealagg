@@ -11,7 +11,7 @@ class Flipkart extends Parsing{
 	//need to integrate flipkart offers and cashback
 
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
+		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
@@ -88,7 +88,7 @@ class Flipkart extends Parsing{
 			}else{
 				return '';
 			}
-		}else if($category == Category::COMP_ACC || $category == Category::COMP_LAPTOP || $category == Category::TABLETS){
+		}else if($category == Category::COMP_ACC || $category == Category::TABLETS){
 			return "http://www.flipkart.com/search/a/computers?query=".$query."&vertical=computers&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=RsuiHvNUWzIGQmMYN5OGLg--&_l=Tnndui8JdMVk7CZmDKIfXQ--&ref=de3e3b97-e0c3-4810-b670-fed8e7f132bd&selmitem=Computers";
 		}else if($category == Category::GAMING){
 			return "http://www.flipkart.com/search/a/games?query=".$query."&vertical=games&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=default-search&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=F7RHLcm3kzA6g5uio1jyrw--&_l=dPxEw4fkCcmDR6VWspVbMg--&ref=12124740-3d86-450c-ae16-30639a87e713&selmitem=Games+%26+Consoles";
@@ -98,6 +98,10 @@ class Flipkart extends Parsing{
 			return "http://www.flipkart.com/tvs-audio-video-players/tv-video/pr?sid=ckf,see&q='.$query.'&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&selmitem=TVs+%26+Video+Players&otracker=start&_l=Tnndui8JdMVk7CZmDKIfXQ--&_r=RsuiHvNUWzIGQmMYN5OGLg--&ref=5ec4254d-f08f-40ce-b1b3-81854d37bbb6";
 		}else if($category == Category::BEAUTY){
 			return "http://www.flipkart.com/beauty-and-personal-care/pr?sid=t06&q=".$query."&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&selmitem=Beauty+%26+Personal+Care&otracker=start&_l=dY2Vv7%20dT%20BcojM7Q0aWCA--&_r=pKHhEYwirnApk1HHs4pVyQ--&ref=97822d89-acb5-42bd-bf53-a47f4112fa1d";
+		}elseif ($category == Category::COMP_COMPUTER){
+			return "http://www.flipkart.com/computers/all-in-one-desktops/pr?sid=6bo%2Cigk&layout=grid&q=$query";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.flipkart.com/laptops/pr?sid=6bo%2Cb5g&layout=grid&q=$query";
 		}else{
 			return "http://www.flipkart.com/search/a/all?query=".$query."&vertical=all&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=RxkVRuKj3BrMxTJVu9LopA--&_l=pMHn9vNCOBi05LKC_PwHFQ--&ref=fab6e824-24af-4177-b599-75ec8406cf5f&selmitem=All+Categories";
 		}

@@ -5,7 +5,7 @@ class Storeji extends Parsing{
 		return 'http://www.facebook.com/storejifan';
 	}
 	public function getAllowedCategory(){
-		return array(Category::HOME_APPLIANCE,Category::TV,Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::GAMING);
+		return array(Category::COMP_LAPTOP,Category::HOME_APPLIANCE,Category::TV,Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::GAMING);
 	}
 
 	public function getWebsiteUrl(){
@@ -14,6 +14,8 @@ class Storeji extends Parsing{
 	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::MOBILE || $category == Category::MOBILE_ACC){
 			return "http://www.storeji.com/catalogsearch/result/index/?cat=19&q=$query";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.storeji.com/catalogsearch/result/index/?cat=142&q=$query";
 		}
 		return "http://www.storeji.com/catalogsearch/result/?q=$query";
 	}

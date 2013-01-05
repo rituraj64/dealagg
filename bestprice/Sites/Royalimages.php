@@ -5,7 +5,7 @@ class Royalimages extends Parsing{
 		return 'http://www.facebook.com/RoyalImages.in';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC);
+		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
@@ -49,6 +49,8 @@ class Royalimages extends Parsing{
 			}else{
 				return '';
 			}
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.royalimages.in/catalogsearch/result/index/?cat=55&q=$query";
 		}
 		return "http://www.royalimages.in/catalogsearch/result/?q=$query";
 	}

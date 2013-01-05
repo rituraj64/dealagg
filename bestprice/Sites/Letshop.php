@@ -5,7 +5,7 @@ class Letshop extends Parsing{
 		return 'http://www.facebook.com/LetsShopFans';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -46,6 +46,8 @@ class Letshop extends Parsing{
 			}else{
 				return '';
 			}
+		}elseif($category == Category::COMP_COMPUTER || $category == Category::COMP_LAPTOP){
+			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=22";
 		}
 		return "http://letsshop.in/catalogsearch/result/?q=$query";
 	}

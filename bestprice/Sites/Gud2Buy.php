@@ -6,7 +6,7 @@ class Gud2Buy extends Parsing{
 		return 'http://www.facebook.com/gud2buy';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC);
+		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
@@ -48,6 +48,10 @@ class Gud2Buy extends Parsing{
 			}else {
 				return '';
 			}
+		}elseif ($category == Category::COMP_COMPUTER){
+			return "http://gud2buy.com/computers/desktops&filter_name=$query";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://gud2buy.com/computers/laptops&filter_name=$query";
 		}
 		return "http://gud2buy.com/search&sort=stock_status_id+desc&filter_name=$query&filters=";
 	}

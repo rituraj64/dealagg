@@ -5,7 +5,7 @@ class FutureBazaar extends Parsing{
 		return 'http://www.facebook.com/FutureBazaar';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
@@ -19,13 +19,13 @@ class FutureBazaar extends Parsing{
 			if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
 				return "http://www.futurebazaar.com/search/?q=$query&c=2464&NormalSearch=enabled";
 			}elseif($subcat == Category::MOB_BATTERY || $subcat == Category::MOB_CHARGER){
-				return "http://www.futurebazaar.com/search/?q=nokia&c=3115";
+				return "http://www.futurebazaar.com/search/?q=$query&c=3115";
 			}elseif($subcat == Category::MOB_HEADSETS){
-				return "http://www.futurebazaar.com/search/?q=nokia&c=3118";
+				return "http://www.futurebazaar.com/search/?q=$query&c=3118";
 			}elseif($subcat == Category::MOB_CASES){
-				return "http://www.futurebazaar.com/search/?q=nokia&c=3114";
+				return "http://www.futurebazaar.com/search/?q=$query&c=3114";
 			}elseif($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADPHONE){
-				return "http://www.futurebazaar.com/search/?q=nokia&c=3116";
+				return "http://www.futurebazaar.com/search/?q=$query&c=3116";
 			}else return "";
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
@@ -69,7 +69,8 @@ class FutureBazaar extends Parsing{
 			}else{
 				return '';
 			}
-				
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.futurebazaar.com/search/?q=$query&c=2466";
 		}
 		return "http://www.futurebazaar.com/search/?q=$query&c=0&NormalSearch=enabled";
 	}

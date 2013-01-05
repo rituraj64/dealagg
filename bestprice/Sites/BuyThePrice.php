@@ -5,7 +5,7 @@ class BuyThePrice extends Parsing{
 		return 'http://www.facebook.com/buytheprice';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::TABLETS,Category::CAMERA,Category::CAMERA_ACC);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::TABLETS,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
@@ -75,6 +75,10 @@ class BuyThePrice extends Parsing{
 			}else{
 				return '';
 			}
+		}elseif ($category == Category::COMP_COMPUTER){
+			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=84&bid=0";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=82&bid=0";
 		}
 		return "http://www.buytheprice.com/search__".$query;
 	}

@@ -5,7 +5,7 @@ class Saholic extends Parsing{
 		return 'http://www.facebook.com/mysaholic';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
@@ -48,6 +48,8 @@ class Saholic extends Parsing{
 			}else if($subcat == Category::NOT_SURE){
 				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Cameras";
 			}
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Laptops";
 		}
 		return "http://www.saholic.com/search?q=".$query."&category=10000";
 	}

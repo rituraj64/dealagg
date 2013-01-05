@@ -5,7 +5,7 @@ class Croma extends Parsing{
 		return 'http://www.facebook.com/CromaRetail';
 	}
 	public function getAllowedCategory(){
-		return array(Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV);
+		return array(Category::CAMERA,Category::COMP_COMPUTER,Category::COMP_ACC,Category::COMP_LAPTOP,Category::GAMING,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS,Category::TV);
 	}
 
 	public function getWebsiteUrl(){
@@ -25,6 +25,10 @@ class Croma extends Parsing{
 			 }elseif ($subcat == Category::MOB_CHARGER){
 			 	return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=534";
 			 }else return "";
+		}elseif ($category == Category::COMP_COMPUTER){
+			return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=209&C=210&C=858";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=191&C=192&C=855&C=815";
 		}
 		return "http://www.cromaretail.com/productsearch.aspx?txtSearch=$query&x=0&y=0";
 	}

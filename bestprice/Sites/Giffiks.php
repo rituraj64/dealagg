@@ -6,11 +6,11 @@ class Giffiks extends Parsing{
 		return 'http://www.facebook.com/GIFFIKS';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::CAMERA_ACC,Category::BOOKS);
+		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::CAMERA_ACC,Category::BOOKS,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
-		return 'http://www.royalimages.in/';
+		return 'http://www.giffiks.com/';
 	}
 	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::MOBILE || $category == Category::MOBILE_ACC){
@@ -19,6 +19,8 @@ class Giffiks extends Parsing{
 			return "http://www.giffiks.com/search.php?category=camera&search=sd&go=";
 		}else if($category == Category::BOOKS){
 			return "http://www.giffiks.com/search.php?category=books&search=$query&go=";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.giffiks.com/search?category=laptop&search=$query&go=";
 		}
 		return "http://www.giffiks.com/search.php?search=$query&go=";
 	}

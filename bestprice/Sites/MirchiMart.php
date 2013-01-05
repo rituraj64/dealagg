@@ -5,7 +5,7 @@ class MirchiMart extends Parsing{
 		return 'http://www.facebook.com/MirchiMart';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -43,6 +43,10 @@ class MirchiMart extends Parsing{
 			else{
 				return "";
 			}
+		}elseif ($category == Category::COMP_COMPUTER){
+			return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=Desktops&selectedCategory=MMCatalog_ROOT&searchText=$query";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=Laptops&selectedCategory=MMCatalog_ROOT&searchText=$query";
 		}
 		return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MMCatalog_ROOT&searchText=$query";
 	}

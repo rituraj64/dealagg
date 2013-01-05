@@ -5,7 +5,7 @@ class Yebhi extends Parsing{
 		return 'http://www.facebook.com/YebhiIndia';
 	}
 	public function getAllowedCategory(){
-		return array(Category::HOME_APPLIANCE,Category::TV,Category::BEAUTY,Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC);
+		return array(Category::HOME_APPLIANCE,Category::TV,Category::BEAUTY,Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -33,6 +33,10 @@ class Yebhi extends Parsing{
 			}elseif ($subcat == Category::MOB_HEADPHONE){
 				return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=product%20type%28text%29%20=Earphones";
 			}else return "";
+		}elseif ($category == Category::COMP_COMPUTER){
+			return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=product%20type%28text%29=Desktops";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=product%20type%28text%29=Laptops";
 		}else{
 			return "http://www.yebhi.com/searchall.aspx?q=$query";
 		}

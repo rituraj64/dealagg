@@ -9,7 +9,7 @@ class Snapdeal extends Parsing{
 	}
 
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA);
+		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -65,6 +65,10 @@ class Snapdeal extends Parsing{
 				return "";
 			}else return "";
 			 */
+		}elseif ($category == Category::COMP_COMPUTER){
+			return "http://www.snapdeal.com/search?keyword=$query&catId=21&categoryId=55&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=57&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.snapdeal.com/search?keyword=$query&catId=21&categoryId=57&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=57&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}else{
 			return "http://www.snapdeal.com/search?keyword=".$query."&catId=12&categoryId=0&suggested=false&vertical=&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}
