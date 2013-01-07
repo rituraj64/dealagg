@@ -42,7 +42,9 @@
 			</tr>
 			<tr>
 				<td><label>Description</label></td>
-				<td><input type="text" name="desc" id="desc"></input></td>
+				<td>
+					<textarea rows="10" cols="30" name="desc" id="desc"></textarea>
+				</td>
 				<td><span id="descErr"></span></td>
 			</tr>
 			<tr>
