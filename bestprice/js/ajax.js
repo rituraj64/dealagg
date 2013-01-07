@@ -10,6 +10,13 @@ $(document).ready(function() {
 			$(this).removeClass('clicked');
 		}
 	});
+	$('.website_hide_let_it_be').live('click', function() {
+		var website = $(this).parents('.website').first().attr('id');
+		makeBig(website);
+	});
+	$('.website_hide_remove').live('click', function() {
+		$(this).parents('.website').first().remove();
+	});
 });
 function hideError() {
 	$('#error_msg').hide();
@@ -24,10 +31,13 @@ function closeModel(subcat) {
 	$('.modal-backdrop').remove();
 	findPrice("", 1, 1, false);
 }
-function findPrice(site, cache, trust, changeSubCat) {
+function findPrice(site, cache, trust, changeSubCat,searchThis) {
 
 	if (trust == undefined) {
 		trust = 1;
+	}
+	if (trust == undefined) {
+		trust = 0;
 	}
 	if (cache === undefined) {
 		cache = 1;
@@ -85,6 +95,7 @@ function findPrice(site, cache, trust, changeSubCat) {
 		$('#summary').hide();
 		$('#share').hide();
 		$('#share_url').val('');
+		$('#avg_best_price').val(0);
 		prev_highest_socre = '';
 		item_id_count = 0;
 		untrusted = new Array();
@@ -97,13 +108,16 @@ function findPrice(site, cache, trust, changeSubCat) {
 				ajaxReq[aj].abort();
 			}
 		}
+		if(searchThis == 0){ //called from searchThis
+			$('#showSuggestion').val(1);
+		}
 		ajaxReq = new Array();
 		starttime = new Date().getTime();
 		var url = $('#site_url').val() + 'find.php?q=' + query + '&cat=' + category + "&cache=" + cache + "&subcat=" + subcat;
 	}
-	if (trust == 5) {
-		url += '&trust=1';
-	}
+	// if (trust == 5) {
+	// url += '&trust=1';
+	// }
 	ajaxReq[ajaxReq.length] = $.getJSON(url, function(data) {
 		processData(data, site, cache, trust, changeSubCat);
 	});
@@ -162,6 +176,9 @@ function processData(data, site, cache, trust, changeSubCat, preloaded) {
 			var logo = data.data[i].logo;
 			var name = data.data[i].name;
 			var price = data.data[i].disc_price;
+			if (price.length == 0) {
+				price = '-NA-';
+			}
 			var image = data.data[i].image;
 			var url = data.data[i].url;
 			var website = data.data[i].website;
@@ -203,23 +220,26 @@ function processData(data, site, cache, trust, changeSubCat, preloaded) {
 					$('#results').prepend(html);
 				} else {
 					var done = false;
-					var websites = $('#results').find('.website');
-					websites.each(function() {
-						if ($(this).hasClass('website_loading')) {
+					if (price != '-NA-') {
+						var websites = $('#results').find('.website');
+						websites.each(function() {
+							if ($(this).hasClass('website_loading')) {
 
-						} else {
-							if (!done) {
-								var web_price = $(this).find('.main_price').html() * 1;
-								if (price.length > 0) {
+							} else {
+								if (!done) {
+									var web_price = $(this).children('.item_main').children('#item_price').val() * 1;
+									price = price * 1;
 									if (price < web_price) {
 										html += '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>';
 										$(this).before(html);
 										done = true;
+										// console.log(website + " before " +
+										// $(this).attr('id'));
 									}
 								}
 							}
-						}
-					});
+						});
+					}
 					if (!done) {
 						html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
 						if (last_actu_website) {
@@ -227,6 +247,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded) {
 						} else {
 							websites.last().after(html);
 						}
+						// console.log(website + " at last");
 					}
 				}
 			}
@@ -343,7 +364,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded) {
 		}
 	}
 
-	sortResult();
+	queueSortResult(0, site);
 
 	var showResult = false;
 	// there are sites in ajax parse, so ajax has been called or each ajax is
@@ -368,7 +389,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded) {
 				}
 			})
 			if (len == 0) {
-				showResult = calcResult();
+				queueCalcResult();
 			}
 		} else {
 			if (size == 0) {
@@ -377,7 +398,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded) {
 				// data is here. from php caching
 				// since ajax_parse = 0 no more ajax data is comming so we can
 				// calculate the price variation
-				showResult = calcResult();
+				queueCalcResult();
 				/*
 				 * var min_price =
 				 * $('#results').children('.website:first').children('.span4:first').children('#item_price').val();
@@ -396,11 +417,9 @@ function processData(data, site, cache, trust, changeSubCat, preloaded) {
 
 	$('.apply_tooltip').tooltip();
 	$('.popup').popover();
-	if (showResult) {
-		continueSearch();
-	} else {
-		// $('#results').hide();
-	}
+	/*
+	 * if (showResult) { continueSearch(); } else { }
+	 */
 	setTimeout('loadSmallImages();', 2000);
 }
 
@@ -433,11 +452,31 @@ function continueSearch() {
 }
 function searchThis($text) {
 	$('#q').val($text);
-	findPrice('', '', 5);
+	$('#showSuggestion').val(0);
+	findPrice('', '', 1, false,1);
 }
-function calcResult() {
+var queueCalc = 0;
+function queueCalcResult() {
+	queueCalc = 1;
+}
 
-	return;
+function calcResult() {
+	queueCalc = 0;
+	console.log('Calc Result Called');
+
+	var pricesArr = new Array();
+	$('#results').children('.website').each(function() {
+		if ($(this).hasClass('website_error')) {
+		} else if ($(this).hasClass('website_noresult')) {
+			no_result++;
+		} else {
+			total_sites++;
+			pricesArr[pricesArr.length] = $(this).children('.span4:first').children('#item_price').val();
+		}
+	});
+
+	var i = 0;
+
 	var init_price = 0;
 	var diff_sites = 0;
 
@@ -465,69 +504,171 @@ function calcResult() {
 			pricesArr[pricesArr.length] = $(this).children('.span4:first').children('#item_price').val();
 		}
 	});
-	var i = 0;
-	var out = 0;
 
-	/*
-	 * var avg = 0; for (i = 0; i < pricesArr.length; i++) { avg +=
-	 * (pricesArr[i]*1); } avg = avg / pricesArr.length; console.log('avg' +
-	 * avg); for (i = 0; i < pricesArr.length; i++) { var variation =
-	 * Math.abs(Math.ceil(((pricesArr[i] - avg) / avg) * 100));
-	 * 
-	 * console.log(pricesArr[i] + " variation is " + variation) }
-	 */
-	for (i = 0; i < pricesArr.length; i++) {
-		out = 0;
-		for (j = 0; j < pricesArr.length; j++) {
-			if (i == j) {
-				continue;
-			}
+	if ($('#category').val() == 9) {
 
-			var a = 0;
-			var b = 0;
-			if (pricesArr[i] > pricesArr[j]) {
-				a = pricesArr[i];
-				b = pricesArr[j];
-			} else {
-				a = pricesArr[j];
-				b = pricesArr[i];
-			}
-			var variation = Math.abs(Math.ceil(((a - b) / b) * 100));
-			if (variation > 20) {
-				out++;
-			}
-			console.log(pricesArr[i] + ' compare ' + pricesArr[j] + " variation is more than 20% at " + variation)
-		}
-		if (out > Math.ceil(pricesArr.length / 2)) {
-			console.log('site ' + i + ' is out with number' + out);
-			diff_sites++;
-		}
-	}
-	console.log('Total different sites is ' + diff_sites + ' and total sitse ' + total_sites);
-	var fine = true;
-	if (no_result >= Math.floor($('#results').children('.website').length / 2)) {
-		fine = false; // product not found in more than 50% sites.
 	} else {
-		console.log(total_sites + ' tatal sites and  correct sites ' + (total_sites - diff_sites) + " <= " + Math.ceil(total_sites * .6));
-		if ((total_sites - diff_sites) < Math.ceil(total_sites * .5)) { // its
-			// better
-			// if
-			// its
-			// less
-			// sensitive
-			fine = false;
+
+		var avg = 0;
+		var prev_price = 0;
+		var entries = 0;
+
+		var prev_entries = 0;
+		var prev_avg = 0;
+		for (i = 0; i < pricesArr.length; i++) {
+			if (pricesArr[i] != '-NA-') {
+				if (prev_price == 0) {
+					avg = pricesArr[i];
+					prev_price = pricesArr[i];
+					entries = 1;
+				} else {
+
+					var variation = Math.abs(Math.ceil(((pricesArr[i] - prev_price) / pricesArr[i]) * 100));
+					if (variation > 30) {
+						console.log(variation + " avg calc variation detected");
+						if (entries > prev_entries) {
+							prev_entries = entries;
+							prev_avg = avg;
+						}
+						avg = pricesArr[i];
+						prev_price = pricesArr[i];
+						entries = 1;
+					} else {
+						avg = (avg * 1 + pricesArr[i] * 1) / 2;
+						prev_price = pricesArr[i];
+						entries++;
+					}
+				}
+			}
+		}
+		if (entries > prev_entries) {
+			prev_entries = entries;
+			prev_avg = avg;
+		}
+		avg = prev_avg;
+		entries = prev_entries;
+		console.log('Avg Price Found to be ' + avg + " with entries " + entries);
+
+		if (entries < Math.ceil(total_sites / 2)) {
+			entries = 0;
+			avg = 0;
+			for (i = 0; i < pricesArr.length; i++) {
+				if (pricesArr[i] != '-NA-') {
+					entries++;
+					avg += pricesArr[i] * 1;
+				}
+			}
+			avg = avg / entries;
+			console.log('Normal Avg Price Found to be ' + avg);
+		}
+		$('#avg_best_price').val(avg);
+	}
+	return;
+	var fine = true;
+	if ($('#showSuggestion') == 0) {
+	} else {
+
+		var search = getComparableString($('#q').val());
+
+		var out = 0;
+
+		/*
+		 * var avg = 0; for (i = 0; i < pricesArr.length; i++) { avg +=
+		 * (pricesArr[i]*1); } avg = avg / pricesArr.length; console.log('avg' +
+		 * avg); for (i = 0; i < pricesArr.length; i++) { var variation =
+		 * Math.abs(Math.ceil(((pricesArr[i] - avg) / avg) * 100));
+		 * 
+		 * console.log(pricesArr[i] + " variation is " + variation) }
+		 */
+		for (i = 0; i < pricesArr.length; i++) {
+			out = 0;
+			for (j = 0; j < pricesArr.length; j++) {
+				if (i == j) {
+					continue;
+				}
+
+				var a = 0;
+				var b = 0;
+				if (pricesArr[i] > pricesArr[j]) {
+					a = pricesArr[i];
+					b = pricesArr[j];
+				} else {
+					a = pricesArr[j];
+					b = pricesArr[i];
+				}
+				var variation = Math.abs(Math.ceil(((a - b) / a) * 100));
+				if (variation > 20) {
+					out++;
+				}
+				console.log(pricesArr[i] + ' compare ' + pricesArr[j] + " variation is more than 20% at " + variation)
+			}
+			if (out > Math.ceil(pricesArr.length / 2)) {
+				console.log('site ' + i + ' is out with number' + out);
+				diff_sites++;
+			}
+		}
+		console.log('Total different sites is ' + diff_sites + ' and total sitse ' + total_sites);
+		if (no_result >= Math.floor($('#results').children('.website').length / 2)) {
+			fine = false; // product not found in more than 50% sites.
 		} else {
-			fine = true;
+			console.log(total_sites + ' tatal sites and  correct sites ' + (total_sites - diff_sites) + " <= " + Math.ceil(total_sites * .6));
+			if ((total_sites - diff_sites) < Math.ceil(total_sites * .5)) { // its
+				// better
+				// if
+				// its
+				// less
+				// sensitive
+				fine = false;
+			} else {
+				fine = true;
+			}
 		}
 	}
 	if (!fine) {
 		showStep();
+	} else {
+		continueSearch();
 	}
-	return fine;
 }
 
+var sortQueue = 0;
+var sortTimeout = false;
+function queueSortResult(timer, site) {
+	if (timer) {
+		var now = new Date().getTime();
+		var diff = now - sortQueue;
+		console.log('called from timer with diff: ' + diff);
+		if (diff >= 1000) {
+			sortResult();
+			sortQueue = new Date().getTime();
+			if (queueCalc) {
+				calcResult(); // run calc result only after sorting is done
+			}
+		} else {
+			clearTimeout(sortTimeout);
+			sortTimeout = setTimeout('queueSortResult(1)', 1000);
+		}
+	} else {
+		if (!site || site == undefined) {
+			site = '';
+		}
+		console.log('called from website ' + site);
+		sortQueue = new Date().getTime();
+		clearTimeout(sortTimeout);
+		sortTimeout = setTimeout('queueSortResult(1)', 1000);
+	}
+}
 function sortResult() {
+	console.log('sorting called' + $('#isSorting').val());
 
+	if ($('#isSorting').val() == 1) {
+		console.log('sorting returned');
+		queueSortResult();
+		return;
+	}
+
+	$('#isSorting').val(1)
+	isSorting = true;
 	var data = new Array();
 	$('#results').children('.website').each(function() {
 		if ($(this).hasClass('website_error')) {
@@ -536,13 +677,36 @@ function sortResult() {
 			var website = $(this).attr('id');
 			var score = 4; // right now 4 items are there
 			var i = 0;
+
+			var avg = $('#avg_best_price').val();
+			if (avg > 0) {
+				var priceweb = $(this).children('.item_main').children('#item_price').val();
+
+				var a = 0;
+				var b = 0;
+				if (avg > priceweb) {
+					a = avg;
+					b = priceweb;
+				} else {
+					b = avg;
+					a = priceweb;
+				}
+				var variation = Math.abs(Math.ceil(((a - b) / b) * 100));
+				console.log('MakeSmall: Variation Found a ' + a + " b " + b + " = " + variation);
+				if (variation > 40) {
+					makeSmall(website);
+				}
+			}
+
 			$(this).find('.item_name').each(function() {
 				var row = new Array();
 				// row['score'] = score - i;
-				row['score'] = 0;
-				row['name'] = $(this).val();
-				data[data.length] = row;
-				i++;
+				if ($(this).val().length > 0) {
+					row['score'] = 0;
+					row['name'] = $(this).val();
+					data[data.length] = row;
+					i++;
+				}
 			});
 		}
 	});
@@ -555,14 +719,8 @@ function sortResult() {
 			}
 			var $name1 = data[i]['name'];
 			var $name2 = data[j]['name'];
-			var $name1 = $name1.replace('&amp;', 'and');
-			var $name1 = $name1.replace('&', 'and');
-
-			var $name2 = $name2.replace('&amp;', 'and');
-			var $name2 = $name2.replace('&', 'and');
-
-			var $name1 = $name1.toLowerCase();
-			var $name2 = $name2.toLowerCase();
+			$name1 = getComparableString($name1);
+			$name2 = getComparableString($name2);
 			// console.log($name1+"xxx"+$name2);
 			if ($name1 == $name2 || $name1.indexOf($name2) != -1 || $name2.indexOf($name1) != -1) {
 				// console.log('match');
@@ -571,7 +729,7 @@ function sortResult() {
 			}
 		}
 	}
-	console.log(data);
+	// console.log(data);
 	var highest_score = 0;
 	var highest_score_name = '';
 	for ( var i = 0; i < data.length; i++) {
@@ -583,9 +741,7 @@ function sortResult() {
 	prev_highest_socre = highest_score_name;
 	console.log(highest_score_name + " Is Highest Scorer");
 
-	highest_score_name = highest_score_name.replace('&amp;', 'and');
-	highest_score_name = highest_score_name.replace('&', 'and');
-	highest_score_name = highest_score_name.toLowerCase();
+	highest_score_name = getComparableString(highest_score_name);
 
 	$('#results').children('.website').each(function() {
 		if ($(this).hasClass('website_error')) {
@@ -595,28 +751,123 @@ function sortResult() {
 				var main_id = $(this).children('.item_main').attr('id');
 				var name1 = $(this).children('.item_main').children('#item_name').val();
 
-				name1 = name1.replace('&amp;', 'and');
-				name1 = name1.replace('&', 'and');
-				name1 = name1.toLowerCase();
+				name1 = getComparableString(name1);
+
+				var website = $(this).attr('id');
+
+				var has_copy = false;
+				var small_id = 0;
+				var small_price = 0;
+
+				var priceweb = $(this).children('.item_main').children('#item_price').val();
 				// console.log('main name' + name1);
 				if (name1 != highest_score_name) {
 					$(this).find('.item_small').each(function() {
 						name1 = $(this).children('#item_name').val();
-						name1 = name1.replace('&amp;', 'and');
-						name1 = name1.replace('&', 'and');
-						name1 = name1.toLowerCase();
+						name1 = getComparableString(name1);
+
+						var price1 = $(this).children('#item_price').val();
+
 						// console.log('small name' + name1);
 						if (name1 == highest_score_name || name1.indexOf(highest_score_name) != -1 || highest_score_name.indexOf(name1) != -1) {
-							copyItem(main_id, $(this).attr('id'));
-							return 0;
+							has_copy = true;
+
+							if (small_price != 0) {
+								if (small_price > price1) {
+									small_price = price1;
+									small_id = $(this).attr('id');
+								}
+							} else {
+								small_price = price1;
+								small_id = $(this).attr('id');
+							}
 						}
 					});
+
+					if (has_copy) {
+						// console.log('copied item ' + main_id + " => " +
+						// small_id + " in website " + website + ' from price M:
+						// ' + priceweb + " to S:" + small_price);
+						copyItem(main_id, small_id);
+
+						var back = true; // need to parse to top
+						if (priceweb > small_price) {
+							back = true;
+						} else {
+							back = false;
+						}
+
+						if (back) {
+							var put_before_website = '';
+							var website_ele = $('#' + website);
+							while (website_ele.prevAll('.website:first').length > 0) {
+								website_ele = website_ele.prevAll('.website:first');
+								if (website_ele.hasClass('website_error')) {
+								} else if (website_ele.hasClass('website_noresult')) {
+								} else {
+									if (website_ele.children('.item_main').children('#item_name').length > 0) {
+										var prices_new_small = website_ele.children('.item_main').children('#item_price').val();
+										if (prices_new_small == '-NA-') {
+											prices_new_small = 99999999999;
+										}
+										if (small_price < prices_new_small) {
+											put_before_website = website_ele.attr('id');
+											break;
+										}
+									}
+								}
+							}
+							if (put_before_website.length > 0) {
+								// console.log('Put ' + website + ' before ' +
+								// put_before_website);
+								$(this).next('hr').first().remove(); // remove
+								// the hr
+								var html = $(this).outerHTML();
+								html += '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>';
+								$('#' + website).remove();
+								$('#' + put_before_website).before(html);
+							}
+						} else {
+							var put_after_website = '';
+							var website_ele = $('#' + website);
+							while (website_ele.nextAll('.website:first').length > 0) {
+								website_ele = website_ele.nextAll('.website:first');
+								if (website_ele.hasClass('website_error')) {
+								} else if (website_ele.hasClass('website_noresult')) {
+								} else {
+									if (website_ele.children('.item_main').children('#item_name').length > 0) {
+										var prices_new_small = website_ele.children('.item_main').children('#item_price').val();
+										if (prices_new_small == '-NA-') {
+											prices_new_small = 99999999999;
+										}
+										if (small_price > prices_new_small) {
+											put_after_website = website_ele.attr('id');
+											break;
+										}
+									}
+								}
+							}
+							if (put_after_website.length > 0) {
+								// console.log('Put ' + website + ' after ' +
+								// put_after_website);
+								$(this).next('hr').first().remove(); // remove
+								// hr
+								var html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + $(this).outerHTML();
+								$('#' + website).remove();
+								$('#' + put_before_website).after(html);
+							}
+						}
+					}
 				}
 			}
 
 		}
 	});
 
+	$('.apply_tooltip').tooltip();
+	$('.popup').popover();
+	$('#isSorting').val(0)
+	console.log('sorting finish');
 }
 var prev_highest_socre = '';
 function showStep() {
@@ -670,10 +921,12 @@ function showStep() {
 function loadSmallImages() {
 	var i = 0;
 	$('.lazy_load_img').each(function() {
+		if (!$(this).hasClass('no-resize')) {
+			$(this).attr('width', '50px');
+			$(this).attr('height', '50px');
+			$(this).attr('style', $(this).attr('style') + ";width: 50px;height: 50px;")
+		}
 		$(this).attr('src', $(this).siblings('input#lazy').val());
-		$(this).attr('width', '50px');
-		$(this).attr('height', '50px');
-		$(this).attr('style', $(this).attr('style') + ";width: 50px;height: 50px;")
 		$(this).removeClass('lazy_load_img');
 		i++;
 		if (i > 10) {
@@ -726,9 +979,6 @@ function copyItem(item1_id, item2_id) {
 	}
 	item1.replaceWith(new_item1_html);
 	item2.replaceWith(new_item2_html);
-	$('.apply_tooltip').tooltip();
-	$('.popup').popover();
-
 }
 function createSmallItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock) {
 	var html = $('#smallItemTemplate').html();
@@ -770,6 +1020,9 @@ function createSmallItem(url, item_id_count, image, lazyimage, name, price, auth
 	}
 
 	var item_name_html = name;
+	if (!name || name == undefined) {
+		name = '';
+	}
 	if (name.length > 37) {
 		var item_name_html = item_name_html.substring(0, 37 - 3) + '...';
 		item_name_html = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="' + name + '">' + item_name_html + '</span>';
@@ -821,8 +1074,8 @@ function createMainItem(url, item_id_count, image, lazyimage, name, price, autho
 	html = html.replace(/{item_shipping}/g, shipping);
 	html = html.replace(/{item_offer}/g, offer);
 	if (author.length > 40) {
-		var author2 = offer.substring(0, 37) + '...';
-		author = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="' + offer + '">' + author2 + '</span>';
+		var author2 = author.substring(0, 37) + '...';
+		author = '<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="' + author + '">' + author2 + '</span>';
 	}
 	html = html.replace(/{item_author}/g, author);
 
@@ -856,3 +1109,66 @@ function createMainItem(url, item_id_count, image, lazyimage, name, price, autho
 	}
 	return html;
 }
+
+function makeSmall(website) {
+	if ($('#' + website).hasClass('website_small')) {
+		return;
+	}
+	$('#' + website).children('.span4:last').hide();
+	$('#' + website).children('.span2:last').hide();
+	$('#' + website).children('.item_main').children('hr').hide();
+	$('#' + website).children('.item_main').children('.other_info').hide();
+	$('#' + website).children('.item_main').removeClass('span4');
+	$('#' + website).children('.item_main').addClass('span6');
+	$('#' + website).children('.span2').css('line-height', '22px');
+	var img = $('#' + website).children('.item_main').children('.media').find('img');
+	img.addClass('no-resize');
+	img.height('50px');
+	img.width('50px');
+	$('#' + website).children('.item_main').children('.media').children('.media-body').width('380px');
+	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.pull-lef.first').css('max-height', '22px');
+	var index = 0;
+	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.clearfix').each(function() {
+		if (index > 0) {
+			$(this).removeClass('clearfix');
+			$(this).addClass('clearfix-tog');
+		}
+		index++;
+	});
+	$('#' + website).height('60px');
+	$('#' + website).children('.span2:first').find('img').first().height('60px');
+	$('#' + website).css('margin-top', '0px');
+	var template = $('#website_hide_template').html();
+	$('#' + website).children('.span6').after(template);
+	$('#' + website).addClass('website_small');
+}
+function makeBig(website) {
+	$('#' + website).children('.span4:last').show();
+	$('#' + website).children('.span2:last').show();
+	$('#' + website).children('.item_main').children('hr').show();
+	$('#' + website).children('.item_main').children('.other_info').show();
+	$('#' + website).children('.item_main').removeClass('span6');
+	$('#' + website).children('.item_main').addClass('span4');
+	$('#' + website).children('.span2:first').css('line-height', '150px');
+	var img = $('#' + website).children('.item_main').children('.media').find('img');
+	img.height('100px');
+	img.width('100px');
+	$('#' + website).children('.item_main').children('.media').children('.media-body').width('175px');
+	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.clearfix-tog').each(function() {
+		$(this).removeClass('clearfix-tog');
+		$(this).addClass('clearfix');
+	});
+	$('#' + website).height('165px');
+	$('#' + website).css('margin-top', '10px');
+	$('#' + website).children('.website_hide_box').remove();
+}
+
+function getComparableString(str) {
+	str = str.replace('&amp;', 'and');
+	str = str.replace('&', 'and');
+	str = str.toLowerCase();
+	return str;
+}
+jQuery.fn.outerHTML = function(s) {
+	return s ? this.before(s).remove() : jQuery("<p>").append(this.eq(0).clone()).html();
+};

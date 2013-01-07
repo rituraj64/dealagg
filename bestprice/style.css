@@ -76,3 +76,16 @@ body {
 	border-right: 0;
 	border-radius: 0 3px 3px 0;
 }
+
+.website_hide {
+	position: absolute;
+	height: 60px;
+	width: 980px;
+	z-index: 10;
+	border-radius: 4px;
+	color: black;
+	text-align: right;
+	margin-top: 14px;
+	line-height: 98px;
+	margin-top: 0px;
+}

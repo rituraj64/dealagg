@@ -1,3 +1,8 @@
+2. test (done).after search this, it again shows suggestion
+4. move small things to bottom and remove opaque.
+4. makebig should auto sort itself.
+
+
 First Relase
 
 1. coupon code integration
@@ -9,6 +14,10 @@ First Relase
 7. add/remove non relevnt search result
 8. fetch info from product page for better information
 9. see if its possible to use proxy servers via curl and what is the speed
+10. sites like rediff and snapdeal show no product found, but still show alternate results. need to detect this.
+11. see how to parse snapdeal json
+12. searchc sony on snapdeal and it goes to its category page.
+13. change in html detection system
 
 
 Second Release

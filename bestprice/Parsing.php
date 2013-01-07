@@ -36,10 +36,10 @@ class Parsing{
 
 		//for snapdeal need to think something about brands pages, if you search sony it goes to its brand page and not that perticular category
 
-		
-		
+
+
 		//CostPrize this is disabled right now, cos site doesnt look good
-		
+
 		return array('Flipkart','Snapdeal','ShopClues','Tradus','Indiatimes','Zoomin','Saholic','Landmark','Infibeam','Homeshop','Croma','Crossword','EBay','Rediff','uRead','Bookadda','Justbooks','Letskart','Amegabooks','Simplebooks','Indianbooks','Yebhi','Greendust','Adexmart','Naaptol','BuyThePrice','FutureBazaar','Fosila','MirchiMart','Seventymm','TheMobileStore','Sulekha','TimTara','Bagittoday','Storeji','Letshop','eDabba','Royalimages','Suzalin','Giffiks','ManiacStore','ezeekart','Kaunsa');
 	}
 	public function allowCategory($cat){
@@ -150,11 +150,18 @@ class Parsing{
 		foreach($data as $row){
 			foreach($row as $key => $value){
 				$value = $this->clearHtml($value);
-				$value = $this->Convert_TO_Utf8($value);
+				$value = utf8_encode($value); //changed for homeshop18
 				$row[$key] = trim($value);
 			}
 
 			$row['disc_price'] = $this->removeAlpha($row['disc_price'],true);
+			$row['disc_price'] = round($row['disc_price'],2);
+			if($row['disc_price'] > 99999999){
+				$row['disc_price'] = '';
+			}else if($row['disc_price'] == 0){
+				$row['disc_price'] = '';
+			}
+
 
 			if(empty($row['image'])){
 				$row['image'] = Parser::AJAX_URL . 'img/50x50.gif';
@@ -258,7 +265,8 @@ class Parsing{
 	}
 	public function Convert_TO_Utf8($text)
 	{
-		return iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
+		return utf8_encode($text); //change to this safter homeshop18 null
+		//return iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
 	}
 	public function getPostFields($query,$category = false,$subcat=false){
 		return array();

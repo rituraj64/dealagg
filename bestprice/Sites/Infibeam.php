@@ -134,7 +134,7 @@ class Infibeam extends Parsing{
 				$image = pq($div)->find('.img')->find('a')->html();
 				$url = pq($div)->find('.img')->find('a')->attr('href');
 				$name = pq($div)->find('.title')->children('h2')->html();
-				$disc_price = pq($div)->find('.price')->find('b')->html();
+				$disc_price = pq($div)->find('.price:first')->find('b')->html();
 				$offer = '';
 				$shipping = '';
 				$stock = 0;
@@ -175,7 +175,11 @@ class Infibeam extends Parsing{
 			foreach(pq('ul.srch_result')->children('li') as $div){
 				$url = pq($div)->children('a:first')->attr('href');
 				$name = pq($div)->children('a:first')->children('.title')->html();
-				$disc_price = pq($div)->children('.price')->children('.normal')->html();
+				if(sizeof(pq($div)->children('.price')->children('.normal'))){
+					$disc_price = pq($div)->children('.price')->children('.normal')->html();
+				}else{
+					$disc_price = pq($div)->children('.price')->html();
+				}
 				$offer = '';
 				$shipping = '';
 				$stock = 0;

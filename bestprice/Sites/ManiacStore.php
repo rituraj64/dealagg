@@ -36,6 +36,7 @@ class ManiacStore extends Parsing{
 			}elseif ($subcat == Category::MOB_CASES){
 				$cat_id = 254;
 			}elseif ($subcat == Category::MOB_OTHERS){
+				return array();
 			}else {
 				return array();
 			}

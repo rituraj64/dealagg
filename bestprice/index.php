@@ -31,6 +31,7 @@
       	<?php if(isset($result)){ ?>
       		<script type="text/javascript">
         	$(document).ready(function(){
+        		$('#results').show();
         		processData(eval(<?php echo json_encode($result)?>),'','',0,'',true);
         	});
         	</script>
@@ -93,6 +94,9 @@
 				<div class='clearfix'></div>
 		</div>
       </div>
+      <input type='hidden' id='isSorting' value='0' />
+      <input type='hidden' id='showSuggestion' value='1' />
+      <input type='hidden' id='avg_best_price' value='0' />
       <div id='step' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;display: none">
 		     <div>
 		     	We have detected your search term is generic, please write an accurate search term to get a better result or 
@@ -162,7 +166,7 @@
 	<?php require_once 'footer.php';?>  
   
   <div id='resultBodyTemplate' style="display: none">
-  		<div class="row-fluid clearfix website" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
+  		<div class="row-fluid clearfix website" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px;position: relative;">
 				<div class="span2" style="line-height: 150px">
 					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
 				</div>
@@ -230,11 +234,11 @@
   </div>
   
   <div id='emptyBodyTemplate' style="display: none">
-  		<div class="row-fluid clearfix website website_loading website_noresult" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
-				<div class="span2" style="line-height: 150px">
-					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
+  		<div class="row-fluid clearfix website website_loading website_noresult" id="{website}" style="vertical-align: middle;height: 40px;margin-top:10px">
+				<div class="span2" style="line-height: 40px">
+					<a href='{website_search_url}' target='_blank'><img height="40px" style="height: 40px" src="{website_url}" alt="{website}" title="{website}"/></a>
 				</div>
-				<div class="popup span10 table-bordered" style="line-height:150px;margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
+				<div class="popup span10 table-bordered" style="height:40px;margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
 					<div class="alert">
 					  <strong>Sorry!</strong> No Results Found...
 					</div>
@@ -276,7 +280,7 @@
 			<input type='hidden' id='item_stock' value='{item_stock}' />
 			<input type='hidden' id='item_offer' value='{item_offer}' />
 			<input type='hidden' id='item_shipping' value='{item_shipping}' />
-			<div class='table-bordered' style="border-left: 1px solid #DDD;padding: 0px;text-align: center;margin-bottom: 3px;font-size: 12px">
+			<div class='table-bordered' style="border-left: 1px solid #DDD;padding: 0px;text-align: center;margin-bottom: 3px;font-size: 12px;height: 50px;overflow: hidden;">
 				<div class='pull-left'>
 					<a href="{item_url}" target="_blank">
 						<input type='hidden' value='{item_img_load_id}' id='lazy' />
@@ -284,7 +288,7 @@
 					</a>
 				</div>
 				<div class='pull-left' style="padding-left: 5px;width: 80%;text-align: left">
-					<div>{item_name_html}</div>
+					<div style="height: 22px;overflow: hidden">{item_name_html}</div>
 					<div class="clearfix"></div>
 					<div>
 						<div class='pull-left'>
@@ -339,5 +343,13 @@
 			} 
 		}
 	?>
+  </div>
+  <div id='website_hide_template' style="display: none">
+  	<div class="span4 website_hide_box" style="margin-left: 10px;  line-height: 22px;">
+			<div style="font-size:12px">
+				<span class="label">Our Application has delete invalid results from this website!</span>
+			</div>
+			<div class="website_hide_remove btn btn-mini btn-important">Remove it!</div> or <div class="btn btn-mini website_hide_let_it_be">This is Correct</div>
+	</div>
   </div>
 </html>

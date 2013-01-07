@@ -17,7 +17,7 @@ class Snapdeal extends Parsing{
 	}
 	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::BOOKS){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=364&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$querycream&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
+			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=364&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.snapdeal.com/search?keyword=$query&catId=&categoryId=290&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; //all
