@@ -45,7 +45,7 @@
 
 		$("#bus table tbody tr td table td:nth-child(7)").each(function(i){
 			var website=$(this).text();
-			$(this).html("<a href="+website+" target+_blank>"+website+"</a>");
+			$(this).html("<a href="+website+" target=_blank>"+website+"</a>");
 		});
 		
 //		$("#bus table tbody tr td table td:nth-child(8)").each(function(i){
