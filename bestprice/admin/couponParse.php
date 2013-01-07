@@ -61,6 +61,8 @@
 			
 			var id=$(this).parent("td").parent("tr").children("td:first-child").html();
 			var coupon_code=$(this).parent("td").parent("tr").children("td:nth-child(3)").html();
+			var dscription=$(this).parent("td").parent("tr").children("td:nth-child(8)").html();
+			
 			var deal_url=$(this).parent("td").parent("tr").find("a").attr("href");
 			var readStatus=$("#read-status").val();
 			if(readStatus==undefined)
@@ -85,7 +87,7 @@
 
 				$.ajax({
 			        url: 'couponActive.php?coupon_code='+coupon_code,
-			        data: 'deal_url=' +deal_url,
+			        data: 'deal_url='+deal_url+'&description='+dscription,
 			        cache: false,
 			        success:function(xyz){
 						$.fancybox(xyz);
@@ -275,7 +277,8 @@ else
 $data=$user->read(null,null,$orderBy);
 
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
-
+$where = UIUtil::getWhere($usersTable);
+echo $where;
 //code starts here for adding a new column to a table
 $array=array('Read'=>'read_stat');
 $usersTable->addCustomColumn($array);
