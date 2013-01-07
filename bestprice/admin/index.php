@@ -59,6 +59,7 @@ if(isset($_REQUEST['submit_coupon_active']))
 	$deal_type=$_REQUEST['deal_type'];
 	$coupon_code=$_REQUEST['coupon_code'];
 	$min_amt=$_REQUEST['min_amt'];
+	$bank=$_REQUEST['bank'];
 	
 	$user->active_from=$active_from;
 	$user->active_to=$active_to;
@@ -70,6 +71,7 @@ if(isset($_REQUEST['submit_coupon_active']))
 	$user->deal_type=$deal_type;
 	$user->coupon_code=$coupon_code;
 	$user->min_amt=$min_amt;
+	$user->bank=$bank;
 	$id = $user->insert();
 	?>
 	<script> window.location.href='index.php';</script>

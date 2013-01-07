@@ -28,7 +28,18 @@
 </head>
 
 <body>
-
+<?php 
+	$coupon_code="";
+	$deal_url="";
+	if(isset($_REQUEST['deal_url']))
+	{
+		$deal_url=$_REQUEST['deal_url'];
+	}
+	if(isset($_REQUEST['coupon_code']))
+	{
+		$coupon_code=$_REQUEST['coupon_code'];
+	}
+?>
 	<form method="post" action="index.php">
 		<table>
 			<tr>
@@ -84,7 +95,7 @@
 			</tr>
 			<tr>
 				<td><label>Deal URL</label></td>
-				<td><input type="text" name="deal_url" id="deal_url"></input></td>
+				<td><input type="text" value="<?php echo $deal_url; ?>" name="deal_url" id="deal_url"></input></td>
 				<td><span id="deal_urlErr"></span></td>
 			</tr>
 			<tr>
@@ -94,13 +105,27 @@
 			</tr>
 			<tr>
 				<td><label>Coupon Code</label></td>
-				<td><input type="text" name="coupon_code" id="coupon_code"></input></td>
+				<td><input type="text" value="<?php echo $coupon_code; ?>" name="coupon_code" id="coupon_code"></input></td>
 				<td><span id="coupon_codeErr"></span></td>
 			</tr>
 			<tr>
 				<td><label>Minimim Amount</label></td>
 				<td><input type="text" name="min_amt" id="min_amt"></input></td>
 				<td><span id="min_amtErr"></span></td>
+			</tr>
+			<tr>
+				<td>Bank</td>
+				<td>
+					<select name="bank">
+						<option value="HDFC">HDFC</option>
+						<option value="PNB">PNB</option>
+						<option value="ICICI">ICICI</option>
+						<option value="SBI">SBI</option>
+						<option value="HSBC">HSBC</option>
+						<option value="CANARA">Canara</option>
+						<option value="CITY_BANK">City Bank</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="3"><input type="submit" name="submit_coupon_active" id="submit_coupon_active" value="Submit"></input></td>
