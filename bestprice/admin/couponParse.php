@@ -29,8 +29,8 @@
 			});
 		});
 		
-		$("#bus table tbody tr td table").prepend("<col width=5%><col width=10%><col width=5%><col width=5%><col width=10%><col width=11%><col width=10%><col width=23%><col width=5%><col width=5%><col width=3%><col width=8%>")
-		
+		$("#bus table tbody tr td table").prepend("<col width=5%><col width=8%><col width=5%><col width=5%><col width=10%><col width=13%><col width=10%><col width=23%><col width=5%><col width=5%><col width=3%><col width=8%>")
+		$(".form").children("col").hide();
 		$("#bus table tbody tr td table td:nth-child(5)").each(function(i){
 			var deal_url=$(this).text();
 			if(deal_url==" ")
