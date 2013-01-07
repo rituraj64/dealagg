@@ -15,7 +15,7 @@
 			event.preventDefault();
 						
 			$(".fancybox").fancybox({
-				'type'			  	: 'iframe',
+				'type'			  	: 'ajax',
 				'autoSize'		    : false,
 				'width'		   		:500,
 				'height'			:250,

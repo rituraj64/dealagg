@@ -12,10 +12,10 @@
 			event.preventDefault();
 						
 			$(".fancybox").fancybox({
-				'type'			  	: 'iframe',
+				'type'			  	: 'ajax',
 				'autoSize'		    : false,
 				'width'		   		:500,
-				'height'			:250,
+				'height'			:150,
 				'showOverlay'		:false,
 				
 			});
@@ -75,7 +75,7 @@
 			{
 				event.preventDefault();
 				$(".fancybox").fancybox({
-					'type'			  	: 'iframe',
+					'type'			  	: 'ajax',
 					'autoSize'		    : false,
 					'width'		   		:500,
 					'height'			:250,
@@ -92,7 +92,7 @@
 						
 					}
 			    });  
-			    return false;
+			    
 			}
 			else
 			{
@@ -115,8 +115,7 @@
 		$("#status").change(function(){
 			
 			window.location.href='couponParse.php?status='+this.value;
-			
-			
+
 		});
 		$(".ovalbutton").click(function(){
 			var aa=$(this).attr("href");
@@ -198,7 +197,6 @@
 	}
 	
 </style>
-
 
 </head>
 
