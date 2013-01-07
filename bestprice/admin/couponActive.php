@@ -117,6 +117,7 @@
 				<td>Bank</td>
 				<td>
 					<select name="bank">
+						<option value="0">Select</option>
 						<option value="HDFC">HDFC</option>
 						<option value="PNB">PNB</option>
 						<option value="ICICI">ICICI</option>

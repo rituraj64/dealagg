@@ -274,8 +274,6 @@ else
 	$user->read = '0';
 }
 
-
-
 $data=$user->read(null,null,$orderBy);
 
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
