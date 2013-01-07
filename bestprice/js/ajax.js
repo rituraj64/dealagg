@@ -31,7 +31,7 @@ function closeModel(subcat) {
 	$('.modal-backdrop').remove();
 	findPrice("", 1, 1, false);
 }
-function findPrice(site, cache, trust, changeSubCat,searchThis) {
+function findPrice(site, cache, trust, changeSubCat, searchThis) {
 
 	if (trust == undefined) {
 		trust = 1;
@@ -99,6 +99,7 @@ function findPrice(site, cache, trust, changeSubCat,searchThis) {
 		prev_highest_socre = '';
 		item_id_count = 0;
 		untrusted = new Array();
+		$('#bad-results').hide();
 		if (changeSubCat == 1) {
 			$('#subcategory').val(-1);
 		}
@@ -108,7 +109,7 @@ function findPrice(site, cache, trust, changeSubCat,searchThis) {
 				ajaxReq[aj].abort();
 			}
 		}
-		if(searchThis == 0){ //called from searchThis
+		if (searchThis == 0) { // called from searchThis
 			$('#showSuggestion').val(1);
 		}
 		ajaxReq = new Array();
@@ -119,11 +120,11 @@ function findPrice(site, cache, trust, changeSubCat,searchThis) {
 	// url += '&trust=1';
 	// }
 	ajaxReq[ajaxReq.length] = $.getJSON(url, function(data) {
-		processData(data, site, cache, trust, changeSubCat);
+		processData(data, site, cache, trust, changeSubCat, 0, searchThis);
 	});
 }
 
-function processData(data, site, cache, trust, changeSubCat, preloaded) {
+function processData(data, site, cache, trust, changeSubCat, preloaded, searchThis) {
 
 	if (preloaded == undefined) {
 		preloaded = false;
@@ -233,8 +234,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded) {
 										html += '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>';
 										$(this).before(html);
 										done = true;
-										// console.log(website + " before " +
-										// $(this).attr('id'));
+										console.log(website + " before " + $(this).attr('id') + " with price " + price);
 									}
 								}
 							}
@@ -247,7 +247,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded) {
 						} else {
 							websites.last().after(html);
 						}
-						// console.log(website + " at last");
+						console.log(website + " at last with price " + price);
 					}
 				}
 			}
@@ -453,7 +453,7 @@ function continueSearch() {
 function searchThis($text) {
 	$('#q').val($text);
 	$('#showSuggestion').val(0);
-	findPrice('', '', 1, false,1);
+	findPrice('', '', 1, false, 1);
 }
 var queueCalc = 0;
 function queueCalcResult() {
@@ -563,9 +563,8 @@ function calcResult() {
 		}
 		$('#avg_best_price').val(avg);
 	}
-	return;
 	var fine = true;
-	if ($('#showSuggestion') == 0) {
+	if ($('#showSuggestion').val() == 0) {
 	} else {
 
 		var search = getComparableString($('#q').val());
@@ -680,21 +679,22 @@ function sortResult() {
 
 			var avg = $('#avg_best_price').val();
 			if (avg > 0) {
-				var priceweb = $(this).children('.item_main').children('#item_price').val();
-
-				var a = 0;
-				var b = 0;
-				if (avg > priceweb) {
-					a = avg;
-					b = priceweb;
-				} else {
-					b = avg;
-					a = priceweb;
-				}
-				var variation = Math.abs(Math.ceil(((a - b) / b) * 100));
-				console.log('MakeSmall: Variation Found a ' + a + " b " + b + " = " + variation);
-				if (variation > 40) {
-					makeSmall(website);
+				var priceweb = $(this).children('.item_main').children('#item_price').val() * 1;
+				if (priceweb > 0) {
+					var a = 0;
+					var b = 0;
+					if (avg > priceweb) {
+						a = avg;
+						b = priceweb;
+					} else {
+						b = avg;
+						a = priceweb;
+					}
+					var variation = Math.abs(Math.ceil(((a - b) / b) * 100));
+					console.log('MakeSmall: Variation Found a ' + a + " b " + b + " = " + variation);
+					if (variation > 40) {
+						makeSmall(website);
+					}
 				}
 			}
 
@@ -785,9 +785,7 @@ function sortResult() {
 					});
 
 					if (has_copy) {
-						// console.log('copied item ' + main_id + " => " +
-						// small_id + " in website " + website + ' from price M:
-						// ' + priceweb + " to S:" + small_price);
+						console.log('copied item ' + main_id + " => " + small_id + " in website " + website + ' from price M: ' + priceweb + " to S:" + small_price);
 						copyItem(main_id, small_id);
 
 						var back = true; // need to parse to top
@@ -810,22 +808,23 @@ function sortResult() {
 										if (prices_new_small == '-NA-') {
 											prices_new_small = 99999999999;
 										}
+										console.log('small price ' + small_price + " main price " + prices_new_small + " checking sp < mp");
 										if (small_price < prices_new_small) {
 											put_before_website = website_ele.attr('id');
-											break;
 										}
 									}
 								}
 							}
 							if (put_before_website.length > 0) {
-								// console.log('Put ' + website + ' before ' +
-								// put_before_website);
+								console.log('Put ' + website + ' before ' + put_before_website);
 								$(this).next('hr').first().remove(); // remove
 								// the hr
 								var html = $(this).outerHTML();
 								html += '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>';
 								$('#' + website).remove();
 								$('#' + put_before_website).before(html);
+							} else {
+								console.log('Didnt change position');
 							}
 						} else {
 							var put_after_website = '';
@@ -840,21 +839,22 @@ function sortResult() {
 										if (prices_new_small == '-NA-') {
 											prices_new_small = 99999999999;
 										}
+										console.log('small price ' + small_price + " main price " + prices_new_small + " checking sp > mp");
 										if (small_price > prices_new_small) {
 											put_after_website = website_ele.attr('id');
-											break;
 										}
 									}
 								}
 							}
 							if (put_after_website.length > 0) {
-								// console.log('Put ' + website + ' after ' +
-								// put_after_website);
+								console.log('Put ' + website + ' after ' + put_after_website);
 								$(this).next('hr').first().remove(); // remove
 								// hr
 								var html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + $(this).outerHTML();
 								$('#' + website).remove();
 								$('#' + put_before_website).after(html);
+							} else {
+								console.log('Didnt change position');
 							}
 						}
 					}
@@ -1119,14 +1119,15 @@ function makeSmall(website) {
 	$('#' + website).children('.item_main').children('hr').hide();
 	$('#' + website).children('.item_main').children('.other_info').hide();
 	$('#' + website).children('.item_main').removeClass('span4');
-	$('#' + website).children('.item_main').addClass('span6');
+	$('#' + website).children('.item_main').addClass('span8');
 	$('#' + website).children('.span2').css('line-height', '22px');
+	var small_price = $('#' + website).children('.item_main').children('#item_price').val() * 1;
 	var img = $('#' + website).children('.item_main').children('.media').find('img');
 	img.addClass('no-resize');
 	img.height('50px');
 	img.width('50px');
 	$('#' + website).children('.item_main').children('.media').children('.media-body').width('380px');
-	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.pull-lef.first').css('max-height', '22px');
+	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.pull-left:first').css('max-height', '22px');
 	var index = 0;
 	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.clearfix').each(function() {
 		if (index > 0) {
@@ -1137,30 +1138,84 @@ function makeSmall(website) {
 	});
 	$('#' + website).height('60px');
 	$('#' + website).children('.span2:first').find('img').first().height('60px');
-	$('#' + website).css('margin-top', '0px');
+	// $('#' + website).css('margin-top', '0px');
 	var template = $('#website_hide_template').html();
-	$('#' + website).children('.span6').after(template);
+	$('#' + website).children('.span8').after(template);
 	$('#' + website).addClass('website_small');
+
+	var html = $('#' + website).outerHTML();
+	$('#' + website).next('hr').first().remove(); // remove
+	$('#' + website).remove();
+
+	if ($('#bad_result_items').children('.website').length > 0) {
+		var last_website = '';
+		$('#bad_result_items').children('.website').each(function() {
+			var bad_price = $(this).children('.item_main').children('#item_price').val() * 1;
+			if (small_price > bad_price) {
+				last_website = $(this).attr('id');
+			} else {
+				return 0;
+			}
+		});
+		if (last_website.length == 0) {
+			html += '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>';
+			$('#bad_result_items').prepend(html);
+		} else {
+			html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
+			$('#' + last_website).after(html);
+		}
+	} else {
+		$('#bad_result_items').append(html);
+	}
+	$('#bad-results').show();
 }
 function makeBig(website) {
 	$('#' + website).children('.span4:last').show();
 	$('#' + website).children('.span2:last').show();
 	$('#' + website).children('.item_main').children('hr').show();
 	$('#' + website).children('.item_main').children('.other_info').show();
-	$('#' + website).children('.item_main').removeClass('span6');
+	$('#' + website).children('.item_main').removeClass('span8');
 	$('#' + website).children('.item_main').addClass('span4');
 	$('#' + website).children('.span2:first').css('line-height', '150px');
 	var img = $('#' + website).children('.item_main').children('.media').find('img');
 	img.height('100px');
 	img.width('100px');
+	var big_price = $('#' + website).children('.item_main').children('#item_price').val() * 1;
 	$('#' + website).children('.item_main').children('.media').children('.media-body').width('175px');
+	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.pull-left:first').css('max-height', '40px');
 	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.clearfix-tog').each(function() {
 		$(this).removeClass('clearfix-tog');
 		$(this).addClass('clearfix');
 	});
 	$('#' + website).height('165px');
-	$('#' + website).css('margin-top', '10px');
+	// $('#' + website).css('margin-top', '10px');
 	$('#' + website).children('.website_hide_box').remove();
+
+	var html = $('#' + website).outerHTML();
+	$('#' + website).prev('hr').first().remove(); // remove
+	$('#' + website).remove();
+
+	var last_website = '';
+	var websites = $('#results').find('.website');
+	websites.each(function() {
+		if ($(this).hasClass('website_loading')) {
+
+		} else {
+			var web_price = $(this).children('.item_main').children('#item_price').val() * 1;
+			if (big_price > web_price) {
+				last_website = $(this).attr('id');
+			} else {
+				return 0;
+			}
+		}
+	});
+	if (last_website.length > 0) {
+		html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
+		$('#' + last_website).after(html);
+	} else {
+		$('#results').prepend(html + '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>');
+	}
+
 }
 
 function getComparableString(str) {

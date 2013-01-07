@@ -36,6 +36,9 @@ class Parser{
 		curl_setopt($ch, CURLOPT_COOKIESESSION, true);
 		curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
 		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 50);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+
 
 		//$strCookie = 'PHPSESSID=' . $_COOKIE['PHPSESSID'] . '; path=/';
 		//session_write_close();

@@ -32,7 +32,8 @@
       		<script type="text/javascript">
         	$(document).ready(function(){
         		$('#results').show();
-        		processData(eval(<?php echo json_encode($result)?>),'','',0,'',true);
+        		$('#showSuggestion').val(0);
+        		processData(eval(<?php echo json_encode($result)?>),'',1,1,true,0);
         	});
         	</script>
         <?php }else{ ?>
@@ -118,6 +119,19 @@
 	  
       <div id='results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;display:none">
 		     
+	  </div>
+	  
+	   <div id='bad-results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;display: none;text-align: center">
+	   		 <h2>Possibly Wrong Products</h2>
+		     <div>
+		     	We have detected that the below product maybe not be what your looking for, hence have seperated them. 
+		     </div>
+		     <div style="text-align: center;padding-left: 10px;">
+			     <div id='bad_result_items'>
+				     
+			     </div>
+		     </div>
+		    
 	  </div>
       <hr>
 
@@ -345,11 +359,11 @@
 	?>
   </div>
   <div id='website_hide_template' style="display: none">
-  	<div class="span4 website_hide_box" style="margin-left: 10px;  line-height: 22px;">
-			<div style="font-size:12px">
-				<span class="label">Our Application has delete invalid results from this website!</span>
-			</div>
-			<div class="website_hide_remove btn btn-mini btn-important">Remove it!</div> or <div class="btn btn-mini website_hide_let_it_be">This is Correct</div>
+  	<div class="span2 website_hide_box" style="margin-left: 10px;  line-height: 60px;">
+  		<!-- 
+		<div class="website_hide_remove btn btn-mini btn-important">Remove it!</div> or 
+		 -->
+		<div class="btn btn-mini btn-success website_hide_let_it_be">This is Correct</div>
 	</div>
   </div>
 </html>

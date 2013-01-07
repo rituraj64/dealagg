@@ -56,6 +56,9 @@ if(isset($_REQUEST['q'])){
 			if(isset($_REQUEST['site'])){
 				$trust = true;
 			}
+			if(isset($_REQUEST['query_id'])){
+				$trust = true;
+			}
 			if($trust){
 				try{
 					$data1 = $siteObj->getPriceData($query,$cat,$subcat,$delay,$cache);
