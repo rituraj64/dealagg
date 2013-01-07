@@ -33,7 +33,14 @@
 		
 		$("#bus table tbody tr td table td:nth-child(5)").each(function(i){
 			var deal_url=$(this).text();
-			$(this).html("<a href="+deal_url+" target+_blank>"+deal_url+"</a>");
+			if(deal_url==" ")
+			{
+				$(this).html("<a href=# target=_blank>"+deal_url+"</a>");
+			}
+			else
+			{
+				$(this).html("<a href="+deal_url+" target=_blank>"+deal_url+"</a>");
+			}
 		});
 
 		$("#bus table tbody tr td table td:nth-child(7)").each(function(i){
@@ -211,6 +218,9 @@ require_once '../smartmodel/UI.php';
 			<option  value=0>Read</option>
 			<option <?php if(isset($_REQUEST['status'])){ if($_REQUEST['status']==1) { ?> selected <?php  }  } ?> value=1>Ignore</option>
 		</select>
+		<div style="float:right; border:solid 1px; margin-bottom:10px; background-color:#494949;border-radius:5px;">
+			<a class="add_coupon" style="text-decoration:none;color:white;" href="#">Add Coupon</a>
+		</div>
 	</div>
 	
 </div>
