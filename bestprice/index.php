@@ -44,7 +44,8 @@
         		$('#results').html('');
         		$('#results').show();
         		$('#showSuggestion').val(0);
-        		processData(eval(<?php echo json_encode($result)?>),'',1,1,true,0);
+        		//processData(eval(<?php echo json_encode($result)?>),'',1,1,true,0);
+        		findPrice();
         	});
         	</script>
         <?php }else{ ?>
@@ -83,17 +84,24 @@
 		</div>
 		<input id='progress_total' type="hidden"/>
 		<input id='progress_done' type="hidden"/>
-		<div class="progress progress-info progress-striped" style="display: none">
-		  <div class="bar" style="width: 0%;"></div>
-		</div>
 		<div class="alert alert-success" id='share' style="text-align: left;color:black;display: none">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			Share Results: <input type='text' id='share_url' value='' style="width: 100%"/>
 		</div>
-		<div class="alert alert-info" id='summary' style="text-align: left;color:black;display: none">
+		<div class="alert alert-info" id='summary'>
+			<!-- 
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<div class='pull-left'>
+			 -->
+				<div class='pull-left' style="width: 25%">
 					Total Time Taken: <h4 id='time_taken'></h4>
+				</div>
+				<div class='pull-left' id='progress' style="width: 50%;display: none;text-align: center">
+					<div>
+						<span id='progess_per'></span><span id='progess_text'></span>
+					</div>
+					<div class="progress progress-info progress-striped">
+					   <div class="bar" style="width: 0%;"></div>
+					</div>
 				</div>
 				<div class='pull-right'>
 					Results As On:
@@ -192,7 +200,14 @@
 	<?php require_once 'footer.php';?>  
   
   <div id='resultBodyTemplate' style="display: none">
-  		<?php require 'templates/resultBody.php';?>
+  		<?php
+  			ob_start();
+			require 'templates/resultBody.php';
+			$template = ob_get_contents();
+			ob_end_clean();
+			$template = str_replace('{other_prod}','',$template);
+			echo $template;
+  		?>
   </div>
   <div id="mainItemTemplate" style="display: none">
   	<?php require 'templates/mainItem.php';?>

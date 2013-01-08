@@ -89,3 +89,16 @@ body {
 	line-height: 98px;
 	margin-top: 0px;
 }
+
+#summary {
+	text-align: left;
+	color: black;
+	display: block;
+}
+
+.summary_float {
+	position: fixed;
+	top: 0px;
+	width: 949px;
+	z-index: 1000;
+}

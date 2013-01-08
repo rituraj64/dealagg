@@ -1,4 +1,21 @@
+var offsetTop = 0;
 $(document).ready(function() {
+	offsetTop = $('#summary').offset().top;
+	$(window).scroll(function() {
+		if ($('#summary').hasClass('finished')) {
+
+		} else {
+			var dis = offsetTop - $(window).scrollTop();
+			if (dis <= 0) {
+				if (!$('#summary').hasClass('summary_float'))
+					$('#summary').addClass('summary_float');
+			} else {
+				if ($('#summary').hasClass('summary_float'))
+					$('#summary').removeClass('summary_float');
+			}
+		}
+	});
+
 	$('.apply_tooltip').tooltip();
 	$('.popup').popover();
 	$('.detail-popup').live('click', function() {
@@ -85,14 +102,15 @@ function findPrice(site, cache, trust, changeSubCat, searchThis) {
 		$('#results').html('');
 		$('#step').hide();
 		$('#step_items').html('');
-		$('.progress').hide();
-		$('.progress').children('.bar').first().attr('style', 'width:0%');
+		// $('#progress').hide();
+		$('#progress').find('.bar').first().attr('style', 'width:0%');
+		$('#progess_text').html('Starting...');
 		$('#progress_total').val(0);
 		$('#progress_done').val(0);
 		$('#summary').find('#max_time').val(0)
 		$('#summary').find('#time_taken').html('');
 		$('#summary').find('#time').html('');
-		$('#summary').hide();
+		// $('#summary').hide();
 		$('#share').hide();
 		$('#share_url').val('');
 		$('#avg_best_price').val(0);
@@ -101,6 +119,7 @@ function findPrice(site, cache, trust, changeSubCat, searchThis) {
 		item_id_count = 0;
 		untrusted = new Array();
 		$('#bad-results').hide();
+		$('#bad_result_items').html('');
 		if (changeSubCat == 1) {
 			$('#subcategory').val(-1);
 		}
@@ -110,6 +129,7 @@ function findPrice(site, cache, trust, changeSubCat, searchThis) {
 				ajaxReq[aj].abort();
 			}
 		}
+		$('#summary').removeClass('finished')
 		if (searchThis == 0) { // called from searchThis
 			$('#showSuggestion').val(1);
 		}
@@ -131,6 +151,12 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 		preloaded = false;
 	}
 
+	if (site && site.length > 0) {
+		$('#progess_text').html('Processing Data From ' + site);
+	} else {
+		$('#progess_text').html('Processing Data');
+	}
+
 	if (data.query_id && data.query_id.length > 0) {
 		var q = $('#q').val();
 		q = q.replace(/[^a-zA-Z0-9]/g, "-");
@@ -148,7 +174,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 		pcur++;
 		$('#progress_done').val(pcur);
 		var per = Math.ceil((pcur / psize) * 100);
-		$('.progress').children('.bar').first().attr('style', 'width: ' + per + '%');
+		$('#progress').find('.bar').first().attr('style', 'width: ' + per + '%');
 		$('#results').find('#' + site).next('hr').remove();
 		$('#results').find('#' + site).remove();
 
@@ -159,10 +185,12 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 		}
 
 		if (psize == pcur) {
-			$('.progress').hide();
-			$('.progress').children('.bar').first().attr('style', 'width:0%');
+			// $('#progress').hide();
+			// $('#progress').children('.bar').first().attr('style',
+			// 'width:0%');
 			$('#progress_total').val(0);
 			$('#progress_done').val(0);
+			finished();
 
 			var t = new Date().getTime() - starttime;
 			t = Math.ceil(t / 1000);
@@ -204,11 +232,8 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 
 			if ($('#results').find('#' + website).length > 0) {
 				var html = createSmallItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock);
-				if($('#results').find('#' + website).find('#other_prod').children('.item').length > 0){
-					$('#results').find('#' + website).find('#other_prod').append(html);
-				}else{
-					$('#results').find('#' + website).find('#other_prod').html(html);
-				}
+				$('#results').find('#' + website).find('#other_prod').append(html);
+
 			} else {
 				var html = createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, data.data[i].searchurl);
 
@@ -233,7 +258,11 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 
 							} else {
 								if (!done) {
-									var web_price = $(this).children('.item_main').children('#item_price').val() * 1;
+									var web_price = $(this).children('.item_main').children('#item_price').val();
+									if (web_price == '-NA-') {
+										web_price = 99999999999;
+									}
+									web_price = web_price * 1;
 									price = price * 1;
 									if (price < web_price) {
 										html += '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>';
@@ -293,7 +322,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 				}
 				$('#progress_total').val(size);
 				$('#progress_done').val(0);
-				$('.progress').show();
+				$('#progress').show();
 			} else {
 				var t = new Date().getTime() - starttime;
 				t = Math.ceil(t / 1000);
@@ -348,6 +377,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 			html = html.replace(/{website_url}/g, logo);
 			html = html.replace(/{error_message}/g, data.error_sites[l].message);
 			var websites = $('#results').find('.website');
+
 			if (websites.length > 0) {
 				html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
 				websites.last().after(html);
@@ -359,7 +389,8 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 
 	size = data.untrusted.length;
 	if (size > 0) {
-
+		var psize = $('#progress_total').val() * 1;
+		$('#progress_total').val(psize + size);
 		for ( var m = 0; m < size; m++) {
 			var len = untrusted.length
 			untrusted[len] = new Array();
@@ -368,8 +399,9 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 			untrusted[len]['logo'] = data.untrusted[m].logo;
 		}
 	}
-
-	queueSortResult(0, site);
+	if (data.data.length > 0) {
+		queueSortResult(0, site);
+	}
 
 	var showResult = false;
 	// there are sites in ajax parse, so ajax has been called or each ajax is
@@ -431,29 +463,34 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 var untrusted = new Array();
 
 function continueSearch() {
+	$('#progess_text').html('Continuing Search');
 	$('#share').show(); // show url now, since all results will come now
 	$('#results').show();
 	$('#step').hide();
 	var size = untrusted.length;
-	for ( var m = 0; m < size; m++) {
-		var website = untrusted[m]['site'];
-		var searchurl = untrusted[m]['searchurl'];
-		var logo = untrusted[m]['logo'];
-		var html = $('#loadingBodyTemplate').html();
-		html = html.replace(/{website}/g, website);
-		html = html.replace(/{website_search_url}/g, searchurl);
-		html = html.replace(/{website_url}/g, logo);
-		findPrice(website, 1, 0);
-		// here trust = 0 since all untrusted sites only come here
-		var websites = $('#results').find('.website');
-		if (websites.length > 0) {
-			html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
-			websites.last().after(html);
-		} else {
-			$('#results').prepend(html);
+	if (size > 0) {
+		for ( var m = 0; m < size; m++) {
+			var website = untrusted[m]['site'];
+			var searchurl = untrusted[m]['searchurl'];
+			var logo = untrusted[m]['logo'];
+			var html = $('#loadingBodyTemplate').html();
+			html = html.replace(/{website}/g, website);
+			html = html.replace(/{website_search_url}/g, searchurl);
+			html = html.replace(/{website_url}/g, logo);
+			findPrice(website, 1, 0);
+			// here trust = 0 since all untrusted sites only come here
+			var websites = $('#results').find('.website');
+			if (websites.length > 0) {
+				html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
+				websites.last().after(html);
+			} else {
+				$('#results').prepend(html);
+			}
 		}
+		untrusted = new Array();
+	} else {
+		finished();
 	}
-	untrusted = new Array();
 }
 function searchThis($text) {
 	$('#q').val($text);
@@ -468,7 +505,7 @@ function queueCalcResult() {
 function calcResult() {
 	queueCalc = 0;
 	console.log('Calc Result Called');
-
+	$('#progess_text').html('Filtering Data..');
 	var pricesArr = new Array();
 	$('#results').children('.website').each(function() {
 		if ($(this).hasClass('website_error')) {
@@ -506,68 +543,64 @@ function calcResult() {
 			no_result++;
 		} else {
 			total_sites++;
-			pricesArr[pricesArr.length] = $(this).children('.span4:first').children('#item_price').val();
+			pricesArr[pricesArr.length] = $(this).children('.item_main').children('#item_price').val();
 		}
 	});
 
-	if ($('#category').val() == 9) {
+	var avg = 0;
+	var prev_price = 0;
+	var entries = 0;
 
-	} else {
+	var prev_entries = 0;
+	var prev_avg = 0;
+	for (i = 0; i < pricesArr.length; i++) {
+		if (pricesArr[i] != '-NA-') {
+			if (prev_price == 0) {
+				avg = pricesArr[i];
+				prev_price = pricesArr[i];
+				entries = 1;
+			} else {
 
-		var avg = 0;
-		var prev_price = 0;
-		var entries = 0;
-
-		var prev_entries = 0;
-		var prev_avg = 0;
-		for (i = 0; i < pricesArr.length; i++) {
-			if (pricesArr[i] != '-NA-') {
-				if (prev_price == 0) {
-					avg = pricesArr[i];
-					prev_price = pricesArr[i];
+				var variation = Math.abs(Math.ceil(((pricesArr[i] - prev_price) / pricesArr[i]) * 100));
+				if (variation > 30) {
+					console.log(variation + " avg calc variation detected");
+					if (entries > prev_entries) {
+						prev_entries = entries;
+						prev_avg = avg;
+					}
+					avg = pricesArr[i] * 1;
+					prev_price = pricesArr[i] * 1;
 					entries = 1;
 				} else {
-
-					var variation = Math.abs(Math.ceil(((pricesArr[i] - prev_price) / pricesArr[i]) * 100));
-					if (variation > 30) {
-						console.log(variation + " avg calc variation detected");
-						if (entries > prev_entries) {
-							prev_entries = entries;
-							prev_avg = avg;
-						}
-						avg = pricesArr[i];
-						prev_price = pricesArr[i];
-						entries = 1;
-					} else {
-						avg = (avg * 1 + pricesArr[i] * 1) / 2;
-						prev_price = pricesArr[i];
-						entries++;
-					}
-				}
-			}
-		}
-		if (entries > prev_entries) {
-			prev_entries = entries;
-			prev_avg = avg;
-		}
-		avg = prev_avg;
-		entries = prev_entries;
-		console.log('Avg Price Found to be ' + avg + " with entries " + entries);
-
-		if (entries < Math.ceil(total_sites / 2)) {
-			entries = 0;
-			avg = 0;
-			for (i = 0; i < pricesArr.length; i++) {
-				if (pricesArr[i] != '-NA-') {
+					avg = (avg * 1 + pricesArr[i] * 1) / 2;
+					prev_price = pricesArr[i];
 					entries++;
-					avg += pricesArr[i] * 1;
 				}
 			}
-			avg = avg / entries;
-			console.log('Normal Avg Price Found to be ' + avg);
 		}
-		$('#avg_best_price').val(avg);
 	}
+	if (entries > prev_entries) {
+		prev_entries = entries;
+		prev_avg = avg;
+	}
+	avg = prev_avg;
+	entries = prev_entries;
+	console.log('Avg Price Found to be ' + avg + " with entries " + entries);
+
+	if (entries < Math.ceil(total_sites / 2)) {
+		entries = 0;
+		avg = 0;
+		for (i = 0; i < pricesArr.length; i++) {
+			if (pricesArr[i] != '-NA-') {
+				entries++;
+				avg += pricesArr[i] * 1;
+			}
+		}
+		avg = avg / entries;
+		console.log('Normal Avg Price Found to be ' + avg);
+	}
+	$('#avg_best_price').val(avg);
+
 	var fine = true;
 	if ($('#showSuggestion').val() == 0) {
 	} else {
@@ -655,8 +688,12 @@ function calcResult() {
 						b = pricesArr[i];
 					}
 					var variation = Math.abs(Math.ceil(((a - b) / a) * 100));
-					if (variation > 20) {
-						out++;
+					if ($('#category').val() == 9) { // books
+						if (variation > 40) {
+							out++;
+						}
+					} else {
+
 					}
 					console.log(pricesArr[i] + ' compare ' + pricesArr[j] + " variation is more than 20% at " + variation)
 				}
@@ -689,6 +726,14 @@ function calcResult() {
 		continueSearch();
 	}
 }
+function finished() {
+	if (sortTimeout == false && $('#progress_done').val() == 0) {
+		$('#progess_text').html('Finished');
+		$('#summary').removeClass('summary_float');
+		$('#summary').addClass('finished');
+	}
+	console.log('finished' + sortTimeout + "xx" + $('#progress_done').val());
+}
 
 var sortQueue = 0;
 var sortTimeout = false;
@@ -698,9 +743,13 @@ function queueSortResult(timer, site) {
 		var diff = now - sortQueue;
 		console.log('called from timer with diff: ' + diff);
 		if (diff >= 1000) {
+			if (!queueCalc) {
+				sortTimeout = false;
+			}
 			sortResult();
 			sortQueue = new Date().getTime();
 			if (queueCalc) {
+				sortTimeout = false;
 				calcResult(); // run calc result only after sorting is done
 			}
 		} else {
@@ -718,6 +767,7 @@ function queueSortResult(timer, site) {
 	}
 }
 function sortResult() {
+	$('#progess_text').html('Sorting Results..');
 	console.log('sorting called' + $('#isSorting').val());
 
 	if ($('#isSorting').val() == 1) {
@@ -737,9 +787,13 @@ function sortResult() {
 			var score = 4; // right now 4 items are there
 			var i = 0;
 
-			var avg = $('#avg_best_price').val();
+			var avg = $('#avg_best_price').val() * 1;
 			if (avg > 0) {
-				var priceweb = $(this).children('.item_main').children('#item_price').val() * 1;
+				var priceweb = $(this).children('.item_main').children('#item_price').val();
+				if (priceweb == '-NA-') {
+					priceweb = 99999999999;
+				}
+				priceweb = priceweb * 1;
 				if (priceweb > 0) {
 					var a = 0;
 					var b = 0;
@@ -751,9 +805,11 @@ function sortResult() {
 						a = priceweb;
 					}
 					var variation = Math.abs(Math.ceil(((a - b) / b) * 100));
-					console.log('MakeSmall: Variation Found a ' + a + " b " + b + " = " + variation);
 					if (variation > 40) {
 						makeSmall(website);
+						console.log('MakeSmall: Variation Found a ' + a + " b " + b + " = " + variation);
+					} else {
+						console.log('MakeSmall False: Variation Found a ' + a + " b " + b + " = " + variation);
 					}
 				}
 			}
@@ -804,6 +860,8 @@ function sortResult() {
 
 	highest_score_name = getComparableString(highest_score_name);
 
+	var v1 = 0;
+	var v2 = 0;
 	$('#results').children('.website').each(function() {
 		if ($(this).hasClass('website_error')) {
 		} else if ($(this).hasClass('website_noresult')) {
@@ -821,6 +879,10 @@ function sortResult() {
 				var small_price = 0;
 
 				var priceweb = $(this).children('.item_main').children('#item_price').val();
+				if (priceweb == '-NA-') {
+					priceweb = 99999999999;
+				}
+				priceweb = priceweb * 1;
 				// console.log('main name' + name1);
 				if (name1 != highest_score_name) {
 					$(this).find('.item_small').each(function() {
@@ -828,19 +890,47 @@ function sortResult() {
 						name1 = getComparableString(name1);
 
 						var price1 = $(this).children('#item_price').val();
+						if (price1 == '-NA-') {
+							price1 = 99999999999;
+						}
+						price1 = price1 * 1;
 
 						// console.log('small name' + name1);
 						if (name1 == highest_score_name || name1.indexOf(highest_score_name) != -1 || highest_score_name.indexOf(name1) != -1) {
-							has_copy = true;
-
+							var avg = $('#avg_best_price').val() * 1;
 							if (small_price != 0) {
 								if (small_price > price1) {
-									small_price = price1;
-									small_id = $(this).attr('id');
+									if (avg > 0) {
+										v1 = Math.abs(Math.ceil(((small_price - avg) / avg) * 100));
+										v2 = Math.abs(Math.ceil(((price1 - avg) / avg) * 100));
+
+										console.log('make small inside varation ' + v1 + 'and ' + v2);
+
+										if (v2 < 20 || v2 < v1) {
+											small_price = price1;
+											small_id = $(this).attr('id');
+											has_copy = true;
+										}
+									} else {
+										small_price = price1;
+										small_id = $(this).attr('id');
+										has_copy = true;
+									}
 								}
 							} else {
-								small_price = price1;
-								small_id = $(this).attr('id');
+								if (avg > 0) {
+									v1 = Math.abs(Math.ceil(((price1 - avg) / avg) * 100));
+									console.log('make small inside varation ' + v1);
+									if (v1 < 20) {
+										small_price = price1;
+										small_id = $(this).attr('id');
+										has_copy = true;
+									}
+								} else {
+									small_price = price1;
+									small_id = $(this).attr('id');
+									has_copy = true;
+								}
 							}
 						}
 					});
@@ -869,6 +959,7 @@ function sortResult() {
 										if (prices_new_small == '-NA-') {
 											prices_new_small = 99999999999;
 										}
+										prices_new_small = prices_new_small * 1;
 										// console.log('small price ' +
 										// small_price + " main price " +
 										// prices_new_small + " checking sp <
@@ -903,6 +994,7 @@ function sortResult() {
 										if (prices_new_small == '-NA-') {
 											prices_new_small = 99999999999;
 										}
+										prices_new_small = prices_new_small * 1;
 										// console.log('small price ' +
 										// small_price + " main price " +
 										// prices_new_small + " checking sp >
@@ -919,7 +1011,7 @@ function sortResult() {
 								// hr
 								var html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + $(this).outerHTML();
 								$('#' + website).remove();
-								$('#' + put_before_website).after(html);
+								$('#' + put_after_website).after(html);
 							} else {
 								console.log('Didnt change position');
 							}
@@ -935,10 +1027,12 @@ function sortResult() {
 	$('.popup').popover();
 	$('#isSorting').val(0)
 	console.log('sorting finish');
+	finished();
 }
 var prev_highest_score = '';
 var prev_highest_score_value = 0;
 function showStep() {
+	$('#progess_text').html('Showing Suggestions');
 	$('#results').hide();
 	$('#step_items').html('');
 	var i = 0;
@@ -953,7 +1047,7 @@ function showStep() {
 			var url = $(this).children('.span4:first').children('#item_url').val();
 			var image = $(this).children('.span4:first').children('#item_image').val();
 			var name = $(this).children('.span4:first').children('#item_name').val();
-			var price = $(this).children('.span4:first').children('#item_price').val();
+			var price = $(this).children('.span4:first').children('#item_price').val() * 1;
 			var author = $(this).children('.span4:first').children('#item_author').val();
 			var offer = '';
 			var shipping = '';
@@ -1189,7 +1283,11 @@ function makeSmall(website) {
 	$('#' + website).children('.item_main').removeClass('span4');
 	$('#' + website).children('.item_main').addClass('span8');
 	$('#' + website).children('.span2').css('line-height', '22px');
-	var small_price = $('#' + website).children('.item_main').children('#item_price').val() * 1;
+	var small_price = $('#' + website).children('.item_main').children('#item_price').val();
+	if (small_price == '-NA-') {
+		small_price = 99999999999;
+	}
+	small_price = small_price * 1;
 	var img = $('#' + website).children('.item_main').children('.media').find('img');
 	img.addClass('no-resize');
 	img.height('50px');
@@ -1218,7 +1316,11 @@ function makeSmall(website) {
 	if ($('#bad_result_items').children('.website').length > 0) {
 		var last_website = '';
 		$('#bad_result_items').children('.website').each(function() {
-			var bad_price = $(this).children('.item_main').children('#item_price').val() * 1;
+			var bad_price = $(this).children('.item_main').children('#item_price').val();
+			if (bad_price == '-NA-') {
+				bad_price = 99999999999;
+			}
+			bad_price = bad_price * 1;
 			if (small_price > bad_price) {
 				last_website = $(this).attr('id');
 			} else {
@@ -1248,7 +1350,11 @@ function makeBig(website) {
 	var img = $('#' + website).children('.item_main').children('.media').find('img');
 	img.height('100px');
 	img.width('100px');
-	var big_price = $('#' + website).children('.item_main').children('#item_price').val() * 1;
+	var big_price = $('#' + website).children('.item_main').children('#item_price').val();
+	if (big_price == '-NA-') {
+		big_price = 99999999999;
+	}
+	big_price = big_price * 1;
 	$('#' + website).children('.item_main').children('.media').children('.media-body').width('175px');
 	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.pull-left:first').css('max-height', '40px');
 	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.clearfix-tog').each(function() {
@@ -1269,7 +1375,11 @@ function makeBig(website) {
 		if ($(this).hasClass('website_loading')) {
 
 		} else {
-			var web_price = $(this).children('.item_main').children('#item_price').val() * 1;
+			var web_price = $(this).children('.item_main').children('#item_price').val();
+			if (web_price == '-NA-') {
+				web_price = 99999999999;
+			}
+			web_price = web_price * 1;
 			if (big_price > web_price) {
 				last_website = $(this).attr('id');
 			} else {
@@ -1291,6 +1401,9 @@ function makeBig(website) {
 function getComparableString(str) {
 	str = str.replace('&amp;', 'and');
 	str = str.replace('&', 'and');
+	str = str.replace('III', '3');
+	str = str.replace('II', '2');
+	str = str.replace('IV', '4');
 	str = str.toLowerCase();
 	return str;
 }

@@ -28,6 +28,9 @@ class Amegabooks extends Parsing{
 				$url = pq($div)->children('input[name=pro_url]')->val();
 				$name = pq($div)->children('input[name=pro_name]')->val();
 				$disc_price = pq($div)->children('input[name=pro_price]')->val();
+				if(empty($disc_price)){
+					$disc_price = pq($div)->find('.price')->html();
+				}
 				$shipping = pq($div)->find('.normal:last')->html();
 				$offer = '' ;
 				$stock = 0;
