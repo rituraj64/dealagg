@@ -328,8 +328,7 @@ $table=$usersTable->generateTable($user);
 //$hide=array('id');
 //$usersTable->setColumnNameMapping($hide);
 //code ends here for hiding the column read
-
-        
+      
 ?>
 <div id="table">
 <?php 

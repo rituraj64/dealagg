@@ -45,6 +45,7 @@ $coupon_code="";
 $min_amt="";
 $bank="";
 $description="";
+$image="";
 	
 if(isset($_REQUEST['deal_url']))
 {
@@ -58,26 +59,29 @@ if(isset($_REQUEST['description']))
 {
 	$description=$_REQUEST['description'];
 }
-if($_REQUEST['id']!="undefined")
+if(isset($_REQUEST['id']))
 {
-	$coupon_id=$_REQUEST['id'];
-	$user = new coupon_active();
-	$user->id = $coupon_id;
-	$data=$user->read();
-	
-	$active_from=$data[0]['active_from'];
-	$active_to=$data[0]['active_to'];
-	$discount=$data[0]['discount'];
-	$discount_type=$data[0]['discount_type'];
-	$category=$data[0]['category'];
-	$product=$data[0]['product'];
-	$deal_url=$data[0]['deal_url'];
-	$deal_type=$data[0]['deal_type'];
-	$coupon_code=$data[0]['coupon_code'];
-	$min_amt=$data[0]['min_amt'];
-	$bank=$data[0]['bank'];
-	$description=$data[0]['description'];
-	
+	if($_REQUEST['id']!="undefined")
+	{
+		$coupon_id=$_REQUEST['id'];
+		$user = new coupon_active();
+		$user->id = $coupon_id;
+		$data=$user->read();
+		
+		$active_from=$data[0]['active_from'];
+		$active_to=$data[0]['active_to'];
+		$discount=$data[0]['discount'];
+		$discount_type=$data[0]['discount_type'];
+		$category=$data[0]['category'];
+		$product=$data[0]['product'];
+		$deal_url=$data[0]['deal_url'];
+		$deal_type=$data[0]['deal_type'];
+		$coupon_code=$data[0]['coupon_code'];
+		$min_amt=$data[0]['min_amt'];
+		$bank=$data[0]['bank'];
+		$description=$data[0]['description'];
+		$image=$data[0]['image'];
+	}
 }
 
 ?>
@@ -172,7 +176,7 @@ if($_REQUEST['id']!="undefined")
 			</tr>
 			<tr>
 				<td><label>Image</label></td>
-				<td><input type="text" name="image" id="image"></input></td>
+				<td><input type="text" name="image" value="<?php echo $image; ?>" id="image"></input></td>
 				<td><span id="imageErr"></span></td>
 			</tr>
 			<tr>

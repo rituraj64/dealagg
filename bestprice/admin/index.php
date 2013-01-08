@@ -121,7 +121,6 @@ if(isset($_REQUEST['update_coupon_active']))
 	
 }
 
-
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
 
 //code starts here for adding a new column to a table
