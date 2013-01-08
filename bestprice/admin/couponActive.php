@@ -134,13 +134,7 @@ if($_REQUEST['id']!="undefined")
 				<td><input type="text" value="<?php echo $product; ?>" name="product" id="product"></input></td>
 				<td><span id="productErr"></span></td>
 			</tr>
-			<tr>
-				<td><label>Description</label></td>
-				<td>
-					<textarea rows="10" cols="30" name="description" id="description"><?php echo $description; ?></textarea>
-				</td>
-				<td><span id="descriptionErr"></span></td>
-			</tr>
+			
 			<tr>
 				<td><label>Deal URL</label></td>
 				<td><input type="text" value="<?php echo $deal_url; ?>" name="deal_url" id="deal_url"></input></td>
@@ -175,6 +169,18 @@ if($_REQUEST['id']!="undefined")
 						<option <?php if($bank=="CITY_BANK"){ ?>selected<?php } ?> value="CITY_BANK">City Bank</option>
 					</select>
 				</td>
+			</tr>
+			<tr>
+				<td><label>Image</label></td>
+				<td><input type="text" name="image" id="image"></input></td>
+				<td><span id="imageErr"></span></td>
+			</tr>
+			<tr>
+				<td><label>Description</label></td>
+				<td>
+					<textarea rows="10" cols="30" name="description" id="description"><?php echo $description; ?></textarea>
+				</td>
+				<td><span id="descriptionErr"></span></td>
 			</tr>
 			<tr>
 				<?php if(isset($_REQUEST['id'])) { ?>

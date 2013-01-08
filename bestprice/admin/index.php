@@ -33,7 +33,18 @@
 			});
 		});
 		
-
+		$("#bus table tbody tr td table td:nth-child(9)").each(function(i){
+			var deal_url=$(this).text();
+			if(deal_url==" ")
+			{
+				$(this).html("<a href=# target=_blank>"+deal_url+"</a>");
+			}
+			else
+			{
+				$(this).html("<a href="+deal_url+" target=_blank>"+deal_url+"</a>");
+			}
+		});
+		
 	});
 </script>
 
@@ -42,7 +53,9 @@
 <?php
 require_once 'couponClass.php';
 require_once '../smartmodel/UI.php';
+require_once '../smartmodel/FileUtil.php';
 
+$fileutil=new FileUtil();
 $user = new coupon_active();
 $orderBy = array('desc'=>'id');
 $user->read(null,null,$orderBy);
@@ -62,6 +75,7 @@ if(isset($_REQUEST['submit_coupon_active']))
 	$min_amt=$_REQUEST['min_amt'];
 	$bank=$_REQUEST['bank'];
 	$description=$_REQUEST['description'];
+	$image=$_REQUEST['image'];
 	
 	$user->active_from=$active_from;
 	$user->active_to=$active_to;
@@ -75,10 +89,12 @@ if(isset($_REQUEST['submit_coupon_active']))
 	$user->min_amt=$min_amt;
 	$user->bank=$bank;
 	$user->description=$description;
+	$user->image=$image;
 	$id = $user->insert();
 	?>
 	<script> window.location.href='index.php';</script>
 	<?php 
+	
 }
 //code ends here for inserting the coupon into the database
 
@@ -97,11 +113,12 @@ if(isset($_REQUEST['update_coupon_active']))
 	$bank=$_REQUEST['bank'];
 	$description=$_REQUEST['description'];
 	$id=$_REQUEST['hidden_id'];
-	
+	$image=$_REQUEST['image'];
 	//$user->sql_tracking=true;
-	$set=array("active_from"=>$active_from,"active_to"=>$active_to,"discount"=>$discount,"discount_type"=>$discount_type,"category"=>$category,"product"=>$product,"deal_url"=>$deal_url,"coupon_code"=>$coupon_code,"min_amt"=>$min_amt,"bank"=>$bank,"description"=>$description);
+	$set=array("active_from"=>$active_from,"active_to"=>$active_to,"discount"=>$discount,"discount_type"=>$discount_type,"category"=>$category,"product"=>$product,"deal_url"=>$deal_url,"coupon_code"=>$coupon_code,"min_amt"=>$min_amt,"bank"=>$bank,"description"=>$description,"image"=>$image);
 	$where = array("id"=>$id);
 	$user->update($set,$where);
+	
 }
 
 

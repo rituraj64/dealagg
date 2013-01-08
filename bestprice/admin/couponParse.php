@@ -205,6 +205,7 @@
 <?php
 require_once 'couponClass.php';
 require_once '../smartmodel/UI.php';
+require_once '../smartmodel/UI/Util/UIUtil.php';
 
 ?>
 <div>
@@ -227,7 +228,7 @@ require_once '../smartmodel/UI.php';
 <?php 
 
 $user = new coupon_parse();
-
+$util=new UIUtil();
 if(isset($_REQUEST['submit_coupon_parse']))
 {
 	$uniq_id=$_REQUEST['uniq_id'];
@@ -277,8 +278,7 @@ else
 $data=$user->read(null,null,$orderBy);
 
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
-$where = UIUtil::getWhere($usersTable);
-echo $where;
+
 //code starts here for adding a new column to a table
 $array=array('Read'=>'read_stat');
 $usersTable->addCustomColumn($array);
@@ -322,6 +322,7 @@ $usersTable->sortCol='id';
 $usersTable->sorting='desc';
 //code ends here for sorting the column ID in descending order
 
+
 $table=$usersTable->generateTable($user);
 
 //code starts here for hiding the column read
@@ -329,6 +330,7 @@ $table=$usersTable->generateTable($user);
 //$usersTable->setColumnNameMapping($hide);
 //code ends here for hiding the column read
 
+        
 ?>
 <div id="table">
 <?php 

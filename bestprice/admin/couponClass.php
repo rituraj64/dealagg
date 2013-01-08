@@ -15,9 +15,10 @@
 		public $min_amt;
 		public $bank;
 		public $description;
+		public $image;
 		
 		public $_table = "coupon_active";
-		public $_fields = array('id','active_from','active_to','discount','discount_type','category','product','description','deal_url','deal_type','coupon_code','min_amt','bank');
+		public $_fields = array('id','active_from','active_to','discount','discount_type','category','product','description','deal_url','deal_type','coupon_code','min_amt','bank','image');
 		
 	}
 	class coupon_parse extends SmartModel
