@@ -322,7 +322,6 @@ $usersTable->sortCol='id';
 $usersTable->sorting='desc';
 //code ends here for sorting the column ID in descending order
 
-
 $table=$usersTable->generateTable($user);
 
 //code starts here for hiding the column read
