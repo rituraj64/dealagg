@@ -18,6 +18,16 @@
 			
 			require_once 'find.php';
 			$result = $return;
+			
+			$formattedResult = array();
+			foreach($result['data'] as $row){
+				if(!isset($formattedResult[$row['website']])){
+					$formattedResult[$row['website']] = array();
+				}	
+				$formattedResult[$row['website']][] = $row;
+			}
+			$title = 'Lowest Online Price Found For '. $_REQUEST['q'];
+			
 		}else{
 			$error = 'Search Query Doesnt Exist';
 		}
@@ -31,6 +41,7 @@
       	<?php if(isset($result)){ ?>
       		<script type="text/javascript">
         	$(document).ready(function(){
+        		$('#results').html('');
         		$('#results').show();
         		$('#showSuggestion').val(0);
         		processData(eval(<?php echo json_encode($result)?>),'',1,1,true,0);
@@ -117,10 +128,11 @@
 		    
 	  </div>
 	  
-      <div id='results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;display:none">
-		     
+      <div id='results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;<?php if(isset($formattedResult) && !empty($formattedResult)){}else{?>display:none<?php }?>">
+		     <?php
+		     	require_once 'showOutput.php';
+		     ?>
 	  </div>
-	  
 	   <div id='bad-results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;display: none;text-align: center">
 	   		 <h2>Possibly Wrong Products</h2>
 		     <div>
@@ -180,168 +192,29 @@
 	<?php require_once 'footer.php';?>  
   
   <div id='resultBodyTemplate' style="display: none">
-  		<div class="row-fluid clearfix website" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px;position: relative;">
-				<div class="span2" style="line-height: 150px">
-					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
-				</div>
-				{main_item_html}
-				<div class="span4" style="margin-left:10px;">
-					<div class='row-fluid' id="other_prod">
-					</div>
-					<div style="padding-top: 10px;"></div>
-				</div>
-			 	<div class='span2 table-bordered' style="border-left: 1px solid #DDD;margin-left:10px;">
-			 		<div style="font-size:12px">
-						Coupons:
-					</div>
-				</div>
-			 </div>
+  		<?php require 'templates/resultBody.php';?>
   </div>
   <div id="mainItemTemplate" style="display: none">
-  				<div class="popup span4 table-bordered item item_main" id='{item_id}' style="margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
-						<input type='hidden' id='item_url' value='{item_url}' />
-						<input type='hidden' id='item_name' class='item_name' value='{item_name}' />
-						<input type='hidden' id='item_image' value='{item_image}' />
-						<input type='hidden' id='item_price' value='{item_price}' />
-						<input type='hidden' id='item_author' value='{item_author}' />
-						<input type='hidden' id='item_stock' value='{item_stock}' />
-						<input type='hidden' id='item_offer' value='{item_offer_org}' />
-						<input type='hidden' id='item_shipping' value='{item_shipping_org}' />
-					 	<div class="media" style="margin-top: 0px">
-							<a class='pull-left' href="{item_url}" target="_blank">
-								<img style="width:100px;height:100px;margin:5px" class="img-rounded media-object" src="{item_image}" alt='{item_name}' title='{item_name}'/>
-							</a>
-							<div class="media-body pull-left" style="width: 175px;text-align:left">
-								<div class='pull-left' style="max-height:40px;overflow:hidden">
-									<a href="{item_url}" target="_blank" class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="{item_name}">{item_name}</a>
-								</div>
-								<div class='clearfix'></div>
-								<div class='pull-left'>
-									Price <span class="WebRupee">Rs.</span><span class='main_price'>{item_price}</span>
-								</div>
-								<div class='clearfix'></div>
-								<div class='pull-left author' style="{author_display}">
-									by <small>{item_author}</small>
-								</div>
-								<div class='clearfix'></div>
-								<div class='pull-left' class='stock'>
-									<span style="{in_stock_hide}" class="label label-success in_stock">In Stock</span>
-									<span style="{out_stock_hide}" class="label label-important out_of_stock">Out Of Stock</span>
-									<span style="{no_stock_hide}" class="label no_info">No Info</span>
-								</div>
-							</div>
-						</div>
-						<div class='clearfix'></div>
-						<hr style="padding: 0px;margin: 0px;margin-top: 5px;"/>
-						<div style="font-size:12px;margin: 5px;text-align: left;max-height: 38px;overflow: hidden;float: left;" class='other_info'>
-							<div class='offer pull-left' style="{offer_display}">
-								Offer: {item_offer}
-							</div>
-							<div class='clearfix'></div>
-							<div class='shipping' style="font-size:12px">
-								<div class='pull-left' style="{shipping_display}">
-									Shipping: {item_shipping}
-								</div>
-							</div>
-						</div>
-				</div>
+  	<?php require 'templates/mainItem.php';?>
   </div>
   
   <div id='emptyBodyTemplate' style="display: none">
-  		<div class="row-fluid clearfix website website_loading website_noresult" id="{website}" style="vertical-align: middle;height: 40px;margin-top:10px">
-				<div class="span2" style="line-height: 40px">
-					<a href='{website_search_url}' target='_blank'><img height="40px" style="height: 40px" src="{website_url}" alt="{website}" title="{website}"/></a>
-				</div>
-				<div class="popup span10 table-bordered" style="height:40px;margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
-					<div class="alert">
-					  <strong>Sorry!</strong> No Results Found...
-					</div>
-				</div>
-		</div>
+  		<?php require 'templates/emptyBody.php';?>
   </div>
   
   <div id='errorBodyTemplate' style="display: none">
-  		<div class="row-fluid clearfix website website_loading website_error" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
-				<div class="span2" style="line-height: 150px">
-					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
-				</div>
-				<div class="popup span10 table-bordered" style="height:150px;overflow:hidden;margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
-					<div class="alert alert-error">
-					  <strong>Error!</strong> {error_message}
-					</div>
-				</div>
-		</div>
+  		<?php require 'templates/errorBody.php';?>
   </div>
   
   <div id='loadingBodyTemplate' style="display: none">
-  		<div class="row-fluid clearfix website website_loading" id="{website}" style="vertical-align: middle;height: 165px;margin-top:10px">
-				<div class="span2" style="line-height: 150px">
-					<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
-				</div>
-				<div class="popup span10 table-bordered" style="line-height:150px;margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
-					Fetching Data... <img src='<?php echo Parser::SITE_URL;?>img/preload_small.gif' alt='loading..'/>
-				</div>
-		</div>
+  		<?php require 'templates/loadingBody.php';?>
   </div>
   
   <div id='smallItemTemplate' style="display: none">
-  		<div class='item item_small' id='{item_id}' style="margin-left: 5px;">
-  			<input type='hidden' id='item_url' value='{item_url}' />
-			<input type='hidden' id='item_name' class='item_name' value='{item_name}' />
-			<input type='hidden' id='item_image' value='{item_img_load_id}' />
-			<input type='hidden' id='item_price' value='{item_price}' />
-			<input type='hidden' id='item_author' value='{item_author}' />
-			<input type='hidden' id='item_stock' value='{item_stock}' />
-			<input type='hidden' id='item_offer' value='{item_offer}' />
-			<input type='hidden' id='item_shipping' value='{item_shipping}' />
-			<div class='table-bordered' style="border-left: 1px solid #DDD;padding: 0px;text-align: center;margin-bottom: 3px;font-size: 12px;height: 50px;overflow: hidden;">
-				<div class='pull-left'>
-					<a href="{item_url}" target="_blank">
-						<input type='hidden' value='{item_img_load_id}' id='lazy' />
-						<img class="lazy_load_img img-rounded" src="{item_image}" alt='{item_name}' title='{item_name}' width="50px" height="50px" style="width: 50px;height: 50px;" />
-					</a>
-				</div>
-				<div class='pull-left' style="padding-left: 5px;width: 80%;text-align: left">
-					<div style="height: 22px;overflow: hidden">{item_name_html}</div>
-					<div class="clearfix"></div>
-					<div>
-						<div class='pull-left'>
-							Price <span class="WebRupee">Rs.</span><span class='main_price'>{item_price}</span>
-						</div>
-						<div class='pull-right'>
-							<a class='detail-popup popup btn btn-mini {stock_color}' style="line-height: 14px" rel="popover" data-placement="right" data-html='true' data-trigger='click' data-content="{item_details}" data-original-title="{item_name}">Details</a>
-						</div>
-					</div>
-				</div>				
-				<div class="clearfix"></div>
-			</div>
-		</div>
+  		<?php require 'templates/smallItem.php';?>
   </div>
   <div id='stepItem' id='{step_id}' style="display: none">
-  	<div  class='table-bordered pull-left' style="border-left: 1px solid #DDD;padding: 10px;margin-right: 20px;width: 150px;margin-top: 5px;height: 235px">
-     	<div>
-     		<a href="{item_url}" target="_blank">
-				<img class="img-rounded" src="{item_image}" alt='{item_name}' title='{item_name}' style="max-width: 100px;max-height: 100px;" />
-			</a>
-     	</div>
-     	<div style="height: {name_height};overflow: hidden">
-	     	<a href="{item_url}" target="_blank" class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="{item_name}">
-	     		{item_name}
-	     	</a>
-     	</div>
-     	<div>
-			Price <span class="WebRupee">Rs.</span><span class='main_price'>{item_price}</span>
-		</div>
-		<div class='author' style="{author_display};height: 22px;overflow:hidden;">
-			by <small>{item_author}</small>
-		</div>
-		<button type="button" onclick='searchThis("{item_name}");return false;' class='btn btn-small btn-info'>Search This!</button>
-		<div style="padding-top: 20px;height: 30px">
-			<a href='{website_search_url}'>
-				<img style="max-width: 100px;max-height: 30px" class="img-rounded" src='{website_url}' alt='{website}' title='{website}'/>
-			</a>
-		</div>
-     </div>
+  	    <?php require 'templates/stepItem.php';?>
   </div>
   <div id='category_data'>
 	<?php

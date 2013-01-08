@@ -11,7 +11,7 @@ class Letshop extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://letsshop.in/';
 	}
-	
+
 	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::MOBILE){
 			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=4";
@@ -23,7 +23,7 @@ class Letshop extends Parsing{
 				return "http://letsshop.in/catalogsearch/result/index/?cat=16&q=Nokia+battery";
 			}elseif($subcat == Category::MOB_CAR_ACC){
 				return "http://letsshop.in/catalogsearch/result/index/?cat=20&q=Nokia+battery";
-			}else 
+			}else{
 				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=12";
 			}
 		}else if($category == Category::CAMERA){

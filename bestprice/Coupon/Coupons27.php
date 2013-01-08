@@ -46,16 +46,17 @@ class Coupons27 extends Parsingcoupon{
 					$coupon_code = '';
 					$type = 'CODE';
 					$deal_url = '';
-						
 					$coupon_code = pq($crux)->children('div.couponAndTip')->children('div.link-holder')->children('a')->attr('data-rel');
 					if($coupon_code == 'Click to Redeem'){
 						$type == 'LINK';
 						$coupon_code = '';
 						$deal_url = pq($crux)->children('div.couponAndTip')->children('div.link-holder')->children('a')->attr('href');
+					}else{
+						$deal_url = pq($crux)->find('a.more:first')->attr('href');
 					}
-						
+
 					$website_url = '';
-					
+						
 
 					$success = pq($div)->find('.stripe-badge:first')->find('.percent')->html();
 

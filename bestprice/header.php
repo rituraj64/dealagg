@@ -3,10 +3,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Find Cheapest Price</title>
+    <title><?php if(isset($title)){echo $title.' | PriceGenie.in';}else{echo 'Find Cheapest Price | PriceGenie.in';}?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="PriceGenie.in is a real time price comparison engine, to find lowest online price for any product. It product real time information on coupon codes, stock status and other offers.">
+    <meta name="author" content="Manish Prakash | Excellence Technologies.">
     <!-- Le styles -->
     <link href="<?php echo Parser::SITE_URL;?>bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo Parser::SITE_URL;?>style.css" rel="stylesheet">
@@ -15,6 +15,7 @@
     <script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"></script>
 	<script src="<?php echo Parser::SITE_URL;?>bootstrap/js/bootstrap.js" type="text/javascript"></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/ajax.js'></script>
+	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/jquery.scrollTo-1.4.3.1-min.js'></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>

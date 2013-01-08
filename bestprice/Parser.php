@@ -6,6 +6,7 @@ class Parser{
 	//const SITE_URL = 'http://localhost/scrapping/bestprice/';
 	//const AJAX_URL = 'http://localhost/scrapping/bestprice/';
 
+	public $_noProxy = false;
 
 	public function getHtml($url,$fields = array(),$headersOnly = false){
 		$userAgent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
@@ -38,6 +39,11 @@ class Parser{
 		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 50);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+
+		if(!$this->_noProxy){
+			//$proxy = '112.90.208.8:80';
+			//curl_setopt($ch, CURLOPT_PROXY, $proxy);
+		}
 
 
 		//$strCookie = 'PHPSESSID=' . $_COOKIE['PHPSESSID'] . '; path=/';

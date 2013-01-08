@@ -96,7 +96,8 @@ function findPrice(site, cache, trust, changeSubCat, searchThis) {
 		$('#share').hide();
 		$('#share_url').val('');
 		$('#avg_best_price').val(0);
-		prev_highest_socre = '';
+		prev_highest_score = '';
+		prev_highest_score_value = 0;
 		item_id_count = 0;
 		untrusted = new Array();
 		$('#bad-results').hide();
@@ -203,7 +204,11 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 
 			if ($('#results').find('#' + website).length > 0) {
 				var html = createSmallItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock);
-				$('#results').find('#' + website).find('#other_prod').append(html);
+				if($('#results').find('#' + website).find('#other_prod').children('.item').length > 0){
+					$('#results').find('#' + website).find('#other_prod').append(html);
+				}else{
+					$('#results').find('#' + website).find('#other_prod').html(html);
+				}
 			} else {
 				var html = createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, data.data[i].searchurl);
 
@@ -569,57 +574,112 @@ function calcResult() {
 
 		var search = getComparableString($('#q').val());
 
-		var out = 0;
+		// first try to detected suggesion based on name itself, escpeically
+		// will work for book
 
-		/*
-		 * var avg = 0; for (i = 0; i < pricesArr.length; i++) { avg +=
-		 * (pricesArr[i]*1); } avg = avg / pricesArr.length; console.log('avg' +
-		 * avg); for (i = 0; i < pricesArr.length; i++) { var variation =
-		 * Math.abs(Math.ceil(((pricesArr[i] - avg) / avg) * 100));
-		 * 
-		 * console.log(pricesArr[i] + " variation is " + variation) }
-		 */
-		for (i = 0; i < pricesArr.length; i++) {
-			out = 0;
-			for (j = 0; j < pricesArr.length; j++) {
+		var data = new Array();
+		$('#results').children('.website').each(function() {
+			if ($(this).hasClass('website_error')) {
+			} else if ($(this).hasClass('website_noresult')) {
+			} else {
+				var name = $(this).children('.item_main').children('#item_name').val();
+				if (name.length > 0) {
+					var row = new Array();
+					row['score'] = 0;
+					row['name'] = name;
+					data[data.length] = row;
+					i++;
+				}
+			}
+		});
+
+		// var replace = ('&amp;'=>'and','&'=>'and');
+		for ( var i = 0; i < data.length; i++) {
+			for ( var j = 0; j < data.length; j++) {
 				if (i == j) {
 					continue;
 				}
-
-				var a = 0;
-				var b = 0;
-				if (pricesArr[i] > pricesArr[j]) {
-					a = pricesArr[i];
-					b = pricesArr[j];
-				} else {
-					a = pricesArr[j];
-					b = pricesArr[i];
+				var $name1 = data[i]['name'];
+				var $name2 = data[j]['name'];
+				$name1 = getComparableString($name1);
+				$name2 = getComparableString($name2);
+				// console.log($name1+"xxx"+$name2);
+				if ($name1 == $name2 || $name1.indexOf($name2) != -1 || $name2.indexOf($name1) != -1) {
+					// console.log('match');
+					data[i]['score']++;
+					data[j]['score']++;
 				}
-				var variation = Math.abs(Math.ceil(((a - b) / a) * 100));
-				if (variation > 20) {
-					out++;
-				}
-				console.log(pricesArr[i] + ' compare ' + pricesArr[j] + " variation is more than 20% at " + variation)
-			}
-			if (out > Math.ceil(pricesArr.length / 2)) {
-				console.log('site ' + i + ' is out with number' + out);
-				diff_sites++;
 			}
 		}
-		console.log('Total different sites is ' + diff_sites + ' and total sitse ' + total_sites);
-		if (no_result >= Math.floor($('#results').children('.website').length / 2)) {
-			fine = false; // product not found in more than 50% sites.
+		// console.log(data);
+		var highest_score = 0;
+		var highest_score_name = '';
+		for ( var i = 0; i < data.length; i++) {
+			if (data[i]['score'] > highest_score || highest_score == 0) {
+				highest_score = data[i]['score'];
+				highest_score_name = data[i]['name'];
+			}
+		}
+
+		if (highest_score < Math.ceil(total_sites * .6)) {
+			fine = true;
 		} else {
-			console.log(total_sites + ' tatal sites and  correct sites ' + (total_sites - diff_sites) + " <= " + Math.ceil(total_sites * .6));
-			if ((total_sites - diff_sites) < Math.ceil(total_sites * .5)) { // its
-				// better
-				// if
-				// its
-				// less
-				// sensitive
-				fine = false;
+
+			// find suggesstion based on price
+
+			var out = 0;
+
+			/*
+			 * var avg = 0; for (i = 0; i < pricesArr.length; i++) { avg +=
+			 * (pricesArr[i]*1); } avg = avg / pricesArr.length;
+			 * console.log('avg' + avg); for (i = 0; i < pricesArr.length; i++) {
+			 * var variation = Math.abs(Math.ceil(((pricesArr[i] - avg) / avg) *
+			 * 100));
+			 * 
+			 * console.log(pricesArr[i] + " variation is " + variation) }
+			 */
+			for (i = 0; i < pricesArr.length; i++) {
+				out = 0;
+				for (j = 0; j < pricesArr.length; j++) {
+					if (i == j) {
+						continue;
+					}
+
+					var a = 0;
+					var b = 0;
+					if (pricesArr[i] > pricesArr[j]) {
+						a = pricesArr[i];
+						b = pricesArr[j];
+					} else {
+						a = pricesArr[j];
+						b = pricesArr[i];
+					}
+					var variation = Math.abs(Math.ceil(((a - b) / a) * 100));
+					if (variation > 20) {
+						out++;
+					}
+					console.log(pricesArr[i] + ' compare ' + pricesArr[j] + " variation is more than 20% at " + variation)
+				}
+				if (out > Math.ceil(pricesArr.length / 2)) {
+					console.log('site ' + i + ' is out with number' + out);
+					diff_sites++;
+				}
+			}
+			console.log('Total different sites is ' + diff_sites + ' and total sitse ' + total_sites);
+			if (no_result >= Math.floor($('#results').children('.website').length / 2)) {
+				fine = false; // product not found in more than 50% sites.
 			} else {
-				fine = true;
+				console.log(total_sites + ' tatal sites and  correct sites ' + (total_sites - diff_sites) + " <= " + Math.ceil(total_sites * .6));
+				if ((total_sites - diff_sites) < Math.ceil(total_sites * .5)) { // its
+					// better
+					// if
+					// its
+					// less
+					// sensitive
+					fine = false;
+				} else {
+					fine = true;
+				}
 			}
 		}
 	}
@@ -738,7 +798,8 @@ function sortResult() {
 			highest_score_name = data[i]['name'];
 		}
 	}
-	prev_highest_socre = highest_score_name;
+	prev_highest_score = highest_score_name;
+	prev_highest_score_value = highest_score;
 	console.log(highest_score_name + " Is Highest Scorer");
 
 	highest_score_name = getComparableString(highest_score_name);
@@ -808,7 +869,10 @@ function sortResult() {
 										if (prices_new_small == '-NA-') {
 											prices_new_small = 99999999999;
 										}
-										console.log('small price ' + small_price + " main price " + prices_new_small + " checking sp < mp");
+										// console.log('small price ' +
+										// small_price + " main price " +
+										// prices_new_small + " checking sp <
+										// mp");
 										if (small_price < prices_new_small) {
 											put_before_website = website_ele.attr('id');
 										}
@@ -839,7 +903,10 @@ function sortResult() {
 										if (prices_new_small == '-NA-') {
 											prices_new_small = 99999999999;
 										}
-										console.log('small price ' + small_price + " main price " + prices_new_small + " checking sp > mp");
+										// console.log('small price ' +
+										// small_price + " main price " +
+										// prices_new_small + " checking sp >
+										// mp");
 										if (small_price > prices_new_small) {
 											put_after_website = website_ele.attr('id');
 										}
@@ -869,7 +936,8 @@ function sortResult() {
 	$('#isSorting').val(0)
 	console.log('sorting finish');
 }
-var prev_highest_socre = '';
+var prev_highest_score = '';
+var prev_highest_score_value = 0;
 function showStep() {
 	$('#results').hide();
 	$('#step_items').html('');
@@ -1137,7 +1205,7 @@ function makeSmall(website) {
 		index++;
 	});
 	$('#' + website).height('60px');
-	$('#' + website).children('.span2:first').find('img').first().height('60px');
+	$('#' + website).children('.span2:first').find('img').first().height('40px');
 	// $('#' + website).css('margin-top', '0px');
 	var template = $('#website_hide_template').html();
 	$('#' + website).children('.span8').after(template);
@@ -1208,6 +1276,7 @@ function makeBig(website) {
 				return 0;
 			}
 		}
+
 	});
 	if (last_website.length > 0) {
 		html = '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>' + html;
@@ -1215,6 +1284,7 @@ function makeBig(website) {
 	} else {
 		$('#results').prepend(html + '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>');
 	}
+	$.scrollTo('#' + website);
 
 }
 

@@ -24,7 +24,7 @@ class Seventymm extends Parsing{
 			}elseif($subcat == Category::MOB_CASES){
 				return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/Cases-and-Covers/2740/All-Price/0/Any/0/Any/0/1/1/3/Go";
 			}elseif($subcat == Category::MOB_HEADSETS){
-				return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/Bluetooth-Headsets/2737/All-Price/0/Any/0/Any/0/1/1/3/Go"
+				return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/Bluetooth-Headsets/2737/All-Price/0/Any/0/Any/0/1/1/3/Go";
 			}elseif ($subcat == Category::MOB_CABLE){
 				return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/Cables/2862/All-Price/0/Any/0/Any/0/1/1/3/Go";
 			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
