@@ -32,11 +32,7 @@
 require_once 'couponClass.php';
 require_once '../smartmodel/UI.php';
 
-$coupon_code="";
-$deal_url="";
-$description="";
-
-$id="";
+$coupon_id="";
 $active_from="";
 $active_to="";
 $discount="";
@@ -62,7 +58,7 @@ if(isset($_REQUEST['description']))
 {
 	$description=$_REQUEST['description'];
 }
-if(isset($_REQUEST['id']))
+if($_REQUEST['id']!="undefined")
 {
 	$coupon_id=$_REQUEST['id'];
 	$user = new coupon_active();
@@ -186,6 +182,7 @@ if(isset($_REQUEST['id']))
 				<?php } else { ?>
 				<td colspan="3"><input type="submit" name="submit_coupon_active" id="submit_coupon_active" value="Submit"></input></td>
 				<?php } ?>
+				<td><input type="hidden" name="hidden_id" value="<?php echo $coupon_id; ?>"></input></td>
 			</tr>
 		</table>
 	

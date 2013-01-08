@@ -14,7 +14,6 @@
 		$(".add_coupon").click(function(event){
 			event.preventDefault();
 			var id=$(this).parents("tr").children("td:first-child").html();
-			alert(id);	
 			
 			$(".fancybox").fancybox({
 				'type'			  	: 'ajax',
@@ -85,7 +84,24 @@ if(isset($_REQUEST['submit_coupon_active']))
 
 if(isset($_REQUEST['update_coupon_active']))
 {
+	$active_from=$_REQUEST['active_from'];
+	$active_to=$_REQUEST['active_to'];
+	$discount=$_REQUEST['discount'];
+	$discount_type=$_REQUEST['discount_type'];
+	$category=$_REQUEST['category'];
+	$product=$_REQUEST['product'];
+	$deal_url=$_REQUEST['deal_url'];
+	$deal_type=$_REQUEST['deal_type'];
+	$coupon_code=$_REQUEST['coupon_code'];
+	$min_amt=$_REQUEST['min_amt'];
+	$bank=$_REQUEST['bank'];
+	$description=$_REQUEST['description'];
+	$id=$_REQUEST['hidden_id'];
 	
+	//$user->sql_tracking=true;
+	$set=array("active_from"=>$active_from,"active_to"=>$active_to,"discount"=>$discount,"discount_type"=>$discount_type,"category"=>$category,"product"=>$product,"deal_url"=>$deal_url,"coupon_code"=>$coupon_code,"min_amt"=>$min_amt,"bank"=>$bank,"description"=>$description);
+	$where = array("id"=>$id);
+	$user->update($set,$where);
 }
 
 
