@@ -31,6 +31,7 @@
 <?php 
 require_once 'couponClass.php';
 require_once '../smartmodel/UI.php';
+require_once '../Parsing.php';
 
 $coupon_id="";
 $active_from="";
@@ -46,10 +47,14 @@ $min_amt="";
 $bank="";
 $description="";
 $image="";
+$max_discount="";
+$website="";
 	
 if(isset($_REQUEST['deal_url']))
 {
 	$deal_url=$_REQUEST['deal_url'];
+	
+	
 }
 if(isset($_REQUEST['coupon_code']))
 {
@@ -81,6 +86,8 @@ if(isset($_REQUEST['id']))
 		$bank=$data[0]['bank'];
 		$description=$data[0]['description'];
 		$image=$data[0]['image'];
+		$max_discount=$data[0]['max_discount'];
+		$website=$data[0]['website'];
 	}
 }
 
@@ -89,18 +96,23 @@ if(isset($_REQUEST['id']))
 		<table>
 			<tr>
 				<td><label>Active From</label></td>
-				<td><input type="text" value="<?php echo $active_from; ?>" name="active_from" id="active_from"></input></td>
+				<td><input type="text" value="<?php if($active_from!=""){ echo date("Y-m-d",$active_from);} ?>" name="active_from" id="active_from"></input></td>
 				<td><span id="active_fromErr"></span></td>
 			</tr>
 			<tr>
 				<td><label>Active To</label></td>
-				<td><input type="text" value="<?php echo $active_to; ?>" name="active_to" id="active_to"></input></td>
+				<td><input type="text" value="<?php if($active_to!=""){ echo date("Y-m-d",$active_to);} ?>" name="active_to" id="active_to"></input></td>
 				<td><span id="active_toErr"></span></td>
 			</tr>
 			<tr>
 				<td><label>Discount</label></td>
 				<td><input type="text" value="<?php echo $discount; ?>" name="discount" id="discount"></input></td>
 				<td><span id="discountErr"></span></td>
+			</tr>
+			<tr>
+				<td><label>Max Discount</label></td>
+				<td><input type="text" value="<?php echo $max_discount; ?>" name="max_discount" id="max_discount"></input></td>
+				<td><span id="max_discountErr"></span></td>
 			</tr>
 			<tr>
 				<td><label>Discount Type</label></td>
@@ -116,7 +128,7 @@ if(isset($_REQUEST['id']))
 			<tr>
 				<td><label>Category</label></td>
 				<td>
-					<select name="category" id="category">
+					<select multiple name="category" id="category">
 						<option value="0">Select</option>
 						<?php
 			  	 			require_once '../Category.php';
@@ -145,8 +157,42 @@ if(isset($_REQUEST['id']))
 				<td><span id="deal_urlErr"></span></td>
 			</tr>
 			<tr>
+				<td><label>Website</label></td>
+				<td>
+					<?php $p = new Parsing();
+						  $sites = $p->getWebsites();
+					?>
+					<select name="website">
+						<option value="0">Select</option>
+						
+						<?php foreach($sites as $site)  {?>
+						
+						<?php if(isset($_REQUEST['deal_url'])) 
+						{
+							
+							 if(preg_match("/".$site."/i",$_REQUEST['deal_url']))
+							 {
+							 	$website=$site;
+							 }
+						}
+						
+						?>
+							
+						<option <?php if($website==$site){ ?>selected<?php } ?> value="<?php echo $site; ?>"><?php echo $site; ?></option>
+						<?php } ?>
+					</select>
+				</td>
+				<td><span id="min_amtErr"></span></td>
+			</tr>
+			<tr>
 				<td><label>Deal Type</label></td>
-				<td><input type="text" value="<?php echo $deal_type; ?>" name="deal_type" id="deal_type"></input></td>
+				<td>
+					<select name="deal_type">
+						<option>Select</option>
+						<option <?php if($deal_type=="Fixed"){ ?> selected <?php } ?> value="Fixed">Fixed</option>
+						<option <?php if($deal_type=="Upto"){ ?> selected <?php } ?> value="Upto">Upto</option>
+						<option <?php if($deal_type=="Conditions"){ ?> selected <?php } ?> value="Conditions">Conditions</option>
+					</select>
 				<td><span id="deal_typeErr"></span></td>
 			</tr>
 			<tr>
