@@ -66,27 +66,6 @@
 			$("#image").val(image);
 		});
 		
-//		$(".add_coupon").click(function(event){
-//			event.preventDefault();
-//			var id=$(this).parents("tr").children("td:first-child").html();
-//			
-//			$(".fancybox").fancybox({
-//				'type'			  	: 'iframe',
-//				'autoSize'		    : false,
-//				'width'		   		:500,
-//				'height'			:250,
-//				'showOverlay'		:false,
-//				
-//			});
-//			
-//			$.ajax({
-//				url:'couponActive.php?id='+id,
-//				method:'get',
-//				success:function(xyz){
-//					$.fancybox(xyz);
-//				}
-//			});
-//		});
 		$("#active_from" ).datepicker({
 		   dateFormat: 'yy-mm-dd',
 		   changeMonth:true,
@@ -222,31 +201,6 @@ if(isset($_REQUEST['submit_coupon_active']))
 	
 }
 //code ends here for inserting the coupon into the database
-
-//if(isset($_REQUEST['update_coupon_active']))
-//{
-//	$active_from=strtotime($_REQUEST['active_from']);
-//	$active_to=strtotime($_REQUEST['active_to']);
-//	$discount=$_REQUEST['discount'];
-//	$discount_type=$_REQUEST['discount_type'];
-//	$category=$_REQUEST['category'];
-//	$product=$_REQUEST['product'];
-//	$deal_url=$_REQUEST['deal_url'];
-//	$deal_type=$_REQUEST['deal_type'];
-//	$coupon_code=$_REQUEST['coupon_code'];
-//	$min_amt=$_REQUEST['min_amt'];
-//	$bank=$_REQUEST['bank'];
-//	$description=$_REQUEST['description'];
-//	$id=$_REQUEST['hidden_id'];
-//	$image=$_REQUEST['image'];
-//	$max_discount=$_REQUEST['max_discount'];
-//	$website=$_REQUEST['website'];
-//	//$user->sql_tracking=true;
-//	$set=array("active_from"=>$active_from,"active_to"=>$active_to,"discount"=>$discount,"discount_type"=>$discount_type,"category"=>$category,"product"=>$product,"deal_url"=>$deal_url,"deal_type"=>$deal_type,"coupon_code"=>$coupon_code,"min_amt"=>$min_amt,"bank"=>$bank,"description"=>$description,"image"=>$image,"max_discount"=>$max_discount,"website"=>$website);
-//	$where = array("id"=>$id);
-//	$user->update($set,$where);
-//	
-//}
 
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
 

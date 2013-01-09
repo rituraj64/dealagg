@@ -76,24 +76,6 @@
 						$("#website").val(option_value);
 					}
 				});
-//				$(".fancybox").fancybox({
-//					'type'			  	: 'iframe',
-//					'autoSize'		    : false,
-//					'width'		   		:500,
-//					'height'			:250,
-//					'showOverlay'		:false,
-//					'href'				:'couponParse.php',
-//				});
-				
-//				$.ajax({
-//			        url: 'couponActive.php?coupon_code='+coupon_code,
-//			        data: 'deal_url='+deal_url+'&description='+dscription+'&ID='+id,
-//			        cache: false,
-//			        success:function(xyz){
-//						$.fancybox(xyz);
-//						
-//					}
-//			    });  
 			    
 			}
 			else
@@ -343,11 +325,6 @@ $usersTable->sorting='desc';
 
 $table=$usersTable->generateTable($user);
 
-//code starts here for hiding the column read
-//$hide=array('id');
-//$usersTable->setColumnNameMapping($hide);
-//code ends here for hiding the column read
-      
 ?>
 <div id="table">
 <?php 
