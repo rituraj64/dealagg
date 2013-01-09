@@ -3,6 +3,7 @@
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css"></link>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="../js/jquery.fancybox.pack.js"></script>
+<script src="../js/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox1.css"></link>
 
 <script type="text/javascript">
@@ -40,7 +41,16 @@
 //				}
 //			});
 //		});
-		
+		$("#active_from" ).datepicker({
+		   dateFormat: 'yy-mm-dd',
+		   changeMonth:true,
+		   changeYear:true,
+		 });
+		$("#active_to" ).datepicker({
+		   dateFormat: 'yy-mm-dd',
+		   changeMonth:true,
+		   changeYear:true,
+		 });
 		$("#bus table tbody tr td table td:nth-child(9)").each(function(i){
 			var deal_url=$(this).text();
 			if(deal_url==" ")
@@ -55,6 +65,12 @@
 		
 	});
 </script>
+
+<style type="text/css">
+   .ui-datepicker { width: 12em; padding: .2em .2em 0; display: none; }
+   .ui-datepicker table {width: 100%; font-size: .7em; border-collapse: collapse; margin:0 0 .4em; }
+   .ui-datepicker .ui-datepicker-title select { font-size:15px; margin:1px 0; }
+</style>
 
 </head>
 
