@@ -234,4 +234,32 @@ class Flipkart extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('.prices')->children('.final-price')->html();
+		$offer = pq('.offer-box')->children('.line')->html();
+		$stock = pq('#fk-stock-info-id')->html();
+		$shipping_cost = pq('#fk-mprod-shipping-section-id')->find('.block-headertext:first')->html();
+		$shipping_time = pq('.shipping-details:first')->html();;
+
+		$attr = array();
+		$cat = '';
+		foreach(pq('.fk-lbreadbcrumb')->find('a') as $li){
+			$cat .= pq($li)->html().',';
+		}
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => '',
+				'cat' => $cat
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }

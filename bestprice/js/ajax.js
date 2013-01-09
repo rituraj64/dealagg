@@ -110,7 +110,7 @@ function findPrice(site, cache, trust, changeSubCat, searchThis) {
 		$('#summary').find('#max_time').val(0)
 		$('#summary').find('#time_taken').html('');
 		$('#summary').find('#time').html('');
-		// $('#summary').hide();
+		$('#summary').show();
 		$('#share').hide();
 		$('#share_url').val('');
 		$('#avg_best_price').val(0);
@@ -603,6 +603,7 @@ function calcResult() {
 
 	var fine = true;
 	if ($('#showSuggestion').val() == 0) {
+		console.log('show sugessions are disabled');
 	} else {
 
 		var search = getComparableString($('#q').val());
@@ -628,7 +629,7 @@ function calcResult() {
 
 		// var replace = ('&amp;'=>'and','&'=>'and');
 		for ( var i = 0; i < data.length; i++) {
-			for ( var j = 0; j < data.length; j++) {
+			for ( var j = i; j < data.length; j++) {
 				if (i == j) {
 					continue;
 				}
@@ -654,8 +655,9 @@ function calcResult() {
 			}
 		}
 
-		if (highest_score < Math.ceil(total_sites * .6)) {
+		if (highest_score > Math.ceil(total_sites * .6)) {
 			fine = true;
+			console.log('No Need to show suggesions because of same name ' + highest_score_name + " with entries " + highest_score + " and total sites " + total_sites);
 		} else {
 
 			// find suggesstion based on price
@@ -693,7 +695,9 @@ function calcResult() {
 							out++;
 						}
 					} else {
-
+						if (variation > 20) {
+							out++;
+						}
 					}
 					console.log(pricesArr[i] + ' compare ' + pricesArr[j] + " variation is more than 20% at " + variation)
 				}
@@ -706,7 +710,7 @@ function calcResult() {
 			if (no_result >= Math.floor($('#results').children('.website').length / 2)) {
 				fine = false; // product not found in more than 50% sites.
 			} else {
-				console.log(total_sites + ' tatal sites and  correct sites ' + (total_sites - diff_sites) + " <= " + Math.ceil(total_sites * .6));
+				console.log(total_sites + ' tatal sites and correct sites ' + (total_sites - diff_sites) + " <= " + Math.ceil(total_sites * .5));
 				if ((total_sites - diff_sites) < Math.ceil(total_sites * .5)) { // its
 					// better
 					// if
@@ -829,7 +833,7 @@ function sortResult() {
 
 	// var replace = ('&amp;'=>'and','&'=>'and');
 	for ( var i = 0; i < data.length; i++) {
-		for ( var j = 0; j < data.length; j++) {
+		for ( var j = i; j < data.length; j++) {
 			if (i == j) {
 				continue;
 			}

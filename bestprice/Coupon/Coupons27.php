@@ -75,7 +75,7 @@ class Coupons27 extends Parsingcoupon{
 						$cp->success = $success;
 						$cp->code = $this->_code;
 						$id = $cp->insert();
-						$return[] = $id;
+						$return[] = $title. '     '.$deal_url;
 					}
 				}
 			}else{

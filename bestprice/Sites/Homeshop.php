@@ -166,4 +166,45 @@ class Homeshop extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('.pdp_details_price')->children('#productLayoutForm:OurPrice')->html();
+		$offer = pq('.pdp_details_offer_text:first')->html();
+		$stock = pq('#product_dscrpt_in_stock')->html();
+		if(empty($stock)){
+			if(sizeof(pq('#productLayoutForm:sizedrop'))){
+				$stock = 1;
+				foreach(pq('#productLayoutForm:sizedrop')->children('option') as $o){
+					if(pq($o)->html() != 'Select Value'){
+						if(!isset($attr['Color'])){
+							$attr['Color'] = array();
+						}
+						$attr['Color'][] = pq($o)->html();
+					}
+				}
+			}
+		}
+		$shipping_cost = pq('.pdp_details_freeShipping:first')->html();
+		$shipping_time = pq('.pdp_delivery_time:first')->html();
+
+		$attr = array();
+		$cat = '';
+		foreach(pq('.breadcrumbs')->find('a') as $li){
+			$cat .= pq($li)->html().',';
+		}
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => '',
+				'cat' => $cat
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }

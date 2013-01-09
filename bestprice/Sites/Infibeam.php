@@ -217,4 +217,36 @@ class Infibeam extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('#priceDiv')->find('.infiPrice')->html();
+		$offer = pq('.offer')->children('.offerinner')->html();
+		$stock = pq('#colors')->children('.status')->html();
+		$shipping_cost = pq('#colors')->children('.freeShippingSpan')->html();
+		$shipping_time = pq('#colors')->children('.shippingTimeSpan')->html();
+
+		$attr = array();
+
+		foreach(pq('#colors')->children('.colorlink') as $link){
+			if(!isset($attr['Color'])){
+				$attr['Color'] = array();
+			}
+			$attr['Color'][] = pq($link)->attr('colvalue');
+		}
+		$cat = pq('#productCategory')->attr('val');
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => '',
+				'cat' => $cat
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }

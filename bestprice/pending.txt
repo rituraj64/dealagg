@@ -1,5 +1,8 @@
 First Relase
 
+if there is problem in first trust side in getting results, it gives problem. also with empty result
+also top floater is not working properly
+
 1. coupon code integration
 2. make recent searches pages proper
 4. put in urls for all categories

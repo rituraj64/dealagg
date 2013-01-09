@@ -88,7 +88,7 @@
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			Share Results: <input type='text' id='share_url' value='' style="width: 100%"/>
 		</div>
-		<div class="alert alert-info" id='summary'>
+		<div class="alert alert-info" id='summary' style="display: none">
 			<!-- 
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			 -->
@@ -107,7 +107,7 @@
 					Results As On:
 					<input type='hidden' id='max_time' value="0" /> 
 					<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="Get Latest Results">
-						<span onclick='findPrice("",0,1,false);' style="cursor: pointer;" class='icon-refresh'></span>
+						<span onclick='$("#showSuggestion").val(1);findPrice("",0,1,false);' style="cursor: pointer;" class='icon-refresh'></span>
 					</span> 
 					<h4 id='time'></h4>
 				</div>

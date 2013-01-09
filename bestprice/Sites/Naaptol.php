@@ -126,4 +126,59 @@ class Naaptol extends Parsing{
 		$data = $this->bestMatchData($data, $query,$category,$subcat);
 		return $data;
 	}
+
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('#pro_PriceInfo')->children('strong:first')->html();
+		$offer = '';
+		if(sizeof(pq('#qty_product_0')) > 0){
+			$stock = 1;
+		}else{
+			$stock = -1;
+		}
+
+		if(empty($offer)){
+			$offer = pq('.ntRewardCoin2')->siblings('span')->html();
+		}else{
+			$offer += " + " + pq('.ntRewardCoin2')->siblings('span')->html();
+		}
+
+		$html = pq('.pro_PriceInfo')->find('.option')->html();
+		$html = strip_tags($html);
+		if(str_pos($html,'Free Shipping') !== false){
+			$shipping_cost = 'Free Shipping';
+		}else{
+			$shipping_cost = 'Free Shipping Not Avaiable';
+		}
+
+		$shipping_time = '';
+
+		$attr = array();
+		foreach(pq('#color_product_0')->children('option') as $option){
+			if(pq($option)->html() != 'Select'){
+				if(!isset($attr['Color'])){
+					$attr['Color'] = array();
+				}
+				$attr['Color'][] = pq($option)->html();
+			}
+		}
+		$cat = '';
+		foreach(pq('.bradCrumbDiv')->find('li') as $li){
+			$cat .= pq($li)->children('a')->html().',';
+		}
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => '',
+				'cat' => $cat
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }

@@ -145,6 +145,58 @@ class Parsing{
 		$cacheKey = $website.'-'.$query2.'-'.$category.'-'.$subcat.'-'.md5($url);
 		return $cacheKey;
 	}
+	public function cleanProductData($data){
+		foreach($data as $key => $value){
+			$value = $this->clearHtml($value);
+			$value = utf8_encode($value); //changed for homeshop18
+			$data[$key] = trim($value);
+		}
+
+		foreach($data['attr'] as $key => $value){
+			$n = array();
+			foreach($value as $v){
+				$v = $this->clearHtml($v);
+				$v = utf8_encode($v); //changed for homeshop18
+				$n[] = trim($value);
+			}
+			$data['attr'][$key] = $n;
+		}
+
+		$row['price'] = $this->removeAlpha($row['price'],true);
+		$row['price'] = round($row['price'],2);
+		if($row['price'] > 99999999){
+			$row['price'] = '';
+		}else if($row['price'] == 0){
+			$row['price'] = '';
+		}
+
+		$row['name'] = ucwords($row['name']);
+
+		if($row['stock'] == 0 || $row['stock'] == 1 || $row['stock'] == -1){
+
+		}else{
+			if(strtolower($row['stock']) == 'out of stock'){
+				$row['stock'] = -1;
+			}else if(strtolower($row['stock']) == 'in stock'){
+				$row['stock'] = 1;
+			}else{
+				$row['stock'] = 0;
+			}
+		}
+
+		if(isset($row['author'])){
+			$row['author'] = trim(str_replace("by ", '', $row['author']));
+			$row['author'] = trim(str_replace("By ", '', $row['author']));
+			$row['author'] = trim(str_replace("By: ", '', $row['author']));
+			$row['author'] = trim(str_replace("by: ", '', $row['author']));
+			$row['author'] = trim(str_replace("BY ", '', $row['author']));
+			$row['author'] = trim(str_replace("BY: ", '', $row['author']));
+			$row['author'] = $this->removeSpecial($row['author']);
+		}
+
+		$data2[] = $row;
+		return $data2;
+	}
 	public function cleanData($data,$query){
 		$data2 = array();
 		foreach($data as $row){
@@ -199,6 +251,34 @@ class Parsing{
 			}
 		}
 
+		//make entry into html detecting system
+
+		foreach($data2 as $row){
+			$problem = '';
+			if(empty($row['price']) || $row['price'] <=0 ){
+				$problem .= 'Empty Price Found';
+			}
+			if(empty($row['name'])){
+				$problem .= 'Empty Name Found';
+			}
+			if(empty($row['image'])){
+				$problem .= 'Empty Image Found';
+			}
+			if(empty($row['url'])){
+				$problem .= 'Empty URL Found';
+			}
+			if(!empty($problem)){
+				$problem .= print_r($row,true);
+				require_once dirname(__FILE__).'/model/HtmlDetect.php';
+				$detect = new HtmlDetect();
+				$detect->website = $this->getCode();
+				$url = $this->getSearchURL($query,$category,$subcat);
+				$detect->search_url = $url;
+				$detect->cache_key = $this->getCacheKey($this->getCode(), $query,$category,$subcat, $url);
+				$detect->problem = $problem;
+				$detect->insert();
+			}
+		}
 
 		/*
 		 $data3 = array();
@@ -272,6 +352,9 @@ class Parsing{
 		return array();
 	}
 	public function getFacebookUrl(){
+		return false;
+	}
+	public function getProductData($html,$price,$stock){
 		return false;
 	}
 }

@@ -46,25 +46,25 @@ class Snapdeal extends Parsing{
 			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=228&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=29&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; // memory cards
 			/*
 			 * for mobile acc catogeries later
-			 * 
-			 * if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
-				return "";
+			*
+			* if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
+			return "";
 			}elseif ($subcat == Category::MOB_BATTERY){
-				return "";
+			return "";
 			}elseif ($subcat == Category::MOB_HEADSETS){
-				return "";
+			return "";
 			}elseif ($subcat == Category::MOB_CASES){
-				return "";
+			return "";
 			}elseif ($subcat == Category::MOB_CHARGER){
-				return "";
+			return "";
 			}elseif ($subcat == Category::MOB_HANDSFREE){
-				return "";
+			return "";
 			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
-				return "";
+			return "";
 			}elseif ($subcat == Category::MOB_HEADPHONE){
-				return "";
+			return "";
 			}else return "";
-			 */
+			*/
 		}elseif ($category == Category::COMP_COMPUTER){
 			return "http://www.snapdeal.com/search?keyword=$query&catId=21&categoryId=55&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=57&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
 		}elseif ($category == Category::COMP_LAPTOP){
@@ -209,5 +209,46 @@ class Snapdeal extends Parsing{
 		$data2 = $this->cleanData($data2, $query);
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
+	}
+
+
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('#selling-price-id')->html();
+		$offer = pq('.freebie_text')->html();
+		if(sizeof(pq('.buybutton-wrapper')->children('.prodbuy-button')) > 0){
+			$stock = -1;
+		}else{
+			$stock = 1;
+		}
+		$i = 0;
+		foreach (pq('.shippingSpace') as $div){
+			if($i == 0){
+				$shipping_cost = pq($div)->html();
+			}elseif($i == 1){
+				$shipping_time = pq($div)->html();
+			}
+			$i++;
+		}
+
+		$attr = array();
+		$cat = '';
+		foreach(pq('.bread-crumb')->children('.bread-home') as $li){
+			$cat .= pq($li)->children('a')->children('span')->html().',';
+		}
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => '',
+				'cat' => $cat
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
 	}
 }

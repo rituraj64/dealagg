@@ -43,7 +43,7 @@ class Indiafreestuff extends Parsingcoupon
 					$cp->desc = $span;
 					$cp->code = $this->_code;
 					$id = $cp->insert();
-					$return[] = $id;
+					$return[] = $title.'    '.$href;
 				}
 			}
 		}

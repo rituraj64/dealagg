@@ -66,4 +66,37 @@ class Sulekha extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('.delproprgt')->find('.price')->html();
+		$offer = pq('.bordottpbt')->children('.extxt')->html();
+		$stock = pq('.otstkbt')->html();
+		if($stock == 'OUT OF STOCK'){
+			$stock = -1;
+		}else{
+			$stock = 1;
+		}
+		$shipping_cost = pq('.norhgtx')->html();
+		$shipping_time = pq('.stoshptx')->html();
+
+		$attr = array();
+		$cat = '';
+		foreach(pq('.breadcrumbnw')->children('ul:first')->children('li') as $li){
+			$cat .= pq($li)->children('span')->children('a')->children('span')->html().',';
+		}
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => '',
+				'cat' => $cat
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }

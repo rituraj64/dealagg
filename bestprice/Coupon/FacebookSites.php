@@ -54,7 +54,7 @@ class FacebookSites extends Parsingcoupon{
 					try{
 						$result = $facebook->api($fb_graph_url);
 					}catch(Exception $e){
-						echo $e->getMessage().'xxx'.$fb_graph_url;die;
+						$return[] = $e->getMessage().'xxx'.$fb_graph_url;
 					}
 					if(!isset($result['data'])){
 						echo '<pre>';
@@ -97,7 +97,7 @@ class FacebookSites extends Parsingcoupon{
 								$cp->desc = $picture;
 								$cp->code = $this->_code.' - '.$site;
 								$id = $cp->insert();
-								$return[] = $id;
+								$return[] = $title.'    '.$link;
 							}
 						}
 

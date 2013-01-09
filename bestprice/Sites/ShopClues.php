@@ -128,4 +128,32 @@ class ShopClues extends Parsing{
 		$data = $this->bestMatchData($data, $query,$category,$subcat);
 		return $data;
 	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('.product-prices')->children('.price')->html();
+		$offer = pq('.box_specialoffer')->children('.box_specialoffer_message')->html();
+		$stock = 0;
+		$shipping_cost = '';
+		$shipping_time = pq('.product-list-field:first')->html();;
+
+		$attr = array();
+		$cat = '';
+		foreach(pq('.breadcrumbs')->find('a') as $li){
+			$cat .= pq($li)->html().',';
+		}
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => '',
+				'cat' => $cat
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }

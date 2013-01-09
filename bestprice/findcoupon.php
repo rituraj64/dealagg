@@ -5,6 +5,8 @@ require_once 'phpMailer/class.phpmailer.php';
 require_once 'phpMailer/class.smtp.php';
 require_once 'model/CouponParse.php';
 
+require_once 'detecthtml.php';
+
 $parsing = new Parsingcoupon();
 $sites = $parsing->getCouponWebsites();
 $parser = new Parser();
@@ -63,9 +65,12 @@ $mail = new phpmailer();
 //$mail->Port       = 465;
 ///$mail->Username   = "excellenceseo@gmail.com";
 //$mail->Password   = "seo@1234";
-$mail->setFrom('excellenceseo@gmail.com', 'PriceGenie');
+$mail->setFrom('noreply@pricegenie.in', 'PriceGenie');
 $mail->Subject    =$subject;
 $message = 'Finding Coupon';
+foreach($siteData as $d){
+	$message .= $d. '<br/><br/><br/>';
+}
 $mail->MsgHTML($message);
 
 $mail->AddAddress($to, "Manish");

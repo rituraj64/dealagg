@@ -148,4 +148,36 @@ class Tradus extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('#whole-sale-price')->html();
+		$offer = pq('.tradus-special-offer-midpart')->html();
+		if(sizeof(pq('.sellers-buy-now-button')) > 0){
+			$stock = -1;
+		}else{
+			$stock = 1;
+		}
+		$shipping_cost = pq('.blogdistDiv:first')->find('.priceDiv')->find('.fiLt')->html();;
+		$shipping_time = pq('.blogdistDiv:first')->find('.optionDiv')->html();;
+
+		$attr = array();
+		$cat = '';
+		foreach(pq('#breadcrump')->find('a') as $li){
+			$cat .= pq($li)->children('span')->html().',';
+		}
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => '',
+				'cat' => $cat
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }

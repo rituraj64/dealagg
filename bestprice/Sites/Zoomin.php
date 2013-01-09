@@ -95,4 +95,36 @@ class Zoomin extends Parsing{
 		}
 		return json_decode(trim($jsonp,'();'), $assoc);
 	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('.price:first')->html();
+		$offer = pq('.description-text')->html() + " + Zoomin Freebies";
+		if(sizeof(pq('product-availability')->children('.available'))){
+			$stock = 1;
+		}else{
+			$stock = -1;
+		}
+		$shipping_cost = pq('.freeShippingLabel')->html();
+		$shipping_time = pq('.product-availability')->children('span')->html();
+
+		$attr = array();
+		$cat = '';
+		foreach(pq('.breadcrumbs')->children('a') as $li){
+			$cat .= pq($li)->html().',';
+		}
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => '',
+				'cat' => $cat
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }
