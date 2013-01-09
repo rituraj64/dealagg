@@ -32,6 +32,7 @@
 require_once 'couponClass.php';
 require_once '../smartmodel/UI.php';
 require_once '../Parsing.php';
+$user_parse = new coupon_parse();
 
 $coupon_id="";
 $active_from="";
@@ -49,11 +50,15 @@ $description="";
 $image="";
 $max_discount="";
 $website="";
-	
+$parse_ID="";
+
 if(isset($_REQUEST['deal_url']))
 {
 	$deal_url=$_REQUEST['deal_url'];
-	
+}
+if(isset($_REQUEST['ID']))
+{
+	$parse_ID=$_REQUEST['ID'];
 	
 }
 if(isset($_REQUEST['coupon_code']))
@@ -239,6 +244,7 @@ if(isset($_REQUEST['id']))
 				<td colspan="3"><input type="submit" name="submit_coupon_active" id="submit_coupon_active" value="Submit"></input></td>
 				<?php } ?>
 				<td><input type="hidden" name="hidden_id" value="<?php echo $coupon_id; ?>"></input></td>
+				<td><input type="hidden" name="parse_id" value="<?php echo $parse_ID; ?>"></input></td>
 			</tr>
 		</table>
 	

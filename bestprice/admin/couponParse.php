@@ -87,7 +87,7 @@
 				
 				$.ajax({
 			        url: 'couponActive.php?coupon_code='+coupon_code,
-			        data: 'deal_url='+deal_url+'&description='+dscription,
+			        data: 'deal_url='+deal_url+'&description='+dscription+'&ID='+id,
 			        cache: false,
 			        success:function(xyz){
 						$.fancybox(xyz);
