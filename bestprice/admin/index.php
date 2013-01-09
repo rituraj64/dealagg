@@ -13,6 +13,11 @@
 
 		
 		$(".add_coupon").fancybox();
+
+		$(".add_coupon").click(function(event){
+
+			var id=$(this).parents("tr").children("td:first-child").html();
+		});
 		
 //		$(".add_coupon").click(function(event){
 //			event.preventDefault();
@@ -179,10 +184,9 @@ $website="";
 	
 if(isset($_REQUEST['deal_url']))
 {
-	$deal_url=$_REQUEST['deal_url'];
-	
-	
+	$deal_url=$_REQUEST['deal_url'];	
 }
+
 if(isset($_REQUEST['coupon_code']))
 {
 	$coupon_code=$_REQUEST['coupon_code'];
@@ -220,6 +224,7 @@ if(isset($_REQUEST['id']))
 
 ?>
 <form method="post" action="index.php">
+
 	<table>
 		<tr>
 			<td><label>Active From</label></td>
@@ -380,7 +385,7 @@ if(isset($_REQUEST['id']))
 		<a href="couponParse.php" id="add_coupon">Coupon Parse</a>
 	</div>
 	<div style="float:right; border:solid 1px; margin-bottom:10px; background-color:#494949;border-radius:5px;">
-		<a class="add_coupon" style="text-decoration:none;color:white;" href="#data">Add Coupon</a>
+		<a class="add_coupon" style="text-decoration:none;color:white;" href="#data?ID=1">Add Coupon</a>
 	</div>
 </div>
 <?php 
