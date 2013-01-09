@@ -1,35 +1,17 @@
-<html>
 <head>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="../js/jquery.fancybox.pack.js"></script>
+<script src="../js/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox1.css"></link>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css"></link>
 
 <script type="text/javascript">
 	$(document).ready(function(){
 		
-		$(".add_coupon").click(function(event){
-			event.preventDefault();
-						
-			$(".fancybox").fancybox({
-				'type'			  	: 'ajax',
-				'autoSize'		    : false,
-				'width'		   		:500,
-				'height'			:150,
-				'showOverlay'		:false,
-				
-			});
-			
-			$.ajax({
-				url:'addCouponParse.php',
-				method:'get',
-				success:function(xyz){
-					$.fancybox(xyz);
-				}
-			});
-		});
+		$(".add_coupon").fancybox();
 		
-		$("#bus table tbody tr td table").prepend("<col width=5%><col width=8%><col width=5%><col width=5%><col width=10%><col width=13%><col width=10%><col width=23%><col width=5%><col width=5%><col width=3%><col width=8%>")
+		$("#bus table tbody tr td table").prepend("<col width=3%><col width=5%><col width=5%><col width=5%><col width=10%><col width=14%><col width=14%><col width=23%><col width=5%><col width=5%><col width=3%><col width=8%>")
 		$(".form").children("col").hide();
 		$("#bus table tbody tr td table td:nth-child(5)").each(function(i){
 			var deal_url=$(this).text();
@@ -56,12 +38,14 @@
 		$("#bus table tbody tr td table td").attr("align","center");
 		$("#bus table").attr("border","1");
 		$(".form").attr("border","0");
+
+		$(".fancylink").fancybox();
 		
 		$(".read_status").change(function(event){
 			
 			var id=$(this).parent("td").parent("tr").children("td:first-child").html();
-			var coupon_code=$(this).parent("td").parent("tr").children("td:nth-child(3)").html();
-			var dscription=$(this).parent("td").parent("tr").children("td:nth-child(8)").html();
+			var coupon_code=$(this).parent("td").parent("tr").children("td:nth-child(3)").text();
+			var dscription=$(this).parent("td").parent("tr").children("td:nth-child(8)").text();
 			
 			var deal_url=$(this).parent("td").parent("tr").find("a").attr("href");
 			var readStatus=$("#read-status").val();
@@ -75,25 +59,41 @@
 			
 			if(status_val=="2")
 			{
-				event.preventDefault();
-				$(".fancybox").fancybox({
-					'type'			  	: 'ajax',
-					'autoSize'		    : false,
-					'width'		   		:500,
-					'height'			:250,
-					'showOverlay'		:false,
-					
-				});
 				
-				$.ajax({
-			        url: 'couponActive.php?coupon_code='+coupon_code,
-			        data: 'deal_url='+deal_url+'&description='+dscription+'&ID='+id,
-			        cache: false,
-			        success:function(xyz){
-						$.fancybox(xyz);
-						
+				$("a.fancylink").trigger("click");
+				$("#coupon_code").val(coupon_code);
+				$("#description").val(dscription);
+				$("#deal_url").val(deal_url);
+				$("#parse_id").val(id);
+				$(".website_option").each(function(){
+					
+					var option_value=$(this).val();
+					optionValue=option_value.toLowerCase();
+					deal_url=deal_url.toLowerCase();
+					var n=deal_url.indexOf(optionValue);
+					if(n!=-1)
+					{
+						$("#website").val(option_value);
 					}
-			    });  
+				});
+//				$(".fancybox").fancybox({
+//					'type'			  	: 'iframe',
+//					'autoSize'		    : false,
+//					'width'		   		:500,
+//					'height'			:250,
+//					'showOverlay'		:false,
+//					'href'				:'couponParse.php',
+//				});
+				
+//				$.ajax({
+//			        url: 'couponActive.php?coupon_code='+coupon_code,
+//			        data: 'deal_url='+deal_url+'&description='+dscription+'&ID='+id,
+//			        cache: false,
+//			        success:function(xyz){
+//						$.fancybox(xyz);
+//						
+//					}
+//			    });  
 			    
 			}
 			else
@@ -108,7 +108,6 @@
 						{
 							abc.parent("td").parent("tr").hide();
 						}
-						
 					}
 			       
 			    });  
@@ -136,6 +135,7 @@
 				$(this).attr("href",aa);
 			}
 		});
+		$("#parse_data").attr("border","0");
 		$("#paging-form").submit(function(){
 			
 			var readStatus=$("#read-status").val();
@@ -160,6 +160,16 @@
 				$(this).children("table").before("<input type='hidden' name='status' value='0'></input>");
 			}
 		});
+		$("#active_from" ).datepicker({
+		   dateFormat: 'yy-mm-dd',
+		   changeMonth:true,
+		   changeYear:true,
+		 });
+		$("#active_to" ).datepicker({
+		   dateFormat: 'yy-mm-dd',
+		   changeMonth:true,
+		   changeYear:true,
+		 });
 	});
 
 </script>
@@ -198,6 +208,11 @@
 		word-wrap:break-word;
 	}
 	
+   .ui-datepicker { width: 12em; padding: .2em .2em 0; display: none; }
+   .ui-datepicker table {width: 100%; font-size: .7em; border-collapse: collapse; margin:0 0 .4em; }
+   .ui-datepicker .ui-datepicker-title select { font-size:15px; margin:1px 0; }
+
+	
 </style>
 
 </head>
@@ -220,7 +235,7 @@ require_once '../smartmodel/UI/Util/UIUtil.php';
 			<option <?php if(isset($_REQUEST['status'])){ if($_REQUEST['status']==1) { ?> selected <?php  }  } ?> value=1>Ignore</option>
 		</select>
 		<div style="float:right; border:solid 1px; margin-bottom:10px; background-color:#494949;border-radius:5px;">
-			<a class="add_coupon" style="text-decoration:none;color:white;" href="#">Add Coupon</a>
+			<a class="add_coupon" style="text-decoration:none;color:white;" href="#parse_data">Add Coupon</a>
 		</div>
 	</div>
 	
@@ -232,11 +247,11 @@ $util=new UIUtil();
 if(isset($_REQUEST['submit_coupon_parse']))
 {
 	$uniq_id=$_REQUEST['uniq_id'];
-	$coupon_code=$_REQUEST['coupon_code'];
+	$coupon_code=$_REQUEST['parse_coupon_code'];
 	$coupon_type=$_REQUEST['coupon_type'];
-	$deal_url=$_REQUEST['deal_url'];
+	$deal_url=$_REQUEST['parse_deal_url'];
 	$title=$_REQUEST['title'];
-	$website=$_REQUEST['website'];
+	$website=$_REQUEST['parse_website'];
 	$desc=$_REQUEST['desc'];
 	$success=$_REQUEST['success'];
 	$code=$_REQUEST['code'];
@@ -316,6 +331,10 @@ Function read_stat($row){
 	}
 }
 //code ends here for adding a new column to a table
+?>
+	<div style="display:none"><a href="#pdata" class="fancylink">Click</a></div>
+<?php 
+
 
 //code starts here for sorting the column ID in descending order
 $usersTable->sortCol='id'; 
@@ -344,6 +363,229 @@ echo $table;
 	}
 	
 ?>
-
 </div>
-</html>
+<div style="clear:both;"></div>
+
+<!--code starts here for adding a new coupon to coupon parse table-->
+<div  name="parse_data" >
+	
+		<table style="display:none" id="parse_data">
+			<form method="post" name="add_parse" action="couponParse.php">
+			<tr>
+				<td><label>Unique ID</label></td>
+				<td><input type="text" name="uniq_id" id="uniq_id"></input></td>
+				<td><span id="uniq_idErr"></span></td>
+			</tr>
+			<tr>
+				<td><label>Coupon Code</label></td>
+				<td><input type="text" name="parse_coupon_code" id="parse_coupon_code"></input></td>
+				<td><span id="parse_coupon_codeErr"></span></td>
+			</tr>
+			<tr>
+				<td><label>Coupon Type</label></td>
+				<td><input type="text" name="coupon_type" id="coupon_type"></input></td>
+				<td><span id="coupon_typeErr"></span></td>
+			</tr>
+			<tr>
+				<td><label>Deal URL</label></td>
+				<td><input type="text" name="parse_deal_url" id="parse_deal_url"></input></td>
+				<td><span id="parse_deal_urlErr"></span></td>
+			</tr>
+			<tr>
+				<td><label>Title</label></td>
+				<td><input type="text" name="title" id="title"></input></td>
+				
+				<td><span id="titleErr"></span></td>
+			</tr>
+			<tr>
+				<td><label>Website</label></td>
+				<td><input type="text" name="parse_website" id="parse_website"></input></td>
+				<td><span id="parse_websiteErr"></span></td>
+			</tr>
+			<tr>
+				<td><label>Description</label></td>
+				<td>
+					<textarea rows="10" cols="30" name="desc" id="desc"></textarea>
+				</td>
+				<td><span id="descErr"></span></td>
+			</tr>
+			<tr>
+				<td><label>Success</label></td>
+				<td><input type="text" name="success" id="success"></input></td>
+				<td><span id="successErr"></span></td>
+			</tr>
+			<tr>
+				<td><label>Code</label></td>
+				<td><input type="text" name="code" id="code"></input></td>
+				<td><span id="codeErr"></span></td>
+			</tr>
+			<tr>
+				<td><label>Status</label></td>
+				<td>
+					<select id="status" name="status">
+						<option value="0">Read</option>
+						<option value="1">Ignore</option>
+					</select>
+				</td>
+				<td><span id="statusErr"></span></td>
+			</tr>
+			<tr>
+				<td colspan="3"><input type="submit" name="submit_coupon_parse" id="submit_coupon_parse" value="Submit"></input></td>
+			</tr>
+			</form>
+		</table>
+		
+</div>
+
+<!--code ends here for adding a new coupon to coupon parse table-->
+
+
+<!--code starts here for adding a new coupon to coupon active table-->
+<div style="display:none" name="pdata1" id="pdata">
+<?php 
+
+require_once '../Parsing.php';
+
+?>
+<form method="post" name="add_parse" action="index.php">
+
+	<table>
+		<tr>
+			<td><label>Active From</label></td>
+			<td><input type="text"  name="active_from" id="active_from"></input></td>
+			<td><span id="active_fromErr"></span></td>
+		</tr>
+		<tr>
+			<td><label>Active To</label></td>
+			<td><input type="text"  name="active_to" id="active_to"></input></td>
+			<td><span id="active_toErr"></span></td>
+		</tr>
+		<tr>
+			<td><label>Discount</label></td>
+			<td><input type="text"  name="discount" id="discount"></input></td>
+			<td><span id="discountErr"></span></td>
+		</tr>
+		<tr>
+			<td><label>Max Discount</label></td>
+			<td><input type="text"  name="max_discount" id="max_discount"></input></td>
+			<td><span id="max_discountErr"></span></td>
+		</tr>
+		<tr>
+			<td><label>Discount Type</label></td>
+			<td>
+				<select name="discount_type" id="discount_type">
+					<option value="0">Select</option>
+					<option value="percentage">Percentage</option>
+					<option value="fixed">Fixed</option>
+				</select>
+			</td>
+			<td><span id="discount_typeErr"></span></td>
+		</tr>
+		<tr>
+			<td><label>Category</label></td>
+			<td>
+				<select multiple name="category[]" id="category">
+					<option selected value="-1">Select</option>
+					<?php
+		  	 			require_once '../Category.php';
+		  	 			$catObj = new Category();
+		  	 			$cats = $catObj->getStoreCategory();
+		  	 			
+		  	 			foreach($cats as $key => $cat){
+		  	 				if(is_array($cat)){$cat = key($cat);}
+		  	 		?>
+					<option value="<?php echo $key;?>"><?php echo $cat;?></option>
+	  	 		<?php } ?>
+				</select>
+			</td>
+			
+			<td><span id="categoryErr"></span></td>
+		</tr>
+		<tr>
+			<td><label>Product</label></td>
+			<td><input type="text"  name="product" id="product"></input></td>
+			<td><span id="productErr"></span></td>
+		</tr>
+		
+		<tr>
+			<td><label>Deal URL</label></td>
+			<td><input type="text"  name="deal_url" id="deal_url"></input></td>
+			<td><span id="deal_urlErr"></span></td>
+		</tr>
+		<tr>
+			<td><label>Website</label></td>
+			<td>
+				<?php $p = new Parsing();
+					  $sites = $p->getWebsites();
+				?>
+				<select name="website" id="website">
+					
+					<?php foreach($sites as $site)  {?>
+					
+					
+					<option class="website_option" value="<?php echo $site; ?>"><?php echo $site; ?></option>
+					<?php } ?>
+				</select>
+			</td>
+			<td><span id="min_amtErr"></span></td>
+		</tr>
+		<tr>
+			<td><label>Deal Type</label></td>
+			<td>
+				<select name="deal_type" id="deal_type">
+					<option>Select</option>
+					<option  value="Fixed">Fixed</option>
+					<option  value="Upto">Upto</option>
+					<option  value="Conditions">Conditions</option>
+				</select>
+			<td><span id="deal_typeErr"></span></td>
+		</tr>
+		<tr>
+			<td><label>Coupon Code</label></td>
+			<td><input type="text"  name="coupon_code" id="coupon_code"></input></td>
+			<td><span id="coupon_codeErr"></span></td>
+		</tr>
+		<tr>
+			<td><label>Minimim Amount</label></td>
+			<td><input type="text"  name="min_amt" id="min_amt"></input></td>
+			<td><span id="min_amtErr"></span></td>
+		</tr>
+		<tr>
+			<td>Bank</td>
+			<td>
+				<select name="bank" id="bank">
+					<option value="None">Select</option>
+					<option value="HDFC">HDFC</option>
+					<option value="PNB">PNB</option>
+					<option value="ICICI">ICICI</option>
+					<option value="SBI">SBI</option>
+					<option value="HSBC">HSBC</option>
+					<option value="CANARA">Canara</option>
+					<option value="CITY_BANK">City Bank</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Image</label></td>
+			<td><input type="text" name="image"  id="image"></input></td>
+			<td><span id="imageErr"></span></td>
+		</tr>
+		<tr>
+			<td><label>Description</label></td>
+			<td>
+				<textarea rows="10" cols="30" name="description" id="description"></textarea>
+			</td>
+			<td><span id="descriptionErr"></span></td>
+		</tr>
+		<tr>
+			
+			<td colspan="3"><input type="submit" name="submit_coupon_active" id="submit_coupon_active" value="Submit"></input></td>
+			
+			<td><input type="hidden" id="hidden_id" name="hidden_id"></input></td>
+			<td><input type="hidden" id="parse_id" name="parse_id"></input></td>
+		</tr>
+	</table>
+	
+</form>
+</div>
+<!--code ends here for adding a new coupon to coupon active table-->

@@ -13,41 +13,44 @@
 		$("#bus table").attr("border","1");
 		$(".form").attr("border","0");
 
-		
+		$("#bus table tbody tr td table").prepend("<col width=4%><col width=6%><col width=6%><col width=7%><col width=7%><col width=9%><col width=8%><col width=9%><col width=22%><col width=14%><col width=14%><col width=6%><col width=6%><col width=8%><col width=7%><col width=6%><col width=8%>")
+		$(".form").children("col").hide();
 		$(".add_coupon").fancybox();
 
 		$(".add_coupon").click(function(event){
 
 			var id=$(this).parents("tr").children("td:first-child").html();
-			var active_from=$(this).parents("tr").children("td:nth-child(2)").html();
-			var active_to=$(this).parents("tr").children("td:nth-child(3)").html();
-			var discount=$(this).parents("tr").children("td:nth-child(4)").html();
-			var max_discount=$(this).parents("tr").children("td:nth-child(5)").html();
-			var discount_type=$(this).parents("tr").children("td:nth-child(6)").html();
-			var category=$(this).parents("tr").children("td:nth-child(7)").html();
-			var product=$(this).parents("tr").children("td:nth-child(8)").html();
-			var description=$(this).parents("tr").children("td:nth-child(9)").html();
-			var deal_url=$(this).parents("tr").children("td:nth-child(10)").html();
-			var website=$(this).parents("tr").children("td:nth-child(11)").html();
-			var deal_type=$(this).parents("tr").children("td:nth-child(12)").html();
-			var coupon_code=$(this).parents("tr").children("td:nth-child(13)").html();
-			var min_amt=$(this).parents("tr").children("td:nth-child(14)").html();
-			var bank=$(this).parents("tr").children("td:nth-child(15)").html();
-			var image=$(this).parents("tr").children("td:nth-child(16)").html();
-
+			var active_from=$(this).parents("tr").children("td:nth-child(2)").text();
+			var active_to=$(this).parents("tr").children("td:nth-child(3)").text();
+			var discount=$(this).parents("tr").children("td:nth-child(4)").text();
+			var max_discount=$(this).parents("tr").children("td:nth-child(5)").text();
+			var discount_type=$(this).parents("tr").children("td:nth-child(6)").text();
+			var category=$(this).parents("tr").children("td:nth-child(7)").text();
+			var product=$(this).parents("tr").children("td:nth-child(8)").text();
+			var description=$(this).parents("tr").children("td:nth-child(9)").text();
+			var deal_url=$(this).parents("tr").children("td:nth-child(10)").text();
+			var website=$(this).parents("tr").children("td:nth-child(11)").text();
+			var deal_type=$(this).parents("tr").children("td:nth-child(12)").text();
+			var coupon_code=$(this).parents("tr").children("td:nth-child(13)").text();
+			var min_amt=$(this).parents("tr").children("td:nth-child(14)").text();
+			var bank=$(this).parents("tr").children("td:nth-child(15)").text();
+			var image=$(this).parents("tr").children("td:nth-child(16)").text();
+			var cat=category.split(',');
 			
 			active_from=new Date(active_from*1000);
 			active_to=new Date(active_to*1000);
 			//active_from.format("YYYY-mm-dd");
-			
-			
+			active_from=('0'+active_from.getFullYear()).substr(-2,2)+'-'+('0'+active_from.getMonth()+1).substr(-2,2)+'-'+('0'+active_from.getDate()).substr(-2,2);
+			active_to=('0'+active_to.getFullYear()).substr(-2,2)+'-'+('0'+active_to.getMonth()+1).substr(-2,2)+'-'+('0'+active_to.getDate()).substr(-2,2);
+
 			$("#hidden_id").val(id);
 			$("#active_from").val(active_from);
 			$("#active_to").val(active_to);
 			$("#discount").val(discount);
 			$("#max_discount").val(max_discount);
 			$("#discount_type").val(discount_type);
-			$("#category").val(category);
+			$("#category").val(cat);
+			
 			$("#product").val(product);
 			$("#description").val(description);
 			$("#deal_url").val(deal_url);
@@ -90,7 +93,8 @@
 		   changeMonth:true,
 		   changeYear:true,
 		 });
-		$("#bus table tbody tr td table td:nth-child(9)").each(function(i){
+		 
+		$("#bus table tbody tr td table td:nth-child(10)").each(function(i){
 			var deal_url=$(this).text();
 			if(deal_url==" ")
 			{
@@ -106,6 +110,32 @@
 </script>
 
 <style type="text/css">
+	
+	#bus table tbody tr td table
+	{
+		table-layout:fixed;
+	}
+	
+	#bus table tbody tr td table td:nth-child(1n+1)
+	{
+		width:30px !important;
+		overflow:hidden;
+		word-wrap:break-word;
+	}
+	#bus table tbody tr td table th:nth-child(1n+1)
+	{
+		width:30px !important;
+		overflow:hidden;
+		word-wrap:break-word;
+	}
+	#bus table tbody tr td table td:last-child
+	{
+		width:60px !important;
+		word-wrap:break-word;
+	}
+	
+	
+
    .ui-datepicker { width: 12em; padding: .2em .2em 0; display: none; }
    .ui-datepicker table {width: 100%; font-size: .7em; border-collapse: collapse; margin:0 0 .4em; }
    .ui-datepicker .ui-datepicker-title select { font-size:15px; margin:1px 0; }
@@ -132,7 +162,6 @@ if(isset($_REQUEST['submit_coupon_active']))
 	$active_to=strtotime($_REQUEST['active_to']);
 	$discount=$_REQUEST['discount'];
 	$discount_type=$_REQUEST['discount_type'];
-	$category=$_REQUEST['category'];
 	$product=$_REQUEST['product'];
 	$deal_url=$_REQUEST['deal_url'];
 	$deal_type=$_REQUEST['deal_type'];
@@ -143,6 +172,8 @@ if(isset($_REQUEST['submit_coupon_active']))
 	$image=$_REQUEST['image'];
 	$max_discount=$_REQUEST['max_discount'];
 	$website=$_REQUEST['website'];
+	$category=$_REQUEST['category'];
+	$cat_values=join(',',$category);
 	
 	if(($id=="undefined")||($id==""))
 	{
@@ -150,7 +181,7 @@ if(isset($_REQUEST['submit_coupon_active']))
 		$user->active_to=$active_to;
 		$user->discount=$discount;
 		$user->discount_type=$discount_type;
-		$user->category=$category;
+		$user->category=$cat_values;
 		$user->product=$product;
 		$user->deal_url=$deal_url;
 		$user->deal_type=$deal_type;
@@ -168,19 +199,21 @@ if(isset($_REQUEST['submit_coupon_active']))
 	}
 	else
 	{
-		$set=array("active_from"=>$active_from,"active_to"=>$active_to,"discount"=>$discount,"discount_type"=>$discount_type,"category"=>$category,"product"=>$product,"deal_url"=>$deal_url,"deal_type"=>$deal_type,"coupon_code"=>$coupon_code,"min_amt"=>$min_amt,"bank"=>$bank,"description"=>$description,"image"=>$image,"max_discount"=>$max_discount,"website"=>$website);
+		$set=array("active_from"=>$active_from,"active_to"=>$active_to,"discount"=>$discount,"discount_type"=>$discount_type,"category"=>$cat_values,"product"=>$product,"deal_url"=>$deal_url,"deal_type"=>$deal_type,"coupon_code"=>$coupon_code,"min_amt"=>$min_amt,"bank"=>$bank,"description"=>$description,"image"=>$image,"max_discount"=>$max_discount,"website"=>$website);
 		$where = array("id"=>$id);
 		$user->update($set,$where);
 	}
-	
-	if($_REQUEST['parse_id']!="")
+	if(isset($_REQUEST['parse_id']))
 	{
-		$parse_id=$_REQUEST['parse_id'];
-		$read=1;
-	
-		$set=array("read"=>$read);
-		$where = array("id"=>$parse_id);
-		$user_parse->update($set,$where);
+		if($_REQUEST['parse_id']!="")
+		{
+			$parse_id=$_REQUEST['parse_id'];
+			$read=1;
+		
+			$set=array("read"=>$read);
+			$where = array("id"=>$parse_id);
+			$user_parse->update($set,$where);
+		}
 	}
 	
 }
@@ -241,67 +274,7 @@ $usersTable-> setColumnNameMapping($field);
 
 require_once '../Parsing.php';
 
-$coupon_id="";
-$active_from="";
-$active_to="";
-$discount="";
-$discount_type="";
-$category="";
-$product="";
-$deal_url="";
-$deal_type="";
-$coupon_code="";
-$min_amt="";
-$bank="";
-$description="";
-$image="";
-$max_discount="";
-$website="";
-$parse_ID="";
 
-if(isset($_REQUEST['deal_url']))
-{
-	$deal_url=$_REQUEST['deal_url'];	
-}
-if(isset($_REQUEST['ID']))
-{
-	$parse_ID=$_REQUEST['ID'];
-	
-}
-if(isset($_REQUEST['coupon_code']))
-{
-	$coupon_code=$_REQUEST['coupon_code'];
-}
-if(isset($_REQUEST['description']))
-{
-	$description=$_REQUEST['description'];
-}
-if(isset($_REQUEST['id']))
-{
-	if($_REQUEST['id']!="undefined")
-	{
-		$coupon_id=$_REQUEST['id'];
-		$user = new coupon_active();
-		$user->id = $coupon_id;
-		$data=$user->read();
-		
-		$active_from=$data[0]['active_from'];
-		$active_to=$data[0]['active_to'];
-		$discount=$data[0]['discount'];
-		$discount_type=$data[0]['discount_type'];
-		$category=$data[0]['category'];
-		$product=$data[0]['product'];
-		$deal_url=$data[0]['deal_url'];
-		$deal_type=$data[0]['deal_type'];
-		$coupon_code=$data[0]['coupon_code'];
-		$min_amt=$data[0]['min_amt'];
-		$bank=$data[0]['bank'];
-		$description=$data[0]['description'];
-		$image=$data[0]['image'];
-		$max_discount=$data[0]['max_discount'];
-		$website=$data[0]['website'];
-	}
-}
 
 ?>
 <form method="post" action="index.php">
@@ -332,8 +305,8 @@ if(isset($_REQUEST['id']))
 			<td>
 				<select name="discount_type" id="discount_type">
 					<option value="0">Select</option>
-					<option <?php if($discount_type=="percentage"){ ?> selected<?php } ?> value="percentage">Percentage</option>
-					<option <?php if($discount_type=="fixed"){ ?> selected<?php } ?> value="fixed">Fixed</option>
+					<option value="percentage">Percentage</option>
+					<option value="fixed">Fixed</option>
 				</select>
 			</td>
 			<td><span id="discount_typeErr"></span></td>
@@ -341,8 +314,8 @@ if(isset($_REQUEST['id']))
 		<tr>
 			<td><label>Category</label></td>
 			<td>
-				<select multiple name="category" id="category">
-					<option value="0">Select</option>
+				<select multiple name="category[]" id="category">
+					<option selected value="-1">Select</option>
 					<?php
 		  	 			require_once '../Category.php';
 		  	 			$catObj = new Category();
@@ -351,7 +324,7 @@ if(isset($_REQUEST['id']))
 		  	 			foreach($cats as $key => $cat){
 		  	 				if(is_array($cat)){$cat = key($cat);}
 		  	 		?>
-					<option <?php if($category==$key){ ?> selected <?php } ?> value="<?php echo $key;?>"><?php echo $cat;?></option>
+					<option value="<?php echo $key;?>"><?php echo $cat;?></option>
 	  	 		<?php } ?>
 				</select>
 			</td>
@@ -375,23 +348,13 @@ if(isset($_REQUEST['id']))
 				<?php $p = new Parsing();
 					  $sites = $p->getWebsites();
 				?>
-				<select name="website">
-					<option value="0">Select</option>
+				<select name="website" id="website">
 					
 					<?php foreach($sites as $site)  {?>
 					
-					<?php if(isset($_REQUEST['deal_url'])) 
-					{
-						
-						 if(preg_match("/".$site."/i",$_REQUEST['deal_url']))
-						 {
-						 	$website=$site;
-						 }
-					}
 					
-					?>
 						
-					<option <?php if($website==$site){ ?>selected<?php } ?> value="<?php echo $site; ?>"><?php echo $site; ?></option>
+					<option value="<?php echo $site; ?>"><?php echo $site; ?></option>
 					<?php } ?>
 				</select>
 			</td>
@@ -400,11 +363,11 @@ if(isset($_REQUEST['id']))
 		<tr>
 			<td><label>Deal Type</label></td>
 			<td>
-				<select name="deal_type">
+				<select name="deal_type" id="deal_type">
 					<option>Select</option>
-					<option <?php if($deal_type=="Fixed"){ ?> selected <?php } ?> value="Fixed">Fixed</option>
-					<option <?php if($deal_type=="Upto"){ ?> selected <?php } ?> value="Upto">Upto</option>
-					<option <?php if($deal_type=="Conditions"){ ?> selected <?php } ?> value="Conditions">Conditions</option>
+					<option  value="Fixed">Fixed</option>
+					<option  value="Upto">Upto</option>
+					<option  value="Conditions">Conditions</option>
 				</select>
 			<td><span id="deal_typeErr"></span></td>
 		</tr>
@@ -421,15 +384,15 @@ if(isset($_REQUEST['id']))
 		<tr>
 			<td>Bank</td>
 			<td>
-				<select name="bank">
+				<select name="bank" id="bank">
 					<option value="None">Select</option>
-					<option <?php if($bank=="HDFC"){ ?>selected<?php } ?> value="HDFC">HDFC</option>
-					<option <?php if($bank=="PNB"){ ?>selected<?php } ?> value="PNB">PNB</option>
-					<option <?php if($bank=="ICICI"){ ?>selected<?php } ?> value="ICICI">ICICI</option>
-					<option <?php if($bank=="SBI"){ ?>selected<?php } ?> value="SBI">SBI</option>
-					<option <?php if($bank=="HSBC"){ ?>selected<?php } ?> value="HSBC">HSBC</option>
-					<option <?php if($bank=="CANARA"){ ?>selected<?php } ?> value="CANARA">Canara</option>
-					<option <?php if($bank=="CITY_BANK"){ ?>selected<?php } ?> value="CITY_BANK">City Bank</option>
+					<option value="HDFC">HDFC</option>
+					<option value="PNB">PNB</option>
+					<option value="ICICI">ICICI</option>
+					<option value="SBI">SBI</option>
+					<option value="HSBC">HSBC</option>
+					<option value="CANARA">Canara</option>
+					<option value="CITY_BANK">City Bank</option>
 				</select>
 			</td>
 		</tr>
@@ -446,13 +409,10 @@ if(isset($_REQUEST['id']))
 			<td><span id="descriptionErr"></span></td>
 		</tr>
 		<tr>
-			<?php if(isset($_REQUEST['id'])) { ?>
-			<td colspan="3"><input type="submit" name="update_coupon_active" id="update_coupon_active" value="Update"></input></td>
-			<?php } else { ?>
+			
 			<td colspan="3"><input type="submit" name="submit_coupon_active" id="submit_coupon_active" value="Submit"></input></td>
-			<?php } ?>
+			
 			<td><input type="hidden" id="hidden_id" name="hidden_id"></input></td>
-			<td><input type="hidden" name="parse_id" value="<?php echo $parse_ID; ?>"></input></td>
 		</tr>
 	</table>
 	
