@@ -27,8 +27,8 @@ class FutureBazar extends Parsing{
 			$href = pq($item)->find("a")->attr("href");
 			$href="http://www.futurebazaar.com".$href;
 			$off_percent = trim(pq($class_Discount_bg)->find(".home_sprite>span>strong")->text());
-			$img_src = pq($class_Discount_bg)->find(".imgbottom>img")->attr("src");
-			$img_src="http://www.futurebazaar.com".$img_src;
+			$img_src = pq($class_Discount_bg)->find(".podimg")->attr("prodsrc");
+			//$img_src="http://www.futurebazaar.com".$img_src;
 			$price = trim(pq($item)->find(".offer_price")->text());
 			$name = trim(pq($item)->find("h3>a")->text());
 		//	$time_left = pq($item)->find(".countdown_row")->text();

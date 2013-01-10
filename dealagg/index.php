@@ -98,30 +98,27 @@
 	</tr>	
 	<tr>
 		<th style="width:20%;">Name</th>
-		<th>Url</th>
-		<th>Price</th>
-		<th>ImageUrl</th>
-		<th>Discount</th>
+		<th>Price With Discount</th>
+		<th>Image</th>
+		
 	</tr>	
 	
 		<?php for($j=0;$j<$dealdata;$j=$j+1){ ?>
 		<tr>
 		
 		<td>
-				<?php echo $siteData[$i][$j]['name'];?>
+				<a href="<?php echo $siteData[$i][$j]['href'];?>" target="_blank"><?php echo $siteData[$i][$j]['name'];?></a>
+		</td>
+		<td>
+				Price :<?php echo $siteData[$i][$j]['price'];?><br/>
+				Discount :<?php echo $siteData[$i][$j]['off'];?>
 		</td>
 		<td width="100">
-				<?php echo $siteData[$i][$j]['href'];?>
+				
+				<img src="<?php echo $siteData[$i][$j]['image'];?>" height="100" width="100"/><br/>
+				<a href="<?php echo $siteData[$i][$j]['image'];?>" target="_blank">Full Image View</a>
 		</td>
-		<td width="100">
-				<?php echo $siteData[$i][$j]['price'];?>
-		</td>
-		<td width="100">
-				<?php echo $siteData[$i][$j]['image'];?>
-		</td>
-		<td width="100">
-				<?php echo $siteData[$i][$j]['off'];?>
-		</td>
+		
 		</tr>
 		<?php } ?>	
 	
@@ -140,8 +137,9 @@
 ?>
 
 <style type="text/css">
-table.dealtable {background-color:transparent;border-collapse:collapse;width:100%;}
+table.dealtable {background-color:transparent;border-collapse:collapse;width:90%;margin-left: 64px;
+    margin-top: 24px;}
 table.dealtable th, table.dealtable td {text-align:center;border:1px solid black;padding:5px;}
-table.dealtable th {background-color:AntiqueWhite;}
-table.dealtable td:first-child {width:20%;}
+table.dealtable th {background-color:AntiqueWhite;width: 100px;}
+
 </style>
