@@ -78,7 +78,8 @@
 		 
 		$("#bus table tbody tr td table td:nth-child(10)").each(function(i){
 			var deal_url=$(this).text();
-			if(deal_url==" ")
+			
+			if(deal_url=="")
 			{
 				$(this).html("<a href=# target=_blank>"+deal_url+"</a>");
 			}
@@ -356,6 +357,7 @@ require_once '../Parsing.php';
 					<option value="HSBC">HSBC</option>
 					<option value="CANARA">Canara</option>
 					<option value="CITY_BANK">City Bank</option>
+					<option value="Axis">Axis</option>
 				</select>
 			</td>
 		</tr>
