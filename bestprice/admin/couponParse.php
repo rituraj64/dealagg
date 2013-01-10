@@ -539,6 +539,7 @@ require_once '../Parsing.php';
 					<option value="HSBC">HSBC</option>
 					<option value="CANARA">Canara</option>
 					<option value="CITY_BANK">City Bank</option>
+					<option value="Axis">Axis</option>
 				</select>
 			</td>
 		</tr>
