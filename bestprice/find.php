@@ -1,6 +1,7 @@
 <?php
 date_default_timezone_set('Asia/Calcutta');
 require_once 'Parsing.php';
+
 if(isset($_REQUEST['q'])){
 	$query = urlencode($_REQUEST['q']);
 	$query2 = urldecode($_REQUEST['q']);
@@ -103,6 +104,7 @@ if(isset($_REQUEST['q'])){
 		$site = $_REQUEST['site'];
 	}
 	$return = array('untrusted'=>$untrusted,'query_id'=>$query_id,'ajax_parse'=>$ajaxParseSite,'data'=>$data,'result_time'=>date('d/m/y h:i a',$max),'result_number_time'=>$max,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site);
+	
 	if(!isset($_REQUEST['silent'])){
 		if(isset($_GET['callback'])){
 			echo $_GET['callback'] . '(' . json_encode($return) . ')';
