@@ -20,6 +20,7 @@ class Tradus extends Parsing{
 		phpQuery::newDocumentHTML($html);
 		$data = array();
 		$data['logo'] = $this->getLogo();
+		$data['sitename']="Tradus.com";
 		foreach (pq(".cartList") as $item)
 		{
 			$class_Discount_bg = pq($item)->find(".Discount_bg");

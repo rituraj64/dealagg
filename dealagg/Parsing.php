@@ -8,7 +8,7 @@ class Parsing
 	}
 	
 	public function getWebsites(){
-		return array('Tradus');
+		return array('Tradus','FutureBazar','Sulekha');
 	}
 	
 }

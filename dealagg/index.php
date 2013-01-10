@@ -24,7 +24,7 @@
 		$siteObj = new $site;
 		try
 		{
-			$siteData = $siteObj->getAllData();//get all the avilable data
+			$siteData[] = $siteObj->getAllData();//get all the avilable data
 		}
 		catch(Exception $e)
 		{
@@ -81,10 +81,55 @@
 <?php 
 */
 	}//end all sites foreach
-	echo"<pre>";
+	/*  echo"<pre>";
 	print_r($siteData);
-	echo"</pre>";
-?>
+	echo"</pre>";  */
+	$dealcount=count($siteData);
+	?>
+	
+	<table class="dealtable">
+	
+<?php 	
+	for($i=0;$i<$dealcount;$i=$i+1){
+		//echo $i;
+		$dealdata= count($siteData[$i])-2; ?>
+	<tr>
+	<th colspan="5"><?php echo $siteData[$i]['sitename'];?></th>
+	</tr>	
+	<tr>
+		<th style="width:20%;">Name</th>
+		<th>Url</th>
+		<th>Price</th>
+		<th>ImageUrl</th>
+		<th>Discount</th>
+	</tr>	
+	
+		<?php for($j=0;$j<$dealdata;$j=$j+1){ ?>
+		<tr>
+		
+		<td>
+				<?php echo $siteData[$i][$j]['name'];?>
+		</td>
+		<td width="100">
+				<?php echo $siteData[$i][$j]['href'];?>
+		</td>
+		<td width="100">
+				<?php echo $siteData[$i][$j]['price'];?>
+		</td>
+		<td width="100">
+				<?php echo $siteData[$i][$j]['image'];?>
+		</td>
+		<td width="100">
+				<?php echo $siteData[$i][$j]['off'];?>
+		</td>
+		</tr>
+		<?php } ?>	
+	
+
+<?php } ?>
+</table>
+		
+	
 
 </body>
 </html>
@@ -93,3 +138,10 @@
 <?php 
 	include 'footer.html';
 ?>
+
+<style type="text/css">
+table.dealtable {background-color:transparent;border-collapse:collapse;width:100%;}
+table.dealtable th, table.dealtable td {text-align:center;border:1px solid black;padding:5px;}
+table.dealtable th {background-color:AntiqueWhite;}
+table.dealtable td:first-child {width:20%;}
+</style>
