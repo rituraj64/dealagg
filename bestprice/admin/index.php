@@ -54,7 +54,6 @@
 			$("#max_discount").val(max_discount);
 			$("#discount_type").val(discount_type);
 			$("#category").val(cat);
-			
 			$("#product").val(product);
 			$("#description").val(description);
 			$("#deal_url").val(deal_url);
@@ -155,9 +154,15 @@ if(isset($_REQUEST['submit_coupon_active']))
 	$image=$_REQUEST['image'];
 	$max_discount=$_REQUEST['max_discount'];
 	$website=$_REQUEST['website'];
-	$category=$_REQUEST['category'];
-	$cat_values=join(',',$category);
-	
+	if(isset($_REQUEST['category']))
+	{
+		$category=$_REQUEST['category'];
+		$cat_values=join(',',$category);
+	}
+	else
+	{
+		$cat_values=-1;
+	}
 	if(($id=="undefined")||($id==""))
 	{
 		$user->active_from=$active_from;
