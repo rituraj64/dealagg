@@ -97,7 +97,6 @@
 				var search_discount=dscription.indexOf('%');
 				if(search_discount!=-1)
 				{
-					alert("sad");
 					$("#discount_type").val("percentage");
 				}
 				
