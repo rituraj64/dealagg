@@ -65,6 +65,9 @@
 				$("#description").val(dscription);
 				$("#deal_url").val(deal_url);
 				$("#parse_id").val(id);
+				$("#website").val("");
+				$("#bank").val("None");
+				$("#discount_type").val("");
 				$(".website_option").each(function(){
 					
 					var option_value=$(this).val();
@@ -76,6 +79,28 @@
 						$("#website").val(option_value);
 					}
 				});
+				
+				$(".bank_option").each(function(i){
+					
+					var bank_value=$(this).val();
+					bankValue=bank_value.toLowerCase();
+					dscription=dscription.toLowerCase();
+					var search=dscription.indexOf(bankValue);
+					if(search!=-1)
+					{
+						$("#bank").val(bank_value);
+					}
+				});
+				
+					
+				dscription=dscription.toLowerCase();
+				var search_discount=dscription.indexOf('%');
+				if(search_discount!=-1)
+				{
+					alert("sad");
+					$("#discount_type").val("percentage");
+				}
+				
 			    
 			}
 			else
@@ -451,9 +476,9 @@ require_once '../Parsing.php';
 			<td><label>Discount Type</label></td>
 			<td>
 				<select name="discount_type" required="true" id="discount_type">
-					<option value="">Select</option>
-					<option value="percentage">Percentage</option>
-					<option value="fixed">Fixed</option>
+					<option class="discount_option" value="">Select</option>
+					<option class="discount_option" value="percentage">Percentage</option>
+					<option class="discount_option" value="fixed">Fixed</option>
 				</select>
 			</td>
 			<td><span id="discount_typeErr"></span></td>
@@ -531,24 +556,24 @@ require_once '../Parsing.php';
 			<td>Bank</td>
 			<td>
 				<select name="bank" id="bank">
-					<option value="None">Select</option>
-					<option value="HDFC">HDFC</option>
-					<option value="PNB">PNB</option>
-					<option value="ICICI">ICICI</option>
-					<option value="SBI">SBI</option>
-					<option value="HSBC">HSBC</option>
-					<option value="CANARA">Canara</option>
-					<option value="CITY_BANK">City Bank</option>
-					<option value="Axis">Axis</option>
-					<option value="Axis">Bank of Baroda</option>
-					<option value="Axis">Bank of India</option>
-					<option value="Axis">Corporation Bank</option>
-					<option value="Axis">Dena</option>
-					<option value="Axis">IDBI</option>
-					<option value="Axis">United Bank of India</option>
-					<option value="Axis">Kotak Mahindra Bank</option>
-					<option value="Axis">Yes Bank</option>
-					<option value="Axis">Federal Bank</option>
+					<option class="bank_option" value="None">Select</option>
+					<option class="bank_option" value="HDFC">HDFC</option>
+					<option class="bank_option" value="PNB">PNB</option>
+					<option class="bank_option" value="ICICI">ICICI</option>
+					<option class="bank_option" value="SBI">SBI</option>
+					<option class="bank_option" value="HSBC">HSBC</option>
+					<option class="bank_option" value="CANARA">Canara</option>
+					<option class="bank_option" value="CITY_BANK">City Bank</option>
+					<option class="bank_option" value="Axis">Axis</option>
+					<option class="bank_option" value="Axis">Bank of Baroda</option>
+					<option class="bank_option" value="Axis">Bank of India</option>
+					<option class="bank_option" value="Axis">Corporation Bank</option>
+					<option class="bank_option" value="Axis">Dena</option>
+					<option class="bank_option" value="Axis">IDBI</option>
+					<option class="bank_option" value="Axis">United Bank of India</option>
+					<option class="bank_option" value="Axis">Kotak Mahindra Bank</option>
+					<option class="bank_option" value="Axis">Yes Bank</option>
+					<option class="bank_option" value="Axis">Federal Bank</option>
 				</select>
 			</td>
 		</tr>
