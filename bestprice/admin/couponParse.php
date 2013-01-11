@@ -450,8 +450,8 @@ require_once '../Parsing.php';
 		<tr>
 			<td><label>Discount Type</label></td>
 			<td>
-				<select name="discount_type" id="discount_type">
-					<option value="0">Select</option>
+				<select name="discount_type" required="true" id="discount_type">
+					<option value="">Select</option>
 					<option value="percentage">Percentage</option>
 					<option value="fixed">Fixed</option>
 				</select>
@@ -495,8 +495,8 @@ require_once '../Parsing.php';
 				<?php $p = new Parsing();
 					  $sites = $p->getWebsites();
 				?>
-				<select name="website" id="website">
-					
+				<select name="website" required="true" id="website">
+					<option value="">Select</option>
 					<?php foreach($sites as $site)  {?>
 					
 					
@@ -540,6 +540,15 @@ require_once '../Parsing.php';
 					<option value="CANARA">Canara</option>
 					<option value="CITY_BANK">City Bank</option>
 					<option value="Axis">Axis</option>
+					<option value="Axis">Bank of Baroda</option>
+					<option value="Axis">Bank of India</option>
+					<option value="Axis">Corporation Bank</option>
+					<option value="Axis">Dena</option>
+					<option value="Axis">IDBI</option>
+					<option value="Axis">United Bank of India</option>
+					<option value="Axis">Kotak Mahindra Bank</option>
+					<option value="Axis">Yes Bank</option>
+					<option value="Axis">Federal Bank</option>
 				</select>
 			</td>
 		</tr>
