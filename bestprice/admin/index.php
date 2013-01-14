@@ -183,7 +183,6 @@ if(isset($_REQUEST['submit_coupon_active']))
 	}
 	if(($id=="undefined")||($id==""))
 	{
-		
 		$user->active_from=$active_from;
 		$user->active_to=$active_to;
 		$user->discount=$discount;
