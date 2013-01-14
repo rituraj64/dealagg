@@ -564,15 +564,15 @@ require_once '../Parsing.php';
 					<option class="bank_option" value="CANARA">Canara</option>
 					<option class="bank_option" value="CITY_BANK">City Bank</option>
 					<option class="bank_option" value="Axis">Axis</option>
-					<option class="bank_option" value="Axis">Bank of Baroda</option>
-					<option class="bank_option" value="Axis">Bank of India</option>
-					<option class="bank_option" value="Axis">Corporation Bank</option>
-					<option class="bank_option" value="Axis">Dena</option>
-					<option class="bank_option" value="Axis">IDBI</option>
-					<option class="bank_option" value="Axis">United Bank of India</option>
-					<option class="bank_option" value="Axis">Kotak Mahindra Bank</option>
-					<option class="bank_option" value="Axis">Yes Bank</option>
-					<option class="bank_option" value="Axis">Federal Bank</option>
+					<option class="bank_option" value="Bank of Baroda">Bank of Baroda</option>
+					<option class="bank_option" value="Bank of India">Bank of India</option>
+					<option class="bank_option" value="Corporation">Corporation Bank</option>
+					<option class="bank_option" value="Dena">Dena</option>
+					<option class="bank_option" value="IDBI">IDBI</option>
+					<option class="bank_option" value="United Bank of India">United Bank of India</option>
+					<option class="bank_option" value="Kotak Mahindra">Kotak Mahindra Bank</option>
+					<option class="bank_option" value="YES">Yes Bank</option>
+					<option class="bank_option" value="Federal">Federal Bank</option>
 				</select>
 			</td>
 		</tr>
