@@ -7,17 +7,18 @@
 			<input type='hidden' id='item_stock' value='{item_stock}' />
 			<input type='hidden' id='item_offer' value='{item_offer}' />
 			<input type='hidden' id='item_shipping' value='{item_shipping}' />
-	<div class='table-bordered' style="border-left: 1px solid #DDD;padding: 0px;text-align: center;margin-bottom: 3px;font-size: 12px;height: 50px;overflow: hidden;">
+			<input type='hidden' id='has_product' value='{has_product}' />
+	<div style="padding: 0px;text-align: center;margin-bottom: 3px;font-size: 11px;height: 25px;">
 		<div class='pull-left'>
 			<a href="{item_url}" target="_blank">
 				<input type='hidden' value='{item_img_load_id}' id='lazy' />
-				<img class="lazy_load_img img-rounded" src="{item_image}" alt='{item_name}' title='{item_name}' width="50px" height="50px" style="width: 50px;height: 50px;" />
+				<img class="lazy_load_img img-rounded" src="{item_image}" alt='{item_name}' title='{item_name}' width="30px" height="30px" style="width: 25px;height: 25px;" />
 			</a>
 		</div>
-		<div class='pull-left' style="padding-left: 5px;width: 80%;text-align: left">
-			<div style="height: 22px;overflow: hidden">{item_name_html}</div>
+		<div class='pull-left' style="padding-left: 5px;text-align: left">
+			<div style="height: 14px;line-height:14px;overflow: hidden">{item_name_html}</div>
 			<div class="clearfix"></div>
-			<div>
+			<div style="height: 16px;line-height:14px;overflow: hidden;width:235px">
 				<div class='pull-left'>
 					Price <span class="WebRupee">Rs.</span><span class='main_price'>{item_price}</span>
 				</div>

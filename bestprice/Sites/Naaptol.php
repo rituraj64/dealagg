@@ -126,11 +126,14 @@ class Naaptol extends Parsing{
 		$data = $this->bestMatchData($data, $query,$category,$subcat);
 		return $data;
 	}
-
+	public function hasProductdata(){
+		return true;
+	}
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
-		$price = pq('#pro_PriceInfo')->children('strong:first')->html();
-		$offer = '';
+		$price = pq('.pro_PriceInfo')->find('strong:first')->html();
+		pq('.pro_Offer:first')->find('b')->remove();
+		$offer = pq('.pro_Offer:first')->text();;
 		if(sizeof(pq('#qty_product_0')) > 0){
 			$stock = 1;
 		}else{
@@ -140,18 +143,30 @@ class Naaptol extends Parsing{
 		if(empty($offer)){
 			$offer = pq('.ntRewardCoin2')->siblings('span')->html();
 		}else{
-			$offer += " + " + pq('.ntRewardCoin2')->siblings('span')->html();
+			$offer .= " + " . pq('.ntRewardCoin2')->siblings('span')->html();
 		}
 
 		$html = pq('.pro_PriceInfo')->find('.option')->html();
 		$html = strip_tags($html);
-		if(str_pos($html,'Free Shipping') !== false){
+		if(strpos($html,'Free Shipping') !== false){
 			$shipping_cost = 'Free Shipping';
 		}else{
 			$shipping_cost = 'Free Shipping Not Avaiable';
 		}
 
 		$shipping_time = '';
+		$warrenty = '';
+
+		foreach(pq('.pro_PriceInfo')->find('span') as $span){
+			if(strpos(pq($span)->html(),'Warranty') !== false){
+				$warrenty = pq($span)->html();
+				break;
+			}else if(strpos(pq($span)->html(),'Shipping Charges') !== false){
+				$shipping_cost = pq($span)->html();
+				break;
+			}
+		}
+
 
 		$attr = array();
 		foreach(pq('#color_product_0')->children('option') as $option){
@@ -175,7 +190,8 @@ class Naaptol extends Parsing{
 				'shipping_time' => $shipping_time,
 				'attr' => $attr,
 				'author' => '',
-				'cat' => $cat
+				'cat' => $cat,
+				'warrenty'=>$warrenty
 		);
 
 		$data = $this->cleanProductData($data);

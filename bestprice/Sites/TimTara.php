@@ -115,25 +115,28 @@ class TimTara extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+	public function hasProductdata(){
+		return true;
+	}
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
-		$price = pq('.ProductPrice')->html();
-		$offer = pq('.ProductOptionList')->html();
+		$price = pq('.ProductPrice:first')->html();
+		$offer = pq('.ProductOptionList:first')->html();
 		$stock = 0;
-		if(sizeof(pq('#qty_') > 0)){
+		if(sizeof(pq('#qty_')) > 0){
 			$stock = 1;
 		}else{
 			$stock = -1;
 		}
-		if(strpos(pq('.pro-shipping').attr('style'),'display:none') !== false){
+		if(strpos(pq('.pro-shipping')->attr('style'),'display:none') !== false){
 			$shipping_cost = 'Free Shipping Not Available';
 		}else{
-			$shipping_cost = pq('.pro-shipping').html();
+			$shipping_cost = pq('.pro-shipping')->html();
 		}
-		if(strpos(pq('.pro-deliver').attr('style'),'display:none') !== false){
+		if(strpos(pq('.pro-deliver')->attr('style'),'display:none') !== false){
 			$shipping_time = '';
 		}else{
-			$shipping_time = pq('.pro-deliver').html();
+			$shipping_time = pq('.pro-deliver')->html();
 		}
 
 		$attr = array();
@@ -142,6 +145,13 @@ class TimTara extends Parsing{
 			$cat .= pq($li)->children('a')->html().',';
 		}
 
+		$warrenty = '';
+		
+		foreach(pq('.DetailRow') as $div){
+			if( strpos(pq($div)->children('.Label')->html(),'Warranty') !== false){
+				$warrenty = pq($div)->children('.Value')->html();
+			}
+		}
 		$data = array(
 				'price' => $price,
 				'offer' => $offer,
@@ -150,7 +160,8 @@ class TimTara extends Parsing{
 				'shipping_time' => $shipping_time,
 				'attr' => $attr,
 				'author' => '',
-				'cat' => $cat
+				'cat' => $cat,
+				'warrenty' => $warrenty
 		);
 
 		$data = $this->cleanProductData($data);

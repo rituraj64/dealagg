@@ -95,11 +95,20 @@ class Zoomin extends Parsing{
 		}
 		return json_decode(trim($jsonp,'();'), $assoc);
 	}
+	public function hasProductdata(){
+		return true;
+	}
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
 		$price = pq('.price:first')->html();
-		$offer = pq('.description-text')->html() + " + Zoomin Freebies";
-		if(sizeof(pq('product-availability')->children('.available'))){
+		$offer = pq('.description-text')->html();
+		if(strpos($offer,'Free') !== false){
+			$offer .= " + Zoomin Freebies";
+		}else{
+			$offer = "Zoomin Freebies";
+		}
+			
+		if(sizeof(pq('.product-availability')->children('.available'))){
 			$stock = 1;
 		}else{
 			$stock = -1;

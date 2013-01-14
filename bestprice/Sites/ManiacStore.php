@@ -17,6 +17,7 @@ class ManiacStore extends Parsing{
 		if($category == Category::MOBILE){
 			$cat_id = 251;
 		}else if($category == Category::MOBILE_ACC){
+			$cat_id = 252;
 			if($subcat == Category::NOT_SURE){
 				$cat_id = 252;
 			}else if ($subcat == Category::MOB_SCREEN_GUARD){

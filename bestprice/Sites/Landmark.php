@@ -55,7 +55,7 @@ class Landmark extends Parsing{
 				$image = pq($div)->find('.image')->find('a')->html();
 				$url = pq($div)->find('.image')->find('a')->attr('href');
 				$name = pq($div)->find('.info')->children('h1')->find('a')->html();
-				if(pq($div)->find('.buttons')->find('.prices')->find('.oldprice').length > 0){
+				if(sizeof(pq($div)->find('.buttons')->find('.prices')->find('.oldprice')) > 0){
 					$disc_price = pq($div)->find('.buttons')->find('.prices')->find('.oldprice')->html();
 				}else{
 					$disc_price = pq($div)->find('.buttons')->find('.prices')->find('.pricelabel')->html();

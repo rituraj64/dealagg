@@ -1,6 +1,6 @@
 <?php
 class Homeshop extends Parsing{
-	public $_code = 'Homeshop18';
+	public $_code = 'Homeshop';
 	public function getFacebookUrl(){
 		return 'http://www.facebook.com/homeshop18';
 	}
@@ -166,32 +166,50 @@ class Homeshop extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+	public function hasProductdata(){
+		return true;
+	}
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
-		$price = pq('.pdp_details_price')->children('#productLayoutForm:OurPrice')->html();
+		foreach(pq('.pdp_details_price')->children('span') as $span){
+			if(pq($span)->attr('itemprop') == 'price'){
+				$price = pq($span)->html();
+			}
+		}
 		$offer = pq('.pdp_details_offer_text:first')->html();
 		$stock = pq('#product_dscrpt_in_stock')->html();
 		if(empty($stock)){
-			if(sizeof(pq('#productLayoutForm:sizedrop'))){
-				$stock = 1;
-				foreach(pq('#productLayoutForm:sizedrop')->children('option') as $o){
-					if(pq($o)->html() != 'Select Value'){
-						if(!isset($attr['Color'])){
-							$attr['Color'] = array();
-						}
-						$attr['Color'][] = pq($o)->html();
-					}
-				}
+			$stock = pq('#product_dscrpt_no_stock')->html();
+			if(empty($stock)){
+				$stock = 0;
+			}else{
+				$stock = -1;
 			}
+		}else{
+			$stock = 1;
 		}
 		$shipping_cost = pq('.pdp_details_freeShipping:first')->html();
-		$shipping_time = pq('.pdp_delivery_time:first')->html();
+		$shipping_time = pq('#pdp_delivery_time:first')->html();
 
 		$attr = array();
 		$cat = '';
 		foreach(pq('.breadcrumbs')->find('a') as $li){
 			$cat .= pq($li)->html().',';
 		}
+		$warrenty = '';
+		foreach(pq('.productShippingInfo')->find('tr') as $tr){
+			if(pq($tr)->children('th')->html() == 'Warranty Period'){
+				$warrenty = pq($tr)->children('td')->html();
+			}
+		}
+
+		foreach(pq('.pdp_details_editions_prodname-td') as $div){
+			if(!isset($attr['Variants'])){
+				$attr['Variants'] = array();
+			}
+			$attr['Variants'][] = pq($div)->children('a')->html();
+		}
+
 
 		$data = array(
 				'price' => $price,
@@ -200,8 +218,9 @@ class Homeshop extends Parsing{
 				'shipping_cost' => $shipping_cost,
 				'shipping_time' => $shipping_time,
 				'attr' => $attr,
-				'author' => '',
-				'cat' => $cat
+				'author' => pq('.pdp_author_name:first')->html(),
+				'cat' => $cat,
+				'warrenty' => $warrenty
 		);
 
 		$data = $this->cleanProductData($data);

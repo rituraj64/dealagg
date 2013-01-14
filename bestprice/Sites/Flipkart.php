@@ -234,19 +234,44 @@ class Flipkart extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+	public function hasProductdata(){
+		return true;
+	}
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
-		$price = pq('.prices')->children('.final-price')->html();
-		$offer = pq('.offer-box')->children('.line')->html();
+		$price = pq('.prices:first')->children('.final-price')->html();
+		pq('.offer-box:first')->children('.line')->children()->remove('div');
+		pq('.offer-box:first')->children('.line')->children()->remove('a');
+		$offer = pq('.offer-box:first')->children('.line')->html();
 		$stock = pq('#fk-stock-info-id')->html();
-		$shipping_cost = pq('#fk-mprod-shipping-section-id')->find('.block-headertext:first')->html();
-		$shipping_time = pq('.shipping-details:first')->html();;
+		pq('#fk-mprod-shipping-section-id')->find('.block-headertext:first')->children()->remove();
+		$shipping_cost = pq('#fk-mprod-shipping-section-id')->find('.block-headertext:first')->text();
+		pq('.shipping-details:first')->children()->remove();
+		$shipping_time = pq('.shipping-details:first')->html();
 
+		$warrenty = pq('.mprod-warrenty:first')->html();
+
+		$author = '';
+		 
+		foreach(pq('.secondary-info') as $div){
+			if(pq($div)->children('span')->html() == 'Author:'){
+				$author = pq($div)->children('a')->html();
+			}
+		}
 		$attr = array();
+
+		foreach(pq('.sim-prodname') as $div){
+			if(!isset($attr['Variants'])){
+				$attr['Variants'] = array();
+			}
+			$attr['Variants'][] = pq($div)->children('a')->html();
+		}
+
 		$cat = '';
 		foreach(pq('.fk-lbreadbcrumb')->find('a') as $li){
 			$cat .= pq($li)->html().',';
 		}
+
 
 		$data = array(
 				'price' => $price,
@@ -255,8 +280,9 @@ class Flipkart extends Parsing{
 				'shipping_cost' => $shipping_cost,
 				'shipping_time' => $shipping_time,
 				'attr' => $attr,
-				'author' => '',
-				'cat' => $cat
+				'author' => $author,
+				'cat' => $cat,
+				'warrenty' => $warrenty
 		);
 
 		$data = $this->cleanProductData($data);

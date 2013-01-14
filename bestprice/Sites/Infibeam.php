@@ -217,13 +217,16 @@ class Infibeam extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+	public function hasProductdata(){
+		return true;
+	}
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
 		$price = pq('#priceDiv')->find('.infiPrice')->html();
 		$offer = pq('.offer')->children('.offerinner')->html();
-		$stock = pq('#colors')->children('.status')->html();
-		$shipping_cost = pq('#colors')->children('.freeShippingSpan')->html();
-		$shipping_time = pq('#colors')->children('.shippingTimeSpan')->html();
+		$stock = pq('.status:first')->html();
+		$shipping_cost = pq('.freeShippingSpan:first')->html();
+		$shipping_time = pq('.shippingTimeSpan:first')->html();
 
 		$attr = array();
 
@@ -233,7 +236,17 @@ class Infibeam extends Parsing{
 			}
 			$attr['Color'][] = pq($link)->attr('colvalue');
 		}
-		$cat = pq('#productCategory')->attr('val');
+
+		foreach(pq('#available-in')->find('td') as $td){
+			if(!isset($attr['Variants'])){
+				$attr['Variants'] = array();
+			}
+			if(sizeof(pq($td)->children('a'))){
+				$attr['Variants'][] = pq($td)->children('a')->html();
+			}
+		}
+
+		$cat = pq('#productCategory')->val();
 
 		$data = array(
 				'price' => $price,
@@ -243,7 +256,8 @@ class Infibeam extends Parsing{
 				'shipping_time' => $shipping_time,
 				'attr' => $attr,
 				'author' => '',
-				'cat' => $cat
+				'cat' => $cat,
+				'warrenty' => pq('#acc_Warranty')->siblings('.accordion-body')->html()
 		);
 
 		$data = $this->cleanProductData($data);

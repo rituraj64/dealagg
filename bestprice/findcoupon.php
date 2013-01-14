@@ -24,11 +24,13 @@ foreach ($sites as $site)
 	try
 	{
 		$pagecount = 1;
-		$a = $siteObj->updateCoupons($html);
-		if(empty($siteData)){
-			$siteData = $a;
-		}else{
-			$siteData = array_merge($siteData,$a);
+		if(!empty($html)){
+			$a = $siteObj->updateCoupons($html);
+			if(empty($siteData)){
+				$siteData = $a;
+			}else{
+				$siteData = array_merge($siteData,$a);
+			}
 		}
 	}
 	catch(Exception $e)
@@ -38,18 +40,6 @@ foreach ($sites as $site)
 		echo"</pre>";
 	}
 }
-$message = '';
-$message .= "
-<style>
-<!--
-*{margin: 0;padding: 0;}
-h4{display: inline;}
-h5{display: inline;}
-.eachsite{margin-top:30px;}
-.item{ margin-left: 20px;}
--->
-</style>
-";
 
 //echo $message;
 $to = 'manish@excellencetechnologies.in';
@@ -65,11 +55,16 @@ $mail = new phpmailer();
 //$mail->Port       = 465;
 ///$mail->Username   = "excellenceseo@gmail.com";
 //$mail->Password   = "seo@1234";
-$mail->setFrom('noreply@pricegenie.in', 'PriceGenie');
+$mail->setFrom('excellenceseo@gmail.com', 'PriceGenie');
 $mail->Subject    =$subject;
 $message = 'Finding Coupon';
+$index = 0;
 foreach($siteData as $d){
 	$message .= $d. '<br/><br/><br/>';
+	$index++;
+	if($index > 5){
+		break;
+	}
 }
 $mail->MsgHTML($message);
 

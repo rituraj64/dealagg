@@ -11,7 +11,7 @@ class Parsing{
 		return array('&amp;'=>'and','&'=>'and');
 	}
 
-	const DATA_NUM = 4;
+	const DATA_NUM = 3;
 	public function getCode(){
 		return $this->_code;
 	}
@@ -148,7 +148,11 @@ class Parsing{
 	}
 	public function cleanProductData($data){
 		foreach($data as $key => $value){
+			if(is_array($value)){
+				continue;
+			}
 			$value = $this->clearHtml($value);
+			$value = $this->removeSpecial($value,true);
 			$value = utf8_encode($value); //changed for homeshop18
 			$data[$key] = trim($value);
 		}
@@ -158,45 +162,39 @@ class Parsing{
 			foreach($value as $v){
 				$v = $this->clearHtml($v);
 				$v = utf8_encode($v); //changed for homeshop18
-				$n[] = trim($value);
+				$n[] = trim($v);
 			}
 			$data['attr'][$key] = $n;
 		}
 
-		$row['price'] = $this->removeAlpha($row['price'],true);
-		$row['price'] = round($row['price'],2);
-		if($row['price'] > 99999999){
-			$row['price'] = '';
-		}else if($row['price'] == 0){
-			$row['price'] = '';
+		$data['price'] = $this->removeAlpha($data['price'],true);
+		$data['price'] = round($data['price'],2);
+		if($data['price'] > 99999999){
+			$data['price'] = '';
+		}else if($data['price'] == 0){
+			$data['price'] = '';
 		}
 
-		$row['name'] = ucwords($row['name']);
-
-		if($row['stock'] == 0 || $row['stock'] == 1 || $row['stock'] == -1){
-
+		if(strpos(strtolower($data['stock']),'out') !== false){
+			$data['stock'] = -1;
+		}else if(strpos(strtolower($data['stock']),'in')!==false || strpos(strtolower($data['stock']),'available')!==false){
+			$data['stock'] = 1;
 		}else{
-			if(strtolower($row['stock']) == 'out of stock'){
-				$row['stock'] = -1;
-			}else if(strtolower($row['stock']) == 'in stock'){
-				$row['stock'] = 1;
-			}else{
-				$row['stock'] = 0;
-			}
+			//$data['stock'] = 0;
 		}
 
-		if(isset($row['author'])){
-			$row['author'] = trim(str_replace("by ", '', $row['author']));
-			$row['author'] = trim(str_replace("By ", '', $row['author']));
-			$row['author'] = trim(str_replace("By: ", '', $row['author']));
-			$row['author'] = trim(str_replace("by: ", '', $row['author']));
-			$row['author'] = trim(str_replace("BY ", '', $row['author']));
-			$row['author'] = trim(str_replace("BY: ", '', $row['author']));
-			$row['author'] = $this->removeSpecial($row['author']);
+		if(isset($data['author'])){
+			$data['author'] = trim(str_replace("by ", '', $data['author']));
+			$data['author'] = trim(str_replace("By ", '', $data['author']));
+			$data['author'] = trim(str_replace("By: ", '', $data['author']));
+			$data['author'] = trim(str_replace("by: ", '', $data['author']));
+			$data['author'] = trim(str_replace("BY ", '', $data['author']));
+			$data['author'] = trim(str_replace("BY: ", '', $data['author']));
+			$data['author'] = $this->removeSpecial($data['author']);
 		}
 
-		$data2[] = $row;
-		return $data2;
+		$data['website'] = $this->getCode();
+		return $data;
 	}
 	public function cleanData($data,$query){
 		$data2 = array();
@@ -299,8 +297,29 @@ class Parsing{
 		return $data2;
 	}
 	public function clearHtml($str){
+		$str = preg_replace(
+				array(
+						// Remove invisible content
+						'@<iframe[^>]*?>.*?</iframe>@siu',
+						'@<head[^>]*?>.*?</head>@siu',
+						'@<style[^>]*?>.*?</style>@siu',
+						'@<script[^>]*?.*?</script>@siu',
+						'@<object[^>]*?.*?</object>@siu',
+						'@<embed[^>]*?.*?</embed>@siu',
+						'@<applet[^>]*?.*?</applet>@siu',
+						'@<noframes[^>]*?.*?</noframes>@siu',
+						'@<noscript[^>]*?.*?</noscript>@siu',
+						'@<noembed[^>]*?.*?</noembed>@siu',
+						// Add line breaks before and after blocks
+				),
+				array(
+						' ',' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '), $str );
 		$str = trim(strip_tags(str_replace(PHP_EOL, '', $str)));
 		$str = str_replace('&nbsp;', '', $str);
+		// you can exclude some html tags here, in this case B and A tags
+		while(strpos($str,'  ') !== false){
+			$str = str_replace('  ', ' ', $str);
+		}
 		return $str;
 	}
 	public function removeNum($str){
@@ -317,8 +336,12 @@ class Parsing{
 			return trim(preg_replace("![^0-9]+!i", "", $str));
 		}
 	}
-	public static function removeSpecial($str){
-		return trim(preg_replace("![^0-9a-z ]+!i", "", $str));
+	public static function removeSpecial($str,$light = false){
+		if($light){
+			return preg_replace('/[^(\x20-\x7F)]*/','', $str);
+		}else{
+			return trim(preg_replace("![^0-9a-z ]+!i", "", $str));
+		}
 	}
 	public function makeAbsUrl($img){
 		if(empty($img)){
@@ -353,6 +376,9 @@ class Parsing{
 		return array();
 	}
 	public function getFacebookUrl(){
+		return false;
+	}
+	public function hasProductdata(){
 		return false;
 	}
 	public function getProductData($html,$price,$stock){

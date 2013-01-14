@@ -211,15 +211,17 @@ class Snapdeal extends Parsing{
 		return $data2;
 	}
 
-
+	public function hasProductdata(){
+		return true;
+	}
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
 		$price = pq('#selling-price-id')->html();
 		$offer = pq('.freebie_text')->html();
 		if(sizeof(pq('.buybutton-wrapper')->children('.prodbuy-button')) > 0){
-			$stock = -1;
-		}else{
 			$stock = 1;
+		}else{
+			$stock = -1;
 		}
 		$i = 0;
 		foreach (pq('.shippingSpace') as $div){
@@ -233,10 +235,11 @@ class Snapdeal extends Parsing{
 
 		$attr = array();
 		$cat = '';
-		foreach(pq('.bread-crumb')->children('.bread-home') as $li){
+		foreach(pq('.bread-crumb')->children('.bread-cont') as $li){
 			$cat .= pq($li)->children('a')->children('span')->html().',';
 		}
 
+		$warrenty = pq('.prod-warranty-text:first')->html();
 		$data = array(
 				'price' => $price,
 				'offer' => $offer,
@@ -245,7 +248,8 @@ class Snapdeal extends Parsing{
 				'shipping_time' => $shipping_time,
 				'attr' => $attr,
 				'author' => '',
-				'cat' => $cat
+				'cat' => $cat,
+				'warrenty' => $warrenty
 		);
 
 		$data = $this->cleanProductData($data);

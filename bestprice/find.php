@@ -75,6 +75,7 @@ if(isset($_REQUEST['q'])){
 						foreach($data1 as $row){
 							$name = $row['name'];
 							$row['logo'] = $siteObj->getLogo();
+							$row['pro'] = $siteObj->hasProductdata();
 							$row['searchurl'] = $siteObj->getSearchURL($query,$cat,$subcat);
 
 							$data2[] = $row;

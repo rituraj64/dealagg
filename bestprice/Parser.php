@@ -37,8 +37,8 @@ class Parser{
 		curl_setopt($ch, CURLOPT_COOKIESESSION, true);
 		curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
 		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 50);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 120);
 
 		if(!$this->_noProxy){
 			//$proxy = '112.90.208.8:80';
@@ -52,7 +52,14 @@ class Parser{
 
 		$html = curl_exec($ch);
 
-		if (!$html || strpos($html, '<body') === false) {
+		$body = true;
+		if(strpos($html, '<body') === false){
+			if(strpos($html, '<BODY') === false){
+				$body = false;
+			}
+		}
+
+		if (!$html || !$body) {
 			if(strpos($url, 'buytheprice.com') !== false || strpos($url, 'rediff.com') !== false){
 			}else{
 				$a = @simplexml_load_string($html);

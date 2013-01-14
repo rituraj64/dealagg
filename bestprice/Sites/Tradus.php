@@ -148,17 +148,18 @@ class Tradus extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+	public function hasProductdata(){
+		return false;//most information is ajax based, and no offers mostly
+	}
 	public function getProductData($html,$price,$stock){
+		return false;
 		phpQuery::newDocumentHTML($html);
 		$price = pq('#whole-sale-price')->html();
 		$offer = pq('.tradus-special-offer-midpart')->html();
-		if(sizeof(pq('.sellers-buy-now-button')) > 0){
-			$stock = -1;
-		}else{
-			$stock = 1;
-		}
-		$shipping_cost = pq('.blogdistDiv:first')->find('.priceDiv')->find('.fiLt')->html();;
-		$shipping_time = pq('.blogdistDiv:first')->find('.optionDiv')->html();;
+		//this is javascript based
+		$stock = 0;
+		$shipping_cost = '';//pq('.blogdistDiv:first')->find('.priceDiv')->find('.fiLt')->html();;
+		$shipping_time = '';//pq('.blogdistDiv:first')->find('.optionDiv')->html();;
 
 		$attr = array();
 		$cat = '';

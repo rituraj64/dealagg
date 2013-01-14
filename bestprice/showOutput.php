@@ -12,6 +12,18 @@ if(isset($formattedResult) && !empty($formattedResult)){
 		$index = 0;
 		$fullSmallItem = '';
 		foreach($rows as $row){
+			if(!isset($row['author'])){
+				$row['author'] = '';
+			}
+			if(!isset($row['stock'])){
+				$row['stock'] = 0;
+			}
+			if(!isset($row['offer'])){
+				$row['offer'] = '';
+			}
+			if(!isset($row['shipping'])){
+				$row['shipping'] = '';
+			}
 			if($index == 0){
 				$template = str_replace('{website}',$row['website'],$template);
 				$template = str_replace('{website_search_url}',$row['searchurl'],$template);

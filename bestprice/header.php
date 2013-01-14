@@ -37,7 +37,7 @@
     <div class="container">
 
       <div class="masthead">
-        <h3 class="muted">Price Genie</h3>
+        <h3 class="muted">Price Genie <small>(beta)</small></h3>
         <div class="navbar">
           <div class="navbar-inner">
             <div class="container">

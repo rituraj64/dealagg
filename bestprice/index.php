@@ -117,6 +117,7 @@
       <input type='hidden' id='isSorting' value='0' />
       <input type='hidden' id='showSuggestion' value='1' />
       <input type='hidden' id='avg_best_price' value='0' />
+      <input type='hidden' id='other_product_count' value='<?php echo Parsing::DATA_NUM;?>' />
       <div id='step' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;display: none">
 		     <div>
 		     	We have detected your search term is generic, please write an accurate search term to get a better result or 
@@ -210,7 +211,14 @@
   		?>
   </div>
   <div id="mainItemTemplate" style="display: none">
-  	<?php require 'templates/mainItem.php';?>
+  	<?php
+  			ob_start();
+			require 'templates/mainItem.php';
+			$template = ob_get_contents();
+			ob_end_clean();
+			$template = str_replace('{other_prod}','',$template);
+			echo $template;
+  		?>
   </div>
   
   <div id='emptyBodyTemplate' style="display: none">

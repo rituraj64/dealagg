@@ -128,11 +128,21 @@ class ShopClues extends Parsing{
 		$data = $this->bestMatchData($data, $query,$category,$subcat);
 		return $data;
 	}
+	public function hasProductdata(){
+		return false;
+	}
 	public function getProductData($html,$price,$stock){
+		return false; //takes lot of time for response
 		phpQuery::newDocumentHTML($html);
-		$price = pq('.product-prices')->children('.price')->html();
+		$price = pq('.product-prices')->find('.price')->html();
 		$offer = pq('.box_specialoffer')->children('.box_specialoffer_message')->html();
+		$offer .= ' + ' + floor($price*.2) . ' ShopClues Points';
 		$stock = 0;
+		if(sizeof(pq('.in-stock'))){
+			$stock = 1;
+		}else{
+			$stock = -1;
+		}
 		$shipping_cost = '';
 		$shipping_time = pq('.product-list-field:first')->html();;
 

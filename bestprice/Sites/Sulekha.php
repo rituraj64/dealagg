@@ -68,7 +68,12 @@ class Sulekha extends Parsing{
 	}
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
-		$price = pq('.delproprgt')->find('.price')->html();
+		foreach(pq('.delproprgt')->find('span') as $span){
+			if(pq($span)->attr('itemprop') == 'price'){
+				$price = pq($span)->html();
+				break;
+			}
+		}
 		$offer = pq('.bordottpbt')->children('.extxt')->html();
 		$stock = pq('.otstkbt')->html();
 		if($stock == 'OUT OF STOCK'){
@@ -85,6 +90,16 @@ class Sulekha extends Parsing{
 			$cat .= pq($li)->children('span')->children('a')->children('span')->html().',';
 		}
 
+		$warrenty = '';
+
+		foreach(pq('.delkeysmlt')->children('li') as $li){
+			if(empty($warrenty)){
+				$warrenty .= pq($li)->html();
+			}else{
+				$warrenty .= ' + ' . pq($li)->html();
+			}
+		}
+
 		$data = array(
 				'price' => $price,
 				'offer' => $offer,
@@ -93,7 +108,8 @@ class Sulekha extends Parsing{
 				'shipping_time' => $shipping_time,
 				'attr' => $attr,
 				'author' => '',
-				'cat' => $cat
+				'cat' => $cat,
+				'warrenty' => $warrenty
 		);
 
 		$data = $this->cleanProductData($data);
