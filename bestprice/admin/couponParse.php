@@ -48,6 +48,8 @@
 			var dscription=$(this).parent("td").parent("tr").children("td:nth-child(8)").text();
 			
 			var deal_url=$(this).parent("td").parent("tr").find("a").attr("href");
+			deal_url=deal_url.trim();
+			coupon_code=coupon_code.trim();
 			var readStatus=$("#read-status").val();
 			if(readStatus==undefined)
 			{

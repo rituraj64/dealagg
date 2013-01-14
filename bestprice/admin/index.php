@@ -37,6 +37,20 @@
 			var image=$(this).parents("tr").children("td:nth-child(16)").text();
 			var cat=category.split(',');
 
+			active_from=active_from.trim();
+			active_to=active_to.trim();
+			discount=discount.trim();
+			max_discount=max_discount.trim();
+			discount_type=discount_type.trim();
+			category=category.trim();
+			product=product.trim();
+			description=description.trim();
+			deal_url=deal_url.trim();
+			coupon_code=coupon_code.trim();
+			min_amt=min_amt.trim();
+			bank=bank.trim();
+			image=image.trim();
+			
 			if(active_from!="")
 			{
 				active_from=new Date(active_from*1000);
@@ -50,7 +64,10 @@
 			$("#hidden_id").val(id);
 			$("#active_from").val(active_from);
 			$("#active_to").val(active_to);
-			$("#discount").val(discount);
+			if(discount!="")
+			{
+				$("#discount").val(discount);
+			}
 			$("#max_discount").val(max_discount);
 			$("#discount_type").val(discount_type);
 			$("#category").val(cat);
@@ -166,6 +183,7 @@ if(isset($_REQUEST['submit_coupon_active']))
 	}
 	if(($id=="undefined")||($id==""))
 	{
+		
 		$user->active_from=$active_from;
 		$user->active_to=$active_to;
 		$user->discount=$discount;
