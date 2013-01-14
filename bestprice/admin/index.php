@@ -334,6 +334,7 @@ require_once '../Parsing.php';
 					<option  value="Upto">Upto</option>
 					<option  value="Conditions">Conditions</option>
 				</select>
+			</td>
 			<td><span id="deal_typeErr"></span></td>
 		</tr>
 		<tr>
