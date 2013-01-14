@@ -238,8 +238,6 @@ $usersTable-> setColumnNameMapping($field);
 
 require_once '../Parsing.php';
 
-
-
 ?>
 <form method="post" action="index.php">
 
