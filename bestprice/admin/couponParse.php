@@ -46,6 +46,7 @@
 			var id=$(this).parent("td").parent("tr").children("td:first-child").html();
 			var coupon_code=$(this).parent("td").parent("tr").children("td:nth-child(3)").text();
 			var dscription=$(this).parent("td").parent("tr").children("td:nth-child(8)").text();
+			var website=$(this).parent("td").parent("tr").children("td:nth-child(7)").text();
 			
 			var deal_url=$(this).parent("td").parent("tr").find("a").attr("href");
 			deal_url=deal_url.trim();
@@ -70,17 +71,32 @@
 				$("#website").val("");
 				$("#bank").val("None");
 				$("#discount_type").val("");
+				
 				$(".website_option").each(function(){
-					
 					var option_value=$(this).val();
 					optionValue=option_value.toLowerCase();
-					deal_url=deal_url.toLowerCase();
-					var n=deal_url.indexOf(optionValue);
+					website=website.toLowerCase();
+					var n=website.indexOf(optionValue);
 					if(n!=-1)
 					{
 						$("#website").val(option_value);
 					}
 				});
+				var check_website=$("#website").val();
+				if(check_website=="")
+				{
+					$(".website_option").each(function(){
+						
+						var option_value=$(this).val();
+						optionValue=option_value.toLowerCase();
+						deal_url=deal_url.toLowerCase();
+						var n=deal_url.indexOf(optionValue);
+						if(n!=-1)
+						{
+							$("#website").val(option_value);
+						}
+					});
+				}
 				
 				$(".bank_option").each(function(i){
 					
