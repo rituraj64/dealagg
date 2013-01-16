@@ -503,8 +503,8 @@ require_once '../Parsing.php';
 		<tr>
 			<td><label>Category</label></td>
 			<td>
-				<select multiple name="category[]" id="category">
-					<option selected value="-1">Select</option>
+				<select multiple name="category[]" required="true" id="category">
+					<option selected value="">Select</option>
 					<?php
 		  	 			require_once '../Category.php';
 		  	 			$catObj = new Category();
@@ -551,8 +551,8 @@ require_once '../Parsing.php';
 		<tr>
 			<td><label>Deal Type</label></td>
 			<td>
-				<select name="deal_type" id="deal_type">
-					<option>Select</option>
+				<select name="deal_type" required="true" id="deal_type">
+					<option value="">Select</option>
 					<option  value="Fixed">Fixed</option>
 					<option  value="Upto">Upto</option>
 					<option  value="Conditions">Conditions</option>
