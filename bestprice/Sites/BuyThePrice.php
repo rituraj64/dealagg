@@ -79,6 +79,8 @@ class BuyThePrice extends Parsing{
 			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=84&bid=0";
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=82&bid=0";
+		}elseif ($category == Category::TABLETS){
+			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=79&bid=0";
 		}
 		return "http://www.buytheprice.com/search__".$query;
 	}

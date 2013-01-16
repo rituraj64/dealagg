@@ -21,7 +21,7 @@ class Indiatimes extends Parsing{
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10010";
 		}else if($category == Category::BOOKS){
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10011";
-		}else if($category == Category::COMP_ACC || $category == Category::TABLETS){
+		}else if($category == Category::COMP_ACC){
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10013";
 		}else if($category == Category::HOME_APPLIANCE){
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10004";
@@ -62,6 +62,8 @@ class Indiatimes extends Parsing{
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:20011"; //cameras
 			}else if($subcat == Category::CAM_DIGITAL_SLR){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:20011"; //cameras
+			}elseif($category == Category::TABLETS){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10013&filter=PRIMARY_CATEGORY_ID:40105";//tablets
 			}else {
 				return '';
 			}

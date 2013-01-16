@@ -5,7 +5,7 @@ class Letshop extends Parsing{
 		return 'http://www.facebook.com/LetsShopFans';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
+		return array(Category::TABLETS,Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -13,16 +13,16 @@ class Letshop extends Parsing{
 	}
 
 	public function getSearchURL($query,$category = false,$subcat){
-		if($category == Category::MOBILE){
-			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=4";
+		if($category == Category::MOBILE || $category == Category::TABLETS){
+			return "http://letsshop.in/catalogsearch/result/index/?cat=4&q=$query";
 		}else if($category == Category::MOBILE_ACC){
 			$query = str_replace(" ", "-", $query);
 			if($subcat == Category::MOB_MEMORY){
 				return "http://letsshop.in/catalogsearch/result/index/?cat=77&q=$query";
 			}elseif ($subcat == Category::MOB_CHARGER){
-				return "http://letsshop.in/catalogsearch/result/index/?cat=16&q=Nokia+battery";
+				return "http://letsshop.in/catalogsearch/result/index/?cat=16&q=$query";
 			}elseif($subcat == Category::MOB_CAR_ACC){
-				return "http://letsshop.in/catalogsearch/result/index/?cat=20&q=Nokia+battery";
+				return "http://letsshop.in/catalogsearch/result/index/?cat=20&q=$query";
 			}else{
 				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=12";
 			}

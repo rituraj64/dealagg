@@ -5,7 +5,7 @@ class Homeshop extends Parsing{
 		return 'http://www.facebook.com/homeshop18';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP);
+		return array(Category::TABLETS,Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP);
 	}
 	public function isTrusted($category){
 		return true;
@@ -83,6 +83,8 @@ class Homeshop extends Parsing{
 			return "http://www.homeshop18.com/dell/desktops/categoryid:3286/search:$query";
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.homeshop18.com/dell/laptops/categoryid:3291/search:$query/";
+		}elseif($category == Category::TABLETS){
+			return "http://www.homeshop18.com/$query/ipads-tablets/categoryid:8937/search:$query/";
 		}else{
 			return "http://www.homeshop18.com/$query/search:$query";
 		}

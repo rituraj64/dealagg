@@ -6,7 +6,7 @@ class Naaptol extends Parsing{
 		return 'http://www.facebook.com/ShopRight';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
+		return array(Category::TABLETS,Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 	public function isTrusted($category){
 		return true;
@@ -15,14 +15,18 @@ class Naaptol extends Parsing{
 	public function getWebsiteUrl(){
 		return 'http://www.naaptol.com';
 	}
+	/*###note###
+	 * I a few sites like this and other the search result is json encoded. But if we remove "&req=ajax"  from the end of the url it gives a html result page.
+	 * 
+	 */ 
 	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
-			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=27&kw=$query&sb=49,9,8&req=ajax";
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=27&kw=$query&sb=49,9,8";/* &req=ajax"; */
 		}else if($category == Category::BOOKS){
-			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2578&kw=$query&sb=49,9,8&req=ajax";
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2578&kw=$query&sb=49,9,8";/* &req=ajax"; */
 		}else if($category == Category::MOBILE_ACC){
 			if($subcat == Category::NOT_SURE){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=4&kw=$query&sb=49,9,8&req=ajax";
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=4&kw=$query&sb=49,9,8";/* &req=ajax"; */
 			}elseif ($subcat == Category::MOB_OTHERS){
 				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2494&kw=$query&sb=49,9,8";
 			}elseif($subcat == Category::MOB_SCREEN_GUARD){
@@ -41,54 +45,56 @@ class Naaptol extends Parsing{
 				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=102&kw=$query&sb=49,9,8";
 			}elseif ($subcat == Category::MOB_CAR_ACC){
 				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=186&kw=$query&sb=49,9,8";
-			}else return "";
+			}else{
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&kw=$query&sb=49,9,8";/* &req=ajax"; */
+			}
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=1&kw=$query&sb=49,9,8&req=ajax";
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=1&kw=$query&sb=49,9,8&";/* &req=ajax"; */
 			}else if($subcat == Category::CAM_DIGITAL_CAMERA){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=6&kw=$query&sb=49,9,8&req=ajax"; // digital camera
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=6&kw=$query&sb=49,9,8";/* &req=ajax"; */ // digital camera
 			}else if($subcat == Category::CAM_DIGITAL_SLR){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=7&kw=$query&sb=49,9,8&req=ajax"; //slr
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=7&kw=$query&sb=49,9,8";/* &req=ajax"; */ //slr
 			}else if($subcat == Category::CAM_CAMCORDER){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=9&kw=$query&sb=49,9,8&req=ajax"; // camcorders
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=9&kw=$query&sb=49,9,8";/* &req=ajax"; */ // camcorders
 			}else if($subcat == Category::CAM_MIRRORLESS){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=6&kw=$query&sb=49,9,8&req=ajax"; // digital camera
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=6&kw=$query&sb=49,9,8";/* &req=ajax"; */ // digital camera
 			}else {
-				return '';
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&kw=$query&sb=49,9,8";/* &req=ajax"; */
 			}
-
 		}else if($category == Category::CAMERA_ACC){
 			if($subcat == Category::NOT_SURE){
 			}else if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=108&kw=$query&sb=49,9,8&req=ajax"; //chargers
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=108&kw=$query&sb=49,9,8";/* &req=ajax"; */ //chargers
 			}else if($subcat == Category::CAM_ACC_BAGS){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=38&kw=$query&sb=49,9,8&req=ajax"; // camera pouch
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=38&kw=$query&sb=49,9,8";/* &req=ajax"; */ // camera pouch
 			}else if($subcat == Category::CAM_ACC_BATTERY){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=37&kw=$query&sb=49,9,8&req=ajax"; //battery
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=37&kw=$query&sb=49,9,8";/* &req=ajax"; *///battery
 			}else if($subcat == Category::CAM_ACC_FLASH_LIGHTS){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=253&kw=$query&sb=49,9,8&req=ajax";
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=253&kw=$query&sb=49,9,8";/* &req=ajax"; */
 			}else if($subcat == Category::CAM_ACC_LENSEFILTER){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2582&kw=$query&sb=49,9,8&req=ajax"; //lens
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2582&kw=$query&sb=49,9,8";/* &req=ajax"; */ //lens
 			}else if($subcat == Category::CAM_ACC_LENSES){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=252&kw=$query&sb=49,9,8&req=ajax"; //lens
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=252&kw=$query&sb=49,9,8";/* &req=ajax"; */ //lens
 			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
 				return '';
 			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2495&kw=$query&sb=49,9,8&req=ajax"; //misc
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2495&kw=$query&sb=49,9,8";/* &req=ajax"; */ //misc
 			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2591&kw=$query&sb=49,9,8&req=ajax";
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2591&kw=$query&sb=49,9,8";/* &req=ajax"; */
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
-				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=39&kw=$query&sb=49,9,8&req=ajax"; //tripods
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=39&kw=$query&sb=49,9,8";/* &req=ajax"; */ //tripods
 			}else{
-				return '';
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&kw=$query&sb=49,9,8";/* &req=ajax"; */
 			}
-
 		}elseif ($category == Category::COMP_COMPUTER){
 			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=12&kw=$query&sb=49,9,8";
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=13&kw=$query&sb=49,9,8";
+		}elseif ($category == Category::TABLETS){
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2610&kw=$query&sb=49,9,8"
 		}
-		return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&kw=samsung&sb=49,9,8&req=ajax";
+		return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&kw=$query&sb=49,9,8";/* &req=ajax"; */
 	}
 	public function getLogo(){
 		return "http://images2.naptol.com/usr/local/csp/staticContent/images_layout/naaptolXmasLogo.gif";

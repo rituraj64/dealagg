@@ -1,6 +1,7 @@
 <?php
 
 class ShopClues extends Parsing{
+	
 	public $_code = 'ShopClues';
 	public function getFacebookUrl(){
 		return 'http://www.facebook.com/ShopClues';
@@ -9,7 +10,7 @@ class ShopClues extends Parsing{
 		return true;
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
+		return array(Category::TABLETS,Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -87,6 +88,8 @@ class ShopClues extends Parsing{
 			}
 		}elseif($category == Category::COMP_COMPUTER || $category == Category::COMP_LAPTOP){
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=85&q=$query&dispatch=products.search";
+		}elseif($category == Category::TABLETS){
+			return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1566";
 		}
 		else{
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=0&dispatch=products.search&q=".$query;

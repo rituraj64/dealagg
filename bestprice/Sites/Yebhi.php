@@ -37,6 +37,8 @@ class Yebhi extends Parsing{
 			return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=product%20type%28text%29=Desktops";
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=product%20type%28text%29=Laptops";
+		}elseif($category == Category::TABLETS){
+			return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=product%20type%28text%29=Tablets";
 		}else{
 			return "http://www.yebhi.com/searchall.aspx?q=$query";
 		}

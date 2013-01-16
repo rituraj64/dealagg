@@ -5,7 +5,7 @@ class FutureBazaar extends Parsing{
 		return 'http://www.facebook.com/FutureBazaar';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_LAPTOP);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_LAPTOP,Category::TABLETS);
 	}
 
 	public function getWebsiteUrl(){
@@ -71,6 +71,8 @@ class FutureBazaar extends Parsing{
 			}
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.futurebazaar.com/search/?q=$query&c=2466";
+		}elseif ($category == Category::TABLETS){
+			return "http://www.futurebazaar.com/search/?q=$query&c=2468";
 		}
 		return "http://www.futurebazaar.com/search/?q=$query&c=0&NormalSearch=enabled";
 	}

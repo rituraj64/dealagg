@@ -8,7 +8,7 @@ class Tradus extends Parsing{
 		return true;
 	}
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP);
+		return array(Category::TABLETS,Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
@@ -43,7 +43,6 @@ class Tradus extends Parsing{
 				return "http://www.tradus.com/search?query=$query&cat=10483";
 			}else return "";
 		}else if($category == Category::CAMERA){
-
 			if($subcat == Category::NOT_SURE){
 				return "http://www.tradus.com/search?query=$query&cat=10305";
 			}else if($subcat == Category::CAM_DIGITAL_CAMERA){
@@ -57,10 +56,6 @@ class Tradus extends Parsing{
 			}else{
 				return '';
 			}
-
-
-
-
 		}else if($category == Category::CAMERA_ACC){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.tradus.com/search?query=$query&cat=7667"; // acc
@@ -89,6 +84,8 @@ class Tradus extends Parsing{
 			}
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.tradus.com/search?query=$query&availability=true&cat=7689";
+		}elseif($category == Category::TABLETS){
+			return "http://www.tradus.com/search?query=$query&availability=true&cat=7762";
 		}else{
 			return "http://www.tradus.com/search?query=".$query;
 		}

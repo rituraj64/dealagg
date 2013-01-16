@@ -5,7 +5,7 @@ class Infibeam extends Parsing{
 		return 'http://www.facebook.com/infibeam';
 	}
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
+		return array(Category::TABLETS,Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 	public function isTrusted($category){
 		return true;
@@ -80,6 +80,8 @@ class Infibeam extends Parsing{
 				return "http://www.infibeam.com/Camera_Accessories/search?q=$query#category=Screen Protector&q=$query&store=Camera_Accessories";
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 				return "http://www.infibeam.com/Camera_Accessories/search?q=$query#category=Tripod&q=$query&store=Camera_Accessories";
+			}elseif($category == Category::TABLETS){
+				return "http://www.infibeam.com/Portable_Electronics/search?q=$query#bodyType=iPad&bodyType=Tablet&q=$query&store=Portable_Electronics";
 			}else{
 				return '';
 			}

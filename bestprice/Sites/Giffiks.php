@@ -6,14 +6,14 @@ class Giffiks extends Parsing{
 		return 'http://www.facebook.com/GIFFIKS';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::CAMERA_ACC,Category::BOOKS,Category::COMP_LAPTOP);
+		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::CAMERA_ACC,Category::BOOKS,Category::COMP_LAPTOP,Category::TABLETS);
 	}
 
 	public function getWebsiteUrl(){
 		return 'http://www.giffiks.com/';
 	}
 	public function getSearchURL($query,$category = false,$subcat){
-		if($category == Category::MOBILE || $category == Category::MOBILE_ACC){
+		if($category == Category::MOBILE || $category == Category::MOBILE_ACC || $category == Category::TABLETS){
 			return "http://www.giffiks.com/search.php?category=mobile&search=$query&go=";
 		}else if($category == Category::CAMERA || $category == Category::CAMERA_ACC){
 			return "http://www.giffiks.com/search.php?category=camera&search=sd&go=";

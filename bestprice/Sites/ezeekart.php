@@ -2,6 +2,7 @@
 class ezeekart extends Parsing{
 	
 	public $_code = 'ezeekart';
+	
 	public function getFacebookUrl(){
 		return 'http://www.facebook.com/ezeekart';
 	}

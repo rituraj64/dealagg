@@ -6,7 +6,7 @@ class Indiaplaza extends Parsing{
 		return 'http://www.facebook.com/indiaplaza';
 	}
 	public function getAllowedCategory(){
-		return array(Category::BOOKS);
+		return array(Category::BOOKS,Category::COMP_LAPTOP,Category::MOBILE,Category::MOBILE_ACC);
 	}
 
 	public function getWebsiteUrl(){
@@ -15,6 +15,10 @@ class Indiaplaza extends Parsing{
 	public function getSearchURL($query,$category = false,$subcat){
 		if($category == Category::BOOKS){
 			return "http://www.indiaplaza.com/searchproducts.aspx?sn=all&q=$query&dn=books";
+		}elseif($category == Category::MOBILE || $category == Category::MOBILE_ACC){
+			return "http://www.indiaplaza.com/searchproducts.aspx?sn=mobiles&q=$query&dn=mobiles";
+		}elseif ($category == Category::COMP_LAPTOP){
+			return "http://www.indiaplaza.com/searchproducts.aspx?sn=pc&q=$query&dn=pc";
 		}
 	}
 	public function getLogo(){

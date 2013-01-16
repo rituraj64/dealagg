@@ -5,7 +5,7 @@ class Seventymm extends Parsing{
 		return 'http://www.facebook.com/SeventymmCom';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP);
+		return array(Category::TABLETS,Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
@@ -48,7 +48,7 @@ class Seventymm extends Parsing{
 			}else if($subcat == Category::CAM_MIRRORLESS){
 				return "http://shop.seventymm.com/Search/$query/Electronics/2235/Point-and-Shoot/2375/All-Price/0/Any/0/Any/0/1/1/3/Go"; //digital camera
 			}else{
-				return '';
+				return 'http://shop.seventymm.com/Search/$q/All-Categories/0/All-Classification/0/All-Price/0/Any/0/Any/0/1/1/3/Go';
 			}
 		}else if($category == Category::CAMERA_ACC){
 			if($subcat == Category::NOT_SURE){
@@ -74,11 +74,12 @@ class Seventymm extends Parsing{
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 				return "http://shop.seventymm.com/Search/$query/Electronics/2235/Accessories/2629/All-Price/0/Any/0/Any/0/1/1/3/Go"; //acc
 			}else{
-				return '';
+				return 'http://shop.seventymm.com/Search/$q/All-Categories/0/All-Classification/0/All-Price/0/Any/0/Any/0/1/1/3/Go';
 			}
-
 		}elseif ($category == Category::COMP_LAPTOP){
-			return "http://shop.seventymm.com/search/$query/all-categories/0/laptops/2371/all-price/0/any/0/any/0/1/1/3/go";
+			return "http://shop.seventymm.com/search/$q/all-categories/0/laptops/2371/all-price/0/any/0/any/0/1/1/3/go";
+		}elseif ($category == Category::TABLETS){
+			return "http://shop.seventymm.com/search/$q/tablets-and-mobiles/2829/tablets/2277/all-price/0/any/0/any/0/1/1/3/go";
 		}
 		return "http://shop.seventymm.com/Search/$q/All-Categories/0/All-Classification/0/All-Price/0/Any/0/Any/0/1/1/3/Go";
 	}

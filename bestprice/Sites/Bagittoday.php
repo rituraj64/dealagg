@@ -1,5 +1,6 @@
 <?php
 class Bagittoday extends Parsing{
+	
 	public $_code = 'Bagittoday';
 
 	public function getFacebookUrl(){

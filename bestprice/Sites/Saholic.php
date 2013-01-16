@@ -5,7 +5,7 @@ class Saholic extends Parsing{
 		return 'http://www.facebook.com/mysaholic';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::COMP_LAPTOP);
+		return array(Category::TABLETS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
@@ -53,6 +53,7 @@ class Saholic extends Parsing{
 		}
 		return "http://www.saholic.com/search?q=".$query."&category=10000";
 	}
+	
 	public function getLogo(){
 		return "http://www.saholic.com/images/saholic-logo-5648.jpg";
 	}

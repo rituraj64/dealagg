@@ -5,14 +5,14 @@ class Greendust extends Parsing{
 		return 'http://www.facebook.com/GreenDustShopping';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::COMP_COMPUTER,Category::COMP_LAPTOP);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::COMP_COMPUTER,Category::COMP_LAPTOP,Category::TABLETS);
 	}
 
 	public function getWebsiteUrl(){
 		return 'http://www.greendust.com/';
 	}
 	public function getSearchURL($query,$category = false,$subcat=false){
-		if($category == Category::MOBILE){
+		if($category == Category::MOBILE || $category == Category::TABLETS){
 			return "http://www.greendust.com/advanced_search_result.php?cata_id=105&product_list=$query&keywords=&x=0&y=0";
 		}else if($category == Category::MOBILE_ACC){
 			return "http://www.greendust.com/advanced_search_result.php?cata_id=106,126,127,128,129,130,131&product_list=$query&keywords=&x=0&y=0";

@@ -65,7 +65,7 @@ class Category{
 						self::MOB_HANDSFREE => 'Handsfree',
 						self::MOB_OTHERS => 'Other Accessories'
 				)),
-				//self::TABLETS=>'Tablets, iPad',
+				self::TABLETS=>'Tablets, iPad',
 				//self::TV=>'TV, Video & Audio',
 				//self::GAMING =>'Gaming',
 				self::COMP_LAPTOP=>array('Computer & Laptop'=>array(

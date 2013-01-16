@@ -16,6 +16,8 @@ class Storeji extends Parsing{
 			return "http://www.storeji.com/catalogsearch/result/index/?cat=19&q=$query";
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.storeji.com/catalogsearch/result/index/?cat=142&q=$query";
+		}elseif($category == Category::TABLETS){
+			return "http://www.storeji.com/catalogsearch/result/index/?cat=141&q=$query";
 		}
 		return "http://www.storeji.com/catalogsearch/result/?q=$query";
 	}

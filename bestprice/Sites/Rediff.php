@@ -2,7 +2,7 @@
 class Rediff extends Parsing{
 	public $_code = 'Rediff';
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
+		return array(Category::TABLETS,Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -80,6 +80,8 @@ class Rediff extends Parsing{
 			return "http://shopping.rediff.com/productv2/$query/cat-computers+%26amp%3B+it+peripherals|desktop+pcs?ref_src=topnav_Computer|browse";
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://shopping.rediff.com/productv2/$query/cat-computers+%26amp%3B+it+peripherals|laptops?ref_src=topnav_Computer|browse";
+		}elseif($category == Category::TABLETS){
+			return "http://shopping.rediff.com/productv2/$query/cat-computers+%26amp%3B+it+peripherals|tablets+%26amp%3B+e-book+readers";
 		}else{
 			return "http://shopping.rediff.com/shopping/index.html#!".urldecode($query);
 		}

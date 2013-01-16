@@ -5,7 +5,7 @@ class Suzalin extends Parsing{
 		return 'http://www.facebook.com/SuzalinOnlineShopping';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::CAMERA,Category::COMP_LAPTOP);
+		return array(Category::TABLETS,Category::MOBILE,Category::CAMERA,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
@@ -18,6 +18,8 @@ class Suzalin extends Parsing{
 			return "http://www.suzalin.com/Search/1_7_$query";
 		}elseif($category == Category::COMP_LAPTOP){
 			return "http://www.suzalin.com/Search/1_3_$query";
+		}elseif ($category == Category::TABLETS){
+			return "http://www.suzalin.com/Search/1_4_$query";
 		}
 		return "http://www.suzalin.com/Search/1_0_$query";
 	}

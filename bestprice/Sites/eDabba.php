@@ -6,7 +6,7 @@ class eDabba extends Parsing{
 		return 'http://www.facebook.com/edabbamall';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP);
+		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP,Category::TABLETS);
 	}
 
 	public function getWebsiteUrl(){
@@ -70,9 +70,12 @@ class eDabba extends Parsing{
 			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5862&f[1]=im_taxonomy_catalog%3A5907";
 		}elseif ($category == Category::COMP_COMPUTER){
 			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5862";
+		}elseif($category == Category::TABLETS){
+			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5862&f[1]=im_taxonomy_catalog%3A5909";
 		}
 		return "http://www.edabba.com/search/site/$query";
 	}
+	
 	public function getLogo(){
 		return 'http://d43w3023ueaau.cloudfront.net/sites/default/files/images/logo.png';
 	}

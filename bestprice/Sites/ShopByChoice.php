@@ -5,7 +5,7 @@ class ShopByChoice extends Parsing{
 		return 'http://www.facebook.com/shopbychoice';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
+		return array(Category::TABLETS,Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -30,7 +30,7 @@ class ShopByChoice extends Parsing{
 				return "http://www.shopbychoice.com/search/result+category-bluetooth+searchtext-$query";
 			}elseif($subcat == Category::MOB_MEMORY){
 				return "http://www.shopbychoice.com/search/result+category-micro-memory-cards+searchtext-$query";
-			}else return "";
+			}else return "http://www.shopbychoice.com/search/result+searchtext-".$query;
 		}else if($category == Category::CAMERA){
 				
 			if($subcat == Category::NOT_SURE){
@@ -44,12 +44,14 @@ class ShopByChoice extends Parsing{
 			}else if($subcat == Category::CAM_MIRRORLESS){
 				return "http://www.shopbychoice.com/search/result+category-compact-cameras+searchtext-$query"; //digital
 			}else{
-				return '';
+				return "http://www.shopbychoice.com/search/result+searchtext-".$query;
 			}
 		}elseif ($category == Category::COMP_COMPUTER){
 			return "http://www.shopbychoice.com/search/result+category-desktops+searchtext-$query";
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.shopbychoice.com/search/result+searchtext-$query+category-laptops";
+		}elseif($category == Category::TABLETS){
+			return "http://www.shopbychoice.com/search/result+category-tablets+searchtext-$query";
 		}
 		return "http://www.shopbychoice.com/search/result+searchtext-".$query;
 	}

@@ -5,7 +5,7 @@ class Zoomin extends Parsing{
 		return 'http://www.facebook.com/zoomin';
 	}
 	public function getAllowedCategory(){
-		return array(Category::CAMERA,Category::MOBILE,Category::CAMERA_ACC,Category::MOBILE_ACC);
+		return array(Category::CAMERA,Category::MOBILE,Category::CAMERA_ACC,Category::MOBILE_ACC,Category::TABLETS);
 	}
 	public function isTrusted($category){
 		if($category == Category::CAMERA){
@@ -60,6 +60,8 @@ class Zoomin extends Parsing{
 			}else{
 				return '';
 			}
+		}elseif($category == Category::TABLETS){
+			return "http://camera.zoomin.com/index.php/search/ajax/query?r=select&q=$query&json.nl=map&rows=20&fl=name_varchar%2Cproducts_id&qf=name_varchar%20oemname_int&spellcheck=true&autocompletez=true&spellcheck.collate=true&facet=true&facet.field=category%2Coemname_facets&facet.limit=5&defType=dismax&fq=category%3A%22Tablets%22&wt=json&json.wrf=_prototypeJSONPCallback_5";
 		}else{
 			return "http://camera.zoomin.com/index.php/search/ajax/query?r=select&q=".$query."&json.nl=map&facet=true&facet.field=oemname_facets%2Ccategory&defType=dismax&timestamp=1355584673850&qf=name_varchar%20oemname_int%20&wt=json&json.wrf=_prototypeJSONPCallback_1";
 		}
