@@ -421,6 +421,7 @@ require_once '../Parsing.php';
 		<a class="add_coupon" style="text-decoration:none;color:white;" href="#data">Add Coupon</a>
 	</div>
 </div>
+
 <?php 
 	echo $table;
 ?>
