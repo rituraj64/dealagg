@@ -136,11 +136,14 @@
 					{
 						if(search_maximum==-1)
 						{
-							var rupee_split=dscription.split(' rs');
-							var rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[1]);
-							//var rupee_value=rupee_split[1].substring(0,rupee_split[1].indexOf(' '));
-							$("#min_amt").val(rupee_value);
-							$("#deal_type").val("Conditions");
+							if((search_minimum!=-1)||(search_above!=-1))
+							{
+								var rupee_split=dscription.split(' rs');
+								var rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[1]);
+								//var rupee_value=rupee_split[1].substring(0,rupee_split[1].indexOf(' '));
+								$("#min_amt").val(rupee_value);
+								$("#deal_type").val("Conditions");
+							}
 						}
 					}
 					else
