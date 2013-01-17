@@ -123,6 +123,7 @@
 				var search_discount=dscription.indexOf('%');
 				if(search_discount!=-1)
 				{
+					dscription=dscription.replace(/\,/g,"");
 					$("#discount_type").val("percentage");
 					var disc_split=dscription.split('%');
 					var discount_value = /\d+(?:\.\d+)?/.exec(disc_split[0]);
