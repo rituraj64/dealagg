@@ -78,6 +78,7 @@
 
 				var search_minimum=dscription.indexOf('minimum');
 				var search_above=dscription.indexOf('above');
+				var search_maximum=dscription.indexOf('maximum');
 				
 				$(".website_option").each(function(){
 					var option_value=$(this).val();
@@ -132,7 +133,7 @@
 					var search_rupees=dscription.indexOf(' rs');
 					if(search_rupees!=-1)
 					{
-						if((search_minimum!=-1)||(search_above!=-1))
+						if(search_maximum==-1)
 						{
 							var rupee_split=dscription.split(' rs');
 							var rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[1]);
