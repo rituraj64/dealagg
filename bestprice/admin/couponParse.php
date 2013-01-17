@@ -75,6 +75,9 @@
 				$("#discount").val("");
 				$("#min_amt").val("");
 				$("#deal_type").val("Fixed");
+
+				var search_minimum=dscription.indexOf('minimum');
+				var search_above=dscription.indexOf('above');
 				
 				$(".website_option").each(function(){
 					var option_value=$(this).val();
@@ -129,14 +132,14 @@
 					var search_rupees=dscription.indexOf(' rs');
 					if(search_rupees!=-1)
 					{
-						var rupee_split=dscription.split(' rs');
-						
-						var rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[1]);
-						
-						//var rupee_value=rupee_split[1].substring(0,rupee_split[1].indexOf(' '));
-						//alert(rupee_value);
-						$("#min_amt").val(rupee_value);
-						$("#deal_type").val("Conditions");
+						if((search_minimum!=-1)||(search_above!=-1))
+						{
+							var rupee_split=dscription.split(' rs');
+							var rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[1]);
+							//var rupee_value=rupee_split[1].substring(0,rupee_split[1].indexOf(' '));
+							$("#min_amt").val(rupee_value);
+							$("#deal_type").val("Conditions");
+						}
 					}
 					else
 					{
@@ -148,8 +151,7 @@
 					dscription=dscription.replace(/\,/g,"");
 					dscription=" "+dscription;
 					var search_rupees=dscription.indexOf(' rs');
-					var search_minimum=dscription.indexOf('minimum');
-					var search_above=dscription.indexOf('above');
+					
 					if(search_rupees!=-1)
 					{
 						$("#discount_type").val("fixed");
