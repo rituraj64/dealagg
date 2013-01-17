@@ -92,7 +92,7 @@ class Naaptol extends Parsing{
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=13&kw=$query&sb=49,9,8";
 		}elseif ($category == Category::TABLETS){
-			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2610&kw=$query&sb=49,9,8"
+			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2610&kw=$query&sb=49,9,8";
 		}
 		return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&kw=$query&sb=49,9,8";/* &req=ajax"; */
 	}

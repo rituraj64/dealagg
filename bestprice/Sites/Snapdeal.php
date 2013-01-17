@@ -70,7 +70,7 @@ class Snapdeal extends Parsing{
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.snapdeal.com/search?keyword=$query&catId=21&categoryId=57&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=57&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}elseif($category == Category::TABLETS){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=133&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="
+			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=133&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}else{
 			return "http://www.snapdeal.com/search?keyword=".$query."&catId=12&categoryId=0&suggested=false&vertical=&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}
