@@ -1,4 +1,4 @@
-<div class='item item_small' id='{item_id}' style="margin-left: 5px;">
+<div class='item item_small' id='{item_id}' style="margin-left: 5px;margin-top: 10px">
   			<input type='hidden' id='item_url' value='{item_url}' />
 			<input type='hidden' id='item_name' class='item_name' value='{item_name}' />
 			<input type='hidden' id='item_image' value='{item_img_load_id}' />

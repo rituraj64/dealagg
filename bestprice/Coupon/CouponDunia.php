@@ -66,7 +66,7 @@ class CouponDunia extends Parsingcoupon{
 						$cp->website_landing = $website_url;
 						$cp->deal_url = $deal_url;
 						$cp->title = $title;
-						$cp->desc = $details;
+						$cp->desc = strip_tags($details,'<a>');
 						$cp->coupon_type = $type;
 						$cp->website = $href;
 						$cp->success = $success;

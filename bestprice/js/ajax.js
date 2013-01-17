@@ -907,21 +907,22 @@ function finished() {
 
 						var ele = $('#' + data.website).children('.other_info_parent').children('.other_info');
 						if (shipping_cost.length > 0) {
+							ele.children('.shipping').hide();
 							ele.children('.shipping_cost').show();
-							ele.children('.shipping_cost').html('<b>Shipping Cost:<b/> ' + shipping_cost);
+							ele.children('.shipping_cost').html('<b>Shipping Cost:</b> ' + shipping_cost);
 						}
 
 						if (shipping_time.length > 0) {
 							ele.children('.shipping_time').show();
-							ele.children('.shipping_time').html('<b>Shipping Time:<b/> ' + shipping_time);
+							ele.children('.shipping_time').html('<b>Shipping Time:</b> ' + shipping_time);
 						}
 						if (warrenty.length > 0) {
 							ele.children('.warrenty').show();
-							ele.children('.warrenty').html('<b>Warrenty:<b/> ' + warrenty);
+							ele.children('.warrenty').html('<b>Warrenty:</b> ' + warrenty);
 						}
 						if (offer.length > 0) {
 							ele.children('.offer').show();
-							ele.children('.offer').html('<b>Offer:<b/> ' + offer);
+							ele.children('.offer').html('<b>Offer:</b> ' + offer);
 						}
 					}
 

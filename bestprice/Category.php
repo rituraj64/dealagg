@@ -1,7 +1,7 @@
 <?php
 class Category{
-	const MOBILE = '1';
-	const TABLETS = '2';
+	const MOBILE = 1;
+	const TABLETS = 2;
 	const TV = 3;
 	const GAMING = 4;
 	const COMP_LAPTOP = 5;

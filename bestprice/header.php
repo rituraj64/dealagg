@@ -43,7 +43,7 @@
             <div class="container">
               <ul class="nav">
                 <li class="active"><a href="<?php echo Parser::SITE_URL;?>index.php">Home</a></li>
-                <li><a href="#">Coupons</a></li>
+                <li><a href="<?php echo Parser::SITE_URL;?>coupons.php">Coupons</a></li>
                 <li><a href="<?php echo Parser::SITE_URL;?>sites.php">Sites</a></li>
                 <li><a href="<?php echo Parser::SITE_URL;?>recent.php">Recent Searches</a></li>
                 <li><a href="#">About</a></li>

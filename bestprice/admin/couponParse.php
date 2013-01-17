@@ -246,6 +246,20 @@ require_once 'couponClass.php';
 require_once '../smartmodel/UI.php';
 require_once '../smartmodel/UI/Util/UIUtil.php';
 
+if(isset($_REQUEST['remove_tags'])){
+	
+	$sql = 'select * from coupon_parse where `read` = 0';
+	
+	$coupon_active = new coupon_active();
+	$data = $coupon_active->query($sql);
+	$data = $coupon_active->getData($data);
+	foreach($data as $row){
+		$desc = strip_tags($row['desc'],'<a>');
+		$sql = 'update coupon_parse set `desc` = "'.mysql_real_escape_string($desc).'" where id = '.$row['id'] . ' LIMIT 1';
+		$coupon_active->query($sql);
+	}
+}
+
 ?>
 <div>
 	<div style="float:left">

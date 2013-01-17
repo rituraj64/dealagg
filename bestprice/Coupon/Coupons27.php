@@ -69,7 +69,7 @@ class Coupons27 extends Parsingcoupon{
 						$cp->deal_url = $deal_url;
 						$cp->coupon_code = $coupon_code;
 						$cp->title = $title;
-						$cp->desc = $details;
+						$cp->desc =strip_tags($details,'<a>');
 						$cp->coupon_type = $type;
 						$cp->website = $href;
 						$cp->success = $success;

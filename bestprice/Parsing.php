@@ -279,6 +279,12 @@ class Parsing{
 			}
 		}
 
+		if(isset($data[0])){
+			$row = $data[0];
+			$text = $this->findBestCoupon(array('product'=>$row,'cat'=>$category));
+		}
+
+
 		/*
 		 $data3 = array();
 		$sorting = new Sorting();
@@ -383,5 +389,135 @@ class Parsing{
 	}
 	public function getProductData($html,$price,$stock){
 		return false;
+	}
+	public function findBestCoupon($condition = array(),$dontCheckDate = false,$includeExpired = false){
+		if(!isset($condition['website'])){
+			$condition['website'] = $this->getCode();
+		}
+		$cat = -1;
+		if(isset($condition['category'])){
+			$cat = $condition['category'];
+		}
+		$name = '';
+		$price = 0;
+		if(isset($condition['product'])){
+			$name = $condition['product']['name'];
+			$price = $condition['product']['disc_price'];
+		}
+		$website = $condition['website'];
+		$today = time();
+		$category = new Category();
+		$store_cats = $category->getStoreCategory();
+
+		require_once 'model/CouponActive.php';
+		$active = new CouponActive();
+		$data = $active->query('select * from coupon_active where active_to >= '.time().' and website = "'.$website.'" order by id desc');
+		$data = $active->getData($data);
+		$data2 = array();
+
+		$per = 0;
+		$amt = 0;
+		$title_amt = '';
+		$title_per = '';
+
+		foreach($data as $row){
+			if(($row['active_to'] != 0 && $row['active_to'] > time()) || $dontCheckDate){
+				if($cat != -1){
+					$cats = $row['categories'];
+					$cats = explode(',',$cats);
+					if(!in_array($cat,$cats)){
+						continue;
+					}
+				}
+				if($row['min_amt'] >0 && $price > 0){
+					if($price < $row['min_amt']){
+						continue;
+					}
+				}
+
+				if(!empty($row['bank'])){
+					continue;
+				}
+
+				// check product also here
+
+				print_r($row);
+				
+				if($row['discount_type'] == 'fixed'){
+					if($row['discount'] > $amt){
+						$amt = $row['discount'];
+						$title_amt = 'Discounts Upto <span class="WebRupee">Rs.</span>'.$amt.' Valid Upto '. date('d M',$row['active_to']);
+					}
+				}else if($row['discount_type'] == 'percentage'){
+					if($row['discount'] > $per){
+						$per = $row['discount'];
+						$title_per = 'Discounts Upto '.$amt.'%'.' Valid Upto '. date('d M',$row['active_to']);
+					}
+				}
+			}
+		}
+
+
+
+		if($per == 0 && $amt == 0){
+			if(!$dontCheckDate && !$includeExpired){
+				return $this->findBestCoupon($condition,true,false);
+			}else if($dontCheckDate && !$includeExpired){
+				return $this->findBestCoupon($condition,true,true);
+			}
+		}
+
+
+		if($per == 0){
+			return $title_amt;
+		}else if($amt == 0){
+			return $title_per;
+		}else{
+			if($per > 20){
+				return $title_per;
+			}else{
+				return $title_amt;
+			}
+		}
+	}
+	public function findCoupons($condition = array()){
+		if(!isset($condition['website'])){
+			$condition['website'] = $this->getCode();
+		}
+		$website = $condition['website'];
+		$today = time();
+		$category = new Category();
+		$store_cats = $category->getStoreCategory();
+
+		require_once 'model/CouponActive.php';
+		$active = new CouponActive();
+		$data = $active->query('select * from coupon_active where active_to <= NOW() and website = "'.$website.'" order by id desc');
+		$data = $active->getData($data);
+		$data2 = array();
+		foreach($data as $row){
+			$row['categories'] = '';
+			$cats = $row['category'];
+			$cats = explode(',',$cats);
+			foreach($cats as $cat){
+				if(isset($store_cats[$cat])){
+					$name = $store_cats[$cat];
+					if(is_array($name)){
+						$name = key($name);
+					}
+					$row['categories'] .= $name.', ';
+				}
+			}
+			if(!empty($row['categories'])){
+				$row['categories'] = substr($row['categories'],0,-2);
+			}
+			if($row['active_from'] != 0){
+				$row['active_from'] = date('d M',$row['active_from']);
+			}
+			if($row['active_to'] != 0){
+				$row['active_to'] = date('d M',$row['active_to']);
+			}
+			$data2[] = $row;
+		}
+		return $data2;
 	}
 }
