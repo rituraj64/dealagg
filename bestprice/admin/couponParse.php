@@ -148,6 +148,8 @@
 					dscription=dscription.replace(/\,/g,"");
 					dscription=" "+dscription;
 					var search_rupees=dscription.indexOf(' rs');
+					var search_minimum=dscription.indexOf('minimum');
+					var search_above=dscription.indexOf('above');
 					if(search_rupees!=-1)
 					{
 						$("#discount_type").val("fixed");
@@ -156,9 +158,12 @@
 						$("#discount").val(rupee_value);
 						if(rupee_split[2]!=undefined)
 						{
-							rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[2]);
-							$("#min_amt").val(rupee_value);
-							$("#deal_type").val("Conditions");
+							if((search_minimum!=-1)||(search_above!=-1))
+							{
+								rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[2]);
+								$("#min_amt").val(rupee_value);
+								$("#deal_type").val("Conditions");
+							}
 						}
 						else
 						{
