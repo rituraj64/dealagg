@@ -161,12 +161,9 @@
 						$("#discount").val(rupee_value);
 						if(rupee_split[2]!=undefined)
 						{
-							if((search_minimum!=-1)||(search_above!=-1))
-							{
-								rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[2]);
-								$("#min_amt").val(rupee_value);
-								$("#deal_type").val("Conditions");
-							}
+							rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[2]);
+							$("#min_amt").val(rupee_value);
+							$("#deal_type").val("Conditions");
 						}
 						else
 						{
