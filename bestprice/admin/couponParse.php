@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox1.css"></link>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css"></link>
 
-<script type="text/javascript">
+<script type="text/javascript"><!--
 	$(document).ready(function(){
 		
 		$(".add_coupon").fancybox();
@@ -71,6 +71,10 @@
 				$("#website").val("");
 				$("#bank").val("None");
 				$("#discount_type").val("");
+				$("#discount_type").val("fixed");
+				$("#discount").val("");
+				$("#min_amt").val("");
+				$("#deal_type").val("Fixed");
 				
 				$(".website_option").each(function(){
 					var option_value=$(this).val();
@@ -116,8 +120,57 @@
 				if(search_discount!=-1)
 				{
 					$("#discount_type").val("percentage");
+					var disc_split=dscription.split('%');
+					var discount_value = /\d+(?:\.\d+)?/.exec(disc_split[0]);
+					
+					//var discount_value = disc_split[0].substring(disc_split[0].lastIndexOf(' '));
+					$("#discount").val(discount_value);
+					
+					var search_rupees=dscription.indexOf(' rs');
+					if(search_rupees!=-1)
+					{
+						var rupee_split=dscription.split(' rs');
+						
+						var rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[1]);
+						
+						//var rupee_value=rupee_split[1].substring(0,rupee_split[1].indexOf(' '));
+						//alert(rupee_value);
+						$("#min_amt").val(rupee_value);
+						$("#deal_type").val("Conditions");
+					}
+					else
+					{
+						$("#deal_type").val("Fixed");
+					}
 				}
-				
+				else
+				{
+					dscription=dscription.replace(/\,/g,"");
+					dscription=" "+dscription;
+					var search_rupees=dscription.indexOf(' rs');
+					if(search_rupees!=-1)
+					{
+						$("#discount_type").val("fixed");
+						var rupee_split=dscription.split(' rs');
+						var rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[1]);
+						$("#discount").val(rupee_value);
+						if(rupee_split[2]!=undefined)
+						{
+							rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[2]);
+							$("#min_amt").val(rupee_value);
+							$("#deal_type").val("Conditions");
+						}
+						else
+						{
+							$("#deal_type").val("Fixed");
+						}
+					}
+				}
+				var search_deal_type=dscription.indexOf(' up to')
+				if(search_deal_type!=-1)
+				{
+					$("#deal_type").val("Upto");
+				}
 			    
 			}
 			else
@@ -196,7 +249,7 @@
 		 });
 	});
 
-</script>
+--></script>
 <style>
 
 	#bus table tbody tr td table
@@ -603,9 +656,18 @@ require_once '../Parsing.php';
 					<option class="bank_option" value="Dena">Dena</option>
 					<option class="bank_option" value="IDBI">IDBI</option>
 					<option class="bank_option" value="United Bank of India">United Bank of India</option>
-					<option class="bank_option" value="Kotak Mahindra">Kotak Mahindra Bank</option>
+					<option class="bank_option" value="Kotak">Kotak Mahindra Bank</option>
 					<option class="bank_option" value="YES">Yes Bank</option>
 					<option class="bank_option" value="Federal">Federal Bank</option>
+					<option class="bank_option" value="Allahabad">Allahabad</option>
+					<option class="bank_option" value="Bank of Maharashtra">Bank of Maharashtra</option>
+					<option class="bank_option" value="Central Bank of India">Central Bank of India</option>
+					<option class="bank_option" value="Indian">Indian Bank</option>
+					<option class="bank_option" value="State Bank of Patiala">State Bank of Patiala</option>
+					<option class="bank_option" value="Syndicate">Syndicate Bank</option>
+					<option class="bank_option" value="UCO">UCO Bank</option>
+					<option class="bank_option" value="Karur Vysya">Karur Vysya Bank</option>
+					<option class="bank_option" value="ING Vysya">ING Vysya Bank</option>
 				</select>
 			</td>
 		</tr>

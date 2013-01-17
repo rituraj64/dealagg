@@ -200,7 +200,7 @@ if(isset($_REQUEST['submit_coupon_active']))
 		$user->website=$website;
 		$id = $user->insert();
 		?>
-		<script> window.location.href='index.php';</script>
+		<script> window.location.href='couponParse.php';</script>
 		<?php 
 	}
 	else
@@ -381,9 +381,18 @@ require_once '../Parsing.php';
 					<option value="Dena">Dena</option>
 					<option value="IDBI">IDBI</option>
 					<option value="United Bank of India">United Bank of India</option>
-					<option value="Kotak Mahindra">Kotak Mahindra Bank</option>
+					<option value="Kotak">Kotak Mahindra Bank</option>
 					<option value="YES">Yes Bank</option>
 					<option value="Federal">Federal Bank</option>
+					<option value="Allahabad">Allahabad</option>
+					<option value="Bank of Maharashtra">Bank of Maharashtra</option>
+					<option value="Central Bank of India">Central Bank of India</option>
+					<option value="Indian">Indian Bank</option>
+					<option value="State Bank of Patiala">State Bank of Patiala</option>
+					<option value="Syndicate">Syndicate Bank</option>
+					<option value="UCO">UCO Bank</option>
+					<option value="Karur Vysya">Karur Vysya Bank</option>
+					<option value="ING Vysya">ING Vysya Bank</option>
 				</select>
 			</td>
 		</tr>
