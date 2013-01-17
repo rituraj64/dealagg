@@ -171,6 +171,11 @@
 				{
 					$("#deal_type").val("Upto");
 				}
+				var search_deal_type=dscription.indexOf(' upto')
+				if(search_deal_type!=-1)
+				{
+					$("#deal_type").val("Upto");
+				}
 			    
 			}
 			else
