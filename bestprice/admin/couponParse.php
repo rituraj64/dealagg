@@ -157,20 +157,24 @@
 					{
 						$("#discount_type").val("fixed");
 						var rupee_split=dscription.split(' rs');
-						var rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[1]);
-						$("#discount").val(rupee_value);
-						if(rupee_split[2]!=undefined)
+						var search_at=rupee_split[0].substring(rupee_split[0].lastIndexOf(' '));
+						if(search_at!=" at")
 						{
-							if((search_minimum!=-1)||(search_above!=-1))
+							var rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[1]);
+							$("#discount").val(rupee_value);
+							if(rupee_split[2]!=undefined)
 							{
-								rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[2]);
-								$("#min_amt").val(rupee_value);
-								$("#deal_type").val("Conditions");
+								if((search_minimum!=-1)||(search_above!=-1))
+								{
+									rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[2]);
+									$("#min_amt").val(rupee_value);
+									$("#deal_type").val("Conditions");
+								}
 							}
-						}
-						else
-						{
-							$("#deal_type").val("Fixed");
+							else
+							{
+								$("#deal_type").val("Fixed");
+							}
 						}
 					}
 				}
