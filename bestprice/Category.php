@@ -48,31 +48,64 @@ class Category{
 	const COMP_COMPUTER = 501;
 	const LAPTOP_ACC = 502;
 
+
+	const COMP_ACC_PEN_DRIVE = 601;
+	const COMP_ACC_EXTERNAL_HARD_DRIVE = 602;
+	const COMP_ACC_SOFTWARE = 603;
+	const COMP_ACC_PRINTER_SCANNER = 604;
+	const COMP_ACC_CARTRIGES = 605;
+	const COMP_ACC_KEYBOARD = 606;
+	const COMP_ACC_MOUSE = 607;
+	const COMP_ACC_SPEAKERS = 608;
+	const COMP_ACC_COMPUTER_COMPONENTS = 609;
+	const COMP_ACC_MONITERS = 610;
+	const COMP_ACC_NETWORK = 611;
+
+	const GAMING_ACC_GAMES = 401;
+	const GAMING_ACC_CONSOLES = 403;
+	const GAMING_ACC_ACC = 403;
+
 	public function getStoreCategory(){
 		return array(
 				self::MOBILE =>'Mobiles',
 				self::MOBILE_ACC =>array('Mobiles Accessories'=>array(
 						self::MOB_MEMORY => 'Memory Cards - MicroSD Cards',
 						self::MOB_BATTERY => 'Batteries',
-						self::MOB_CHARGER => 'Chargers',
-						self::MOB_CASES => 'Cases & Covers',
-						self::MOB_SCREEN_GUARD => 'Screen Protectors',
+						//self::MOB_CHARGER => 'Chargers',
+						//self::MOB_CASES => 'Cases & Covers',
+						//self::MOB_SCREEN_GUARD => 'Screen Protectors',
 						self::MOB_HEADPHONE => 'Headphone',
 						self::MOB_HEADSETS => 'Headsets - Bluetooth',
 						self::MOB_CAR_ACC => 'Car Accessories',
-						self::MOB_CABLE => 'Cables - Data Cables',
+						//self::MOB_CABLE => 'Cables - Data Cables',
 						self::MOB_SPEAKER => 'Speakers',
 						self::MOB_HANDSFREE => 'Handsfree',
-						self::MOB_OTHERS => 'Other Accessories'
+						//self::MOB_OTHERS => 'Other Accessories'
 				)),
 				self::TABLETS=>'Tablets, iPad',
-				//self::TV=>'TV, Video & Audio',
-				//self::GAMING =>'Gaming',
+				self::TV=>'Television',
+				self::GAMING =>array('Gaming'=>array(
+						self::GAMING_ACC_CONSOLES => 'Gaming Consoles',
+						self::GAMING_ACC_GAMES => 'Games Software',
+						self::GAMING_ACC_ACC => 'Gaming Accessories'
+				)),
 				self::COMP_LAPTOP=>array('Computer & Laptop'=>array(
 						self::COMP_COMPUTER => 'Computers - Desktops',
 						self::COMP_LAPTOP => 'Laptops'
 				)),
-				//self::COMP_ACC=>'Computer Accessories & Software',
+				self::COMP_ACC=>array('Computer,Laptop Accessories & Software'=>array(
+						self::COMP_ACC_PEN_DRIVE => 'Pen Drives & Memory Cards',
+						self::COMP_ACC_EXTERNAL_HARD_DRIVE => 'External Hard Disk',
+						self::COMP_ACC_PRINTER_SCANNER => 'Printers & Scanner',
+						self::COMP_ACC_CARTRIGES => 'Printer Cartriges',
+						self::COMP_ACC_COMPUTER_COMPONENTS => 'Computer Components - RAM,CPU,Processor,etc',
+						self::COMP_ACC_KEYBOARD => 'Keyboards',
+						self::COMP_ACC_MOUSE => 'Mouse',
+						self::COMP_ACC_MONITERS => 'Monter - LCD,TFT,etc',
+						self::COMP_ACC_NETWORK => 'Wireless Adapters - Routers - Modems - etc',
+						self::COMP_ACC_SOFTWARE => 'Software',
+						self::COMP_ACC_SPEAKERS => 'Speakers',
+				)),
 				self::CAMERA=>array('Cameras'=>array(
 						self::CAM_DIGITAL_CAMERA => 'Digital Camera - Point & Shoot',
 						self::CAM_DIGITAL_SLR => 'DSLR - Digital SLR',

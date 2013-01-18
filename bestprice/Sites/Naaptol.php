@@ -17,8 +17,8 @@ class Naaptol extends Parsing{
 	}
 	/*###note###
 	 * I a few sites like this and other the search result is json encoded. But if we remove "&req=ajax"  from the end of the url it gives a html result page.
-	 * 
-	 */ 
+	*
+	*/
 	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
 			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=27&kw=$query&sb=49,9,8";/* &req=ajax"; */
@@ -126,8 +126,51 @@ class Naaptol extends Parsing{
 						'cat' => ''
 				);
 			}
+		}else{
+			phpQuery::newDocumentHTML($html);
+			if(sizeof(pq('.gridProduct')) > 0){
+				foreach(pq('.gridProduct') as $div){
+					$image = pq($div)->children('.proImage')->children('a')->html();
+					$url = pq($div)->children('.proImage')->children('a')->attr('href');
+					$name = pq($div)->children('.proName')->children('a')->html();
+					$disc_price = pq($div)->children('.values')->children('strong')->html();
+					$offer = pq($div)->children('.cashBack')->html();
+					$shipping = pq($div)->children('.option')->html();
+					$stock = 0;
+					if(sizeof(pq($div)->children('.shopNow'))){
+						$stock = 1;
+					}else{
+						$stock = -1;
+					}
+					$author = '';
+					$data[] = array(
+							'name'=>$name,
+							'image'=>$image,
+							'disc_price'=>$disc_price,
+							'url'=>$url,
+							'website'=>$this->getCode(),
+							'offer'=>$offer,
+							'shipping'=>$shipping,
+							'stock'=>$stock,
+							'author' => $author,
+							'cat' => ''
+					);
+				}
+				$data2 = array();
+				foreach($data as $row){
+					$html = $row['image'];
+					$html .= '</img>';
+					phpQuery::newDocumentHTML($html);
+					$img = pq('img')->attr('data-original');
+					if(strpos($img, 'http') === false){
+						$img = $this->getWebsiteUrl().$img;
+					}
+					$row['image'] = $img;
+					$data2[] = $row;
+				}
+				$data = $data2;
+			}
 		}
-
 		$data = $this->cleanData($data, $query);
 		$data = $this->bestMatchData($data, $query,$category,$subcat);
 		return $data;

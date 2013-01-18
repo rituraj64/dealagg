@@ -128,7 +128,7 @@ class Homeshop extends Parsing{
 				if(sizeof(pq($div)->find('.product_image'))){
 					$image = pq($div)->children('.product_image')->find('a')->html();
 					$url = pq($div)->children('.product_image')->find('a')->attr('href');
-					$name = pq($div)->children('.product_title')->children('a')->html();
+					$name = pq($div)->children('.product_title')->find('a')->html();
 					$disc_price = strip_tags(pq($div)->find('.product_price')->find('.product_new_price')->html());
 					//$org_price = strip_tags(pq($div)->find('.product_price')->find('.product_new_price')->html());
 					$offer = '';
@@ -163,7 +163,6 @@ class Homeshop extends Parsing{
 			$row['image'] = $img;
 			$data2[] = $row;
 		}
-
 		$data2 = $this->cleanData($data2, $query);
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;

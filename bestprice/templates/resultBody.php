@@ -3,7 +3,7 @@
 		<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
 	</div>
 	{main_item_html}
-	<div class="span4 other_info_parent table-bordered" style="margin-left:10px;border-left: 1px solid #DDD;height:97px;overflow-y:auto">
+	<div class="span4 other_info_parent table-bordered" style="margin-left:10px;border-left: 1px solid #DDD;height: 100%;overflow-y:auto">
 		<div class='other_info' style="font-size:11px;text-align: left;float: left;margin-left:5px;line-height: 15px">
 			<div class="pull-left product_loading" style="display: none;font-size:12ppx">
 				Getting Info
@@ -35,13 +35,13 @@
 			</div>
 		</div>
 		<div class='clearfix'></div>
-		<div style="text-align: left;float: left"  id="other_prod">
-			{other_prod}
-		</div>
+		<div style="font-size:11px;margin-left:5px;line-height: 15px">
+			<b>Coupons:</b> {coupons}
+		</div>		
 	</div>
- 	<div class='span2 table-bordered' style="border-left: 1px solid #DDD;margin-left:10px;">
- 		<div style="font-size:12px">
-			Coupons:
+ 	<div class='span3 table-bordered last-div' style="border-left: 1px solid #DDD;margin-left:10px;width:260px;height: 100%">
+ 		<div style="text-align: left;float: left"  id="other_prod">
+			{other_prod}
 		</div>
 	</div>
  </div>

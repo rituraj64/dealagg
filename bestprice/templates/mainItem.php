@@ -1,4 +1,4 @@
-<div class="popup span4 table-bordered item item_main" id='{item_id}' style="margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
+<div class="popup span3 table-bordered item item_main" id='{item_id}' style="margin-left:10px;border-left: 1px solid #DDD;text-align: center;height: 100%">
 	<input type='hidden' id='item_url' value='{item_url}' />
 	<input type='hidden' id='item_name' class='item_name' value='{item_name}' />
 	<input type='hidden' id='item_image' value='{item_image}' />
@@ -10,9 +10,9 @@
 	<input type='hidden' id='has_product' value='{has_product}' />
  	<div class="media" style="margin-top: 0px">
 		<a class='pull-left' href="{item_url}" target="_blank">
-			<img style="width:80px;height:80px;margin:5px" class="img-rounded media-object" src="{item_image}" alt='{item_name}' title='{item_name}'/>
+			<img style="width:50px;height:50px;margin:5px" class="img-rounded media-object" src="{item_image}" alt='{item_name}' title='{item_name}'/>
 		</a>
-		<div class="media-body pull-left" style="width: 175px;text-align:left">
+		<div class="media-body pull-left" style="width: 140px;text-align:left">
 			<div class='pull-left' style="max-height:40px;overflow:hidden">
 				<a href="{item_url}" target="_blank" class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="{item_name}">{item_name}</a>
 			</div>

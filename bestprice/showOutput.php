@@ -24,10 +24,14 @@ if(isset($formattedResult) && !empty($formattedResult)){
 			if(!isset($row['shipping'])){
 				$row['shipping'] = '';
 			}
+			if(!isset($row['coupon'])){
+				$row['coupon'] = '';
+			}
 			if($index == 0){
 				$template = str_replace('{website}',$row['website'],$template);
 				$template = str_replace('{website_search_url}',$row['searchurl'],$template);
 				$template = str_replace('{website_url}',$row['logo'],$template);
+				$template = str_replace('{coupon}',$row['coupon'],$template);
 				ob_start();
 				require 'templates/mainItem.php';
 				$mainItem = ob_get_contents();

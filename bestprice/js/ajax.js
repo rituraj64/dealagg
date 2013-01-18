@@ -68,7 +68,7 @@ function addMoniter(site, type, ajax, siteparam) {
 	}
 	var len = ajaxReq.length;
 	ajaxReq[len] = new Array();
-	ajaxReq[len]['type'] = 'ajax';
+	ajaxReq[len]['type'] = type;
 	ajaxReq[len]['ajax'] = ajax;
 	if (site && site.length > 0) {
 		ajaxReq[len]['site'] = site;
@@ -103,9 +103,10 @@ function moniter(timer) {
 		moniterTime = false;
 	}
 	if (!moniterLastTime) {
-		console.log('moniter ajax called');
+		// console.log('moniter ajax called');
 	} else {
-		console.log('moniter ajax called after ' + (new Date().getTime() - moniterLastTime * 1));
+		// console.log('moniter ajax called after ' + (new Date().getTime() -
+		// moniterLastTime * 1));
 	}
 	moniterLastTime = new Date().getTime();
 	var isFinished = true;
@@ -126,7 +127,14 @@ function moniter(timer) {
 				ajaxReq[i]['status'] = 'RUNNING';
 				var started_at = ajaxReq[i]['started_at'];
 				if ((new Date().getTime() - started_at) > 10000) {
-					console.log(ajaxReq[i]['site'] + " is taking time...");
+					console.log(ajaxReq[i]['site'] + " is taking time..." + ajaxReq[i]['type'] + ' time: ' + (new Date().getTime() - started_at));
+
+					if ((new Date().getTime() - started_at) > 30000) {
+						queueSortResult(0, ajaxReq[i]['site']);
+						queueCalcResult();
+						console.log('Not waiting anymore');
+					}
+
 					// if (ajaxReq[i]['siteParam'])
 					// findPrice(ajaxReq[i]['site'],
 					// ajaxReq[i]['siteParam']['cache'],
@@ -330,6 +338,10 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 			var shipping = '';
 			var stock = 0;
 			var offer = '';
+			var coupon = '';
+			if (data.data[i].coupon) {
+				coupon = data.data[i].coupon;
+			}
 			var has_product = data.data[i].pro;
 			if (data.data[i].author) {
 				author = data.data[i].author;
@@ -355,7 +367,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 				}
 
 			} else {
-				var html = createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, data.data[i].searchurl, has_product);
+				var html = createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, data.data[i].searchurl, has_product, coupon);
 
 				var websites_actual = 0;
 				var last_actu_website = false;
@@ -863,73 +875,78 @@ function finished() {
 	$('#summary').removeClass('summary_float');
 	$('#summary').addClass('finished');
 
-	$('#results').children('.website').each(function() {
-		if ($(this).hasClass('website_error')) {
-		} else if ($(this).hasClass('website_noresult')) {
-		} else {
+	if ($('#showSuggestion').val() != 1) {
+		$('#results').children('.website').each(function() {
+			if ($(this).hasClass('website_error')) {
+			} else if ($(this).hasClass('website_noresult')) {
+			} else {
 
-			var website = $(this).attr('id');
-			var has_product = $(this).children('.item_main').children('#has_product').val();
-			var url = $(this).children('.item_main').children('#item_url').val();
-			var price = $(this).children('.item_main').children('#item_price').val();
-			var stock = $(this).children('.item_main').children('#item_stock').val();
+				var website = $(this).attr('id');
+				var has_product = $(this).children('.item_main').children('#has_product').val();
+				var url = $(this).children('.item_main').children('#item_url').val();
+				var price = $(this).children('.item_main').children('#item_price').val();
+				var stock = $(this).children('.item_main').children('#item_stock').val();
 
-			if (has_product == 'true') {
-				$(this).children('.other_info_parent').children('.other_info').children('.product_loading').show();
-				var url = $('#ajax_url').val().replace('site', website) + 'product.php?url=' + encodeURI(url) + '&website=' + encodeURI(website) + '&price=' + encodeURI(price) + "&stock=" + encodeURI(stock) + "&callback=?";
-				var ajax = $.getJSON(url, function(data) {
-					$('#' + data.website).children('.other_info_parent').children('.other_info').children('.product_loading').hide();
+				if (has_product == 'true') {
+					$(this).children('.other_info_parent').children('.other_info').children('.product_loading').show();
+					var url = $('#ajax_url').val().replace('site', website) + 'product.php?url=' + encodeURI(url) + '&website=' + encodeURI(website) + '&price=' + encodeURI(price) + "&stock=" + encodeURI(stock) + "&callback=?";
+					var ajax = $.getJSON(url, function(data) {
+						$('#' + data.website).children('.other_info_parent').children('.other_info').children('.product_loading').hide();
 
-					if (data.cat != undefined) {
+						if (data.cat != undefined) {
 
-						var price = data.price;
-						var offer = data.offer;
-						var stock = data.stock;
-						var shipping_cost = data.shipping_cost;
-						var shipping_time = data.shipping_time;
-						var attr = data.attr;
-						var cat = data.cat;
-						var author = data.author;
-						var warrenty = data.warrenty;
+							var price = data.price;
+							var offer = data.offer;
+							var stock = data.stock;
+							var shipping_cost = data.shipping_cost;
+							var shipping_time = data.shipping_time;
+							var attr = data.attr;
+							var cat = data.cat;
+							var author = data.author;
+							var warrenty = '';
+							if (data.warrenty) {
+								warrenty = data.warrenty;
+							}
 
-						if ($('#' + data.website).children('.item_main').children('#item_stock') == 0) {
-							$('#' + data.website).children('.item_main').children('#item_stock').val(stock);
-							if (stock == 1) {
-								$('#' + data.website).children('.item_main').find('.in_stock').show();
-								$('#' + data.website).children('.item_main').find('.out_of_stock').hide();
-								$('#' + data.website).children('.item_main').find('.no_info').hide();
-							} else if (stock == -1) {
-								$('#' + data.website).children('.item_main').find('.in_stock').hide();
-								$('#' + data.website).children('.item_main').find('.out_of_stock').show();
-								$('#' + data.website).children('.item_main').find('.no_info').hide();
+							if ($('#' + data.website).children('.item_main').children('#item_stock') == 0) {
+								$('#' + data.website).children('.item_main').children('#item_stock').val(stock);
+								if (stock == 1) {
+									$('#' + data.website).children('.item_main').find('.in_stock').show();
+									$('#' + data.website).children('.item_main').find('.out_of_stock').hide();
+									$('#' + data.website).children('.item_main').find('.no_info').hide();
+								} else if (stock == -1) {
+									$('#' + data.website).children('.item_main').find('.in_stock').hide();
+									$('#' + data.website).children('.item_main').find('.out_of_stock').show();
+									$('#' + data.website).children('.item_main').find('.no_info').hide();
+								}
+							}
+
+							var ele = $('#' + data.website).children('.other_info_parent').children('.other_info');
+							if (shipping_cost.length > 0) {
+								ele.children('.shipping').hide();
+								ele.children('.shipping_cost').show();
+								ele.children('.shipping_cost').html('<b>Shipping Cost:</b> ' + shipping_cost);
+							}
+
+							if (shipping_time.length > 0) {
+								ele.children('.shipping_time').show();
+								ele.children('.shipping_time').html('<b>Shipping Time:</b> ' + shipping_time);
+							}
+							if (warrenty.length > 0) {
+								ele.children('.warrenty').show();
+								ele.children('.warrenty').html('<b>Warrenty:</b> ' + warrenty);
+							}
+							if (offer.length > 0) {
+								ele.children('.offer').show();
+								ele.children('.offer').html('<b>Offer:</b> ' + offer);
 							}
 						}
 
-						var ele = $('#' + data.website).children('.other_info_parent').children('.other_info');
-						if (shipping_cost.length > 0) {
-							ele.children('.shipping').hide();
-							ele.children('.shipping_cost').show();
-							ele.children('.shipping_cost').html('<b>Shipping Cost:</b> ' + shipping_cost);
-						}
-
-						if (shipping_time.length > 0) {
-							ele.children('.shipping_time').show();
-							ele.children('.shipping_time').html('<b>Shipping Time:</b> ' + shipping_time);
-						}
-						if (warrenty.length > 0) {
-							ele.children('.warrenty').show();
-							ele.children('.warrenty').html('<b>Warrenty:</b> ' + warrenty);
-						}
-						if (offer.length > 0) {
-							ele.children('.offer').show();
-							ele.children('.offer').html('<b>Offer:</b> ' + offer);
-						}
-					}
-
-				});
+					});
+				}
 			}
-		}
-	});
+		});
+	}
 
 }
 
@@ -1244,11 +1261,11 @@ function showStep() {
 			var logo = $(this).children('.span2:first').children('a').children('img').attr('src');
 			var website_search_url = $(this).children('.span2:first').children('a').attr('href');
 
-			var url = $(this).children('.span4:first').children('#item_url').val();
-			var image = $(this).children('.span4:first').children('#item_image').val();
-			var name = $(this).children('.span4:first').children('#item_name').val();
-			var price = $(this).children('.span4:first').children('#item_price').val() * 1;
-			var author = $(this).children('.span4:first').children('#item_author').val();
+			var url = $(this).children('.item_main:first').children('#item_url').val();
+			var image = $(this).children('.item_main:first').children('#item_image').val();
+			var name = $(this).children('.item_main:first').children('#item_name').val();
+			var price = $(this).children('.item_main:first').children('#item_price').val() * 1;
+			var author = $(this).children('.item_main:first').children('#item_author').val();
 			var offer = '';
 			var shipping = '';
 
@@ -1398,12 +1415,12 @@ function createSmallItem(url, item_id_count, image, lazyimage, name, price, auth
 	html = html.replace(/{item_details}/g, item_details);
 	return html;
 }
-function createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, searchurl, has_product) {
+function createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, searchurl, has_product, coupon) {
 	var html2 = $('#resultBodyTemplate').html();
 	html2 = html2.replace(/{website}/g, website);
 	html2 = html2.replace(/{website_url}/g, logo);
-	html2 = html2.replace(/{website_search_url}/g, searchurl);
-
+	html2 = html2.replace(/{coupons}/g, coupon);
+	html2 = html2.replace(/{website_search_url}/g, url);
 	var ship_len = 120;
 	if (offer.length != 0) {
 		ship_len = 60;
@@ -1482,12 +1499,14 @@ function makeSmall(website) {
 	if ($('#' + website).hasClass('website_small')) {
 		return;
 	}
-	$('#' + website).children('.span4:last').hide();
-	$('#' + website).children('.span2:last').hide();
+	// $('#' + website).children('.span4:last').hide();
+	// $('#' + website).children('.span2:last').hide();
+	$('#' + website).children('.last-div').hide();
+	$('#' + website).children('.other_info_parent').hide();
 	$('#' + website).children('.item_main').children('hr').hide();
 	$('#' + website).children('.item_main').children('.other_info').hide();
 	$('#' + website).find('#other_prod').hide();
-	$('#' + website).children('.item_main').removeClass('span4');
+	$('#' + website).children('.item_main').removeClass('span3');
 	$('#' + website).children('.item_main').addClass('span8');
 	$('#' + website).children('.span2').css('line-height', '22px');
 	var small_price = $('#' + website).children('.item_main').children('#item_price').val();
@@ -1547,29 +1566,31 @@ function makeSmall(website) {
 	$('#bad-results').show();
 }
 function makeBig(website) {
-	$('#' + website).children('.span4:last').show();
-	$('#' + website).children('.span2:last').show();
+	// $('#' + website).children('.span4:last').show();
+	// $('#' + website).children('.span2:last').show();
+	$('#' + website).children('.last-div').show();
+	$('#' + website).children('.other_info_parent').show();
 	$('#' + website).children('.item_main').children('hr').show();
 	$('#' + website).children('.item_main').children('.other_info').show();
 	$('#' + website).children('.item_main').removeClass('span8');
-	$('#' + website).children('.item_main').addClass('span4');
+	$('#' + website).children('.item_main').addClass('span3');
 	$('#' + website).find('#other_prod').show();
-	$('#' + website).children('.span2:first').css('line-height', '150px');
+	$('#' + website).children('.span2:first').css('line-height', '100px');
 	var img = $('#' + website).children('.item_main').children('.media').find('img');
-	img.height('80px');
-	img.width('80px');
+	img.height('50px');
+	img.width('50px');
 	var big_price = $('#' + website).children('.item_main').children('#item_price').val();
 	if (big_price == '-NA-') {
 		big_price = 99999999999;
 	}
 	big_price = big_price * 1;
-	$('#' + website).children('.item_main').children('.media').children('.media-body').width('175px');
+	$('#' + website).children('.item_main').children('.media').children('.media-body').width('140px');
 	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.pull-left:first').css('max-height', '40px');
 	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.clearfix-tog').each(function() {
 		$(this).removeClass('clearfix-tog');
 		$(this).addClass('clearfix');
 	});
-	$('#' + website).height('165px');
+	$('#' + website).height('100px');
 	// $('#' + website).css('margin-top', '10px');
 	$('#' + website).children('.website_hide_box').remove();
 

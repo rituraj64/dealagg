@@ -195,7 +195,9 @@
 			</div>
 		  </div>
 		  <div class="modal-footer">
+		  	<?php /*  ?>
 		    <a href="#" data-dismiss="modal" onclick='closeModel(0);return false;' class="btn">Not Sure!</a>
+		    <?php */ ?>
 		  </div>
 		</div>
 	<?php require_once 'footer.php';?>  

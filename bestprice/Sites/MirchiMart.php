@@ -62,7 +62,7 @@ class MirchiMart extends Parsing{
 		if(sizeof(pq('.searchFilter')) > 0){
 			foreach(pq('.searchFilter') as $div){
 				foreach(pq($div)->children('ul')->children('li') as $div){
-					$image = pq($div)->children('.img')->children('a');
+					$image = pq($div)->children('.img')->children('a')->html();
 					$url = pq($div)->children('.img')->children('a')->attr('href');
 					$name = pq($div)->children('.txt')->children('a')->html();
 					$disc_price = pq($div)->find('.txt2')->html();

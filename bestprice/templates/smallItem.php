@@ -1,4 +1,4 @@
-<div class='item item_small' id='{item_id}' style="margin-left: 5px;margin-top: 10px">
+<div class='item item_small' id='{item_id}' style="margin-left: 5px;margin-top: 0px">
   			<input type='hidden' id='item_url' value='{item_url}' />
 			<input type='hidden' id='item_name' class='item_name' value='{item_name}' />
 			<input type='hidden' id='item_image' value='{item_img_load_id}' />
@@ -15,10 +15,10 @@
 				<img class="lazy_load_img img-rounded" src="{item_image}" alt='{item_name}' title='{item_name}' width="30px" height="30px" style="width: 25px;height: 25px;" />
 			</a>
 		</div>
-		<div class='pull-left' style="padding-left: 5px;text-align: left">
+		<div class='pull-left' style="padding-left: 5px;text-align: left;width:200px">
 			<div style="height: 14px;line-height:14px;overflow: hidden">{item_name_html}</div>
 			<div class="clearfix"></div>
-			<div style="height: 16px;line-height:14px;overflow: hidden;width:235px">
+			<div style="height: 16px;line-height:14px;overflow: hidden;">
 				<div class='pull-left'>
 					Price <span class="WebRupee">Rs.</span><span class='main_price'>{item_price}</span>
 				</div>

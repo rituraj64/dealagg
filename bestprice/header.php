@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title><?php if(isset($title)){echo $title.' | PriceGenie.in';}else{echo 'Find Cheapest Price | PriceGenie.in';}?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="PriceGenie.in is a real time price comparison engine, to find lowest online price for any product. It product real time information on coupon codes, stock status and other offers.">

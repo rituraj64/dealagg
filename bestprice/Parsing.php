@@ -11,7 +11,7 @@ class Parsing{
 		return array('&amp;'=>'and','&'=>'and');
 	}
 
-	const DATA_NUM = 3;
+	const DATA_NUM = 4;
 	public function getCode(){
 		return $this->_code;
 	}
@@ -70,7 +70,17 @@ class Parsing{
 			$this->_resultTime = $this->getCachedDataTime($website, $query, $category,$subcat, $url);
 			//$data = $this->getData($data,$query,$category);
 			//return $data;
-			return json_decode($data,true);
+			$data = json_decode($data,true);
+			if(isset($data[0])){
+				$row = $data[0];
+				$text = $this->findBestCoupon(array('product'=>$row,'cat'=>$category));
+				if(empty($text)){
+					$text = 'Not Found';
+				}
+				$row['coupon'] = $text;
+				$data[0] = $row;
+			}
+			return $data;
 		}else{
 			if(!$delay){
 				$parser = new Parser();
@@ -200,8 +210,14 @@ class Parsing{
 		$data2 = array();
 		foreach($data as $row){
 			foreach($row as $key => $value){
-				$value = $this->clearHtml($value);
-				$value = utf8_encode($value); //changed for homeshop18
+				$value1 = $this->clearHtml($value);
+				if(!empty($value1)){
+					$value = $value1;
+				}
+				$value1 = utf8_encode($value); //changed for homeshop18
+				if(!empty($value1)){
+					$value = $value1;
+				}
 				$row[$key] = trim($value);
 			}
 
@@ -282,6 +298,11 @@ class Parsing{
 		if(isset($data[0])){
 			$row = $data[0];
 			$text = $this->findBestCoupon(array('product'=>$row,'cat'=>$category));
+			if(empty($text)){
+				$text = 'Not Found';
+			}
+			$row['coupon'] = $text;
+			$data[0] = $row;
 		}
 
 
@@ -435,23 +456,39 @@ class Parsing{
 					}
 				}
 
-				if(!empty($row['bank'])){
+
+				if($row['bank'] != 'None'){
 					continue;
 				}
 
-				// check product also here
+				if(!empty($row['product'])){
+					if(!empty($name)){
 
-				print_r($row);
-				
+						$found = false;
+						$prod = explode(' ',$row['product']);
+						foreach($prod as $p){
+							if(strpos($name,$p) !== false){
+								$found = true;
+							}
+						}
+						if(!$found){
+							continue;
+						}
+					}else{
+						continue;
+					}
+				}
+
+
 				if($row['discount_type'] == 'fixed'){
 					if($row['discount'] > $amt){
 						$amt = $row['discount'];
-						$title_amt = 'Discounts Upto <span class="WebRupee">Rs.</span>'.$amt.' Valid Upto '. date('d M',$row['active_to']);
+						$title_amt = 'Discounts Upto <span class="WebRupee">Rs.</span>'.$amt.' Valid Upto '. date('d M',$row['active_to']).' <br> Use Coupon Code: '.$row['coupon_code'].'<br/>'.$row['desc'];
 					}
 				}else if($row['discount_type'] == 'percentage'){
 					if($row['discount'] > $per){
 						$per = $row['discount'];
-						$title_per = 'Discounts Upto '.$amt.'%'.' Valid Upto '. date('d M',$row['active_to']);
+						$title_per = 'Discounts Upto '.$amt.'%'.' Valid Upto '. date('d M',$row['active_to']) .' <br> Use Coupon Code: '.$row['coupon_code'].'<br/>'.$row['desc'];
 					}
 				}
 			}
