@@ -345,9 +345,10 @@ require_once '../Parsing.php';
 			<td>
 				<select name="deal_type" required="true" id="deal_type">
 					<option value="">Select</option>
-					<option  value="Fixed">Fixed</option>
-					<option  value="Upto">Upto</option>
-					<option  value="Conditions">Conditions</option>
+					<option value="Fixed">Fixed</option>
+					<option value="Upto">Upto</option>
+					<option value="Conditions">Conditions</option>
+					<option value="Cash Back">Cash Back</option>
 				</select>
 			</td>
 			<td><span id="deal_typeErr"></span></td>
