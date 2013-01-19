@@ -85,11 +85,12 @@ class Infibeam extends Parsing{
 			}else{
 				return '';
 			}
-
 		}elseif ($category == Category::COMP_COMPUTER){
 			return "http://www.infibeam.com/Desktop_Computers_Accessories/search?q=$query";
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.infibeam.com/Laptop_Computers_Accessories/search?q=$query";
+		}elseif($category == Category::TABLETS){
+			return "http://www.infibeam.com/Portable_Electronics/search?q=$query#bodyType=Tablet&q=$query&store=Portable_Electronics";
 		}else{
 			return "http://www.infibeam.com/search?q=".$query;
 		}

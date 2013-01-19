@@ -35,9 +35,8 @@ class TheMobileStore extends Parsing{
 			}elseif($subcat == Category::MOB_CABLE){
 				return "http://www.themobilestore.in/home-accessories-cables/search?q=$query";
 			}else return "";
-			
 		}else if($category == Category::TABLETS){
-			return "http://www.themobilestore.in/home-mobiles-&-tablet/search?q=".$query;
+			return "http://www.themobilestore.in/home-mobiles-&-tablet-tablet/search?q=".$query;
 		}
 		return "http://www.themobilestore.in/home/search?q=".$query;
 	}
