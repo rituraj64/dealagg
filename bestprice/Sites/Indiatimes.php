@@ -94,10 +94,12 @@ class Indiatimes extends Parsing{
 			}else{
 				return '';
 			}
-		}elseif ($category == Category::COMP_COMPUTER){
-			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10013&filter=PRIMARY_CATEGORY_ID:40599";
-		}elseif ($category == Category::COMP_LAPTOP){
-			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10013";
+		}($category == Category::COMP_LAPTOP){
+			if($subcat == Category::COMP_COMPUTER){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10013&filter=PRIMARY_CATEGORY_ID:40599";
+			}elseif($subcat == Category::COMP_LAPTOP){
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10013";
+			}
 		}else{
 			return "http://shopping.indiatimes.com/control/mtkeywordsearch?SEARCH_STRING=".$query;
 		}

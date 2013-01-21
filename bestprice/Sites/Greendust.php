@@ -29,11 +29,12 @@ class Greendust extends Parsing{
 				return '';
 			}
 		}elseif ($category == Category::COMP_LAPTOP){
-			return "http://www.greendust.com/advanced_search_result.php?cata_id=142%2C146%2C150%2C153%2C155%2C157%2C159%2C162%2C164%2C166&product_list=$query&keywords=&x=10&y=18";
-		}elseif ($category == Category::COMP_COMPUTER){
-			return "http://www.greendust.com/advanced_search_result.php?cata_id=133%2C135%2C138%2C140%2C141%2C145%2C148%2C149%2C152%2C154%2C258%2C260%2C261%2C156%2C215%2C216%2C263&product_list=$query&keywords=&x=0&y=0";
+			if($subcat == Category::COMP_LAPTOP){
+				return "http://www.greendust.com/advanced_search_result.php?cata_id=142%2C146%2C150%2C153%2C155%2C157%2C159%2C162%2C164%2C166&product_list=$query&keywords=&x=10&y=18";
+			}elseif ($subcat == Category::COMP_COMPUTER){
+				return "http://www.greendust.com/advanced_search_result.php?cata_id=133%2C135%2C138%2C140%2C141%2C145%2C148%2C149%2C152%2C154%2C258%2C260%2C261%2C156%2C215%2C216%2C263&product_list=$query&keywords=&x=0&y=0";
+			}
 		}
-		
 		else{
 			return "http://www.greendust.com/advanced_search_result.php?cata_id=0&product_list=$query&keywords=&x=0&y=0";
 		}

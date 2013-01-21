@@ -7,7 +7,7 @@ class Bagittoday extends Parsing{
 		return 'http://www.facebook.com/bagittodayoffers';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::CAMERA);
+		return array(Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::CAMERA,Category::COMP_LAPTOP,Category::TV);
 	}
 
 	public function getWebsiteUrl(){

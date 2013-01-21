@@ -5,7 +5,7 @@ class CostPrize extends Parsing{
 		return 'http://www.facebook.com/302950506387996';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
+		return array(Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::TV);
 	}
 
 	public function getWebsiteUrl(){

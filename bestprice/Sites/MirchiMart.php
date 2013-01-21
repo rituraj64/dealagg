@@ -49,6 +49,14 @@ class MirchiMart extends Parsing{
 			return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=Laptops&selectedCategory=MMCatalog_ROOT&searchText=$query";
 		}elseif($category == Category::TABLETS){
 			return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=Tablet&searchText=$query";
+		}elseif ($category == Category::GAMING){
+			if($subcat == Category::GAMING_ACC_GAMES){
+				return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=GamingCDs&selectedCategory=MMCatalog_ROOT&searchText=$query";
+			}elseif ($subcat == Category::GAMING_ACC_CONSOLES){
+				return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=GamingConsoles&selectedCategory=GamingZone&searchText=$query";
+			}elseif($subcat == Category::GAMING_ACC_ACC){
+				return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=GamingAccessories&selectedCategory=GamingZone&searchText=$query";
+			}
 		}
 		return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MMCatalog_ROOT&searchText=$query";
 	}

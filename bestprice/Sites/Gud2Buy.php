@@ -6,7 +6,7 @@ class Gud2Buy extends Parsing{
 		return 'http://www.facebook.com/gud2buy';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP,Category::TABLETS);
+		return array(Category::GAMING,Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP,Category::TABLETS);
 	}
 
 	public function getWebsiteUrl(){
@@ -36,24 +36,34 @@ class Gud2Buy extends Parsing{
 			}elseif ($subcat == Category::NOT_SURE || $subcat == Category::MOB_OTHERS){
 				return "http://gud2buy.com/mobiles-and-accessories/accessories&filter_name=$query&sort=stock_status_id+desc";
 			}else{
-				return "";
+				return "http://gud2buy.com/mobiles-and-accessories/accessories&filter_name=$query";
 			}
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
-				return '';
+				return "http://gud2buy.com/cameras&filter_name=$query";
 			}else if($category == Category::CAM_DIGITAL_CAMERA || $category == Category::CAM_DIGITAL_SLR){
 				return "http://gud2buy.com/cameras/digital-camera&filter_name=$query&sort=stock_status_id+desc";
 			}else if($category == Category::CAM_CAMCORDER){
 				return "http://gud2buy.com/cameras/camcorder&filter_name=$query&sort=stock_status_id+desc";
 			}else {
-				return '';
+				return "http://gud2buy.com/cameras&filter_name=$query";
 			}
-		}elseif ($category == Category::COMP_COMPUTER){
-			return "http://gud2buy.com/computers/desktops&filter_name=$query";
-		}elseif ($category == Category::COMP_LAPTOP){
-			return "http://gud2buy.com/computers/laptops&filter_name=$query";
+		}elseif($category == Category::COMP_LAPTOP){
+			if($subcat == Category::COMP_COMPUTER){
+				return "http://gud2buy.com/computers/desktops&filter_name=$query";
+			}elseif ($subcat == Category::COMP_LAPTOP){
+				return "http://gud2buy.com/computers/laptops&filter_name=$query";
+			}
 		}elseif ($category == Category::TABLETS){
 			return "http://gud2buy.com/mobiles-and-accessories/tablets&filter_name=$query";
+		}elseif ($category == Category::GAMING){
+			if ($subcat == Category::GAMING_ACC_GAMES) {
+				return "http://gud2buy.com/gaming/games&filter_name=$query";
+			}elseif ($subcat == Category::GAMING_ACC_ACC){
+				return "http://gud2buy.com/gaming/gaming-accessories&filter_name=$query";
+			}elseif ($subcat == Category::GAMING_ACC_CONSOLES){
+				return "http://gud2buy.com/gaming/gaming-consoles&filter_name=$query";
+			}
 		}
 		return "http://gud2buy.com/search&sort=stock_status_id+desc&filter_name=$query&filters=";
 	}

@@ -25,12 +25,16 @@ class Croma extends Parsing{
 			 }elseif ($subcat == Category::MOB_CHARGER){
 			 	return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=534";
 			 }else return "";
-		}elseif ($category == Category::COMP_COMPUTER){
-			return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=209&C=210&C=858";
-		}elseif ($category == Category::COMP_LAPTOP){
-			return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=191&C=192&C=855&C=815";
+		}elseif($category == Category::COMP_LAPTOP){
+			if ($subcat == Category::COMP_COMPUTER){
+				return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=209&C=210&C=858";
+			}elseif ($subcat == Category::COMP_LAPTOP){
+				return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=191&C=192&C=855&C=815";
+			}
 		}elseif ($category == Category::TABLETS){
 			return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=162";
+		}elseif ($category == Category::GAMING){
+			return "http://www.cromaretail.com/productsearch.aspx?txtSearch=$query&x=0&y=0";
 		}
 		return "http://www.cromaretail.com/productsearch.aspx?txtSearch=$query&x=0&y=0";
 	}

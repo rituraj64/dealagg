@@ -17,6 +17,8 @@ class Indiaplaza extends Parsing{
 			return "http://www.indiaplaza.com/searchproducts.aspx?sn=all&q=$query&dn=books";
 		}elseif($category == Category::MOBILE || $category == Category::MOBILE_ACC){
 			return "http://www.indiaplaza.com/searchproducts.aspx?sn=mobiles&q=$query&dn=mobiles";
+		}elseif($category == Category::MOBILE_ACC){
+			return "http://www.indiaplaza.com/searchproducts.aspx?sn=all&q=$query&dn=mobiles";
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.indiaplaza.com/searchproducts.aspx?sn=pc&q=$query&dn=pc";
 		}

@@ -5,7 +5,7 @@ class FutureBazaar extends Parsing{
 		return 'http://www.facebook.com/FutureBazaar';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_LAPTOP,Category::TABLETS);
+		return array(Category::GAMING,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_LAPTOP,Category::TABLETS);
 	}
 
 	public function getWebsiteUrl(){
@@ -73,6 +73,14 @@ class FutureBazaar extends Parsing{
 			return "http://www.futurebazaar.com/search/?q=$query&c=2466";
 		}elseif ($category == Category::TABLETS){
 			return "http://www.futurebazaar.com/search/?q=$query&c=2468";
+		}elseif ($category == Category::GAMING){
+			if ($subcat == Category::GAMING_ACC_GAMES) {
+				return "http://www.futurebazaar.com/search/?q=$query&c=3236&NormalSearch=enabled";
+			}elseif($subcat == Category::GAMING_ACC_ACC){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2496";
+			}elseif ($subcat == Category::GAMING_ACC_CONSOLES){
+				return "http://www.futurebazaar.com/search/?q=$query&c=2497";
+			}
 		}
 		return "http://www.futurebazaar.com/search/?q=$query&c=0&NormalSearch=enabled";
 	}

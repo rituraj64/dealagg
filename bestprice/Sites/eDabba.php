@@ -6,7 +6,7 @@ class eDabba extends Parsing{
 		return 'http://www.facebook.com/edabbamall';
 	}
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP,Category::TABLETS);
+		return array(Category::GAMING,Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP,Category::TABLETS);
 	}
 
 	public function getWebsiteUrl(){
@@ -67,11 +67,22 @@ class eDabba extends Parsing{
 				return '';
 			}
 		}elseif ($category == Category::COMP_LAPTOP){
-			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5862&f[1]=im_taxonomy_catalog%3A5907";
-		}elseif ($category == Category::COMP_COMPUTER){
-			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5862";
+			if($subcat == Category::COMP_LAPTOP){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5862&f[1]=im_taxonomy_catalog%3A5907";
+			}elseif ($subcat == Category::COMP_COMPUTER){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5862";
+			}
 		}elseif($category == Category::TABLETS){
 			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5862&f[1]=im_taxonomy_catalog%3A5909";
+		}elseif ($category == Category::GAMING){
+			if($subcat == Category::GAMING_ACC_GAMES){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5865&f[1]=im_taxonomy_catalog%3A5895";
+			}elseif ($subcat == Category::GAMING_ACC_CONSOLES){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5865&f[1]=im_taxonomy_catalog%3A5893";
+			}elseif ($subcat == Category::GAMING_ACC_ACC){
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5865&f[1]=im_taxonomy_catalog%3A5894";
+			}
+			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog%3A5865";
 		}
 		return "http://www.edabba.com/search/site/$query";
 	}

@@ -85,9 +85,9 @@ class Category{
 				self::TABLETS=>'Tablets, iPad',
 				self::TV=>'Television',
 				self::GAMING =>array('Gaming'=>array(
-						self::GAMING_ACC_CONSOLES => 'Gaming Consoles',
-						self::GAMING_ACC_GAMES => 'Games Software',
-						self::GAMING_ACC_ACC => 'Gaming Accessories'
+						self::GAMING_ACC_CONSOLES => 'Gaming Consoles', // includes all game platforms
+						self::GAMING_ACC_GAMES => 'Games Software', //includes games,patches,mods,upgrades
+						self::GAMING_ACC_ACC => 'Gaming Accessories' //includes only accessories
 				)),
 				self::COMP_LAPTOP=>array('Computer & Laptop'=>array(
 						self::COMP_COMPUTER => 'Computers - Desktops',

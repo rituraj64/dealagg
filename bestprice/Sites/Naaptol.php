@@ -93,6 +93,14 @@ class Naaptol extends Parsing{
 			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=13&kw=$query&sb=49,9,8";
 		}elseif ($category == Category::TABLETS){
 			return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2610&kw=$query&sb=49,9,8";
+		}elseif($category == Category::GAMING){
+			if($subcat == Category::GAMING_ACC_CONSOLES){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=157&kw=$query&sb=49,9,8";
+			}elseif($subcat == Category::GAMING_ACC_ACC){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2316&kw=$query&sb=49,9,8";
+			}elseif ($subcat == Category::GAMING_ACC_GAMES){
+				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=194&kw=$query&sb=49,9,8";
+			}
 		}
 		return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&kw=$query&sb=49,9,8";/* &req=ajax"; */
 	}

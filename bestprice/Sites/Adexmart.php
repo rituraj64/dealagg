@@ -7,7 +7,7 @@ class Adexmart extends Parsing{
 	}
 	
 	public function getAllowedCategory(){
-		return array(Category::MOBILE,Category::MOBILE_ACC);
+		return array(Category::MOBILE,Category::MOBILE_ACC,Category::TABLETS,Category::CAM_CAMCORDER,Category::CAM_DIGITAL_SLR,Category::CAM_DIGITAL_CAMERA);
 	}
 
 	public function getWebsiteUrl(){

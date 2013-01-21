@@ -11,7 +11,7 @@ class Flipkart extends Parsing{
 	//need to integrate flipkart offers and cashback
 
 	public function getAllowedCategory(){
-		return array(Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP,Category::TABLETS);
+		return array(Category::GAMING,Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_COMPUTER,Category::COMP_LAPTOP,Category::TABLETS);
 	}
 
 	public function getWebsiteUrl(){
@@ -91,6 +91,13 @@ class Flipkart extends Parsing{
 		}else if($category == Category::COMP_ACC){
 			return "http://www.flipkart.com/search/a/computers?query=".$query."&vertical=computers&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=RsuiHvNUWzIGQmMYN5OGLg--&_l=Tnndui8JdMVk7CZmDKIfXQ--&ref=de3e3b97-e0c3-4810-b670-fed8e7f132bd&selmitem=Computers";
 		}else if($category == Category::GAMING){
+			if ($subcat == Category::GAMING_ACC_CONSOLES){
+				return "http://www.flipkart.com/search-gamingconsoles?query=$query&searchGroup=games&filter=is_available%3Atrue&ref=21ed3cac-4182-4091-9fad-043d39348d04";
+			}elseif ($subcat == Category::GAMING_ACC_GAMES){
+				return "http://www.flipkart.com/search-games?query=$query&searchGroup=games&filter=is_available%3Atrue&ref=e9a3f25c-d1c7-4f7d-b064-a317fc8af0a1";
+			}elseif{
+				return "http://www.flipkart.com/search-gaming-accessories?query=$query&searchGroup=games&filter=is_available%3Atrue&ref=08fd7f7b-254f-4bb5-814a-4c6c8886edfc";
+			}
 			return "http://www.flipkart.com/search/a/games?query=".$query."&vertical=games&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=default-search&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=F7RHLcm3kzA6g5uio1jyrw--&_l=dPxEw4fkCcmDR6VWspVbMg--&ref=12124740-3d86-450c-ae16-30639a87e713&selmitem=Games+%26+Consoles";
 		}else if($category == Category::HOME_APPLIANCE){
 			return "http://www.flipkart.com/home-kitchen/pr?sid=j9e&q=".$query."&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&selmitem=Home+%26+Kitchen&otracker=start&_l=Tnndui8JdMVk7CZmDKIfXQ--&_r=RsuiHvNUWzIGQmMYN5OGLg--&ref=b4322868-5f32-4a39-90fe-37e2a0c57191";
@@ -98,10 +105,12 @@ class Flipkart extends Parsing{
 			return "http://www.flipkart.com/tvs-audio-video-players/tv-video/pr?sid=ckf,see&q='.$query.'&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&selmitem=TVs+%26+Video+Players&otracker=start&_l=Tnndui8JdMVk7CZmDKIfXQ--&_r=RsuiHvNUWzIGQmMYN5OGLg--&ref=5ec4254d-f08f-40ce-b1b3-81854d37bbb6";
 		}else if($category == Category::BEAUTY){
 			return "http://www.flipkart.com/beauty-and-personal-care/pr?sid=t06&q=".$query."&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&selmitem=Beauty+%26+Personal+Care&otracker=start&_l=dY2Vv7%20dT%20BcojM7Q0aWCA--&_r=pKHhEYwirnApk1HHs4pVyQ--&ref=97822d89-acb5-42bd-bf53-a47f4112fa1d";
-		}elseif ($category == Category::COMP_COMPUTER){
-			return "http://www.flipkart.com/computers/all-in-one-desktops/pr?sid=6bo%2Cigk&layout=grid&q=$query";
 		}elseif ($category == Category::COMP_LAPTOP){
-			return "http://www.flipkart.com/laptops/pr?sid=6bo%2Cb5g&layout=grid&q=$query";
+			if($subcat ==Category::COMP_COMPUTER){
+				return "http://www.flipkart.com/computers/all-in-one-desktops/pr?sid=6bo%2Cigk&layout=grid&q=$query";
+			}elseif($subcat == Category::COMP_LAPTOP){
+				return "http://www.flipkart.com/laptops/pr?sid=6bo%2Cb5g&layout=grid&q=$query";
+			}
 		}elseif($category == Category::TABLETS){
 			return "http://www.flipkart.com/tablets/pr?sid=tyy%2Chry&q=$query&query=$query";
 		}else{

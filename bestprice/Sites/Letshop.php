@@ -46,8 +46,12 @@ class Letshop extends Parsing{
 			}else{
 				return '';
 			}
-		}elseif($category == Category::COMP_COMPUTER || $category == Category::COMP_LAPTOP){
+		}elseif($category == Category::COMP_LAPTOP){
 			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=22";
+		}elseif ($category == Category::GAMING){
+			if ($subcat == Category::GAMING_ACC_CONSOLES) {
+				return "http://letsshop.in/catalogsearch/result/index/?cat=72&q=$query";
+			}
 		}
 		return "http://letsshop.in/catalogsearch/result/?q=$query";
 	}

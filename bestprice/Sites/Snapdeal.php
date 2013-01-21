@@ -34,41 +34,57 @@ class Snapdeal extends Parsing{
 			}
 
 		}else if($category == Category::CAMERA_ACC){
-			echo 'Implemente JSON for snap deal';die;
-			return "http://www.snapdeal.com/json/product/get/search/296/0/20?q=Type%253ABattery%2520Chargers%257C&sort=rlvncy&keyword=nikon&clickSrc=searchOnSubCat&viewType=Grid";
+			//echo 'Implemente JSON for snap deal';die;
+				if($subcat == Category::NOT_SURE || $subcat == Category::CAM_ACC_OTHER_ACC){
+			/*non-json*/ return "http://www.snapdeal.com/search?keyword=$query&catId=290&categoryId=296&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=true&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
+				}else if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
+			/*json*/	return "http://www.snapdeal.com/json/product/get/search/296/0/20?q=Type%253ABattery%2520Chargers%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid;"
+				}else if($subcat == Category::CAM_ACC_BAGS){
+			/*json*/	return "http://www.snapdeal.com/json/product/get/search/296/0/20?q=Type%253ACamera%2520Bags%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
+				}else if($subcat == Category::CAM_ACC_BATTERY){
+			/*json*/	return "http://www.snapdeal.com/json/product/get/search/296/0/20?q=Type%253ABatteries%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
+				}else if($subcat == Category::CAM_ACC_FLASH_LIGHTS){
+			/*json*/	return "http://www.snapdeal.com/json/product/get/search/296/0/20?q=Type%253AFlashes%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
+				}else if($subcat == Category::CAM_ACC_LENSEFILTER){
+			/*json*/	return "http://www.snapdeal.com/json/product/get/search/296/0/20?q=Type%253AFilters%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
+				}else if($subcat == Category::CAM_ACC_LENSES){
+			/*json*/	return "http://www.snapdeal.com/json/product/get/search/296/0/20?q=Type%253ALenses%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
+				}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
+			/*non-json*/	return "http://www.snapdeal.com/search?keyword=$query&catId=290&categoryId=304&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$memory&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
+				}else if($subcat == Category::CAM_ACC_TRIPODS){
+			/*json*/	return "http://www.snapdeal.com/json/product/get/search/296/0/20?q=Type%253ATripod%2520Ball%2520Head%255E%2520Tripods%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
+				}else{
+			/*non-json*/	return "http://www.snapdeal.com/search?keyword=$query&catId=290&categoryId=296&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=true&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
+				}
+			return "http://www.snapdeal.com/json/product/get/search/296/0/20?q=Type%253ABattery%2520Chargers%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
 
-			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=296&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; //acc
-			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=304&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; //memory card
 		}else if($category == Category::MOBILE){
 			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=175&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=29&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=29&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=29&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; //acc
-			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=228&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=29&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; // memory cards
-			/*
-			 * for mobile acc catogeries later
-			*
-			* if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
-			return "";
+			 if($subcat == Category::NOT_SURE){
+		/*non-json*/		return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=29&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=29&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 			}elseif ($subcat == Category::MOB_BATTERY){
-			return "";
+		/*json*/		return "http://www.snapdeal.com/json/product/get/search/29/0/20?q=Type%253ABatteries%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
 			}elseif ($subcat == Category::MOB_HEADSETS){
-			return "";
-			}elseif ($subcat == Category::MOB_CASES){
-			return "";
-			}elseif ($subcat == Category::MOB_CHARGER){
-			return "";
-			}elseif ($subcat == Category::MOB_HANDSFREE){
-			return "";
-			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
-			return "";
-			}elseif ($subcat == Category::MOB_HEADPHONE){
-			return "";
-			}else return "";
-			*/
-		}elseif ($category == Category::COMP_COMPUTER){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=21&categoryId=55&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=57&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
+		/*json*/		return "http://www.snapdeal.com/json/product/get/search/29/0/20?q=Type%253ABluetooth%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
+			}elseif ($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADPHONE){
+		/*json*/		return "http://www.snapdeal.com/search?keyword=nokia+battery&catId=12&categoryId=29&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
+			}elseif($subcat == Category::MOB_CAR_ACC){
+		/*json*/		return "http://www.snapdeal.com/json/product/get/search/29/0/20?q=Type%253ACar%2520Accessories%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
+			}elseif($subcat == Category::MOB_MEMORY ){
+	/*non-json*/	return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=228&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="
+			}elseif($subcat == Category::MOB_SPEAKER){
+	/*json*/		return "http://www.snapdeal.com/json/product/get/search/29/0/20?q=Type%253AMobile%2520Speakers%257C&sort=rlvncy,rlvncy&keyword=$query&clickSrc=go_header&viewType=Grid";
+			}else {
+		/*non-json*/return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=29&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=29&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
+			}
+			
 		}elseif ($category == Category::COMP_LAPTOP){
-			return "http://www.snapdeal.com/search?keyword=$query&catId=21&categoryId=57&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=57&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
+			if($subcat == Category::COMP_LAPTOP){
+				return "http://www.snapdeal.com/search?keyword=$query&catId=21&categoryId=57&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=57&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
+			}elseif($subcat == Category::COMP_COMPUTER){
+				return "http://www.snapdeal.com/search?keyword=$query&catId=21&categoryId=55&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=57&changeBackToAll=false&foundInAll=false&categoryIdSearched=21&url=&utmContent=&catalogID=&dealDetail=";
+			}
 		}elseif($category == Category::TABLETS){
 			return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=133&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}else{
