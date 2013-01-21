@@ -27,9 +27,7 @@ class Parsing{
 		// add http://www.shoperskart.com/
 		// add pepperfry
 		// add egully
-
 		// for greendust, its important to go to product page since they sell second hand stuff also
-		// naaptol product page need to get shop points and shipping charges
 		// buytheprice.com, process product page to get details about seller etc
 		// check if need to search ebay
 		//shopclues, need to parse product page to get coupon code and special offer
@@ -55,6 +53,11 @@ class Parsing{
 	public function getResultTime(){
 		return $this->_resultTime;
 	}
+	private $_query_id = false;
+	public function setQueryId($query_id){
+		$this->_query_id = $query_id;
+	}
+
 	public function getPriceData($query,$category = false,$subcat = 0,$delay = true,$cache = 1){
 		$url = $this->getSearchURL($query,$category,$subcat);
 		if(empty($url)){
@@ -107,10 +110,24 @@ class Parsing{
 	}
 	public function getCachedData($website,$query,$category,$subcat,$url){
 		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
+		if(isset($_REQUEST['url_based'])){
+			$cacheKey = $cacheKey . '-' . $_REQUEST['query_id'];
+		}
 		$filename = 'cache/'.$cacheKey;
 		$content = '';
 		if(file_exists($filename)){
 			$content = file_get_contents('cache/'.$cacheKey);
+			if(isset($_REQUEST['url_based'])){
+
+			}else{
+				$query_id = $this->_query_id;
+				if($query){
+					$cacheKey = $cacheKey . '-' . $query_id;
+					if(!file_exists($filename)){
+						file_put_contents('cache/'.$cacheKey,$html);
+					}
+				}
+			}
 		}
 		return $content;
 	}
@@ -125,15 +142,22 @@ class Parsing{
 	}
 	public function hasCachedData($website,$query,$category,$subcat,$url){
 		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
+		if(isset($_REQUEST['url_based'])){
+			$cacheKey = $cacheKey . '-' . $_REQUEST['query_id'];
+		}
 		$filename = 'cache/'.$cacheKey;
 		if(file_exists($filename)){
-			$time = filemtime($filename);
-			$expiry = 24 * 60 * 60;
-			if(time() - $time > $expiry){
-				unlink($filename);
-				return false;
-			}else{
+			if(isset($_REQUEST['url_based'])){
 				return true;
+			}else{
+				$time = filemtime($filename);
+				$expiry = 24 * 60 * 60;
+				if(time() - $time > $expiry){
+					unlink($filename);
+					return false;
+				}else{
+					return true;
+				}
 			}
 		}
 		return false;
@@ -142,6 +166,14 @@ class Parsing{
 	public function cacheData($website,$query,$category,$subcat,$url,$html){
 		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
 		file_put_contents('cache/'.$cacheKey,$html);
+
+		/* this code is for caching query wise, so the users previous data is saved */
+		$query_id = $this->_query_id;
+		if($query){
+			$cacheKey = $cacheKey . '-' . $query_id;
+			file_put_contents('cache/'.$cacheKey,$html);
+		}
+
 	}
 	private function getCacheKey($website,$query,$category,$subcat,$url){
 		$query2 = urldecode($query);

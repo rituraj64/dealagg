@@ -10,11 +10,14 @@
 		if(isset($row[0])){
 			$searchObj->smartAssign($row[0]);
 			
+			$created_at = $searchObj->created_at;
+			
 			$_REQUEST['q'] = $searchObj->getQuery();
 			$_REQUEST['cat'] = $searchObj->getCategory();
 			$_REQUEST['subcat'] = $searchObj->getSubcat();;
 			$_REQUEST['cache'] = 1;
 			$_REQUEST['silent'] = 1;
+			$_REQUEST['url_based'] = 1;
 			
 			require_once 'find.php';
 			$result = $return;
@@ -44,8 +47,62 @@
         		$('#results').html('');
         		$('#results').show();
         		$('#showSuggestion').val(0);
-        		//processData(eval(<?php echo json_encode($result)?>),'',1,1,true,0);
-        		findPrice();
+        		<?php
+        			$website_data = $searchObj->website_data;
+        			$timetaken = $searchObj->time_taken;
+        			$website_data = explode('$',$website_data);
+        			
+        			$websites_order = array();
+        			
+        			foreach($website_data as $web){
+        				$web = explode(':',$web);
+        				if(!isset($websites_order[$web[1]])){
+        					$websites_order[$web[1]] = array();
+        				}
+        				$websites_order[$web[1]][] = $web[0];
+        			}
+        			if(isset($websites_order['RESULT'])){
+        				foreach($websites_order['RESULT'] as $site_name){
+        					$data = $formattedResult[$site_name]
+        		?>
+        				makeResultBody(eval(<?php echo json_encode(array('data'=>$data))?>),'',1,1,true,0);
+        		<?php
+        				}
+					}
+					if(isset($websites_order['BAD'])){
+						foreach($websites_order['BAD'] as $site_name){
+							$data = $formattedResult[$site_name]
+							?>
+					var x = makeResultBody(eval(<?php echo json_encode(array('data'=>$data))?>),'',1,1,true,0);
+					if(x){
+						makeSmall('<?php echo $site_name;?>');
+					}
+					<?php
+					}
+					}
+					$sites = $parsing->getWebsites();
+					if(isset($websites_order['NORESULT'])){
+						foreach($websites_order['NORESULT'] as $site_name){
+							foreach($sites as $site){
+								require_once 'Sites/'.$site.'.php';
+								$siteObj = new $site;
+								if($siteObj->getCode() == $site_name){
+									$erow = array('site'=>$site_name,'searchurl'=>$siteObj->getSearchURL($_REQUEST['q'],$_REQUEST['cat'],$_REQUEST['subcat']),'logo'=>$siteObj->getLogo());
+									$r = array();
+									$r[] = $erow;
+					?>
+					makeEmptyBody(eval(<?php echo json_encode(array('empty_sites'=>$r));?>));
+					<?php		
+								}
+							}
+					}
+					}
+        		?>
+        		loadSmallImages();
+        		var starttime = new Date().getTime() - <?php echo $timetaken*1000;?>*1;
+        		finished();
+        		putShareUrl('<?php echo $_REQUEST['query_id']?>');
+        		//findPrice();
         	});
         	</script>
         <?php }else{ ?>
@@ -84,14 +141,11 @@
 		</div>
 		<input id='progress_total' type="hidden"/>
 		<input id='progress_done' type="hidden"/>
-		<div class="alert alert-success" id='share' style="text-align: left;color:black;display: none">
+		<div class="alert alert-success" id='share' style="text-align: left;color:black;<?php if(!isset($result)){echo 'display: none';}?>">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			Share Results: <input type='text' id='share_url' value='' style="width: 100%"/>
+			Share Results: <input type='text' id='share_url' value='<?php if(isset($result)){echo 'display: none';}?>' style="width: 100%"/>
 		</div>
-		<div class="alert alert-info" id='summary' style="display: none">
-			<!-- 
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			 -->
+		<div class="alert alert-info" id='summary' style="<?php if(!isset($result)){echo 'display: none';}?>">
 				<div class='pull-left' style="width: 25%">
 					Total Time Taken: <h4 id='time_taken'></h4>
 				</div>
@@ -109,12 +163,13 @@
 					<span class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="Get Latest Results">
 						<span onclick='$("#showSuggestion").val(1);findPrice("",0,1,false);' style="cursor: pointer;" class='icon-refresh'></span>
 					</span> 
-					<h4 id='time'></h4>
+					<h4 id='time'><?php if(isset($result)) {echo date('Y-m-d h:i:s',$created_at);}?></h4>
 				</div>
 				<div class='clearfix'></div>
 		</div>
       </div>
       <input type='hidden' id='isSorting' value='0' />
+      <input type='hidden' id='query_id' value='0' />
       <input type='hidden' id='showSuggestion' value='1' />
       <input type='hidden' id='avg_best_price' value='0' />
       <input type='hidden' id='other_product_count' value='<?php echo Parsing::DATA_NUM;?>' />

@@ -29,11 +29,12 @@ if(isset($_REQUEST['q'])){
 		$cache = $_REQUEST['cache'];
 	}
 
-	$query_id = '';
+	$query_id = false;
 	if(isset($_REQUEST['site'])){
 		$delay = false;
 		$site = urldecode($_REQUEST['site']);
 		$sites = array($site);
+		$query_id = $_REQUEST['query_id'];
 	}else{
 		$query_id = md5($query2.time());
 		require_once 'model/Search.php';
@@ -62,6 +63,7 @@ if(isset($_REQUEST['q'])){
 			}
 			if($trust){
 				try{
+					$siteObj->setQueryId($query_id);
 					$data1 = $siteObj->getPriceData($query,$cat,$subcat,$delay,$cache);
 					$resultTime = $siteObj->getResultTime();
 					if($resultTime > $max){

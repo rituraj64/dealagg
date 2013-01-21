@@ -1,6 +1,7 @@
 <div class="row-fluid clearfix website" id="{website}" style="vertical-align: middle;height: 100px;margin-top:10px;position: relative;">
-	<div class="span2" style="line-height: 100px">
-		<a href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
+	<div class="span2" style="text-align: center">
+		<a style="line-height: 75px" href='{website_search_url}' target='_blank'><img src="{website_url}" alt="{website}" title="{website}"/></a>
+		<button class='btn btn-mini remove_website_btn'>Remove This!</button>
 	</div>
 	{main_item_html}
 	<div class="span4 other_info_parent table-bordered" style="margin-left:10px;border-left: 1px solid #DDD;height: 100%;overflow-y:auto">
