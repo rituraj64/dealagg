@@ -140,7 +140,9 @@ function moniter(timer) {
 						$('#' + ajaxReq[i]['site']).addClass('website_error');
 						$('#' + ajaxReq[i]['site']).addClass('website_loading');
 						queueSortResult(0, ajaxReq[i]['site']);
-						queueCalcResult();
+						if (ajaxReq[i]['siteParam']['trust'] == 1) {
+							queueCalcResult();
+						}
 						finishMoniter(ajaxReq[i]['site']);
 
 						var website = ajaxReq[i]['site'];
@@ -171,7 +173,8 @@ function moniter(timer) {
 			finished();
 			console.log('moniter ajax reports finished');
 			for ( var i = 0; i < ajaxReq.length; i++) {
-				console.log(ajaxReq[i]['site'] + 'took ' + (ajaxReq[i]['finish_at'] * 1 - ajaxReq[i]['started_at'] * 1) + ' mili seconds to finish');
+				var t = (ajaxReq[i]['finish_at'] * 1 - ajaxReq[i]['started_at'] * 1);
+				$('#'+ajaxReq[i]['site']).children('.span2:first').find('#time_taken').html(t + 'ms');
 			}
 		} else {
 			moniterTime = setTimeout('moniter(2)', 1000);

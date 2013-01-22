@@ -97,6 +97,36 @@ class MirchiMart extends Parsing{
 					);
 				}
 			}
+		}else{
+			if(sizeof(pq('.sortingPanlListing'))){
+				foreach(pq('.sortingPanlListing')->children('ul:first')->children('li') as $div){
+					$image = pq($div)->children('.img')->children('a')->html();
+					$url = pq($div)->children('.img')->children('a')->attr('href');
+					$name = pq($div)->children('.txt')->children('a')->html();
+					$disc_price = pq($div)->children('.price')->children('.redTxt')->html();
+					$offer = '';
+					$shipping = '';
+					$stock = 0;
+					if(sizeof(pq($div)->children('.inStock'))){
+						$stock = 1;
+					}else{
+						$stock = -1;
+					}
+					$author = '';
+					$data[] = array(
+							'name'=>$name,
+							'image'=>$image,
+							'disc_price'=>$disc_price,
+							'url'=>$url,
+							'website'=>$this->getCode(),
+							'offer'=>$offer,
+							'shipping'=>$shipping,
+							'stock'=>$stock,
+							'author' => $author,
+							'cat' => ''
+					);
+				}
+			}
 		}
 		$data2 = array();
 		foreach($data as $row){

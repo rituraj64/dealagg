@@ -10,7 +10,7 @@ class ezeekart extends Parsing{
 		return array(Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::CAMERA_ACC);
 	}
 	public function getWebsiteUrl(){
-		return 'http://www.ezeekart.com';
+		return 'http://www.ezeekart.com/';
 	}
 	public function getPostFields($query,$category = false,$subcat=false){
 		return array('search_word'=>'samsung','act'=>'search');
@@ -26,7 +26,7 @@ class ezeekart extends Parsing{
 		phpQuery::newDocumentHTML($html);
 		if(pq('.head_product_price')){
 			foreach(pq('.head_product_price') as $div){
-				$image = pq($div)->children('.product_image')->find('a:first')->html();
+				$image = pq($div)->children('.product_image')->find('.product_image_box')->find('a:first')->html();
 				$url = pq($div)->children('.product_image')->find('a:first')->attr('href');
 				$name = pq($div)->children('.product_heading')->children('a')->html();
 				$disc_price = pq($div)->children('.price_gap')->children('.price')->html();

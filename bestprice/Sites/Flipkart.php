@@ -263,7 +263,7 @@ class Flipkart extends Parsing{
 		$warrenty = pq('.mprod-warrenty:first')->html();
 
 		$author = '';
-		 
+			
 		foreach(pq('.secondary-info') as $div){
 			if(pq($div)->children('span')->html() == 'Author:'){
 				$author = pq($div)->children('a')->html();

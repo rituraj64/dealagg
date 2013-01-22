@@ -47,11 +47,15 @@ class TheMobileStore extends Parsing{
 		$data = array();
 		phpQuery::newDocumentHTML($html);
 		foreach(pq('ul#search-result-items')->children('li') as $div){
-			if(sizeof(pq($div)->find('.variant-image'))){
-				$image = pq($div)->find('.variant-image')->find('a')->html();
-				$url = pq($div)->find('.variant-image')->find('a')->attr('href');
-				$name = strip_tags(pq($div)->find('.variant-desc')->find('.variant-title')->find('a')->html());
-				$disc_price = strip_tags(pq($div)->find('.variant-desc')->find('.price')->find('.variant-list-price')->html());
+			if(sizeof(pq($div)->children('.variant-image'))){
+				$image = pq($div)->children('.variant-image')->children('a')->html();
+				$url = pq($div)->children('.variant-image')->children('a')->attr('href');
+				$name = strip_tags(pq($div)->children('.variant-desc')->children('.variant-title')->children('a')->html());
+				if(sizeof(pq($div)->children('.variant-desc')->children('.price')->children('.variant-list-price'))){
+					$disc_price = pq($div)->children('.variant-desc')->children('.price')->children('.variant-list-price')->html();
+				}else{
+					$disc_price = pq($div)->children('.variant-desc')->children('.price')->children('.variant-final-price')->html();
+				}
 				$shipping = '';
 				$offer = '' ;
 				$stock = 0;
