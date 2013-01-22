@@ -310,7 +310,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 	}
 
 	if (data.query_id && data.query_id.length > 0) {
-		putShareUrl();
+		putShareUrl(data.query_id);
 	}
 
 	$('#loading').hide();
@@ -815,7 +815,7 @@ function finished() {
 								warrenty = data.warrenty;
 							}
 
-							if ($('#' + data.website).children('.item_main').children('#item_stock') == 0) {
+							if ($('#' + data.website).children('.item_main').children('#item_stock').val() == 0) {
 								$('#' + data.website).children('.item_main').children('#item_stock').val(stock);
 								if (stock == 1) {
 									$('#' + data.website).children('.item_main').find('.in_stock').show();
@@ -1361,7 +1361,7 @@ function createMain(website, logo, url, item_id_count, image, lazyimage, name, p
 	html2 = html2.replace(/{website}/g, website);
 	html2 = html2.replace(/{website_url}/g, logo);
 	html2 = html2.replace(/{coupons}/g, coupon);
-	html2 = html2.replace(/{website_search_url}/g, url);
+	html2 = html2.replace(/{website_search_url}/g, searchurl);
 	var ship_len = 120;
 	if (offer.length != 0) {
 		ship_len = 60;
