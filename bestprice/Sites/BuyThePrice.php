@@ -15,11 +15,9 @@ class BuyThePrice extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=75&bid=0";
 		}else if($category == Category::MOBILE_ACC){
-			if($subcat == Category::NOT_SURE || $subcat == Category::MOB_OTHERS){
-				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=78&bid=0";
-			}elseif($subcat == Category::MOB_BATTERY){
+			if($subcat == Category::MOB_BATTERY){
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=424&bid=0";
-			}elseif($subcat == Category::MOB_CABLE){
+			}/* elseif($subcat == Category::MOB_CABLE){
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=425&bid=0";
 			}elseif($subcat == Category::MOB_SCREEN_GUARD){
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=428&bid=0";
@@ -27,12 +25,12 @@ class BuyThePrice extends Parsing{
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=426&bid=0";
 			}elseif($subcat == Category::MOB_CASES){
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=427&bid=0";
-			}elseif($subcat == Category::MOB_HEADSETS){
+			} */elseif($subcat == Category::MOB_HEADSETS){
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=429&bid=0";
 			}elseif($subcat == Category::MOB_HEADPHONE || $subcat == Category::MOB_HANDSFREE){
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=431&bid=0";
 			}else{
-				return "";
+				return "www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=78&bid=0";
 			}
 		}else if($category == Category::TABLETS){
 			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=78&bid=0";
@@ -43,10 +41,8 @@ class BuyThePrice extends Parsing{
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=92&bid=0"; //digial dslr
 			}else if($subcat == Category::CAM_CAMCORDER){
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=95&bid=0"; //camcorder
-			}else if($subcat == Category::NOT_SURE){
-				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=91&bid=0"; //digial camera
 			}else{
-				return '';
+				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=91&bid=0"; //digial camera
 			}
 			//return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=96&bid=0"; //optics
 		}else if($category == Category::CAMERA_ACC){
@@ -65,7 +61,7 @@ class BuyThePrice extends Parsing{
 			}else if($subcat == Category::CAM_ACC_LENSES){
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=505&bid=0";
 			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
-				return "";
+				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=97&bid=0";//can be improved
 			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=510&bid=0";
 			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){
@@ -73,7 +69,7 @@ class BuyThePrice extends Parsing{
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=500&bid=0";
 			}else{
-				return '';
+				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=97&bid=0";
 			}
 		}elseif ($category == Category::COMP_COMPUTER){
 			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=84&bid=0";

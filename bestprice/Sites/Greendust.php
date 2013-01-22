@@ -26,7 +26,7 @@ class Greendust extends Parsing{
 			}else if($subcat == Category::CAM_DIGITAL_SLR){
 				return "http://www.greendust.com/advanced_search_result.php?cata_id=137&product_list=$query&keywords=&x=0&y=0";
 			}else {
-				return '';
+				return "http://www.greendust.com/advanced_search_result.php?cata_id=137,144,147&product_list=$query&keywords=&x=0&y=0";
 			}
 		}elseif ($category == Category::COMP_LAPTOP){
 			if($subcat == Category::COMP_LAPTOP){

@@ -40,7 +40,7 @@ class Homeshop extends Parsing{
 				return "http://www.homeshop18.com/$query/others/categoryid:3043/search:$query/";
 			}elseif($subcat == Category::NOT_SURE){
 				return "http://www.homeshop18.com/$query/accessories/categoryid:3032/search:$query/";
-			}else return "";
+			}
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.homeshop18.com/$query/digital-cameras/categoryid:3178/search:$query/";
@@ -51,7 +51,7 @@ class Homeshop extends Parsing{
 			}else if($subcat == Category::CAM_DIGITAL_SLR){
 				return "http://www.homeshop18.com/$query/digital-cameras/categoryid:3188/search:$query/";
 			}else {
-				return '';
+				return "http://www.homeshop18.com/$query/digital-cameras/categoryid:3178/search:$query/";
 			}
 		}else if($category == Category::CAMERA_ACC){
 			if($subcat == Category::NOT_SURE){
@@ -77,7 +77,7 @@ class Homeshop extends Parsing{
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 				return "http://www.homeshop18.com/$query/accessories/categoryid:3177/search:$query/";
 			}else{
-				return '';
+				return "http://www.homeshop18.com/$query/accessories/categoryid:3170/search:$query/";
 			}
 		}elseif($category == Category::COMP_LAPTOP){
 			if($subcat == Category::COMP_LAPTOP){

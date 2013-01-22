@@ -28,7 +28,7 @@ class eDabba extends Parsing{
 			}elseif ($subcat == Category::NOT_SURE || $subcat == Category::MOB_OTHERS){
 				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5860&f[1]=im_taxonomy_catalog:5922"; //a mobile acc
 			}else{
-				return '';
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5860&f[1]=im_taxonomy_catalog:5922";
 			}
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
@@ -38,7 +38,7 @@ class eDabba extends Parsing{
 			}else if($subcat == Category::CAM_CAMCORDER){
 				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5918"; //camcorders
 			}else{
-				return '';
+				return "http://www.edabba.com/search/site/$query?f%5B0%5D=im_taxonomy_catalog%3A5861"; //all cam and acc
 			}
 		}else if($category == Category::CAMERA_ACC){
 			if($subcat == Category::NOT_SURE){
@@ -64,7 +64,7 @@ class eDabba extends Parsing{
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5919";
 			}else{
-				return '';
+				return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5861&f[1]=im_taxonomy_catalog:5919";
 			}
 		}elseif ($category == Category::COMP_LAPTOP){
 			if($subcat == Category::COMP_LAPTOP){

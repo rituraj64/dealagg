@@ -20,8 +20,9 @@ class egully extends Parsing{
 			return "http://www.egully.com/search.php?mode=1&search_query_adv=$query&brand=&category[]=92&searchsubs=ON&price_from=&price_to=&featured=&shipping=";
 		}elseif($category == Category::CAMERA){
 			return "http://www.egully.com/search.php?mode=1&search_query_adv=$query&brand=&category[]=16&searchsubs=ON&price_from=&price_to=&featured=&shipping=";
+		}else{
+			return 'http://www.egully.com/search.php?search_query='.$query.'&x=0&y=0';
 		}
-		return 'http://www.egully.com/search.php?search_query='.$query.'&x=0&y=0';
 	}
 
 	public function getLogo(){

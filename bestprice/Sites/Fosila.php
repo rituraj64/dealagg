@@ -22,38 +22,24 @@ class Fosila extends Parsing{
 				return "http://www.fosila.com/digitalcameras?search=$query";
 			}else if($subcat == Category::CAM_DIGITAL_SLR){
 				return "http://www.fosila.com/slr?search=$query";
-			}else if($subcat == Category::CAM_MIRRORLESS){
-				return '';
 			}else if($subcat == Category::CAM_CAMCORDER){
-				return '';
+				return "http://www.fosila.com/camcorders?search=$query";
 			}else{
-				return '';
+				return "http://www.fosila.com/digitalcameras?search=$query";
 			}
 		}else if($category == Category::CAMERA_ACC){
-			if($subcat == Category::NOT_SURE){
-				return "";
-			}else if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
+			 if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
 				return "http://www.fosila.com/batterychargers?search=$query";
-			}else if($subcat == Category::CAM_ACC_BAGS){
-				return '';
 			}else if($subcat == Category::CAM_ACC_BATTERY){
 				return "http://www.fosila.com/batteries?search=$query";
-			}else if($subcat == Category::CAM_ACC_FLASH_LIGHTS){
-				return '';
 			}else if($subcat == Category::CAM_ACC_LENSEFILTER){
 				return "http://www.fosila.com/lenses?search=$query";
 			}else if($subcat == Category::CAM_ACC_LENSES){
 				return "http://www.fosila.com/lenses?search=$query";
 			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
 				return "http://www.fosila.com/memorycards?search=$query";
-			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
-				return '';
-			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){
-				return '';
-			}else if($subcat == Category::CAM_ACC_TRIPODS){
-				return '';
 			}else{
-				return '';
+				return "http://www.fosila.com/all?search=$query";
 			}
 		}
 		return "http://www.fosila.com/all?key=".$query;;

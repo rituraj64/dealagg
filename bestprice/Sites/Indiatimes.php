@@ -48,7 +48,7 @@ class Indiatimes extends Parsing{
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:41853";
 			}elseif($subcat == Category::MOB_HEADPHONE || $subcat == Category::MOB_HEADSETS){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10001&filter=PRIMARY_CATEGORY_ID:20002";
-			}else return "";
+			}
 		}else if($category == Category::TV){
 			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10004";
 		}else if($category == Category::GAMING){
@@ -64,14 +64,10 @@ class Indiatimes extends Parsing{
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:20011"; //cameras
 			}elseif($category == Category::TABLETS){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10013&filter=PRIMARY_CATEGORY_ID:40105";//tablets
-			}else {
-				return '';
 			}
 
 		}else if($category == Category::CAMERA_ACC){
-			if($subcat == Category::NOT_SURE){
-				return '';
-			}else if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
+			if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:40535"; //cables and charges
 			}else if($subcat == Category::CAM_ACC_BAGS){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:40534"; // camera pouchse
@@ -91,8 +87,6 @@ class Indiatimes extends Parsing{
 				return '';
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10002&filter=PRIMARY_CATEGORY_ID:40543";
-			}else{
-				return '';
 			}
 		}elseif($category == Category::COMP_LAPTOP){
 			if($subcat == Category::COMP_COMPUTER){

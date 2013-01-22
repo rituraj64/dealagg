@@ -43,8 +43,8 @@ class Flipkart extends Parsing{
 				return "http://www.flipkart.com/mobile-accessories/cases-and-covers/pr?sid=tyy%2C4mr%2Cq2u&q=$query";
 			}elseif ($subcat == Category::MOB_OTHERS){
 				return "http://www.flipkart.com/mobile-accessories/pr?sid=tyy%2C4mr&q=$query&otracker=from-multi&ref=5f05d1cc-662f-416b-9e01-6888bfc0603f&query=$query";
-			}else {
-				return "";
+			}elseif($subcat == Category::MOB_MEMORY){
+				return "http://www.flipkart.com/mobile-accessories/memory-cards/pr?sid=tyy%2C4mr%2C7y7&layout=grid&q=$query";
 			}
 		}else if($category == Category::BOOKS){
 			return "http://www.flipkart.com/search-books?query=$query&searchGroup=books-stationeries&ref=6695f070-3c76-4c61-92bd-7bedc39b8873";
@@ -59,8 +59,6 @@ class Flipkart extends Parsing{
 				return "http://www.flipkart.com/cameras/pr?p%5B%5D=facets.type%255B%255D%3DMirrorless&sid=jek%2Cp31&layout=grid&q=$query";
 			}else if($subcat == Category::CAM_CAMCORDER){
 				return "http://www.flipkart.com/cameras/pr?p%5B%5D=facets.type%255B%255D%3DCamcorder&sid=jek%2Cp31&layout=grid&q=$query";
-			}else{
-				return '';
 			}
 		}else if($category == Category::CAMERA_ACC){
 			if($subcat == Category::NOT_SURE){
@@ -85,8 +83,6 @@ class Flipkart extends Parsing{
 				return "http://www.flipkart.com/camera-accessories/pr?sid=jek%2Cp31&q=$query&query=$query";
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 				return "http://www.flipkart.com/camera-accessories/tripods/pr?sid=jek%2C6l2%2Cce6&layout=grid&q=$query";
-			}else{
-				return '';
 			}
 		}else if($category == Category::COMP_ACC){
 			return "http://www.flipkart.com/search/a/computers?query=".$query."&vertical=computers&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=entered&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=RsuiHvNUWzIGQmMYN5OGLg--&_l=Tnndui8JdMVk7CZmDKIfXQ--&ref=de3e3b97-e0c3-4810-b670-fed8e7f132bd&selmitem=Computers";

@@ -26,7 +26,7 @@ class FutureBazaar extends Parsing{
 				return "http://www.futurebazaar.com/search/?q=$query&c=3114";
 			}elseif($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADPHONE){
 				return "http://www.futurebazaar.com/search/?q=$query&c=3116";
-			}else return "";
+			}
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.futurebazaar.com/search/?q=$query&c=2486";
@@ -35,11 +35,11 @@ class FutureBazaar extends Parsing{
 			}else if($subcat == Category::CAM_DIGITAL_SLR){
 				return "http://www.futurebazaar.com/search/?q=$query&c=2488";
 			}else if($subcat == Category::CAM_MIRRORLESS){
-				return '';
+				return "http://www.futurebazaar.com/search/?q=$query&c=2486";
 			}else if($subcat == Category::CAM_CAMCORDER){
 				return "http://www.futurebazaar.com/search/?q=$query&c=3172&NormalSearch=enabled"; //cam corder
 			}else{
-				return '';
+				return "http://www.futurebazaar.com/search/?q=$query&c=2486";
 			}
 
 
@@ -67,7 +67,7 @@ class FutureBazaar extends Parsing{
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 				return "http://www.futurebazaar.com/search/?q=$query&c=2749&NormalSearch=enabled"; //tripod and monopods
 			}else{
-				return '';
+				return "http://www.futurebazaar.com/search/?q=$query&c=2490&NormalSearch=enabled"; 
 			}
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.futurebazaar.com/search/?q=$query&c=2466";

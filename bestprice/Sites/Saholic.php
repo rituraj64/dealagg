@@ -15,9 +15,7 @@ class Saholic extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Mobile+Phones";
 		}else if($category == Category::MOBILE_ACC){
-			if($subcat == Category::NOT_SURE){
-				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Mobile+Accessories";
-			}elseif ($subcat == Category::MOB_CASES){
+			if ($subcat == Category::MOB_CASES){
 				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Carrying+Case";
 			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
 				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Screen+Guard";
@@ -37,7 +35,7 @@ class Saholic extends Parsing{
 				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Data+Cable";
 			}elseif ($subcat == Category::MOB_HEADPHONE){
 				return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010%3AMobile+Accessories&fq=F_50011:Headphones";
-			}else return "";
+			}else return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Mobile+Accessories";
 		}else if($category == Category::TABLETS){
 			return "http://www.saholic.com/search?q=$query&category=10000&fq=F_50010:Tablets";
 		}else if($category == Category::CAMERA){

@@ -35,7 +35,7 @@ class Rediff extends Parsing{
 				return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|mobile+accessories|memory+card?ref_src=inhome_srch";
 			}elseif ($subcat == Category::MOB_CABLE){
 				return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|mobile+accessories|datacables?ref_src=inhome_srch";
-			}else return "";
+			}
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|digital cameras";

@@ -23,28 +23,20 @@ class ShopClues extends Parsing{
 		}else if($category == Category::MOBILE){
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=455&q=$query&dispatch=products.search";
 		}else if($category == Category::MOBILE_ACC){
-			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1471&q=$query&dispatch=products.search";
-			/*
-			 * for mobile acc catogeries later
-			*
-			* if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
-			return "";
-			}elseif ($subcat == Category::MOB_BATTERY){
-			return "";
+			//return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1471&q=$query&dispatch=products.search";
+			if ($subcat == Category::MOB_BATTERY){
+			return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1533";
 			}elseif ($subcat == Category::MOB_HEADSETS){
-			return "";
-			}elseif ($subcat == Category::MOB_CASES){
-			return "";
-			}elseif ($subcat == Category::MOB_CHARGER){
-			return "";
-			}elseif ($subcat == Category::MOB_HANDSFREE){
-			return "";
-			}elseif ($subcat == Category::MOB_SCREEN_GUARD){
-			return "";
-			}elseif ($subcat == Category::MOB_HEADPHONE){
-			return "";
-			}else return "";
-			*/
+			return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1456";
+			}elseif ($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADPHONE){
+			return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1064";
+			}elseif($subcat == Category::MOB_MEMORY){
+				return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1346";
+			}elseif ($subcat == Category::MOB_SPEAKER){
+				return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1630";
+			}elseif ($subcat == Category::MOB_CAR_ACC){
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=628&q=$query&dispatch=products.search";
+			}
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=682&q=$query&dispatch=products.search";
@@ -56,10 +48,7 @@ class ShopClues extends Parsing{
 				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1174&q=$query&dispatch=products.search"; //camcorder
 			}else if($subcat == Category::CAM_MIRRORLESS){
 				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1475&q=$query&dispatch=products.search"; //mirror less
-			}else{
-				return '';
 			}
-
 		}elseif($category == Category::CAMERA_ACC){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=688&q=$query&dispatch=products.search"; //camcorder
@@ -84,9 +73,9 @@ class ShopClues extends Parsing{
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1313&q=$query&dispatch=products.search"; //camcorder
 			}else{
-				return '';
+				return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=688&q=$query&dispatch=products.search"; //camcorder
 			}
-		}elseif($category == Category::COMP_COMPUTER || $category == Category::COMP_LAPTOP){
+		}elseif($category == Category::COMP_LAPTOP){
 			return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=85&q=$query&dispatch=products.search";
 		}elseif($category == Category::TABLETS){
 			return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1566";

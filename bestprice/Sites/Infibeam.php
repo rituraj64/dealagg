@@ -42,7 +42,6 @@ class Infibeam extends Parsing{
 			}elseif($subcat == Category::MOB_OTHERS){
 				return "http://www.infibeam.com/Mobile_Accessories/search?q=$query";
 			}
-			else return "";
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.infibeam.com/Cameras/search?q=$query";
@@ -54,8 +53,6 @@ class Infibeam extends Parsing{
 				return "http://www.infibeam.com/Cameras/search?q=$query#category=Camcorder&q=$query&store=Cameras";
 			}else if($subcat == Category::CAM_MIRRORLESS){
 				return "http://www.infibeam.com/Cameras/search?q=$query#subCategory=Mirrorless&q=$query&store=Cameras";
-			}else {
-				return '';
 			}
 		}else if($category == Category::CAMERA_ACC){
 			if($subcat == Category::NOT_SURE){
@@ -82,8 +79,6 @@ class Infibeam extends Parsing{
 				return "http://www.infibeam.com/Camera_Accessories/search?q=$query#category=Tripod&q=$query&store=Camera_Accessories";
 			}elseif($category == Category::TABLETS){
 				return "http://www.infibeam.com/Portable_Electronics/search?q=$query#bodyType=iPad&bodyType=Tablet&q=$query&store=Portable_Electronics";
-			}else{
-				return '';
 			}
 		}elseif ($category == Category::COMP_LAPTOP){
 			if($subcat == Category::COMP_COMPUTER){
