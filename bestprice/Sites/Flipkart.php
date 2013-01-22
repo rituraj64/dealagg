@@ -95,7 +95,7 @@ class Flipkart extends Parsing{
 				return "http://www.flipkart.com/search-gamingconsoles?query=$query&searchGroup=games&filter=is_available%3Atrue&ref=21ed3cac-4182-4091-9fad-043d39348d04";
 			}elseif ($subcat == Category::GAMING_ACC_GAMES){
 				return "http://www.flipkart.com/search-games?query=$query&searchGroup=games&filter=is_available%3Atrue&ref=e9a3f25c-d1c7-4f7d-b064-a317fc8af0a1";
-			}elseif{
+			}elseif($subcat == Category::GAMING_ACC_ACC){
 				return "http://www.flipkart.com/search-gaming-accessories?query=$query&searchGroup=games&filter=is_available%3Atrue&ref=08fd7f7b-254f-4bb5-814a-4c6c8886edfc";
 			}
 			return "http://www.flipkart.com/search/a/games?query=".$query."&vertical=games&dd=0&autosuggest%5Bas%5D=off&autosuggest%5Bas-submittype%5D=default-search&autosuggest%5Bas-grouprank%5D=0&autosuggest%5Bas-overallrank%5D=0&autosuggest%5Borig-query%5D=&autosuggest%5Bas-shown%5D=off&Search=%C2%A0&otracker=start&_r=F7RHLcm3kzA6g5uio1jyrw--&_l=dPxEw4fkCcmDR6VWspVbMg--&ref=12124740-3d86-450c-ae16-30639a87e713&selmitem=Games+%26+Consoles";

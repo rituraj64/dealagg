@@ -38,7 +38,7 @@ class Snapdeal extends Parsing{
 				if($subcat == Category::NOT_SURE || $subcat == Category::CAM_ACC_OTHER_ACC){
 			/*non-json*/ return "http://www.snapdeal.com/search?keyword=$query&catId=290&categoryId=296&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=true&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 				}else if($subcat == Category::CAM_ACC_ADAPTER_CHARGES){
-			/*json*/	return "http://www.snapdeal.com/json/product/get/search/296/0/20?q=Type%253ABattery%2520Chargers%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid;"
+			/*json*/	return "http://www.snapdeal.com/json/product/get/search/296/0/20?q=Type%253ABattery%2520Chargers%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
 				}else if($subcat == Category::CAM_ACC_BAGS){
 			/*json*/	return "http://www.snapdeal.com/json/product/get/search/296/0/20?q=Type%253ACamera%2520Bags%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
 				}else if($subcat == Category::CAM_ACC_BATTERY){
@@ -72,7 +72,7 @@ class Snapdeal extends Parsing{
 			}elseif($subcat == Category::MOB_CAR_ACC){
 		/*json*/		return "http://www.snapdeal.com/json/product/get/search/29/0/20?q=Type%253ACar%2520Accessories%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
 			}elseif($subcat == Category::MOB_MEMORY ){
-	/*non-json*/	return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=228&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="
+	/*non-json*/	return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=228&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 			}elseif($subcat == Category::MOB_SPEAKER){
 	/*json*/		return "http://www.snapdeal.com/json/product/get/search/29/0/20?q=Type%253AMobile%2520Speakers%257C&sort=rlvncy,rlvncy&keyword=$query&clickSrc=go_header&viewType=Grid";
 			}else {
@@ -91,9 +91,11 @@ class Snapdeal extends Parsing{
 			return "http://www.snapdeal.com/search?keyword=".$query."&catId=12&categoryId=0&suggested=false&vertical=&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 		}
 	}
+	
 	public function getLogo(){
 		return "http://i4.sdlcdn.com/img/snapdeal/sprite/snapdeal_logo_tagline.png";
 	}
+	
 	public function getData($html,$query,$category,$subcat=false){
 		$data = array();
 		phpQuery::newDocumentHTML($html);

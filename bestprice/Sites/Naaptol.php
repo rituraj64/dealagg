@@ -87,7 +87,7 @@ class Naaptol extends Parsing{
 			}else{
 				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&kw=$query&sb=49,9,8";/* &req=ajax"; */
 			}
-		}elseif ($category == Category::COMP_LAPTOP{
+		}elseif ($category == Category::COMP_LAPTOP){
 			if ($subcat == Category::COMP_COMPUTER){
 				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=12&kw=$query&sb=49,9,8";
 			}elseif ($subcat == Category::COMP_LAPTOP){

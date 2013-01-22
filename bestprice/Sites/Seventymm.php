@@ -82,7 +82,7 @@ class Seventymm extends Parsing{
 			return "http://shop.seventymm.com/search/$q/tablets-and-mobiles/2829/tablets/2277/all-price/0/any/0/any/0/1/1/3/go";
 		}elseif ($category == Category::GAMING){
 			if($subcat == Category::GAMING_ACC_CONSOLES){
-				return "http://shop.seventymm.com/search/$q/all-categories/0/gaming-consoles/2393/all-price/0/any/0/any/0/1/1/3/go"
+				return "http://shop.seventymm.com/search/$q/all-categories/0/gaming-consoles/2393/all-price/0/any/0/any/0/1/1/3/go";
 			}
 		}
 		return "http://shop.seventymm.com/Search/$q/All-Categories/0/All-Classification/0/All-Price/0/Any/0/Any/0/1/1/3/Go";
