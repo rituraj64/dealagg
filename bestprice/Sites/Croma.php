@@ -16,15 +16,15 @@ class Croma extends Parsing{
 	}
 	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE_ACC){
-			 if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
-			 	return "http://www.cromaretail.com/productsearch.aspx?txtSearch=$query";
-			 }elseif ($subcat == Category::MOB_HEADSETS){
-			 	return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=540";
-			 }elseif ($subcat == Category::MOB_CASES){
-			 	return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=533";
-			 }elseif ($subcat == Category::MOB_CHARGER){
-			 	return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=534";
-			 }else return "";
+			if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
+				return "http://www.cromaretail.com/productsearch.aspx?txtSearch=$query";
+			}elseif ($subcat == Category::MOB_HEADSETS){
+				return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=540";
+			}elseif ($subcat == Category::MOB_CASES){
+				return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=533";
+			}elseif ($subcat == Category::MOB_CHARGER){
+				return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=534";
+			}else return "";
 		}elseif($category == Category::COMP_LAPTOP){
 			if ($subcat == Category::COMP_COMPUTER){
 				return "http://www.cromaretail.com/ProductSearch.aspx?txtSearch=$query&x=0&y=0#!C=209&C=210&C=858";
@@ -53,17 +53,17 @@ class Croma extends Parsing{
 				$author = '';
 				$cat = '';
 				$data[] = array(
-					'name'=>$name,
-					'image'=>$image,
-					'disc_price'=>$disc_price,
-					'url'=>$url,
-					'website'=>$this->getCode(),
-					'offer'=>$offer,
-					'shipping'=>$shipping,
-					'stock'=>$stock,
-					'author' => $author,
-					'cat' => $cat
-			);
+						'name'=>$name,
+						'image'=>$image,
+						'disc_price'=>$disc_price,
+						'url'=>$url,
+						'website'=>$this->getCode(),
+						'offer'=>$offer,
+						'shipping'=>$shipping,
+						'stock'=>$stock,
+						'author' => $author,
+						'cat' => $cat
+				);
 			}
 		}
 		$data2 = array();

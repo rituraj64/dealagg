@@ -9,13 +9,12 @@ also top floater is not working properly
 4. put in urls for all categories
 5. social media integration and proper meta titles etc for pages
 6. feedback
-7. add/remove non relevnt search result
 9. see if its possible to use proxy servers via curl and what is the speed
 10. sites like rediff and snapdeal show no product found, but still show alternate results. need to detect this.
 11. see how to parse snapdeal json
 12. searchc sony on snapdeal and it goes to its category page.
 13. change in html detection system
-
+14. design integration of about us, reacent search, coupon pages, contact us
 
 
 Second Release
