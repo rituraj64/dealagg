@@ -8,7 +8,7 @@ class Tradus extends Parsing{
 		return true;
 	}
 	public function getAllowedCategory(){
-		return array(Category::TABLETS,Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP);
+		return array(Category::GAMING,Category::TABLETS,Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::MOBILE,Category::MOBILE_ACC,Category::COMP_LAPTOP);
 	}
 
 	public function getWebsiteUrl(){
@@ -41,7 +41,7 @@ class Tradus extends Parsing{
 				return "http://www.tradus.com/search?query=$query&cat=10470";
 			}elseif($subcat == Category::MOB_SPEAKER){
 				return "http://www.tradus.com/search?query=$query&cat=10483";
-			}else return "";
+			}else return "http://www.tradus.com/search?query=$query&cat=10465";
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){
 				return "http://www.tradus.com/search?query=$query&cat=10305";
@@ -54,7 +54,7 @@ class Tradus extends Parsing{
 			}else if($subcat == Category::CAM_MIRRORLESS){
 				return "http://www.tradus.com/search?query=$query&cat=7668";
 			}else{
-				return '';
+				return "http://www.tradus.com/search?query=$query&cat=10305";
 			}
 		}else if($category == Category::CAMERA_ACC){
 			if($subcat == Category::NOT_SURE){
@@ -74,18 +74,28 @@ class Tradus extends Parsing{
 			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
 				return "http://www.tradus.com/search?query=$query&cat=8100"; // lens
 			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
-				return ""; //acc
+				return "http://www.tradus.com/search?query=$query&cat=7667"; // acc
 			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){
-				return '';
+				return "http://www.tradus.com/search?query=$query&cat=7667"; // acc
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 				return "http://www.tradus.com/search?query=$query&cat=8102"; // lens
 			}else{
-				return '';
+				return "http://www.tradus.com/search?query=$query&cat=7667"; // acc
 			}
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.tradus.com/search?query=$query&availability=true&cat=7689";
 		}elseif($category == Category::TABLETS){
 			return "http://www.tradus.com/search?query=$query&availability=true&cat=7762";
+		}elseif($category == Category::GAMING){
+			if ($subcat == Category::GAMING_ACC_CONSOLES){
+				return "http://www.tradus.com/search?query=$query&availability=true&cat=10417";
+			}elseif($subcat == Category::GAMING_ACC_ACC){
+				return "http://www.tradus.com/search?query=$query&availability=true&cat=7708";
+			}elseif ($subcat == Category::GAMING_ACC_GAMES){
+				return "http://www.tradus.com/search?query=$query&availability=true&cat=7710";
+			}else{
+				return "http://www.tradus.com/search?query=$query&availability=true&cat=7707";
+			}
 		}else{
 			return "http://www.tradus.com/search?query=".$query;
 		}
