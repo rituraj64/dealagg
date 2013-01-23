@@ -32,7 +32,7 @@ class Zoomin extends Parsing{
 			}else if($subcat == Category::CAM_MIRRORLESS){
 				return "http://camera.zoomin.com/index.php/search/ajax/query?r=select&q=$query&json.nl=map&facet=true&facet.field=oemname_facets%2Ccategory&defType=dismax&timestamp=1356597696131&qf=name_varchar%20oemname_int%20&wt=json&json.wrf=_prototypeJSONPCallback_61"; //mirror less and compact
 			}else{
-				return '';
+				return "http://camera.zoomin.com/index.php/search/ajax/query?r=select&q=$query&json.nl=map&rows=24&fl=name_varchar%2Cimage_varchar%2Cproducts_id%2Cdescription_text&qf=name_varchar%20oemname_int%20&spellcheck=true&currentUrl=http%3A%2F%2Fcamera.zoomin.com%2Fsearch%2F%3Fq%3D$query&spellcheck.collate=true&facet=true&facet.field=category&defType=dismax&timestamp=1356677157906&wt=json&json.wrf=_prototypeJSONPCallback_4";
 			}
 		}else if($category == Category::CAMERA_ACC){
 
@@ -58,7 +58,7 @@ class Zoomin extends Parsing{
 				return "http://camera.zoomin.com/index.php/search/ajax/query?r=select&q=$query&json.nl=map&rows=24&fl=name_varchar%2Cimage_varchar%2Cproducts_id%2Cdescription_text&qf=name_varchar%20oemname_int%20&spellcheck=true&currentUrl=http%3A%2F%2Fcamera.zoomin.com%2Fsearch%2F%3Fq%3D$query&spellcheck.collate=true&facet=true&facet.field=category&defType=dismax&timestamp=1356597696127&fq=category%3A%22Screen%20Protectors%20%22&wt=json&json.wrf=_prototypeJSONPCallback_30"; //screen protectors
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 			}else{
-				return '';
+				return "http://camera.zoomin.com/index.php/search/ajax/query?r=select&q=$query&json.nl=map&rows=24&fl=name_varchar%2Cimage_varchar%2Cproducts_id%2Cdescription_text&qf=name_varchar%20oemname_int%20&spellcheck=true&currentUrl=http%3A%2F%2Fcamera.zoomin.com%2Fsearch%2F%3Fq%3D$query&spellcheck.collate=true&facet=true&facet.field=category&defType=dismax&timestamp=1356597696127&fq=category%3A%22Accessories%22&wt=json&json.wrf=_prototypeJSONPCallback_6"; // acc, this is parent
 			}
 		}elseif($category == Category::TABLETS){
 			return "http://camera.zoomin.com/index.php/search/ajax/query?r=select&q=$query&json.nl=map&rows=20&fl=name_varchar%2Cproducts_id&qf=name_varchar%20oemname_int&spellcheck=true&autocompletez=true&spellcheck.collate=true&facet=true&facet.field=category%2Coemname_facets&facet.limit=5&defType=dismax&fq=category%3A%22Tablets%22&wt=json&json.wrf=_prototypeJSONPCallback_5";

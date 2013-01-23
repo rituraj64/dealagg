@@ -5,7 +5,7 @@ class ShopByChoice extends Parsing{
 		return 'http://www.facebook.com/shopbychoice';
 	}
 	public function getAllowedCategory(){
-		return array(Category::TABLETS,Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
+		return array(Category::GAMING,Category::TABLETS,Category::MOBILE,Category::CAMERA,Category::MOBILE_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -46,12 +46,20 @@ class ShopByChoice extends Parsing{
 			}else{
 				return "http://www.shopbychoice.com/search/result+searchtext-".$query;
 			}
-		}elseif ($category == Category::COMP_COMPUTER){
-			return "http://www.shopbychoice.com/search/result+category-desktops+searchtext-$query";
 		}elseif ($category == Category::COMP_LAPTOP){
-			return "http://www.shopbychoice.com/search/result+searchtext-$query+category-laptops";
+			if($subcat == Category::COMP_LAPTOP){
+				return "http://www.shopbychoice.com/search/result+searchtext-$query+category-laptops";
+			}elseif ($subcat == Category::COMP_COMPUTER){
+				return "http://www.shopbychoice.com/search/result+category-desktops+searchtext-$query";
+			}
 		}elseif($category == Category::TABLETS){
 			return "http://www.shopbychoice.com/search/result+category-tablets+searchtext-$query";
+		}elseif($category == Category::GAMING){
+			if($subcat == Category::GAMING_ACC_CONSOLES){
+				return "http://www.shopbychoice.com/search/result+searchtext-$query+category-gaming-consoles";
+			}elseif ($subcat == Category::GAMING_ACC_ACC){
+				return "http://www.shopbychoice.com/search/result+category-gaming-accessories+searchtext-$query";
+			}
 		}
 		return "http://www.shopbychoice.com/search/result+searchtext-".$query;
 	}

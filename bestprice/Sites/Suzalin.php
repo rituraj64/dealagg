@@ -20,6 +20,8 @@ class Suzalin extends Parsing{
 			return "http://www.suzalin.com/Search/1_3_$query";
 		}elseif ($category == Category::TABLETS){
 			return "http://www.suzalin.com/Search/1_4_$query";
+		}elseif($category == Category::GAMING){
+			return "http://www.suzalin.com/Search/1_1_$query";
 		}
 		return "http://www.suzalin.com/Search/1_0_$query";
 	}

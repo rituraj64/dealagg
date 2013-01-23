@@ -73,20 +73,16 @@ class Indiatimes extends Parsing{
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:40534"; // camera pouchse
 			}else if($subcat == Category::CAM_ACC_BATTERY){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:40532"; // battery
-			}else if($subcat == Category::CAM_ACC_FLASH_LIGHTS){
-				return '';
 			}else if($subcat == Category::CAM_ACC_LENSEFILTER){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:40538"; // lenses
 			}else if($subcat == Category::CAM_ACC_LENSES){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:40538"; // lenses
 			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:40537"; // memory
-			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
-				return '';
-			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){
-				return '';
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10002&filter=PRIMARY_CATEGORY_ID:40543";
+			}else{
+				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002";
 			}
 		}elseif($category == Category::COMP_LAPTOP){
 			if($subcat == Category::COMP_COMPUTER){

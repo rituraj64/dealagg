@@ -38,13 +38,11 @@ class Letshop extends Parsing{
 			}else if($subcat == Category::CAM_CAMCORDER){
 				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=33";
 			}else{
-				return '';
+				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=27";
 			}
 		}else if($category == Category::CAMERA_ACC){
 			if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
 				return "http://letsshop.in/catalogsearch/result/?q=$query&cat=34";
-			}else{
-				return '';
 			}
 		}elseif($category == Category::COMP_LAPTOP){
 			return "http://letsshop.in/catalogsearch/result/?q=$query&cat=22";

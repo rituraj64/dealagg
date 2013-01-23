@@ -31,7 +31,7 @@ class Landmark extends Parsing{
 				return "http://www.landmarkonthenet.com/cameras/search/?q=sony&type=Camcorder";
 
 			}else{
-				return '';
+				return "http://www.landmarkonthenet.com/cameras/search/?q=$query";
 			}
 		}else if($category == Category::CAMERA_ACC){
 			return "http://www.landmarkonthenet.com/camera-accessories/search/?q=$query";

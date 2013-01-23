@@ -32,11 +32,13 @@ class Yebhi extends Parsing{
 				return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=bsbstore%28text%29=Mobile%20Store,alltypes%28text%29=Mobile%20Accessories,product%20type%28text%29=Screen%20Protectors";
 			}elseif ($subcat == Category::MOB_HEADPHONE){
 				return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=product%20type%28text%29%20=Earphones";
-			}else return "";
-		}elseif ($category == Category::COMP_COMPUTER){
-			return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=product%20type%28text%29=Desktops";
+			}else return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=bsbstore%28text%29=Mobile%20Store,alltypes%28text%29=Mobile%20Accessories";
 		}elseif ($category == Category::COMP_LAPTOP){
-			return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=product%20type%28text%29=Laptops";
+			if($subcat == Category::COMP_LAPTOP){
+				return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=product%20type%28text%29=Laptops";
+			}elseif($subcat == Category::COMP_COMPUTER){
+				return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=product%20type%28text%29=Desktops";
+			}
 		}elseif($category == Category::TABLETS){
 			return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=alltypes%28text%29=Mobiles%20and%20Tablets";
 		}else{

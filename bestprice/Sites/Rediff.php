@@ -48,7 +48,7 @@ class Rediff extends Parsing{
 			}else if($subcat == Category::CAM_MIRRORLESS){
 				return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|digital cameras";
 			}else{
-				return '';
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|digital cameras";
 			}
 		}else if($category == Category::CAMERA_ACC){
 			if($subcat == Category::NOT_SURE){
@@ -74,7 +74,7 @@ class Rediff extends Parsing{
 			}else if($subcat == Category::CAM_ACC_TRIPODS){
 				return "http://shopping.rediff.com/productv2/$query/cat-cameras+%26amp%3B+optics%7Ccamera+accessories%7Ctripods?ref_src=topnav_Cameras";
 			}else{
-				return '';
+				return "http://shopping.rediff.com/productv2/$query/cat-cameras & optics|camera accessories";
 			}
 		}elseif ($category == Category::COMP_COMPUTER){
 			return "http://shopping.rediff.com/productv2/$query/cat-computers+%26amp%3B+it+peripherals|desktop+pcs?ref_src=topnav_Computer|browse";

@@ -76,8 +76,6 @@ class Naaptol extends Parsing{
 				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2582&kw=$query&sb=49,9,8";/* &req=ajax"; */ //lens
 			}else if($subcat == Category::CAM_ACC_LENSES){
 				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=252&kw=$query&sb=49,9,8";/* &req=ajax"; */ //lens
-			}else if($subcat == Category::CAM_ACC_MEMORY_AND_STORAGE){
-				return '';
 			}else if($subcat == Category::CAM_ACC_OTHER_ACC){
 				return "http://www.naaptol.com/faces/jsp/search/searchResults.jsp?type=srch_catlg&fltrNam=catFltr&catid=2495&kw=$query&sb=49,9,8";/* &req=ajax"; */ //misc
 			}else if($subcat == Category::CAM_ACC_SCREEN_PROTECTOR){

@@ -9,7 +9,7 @@ class Snapdeal extends Parsing{
 	}
 
 	public function getAllowedCategory(){
-		return array(Category::TABLETS,Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
+		return array(Category::GAMING,Category::TABLETS,Category::BOOKS,Category::MOBILE,Category::MOBILE_ACC,Category::CAMERA,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
 	}
 
 	public function getWebsiteUrl(){
@@ -30,7 +30,7 @@ class Snapdeal extends Parsing{
 			}else if($subcat == Category::CAM_MIRRORLESS){
 				return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=291&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; // digital camera
 			}else{
-				return '';
+				return "http://www.snapdeal.com/search?keyword=$query&catId=&categoryId=290&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail="; //all
 			}
 
 		}else if($category == Category::CAMERA_ACC){

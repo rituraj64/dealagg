@@ -36,10 +36,8 @@ class ManiacStore extends Parsing{
 				$cat_id = 599;
 			}elseif ($subcat == Category::MOB_CASES){
 				$cat_id = 254;
-			}elseif ($subcat == Category::MOB_OTHERS){
-				return array();
 			}else {
-				return array();
+				$cat_id = 252;
 			}
 		}
 		$str = 'simple_search=Y&mode=search&posted_data%5Bcategoryid%5D='.$cat_id.'&posted_data%5Bby_title%5D=Y&posted_data%5Bby_descr%5D=Y&posted_data%5Bby_sku%5D=Y&posted_data%5Bsearch_in_subcategories%5D=Y&posted_data%5Bincluding%5D=all&posted_data%5Bsubstring%5D='.$query;

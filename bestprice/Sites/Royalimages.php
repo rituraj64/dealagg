@@ -45,7 +45,7 @@ class Royalimages extends Parsing{
 			}else if($subcat == Category::CAM_MIRRORLESS){
 				return "http://www.royalimages.in/catalogsearch/result/index/?cat=32&q=$query";
 			}else{
-				return '';
+				return "http://www.royalimages.in/catalogsearch/result/index/?cat=32&q=$query";
 			}
 		}elseif ($category == Category::COMP_LAPTOP){
 			return "http://www.royalimages.in/catalogsearch/result/index/?cat=55&q=$query";
