@@ -63,7 +63,8 @@ class Indiatimes extends Parsing{
 			}else if($subcat == Category::CAM_DIGITAL_SLR){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10002&filter=PRIMARY_CATEGORY_ID:20011"; //cameras
 			}elseif($category == Category::TABLETS){
-				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10013&filter=PRIMARY_CATEGORY_ID:40105";//tablets
+				//return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID%3A10013&filter=PRIMARY_CATEGORY_ID:40105";//tablets
+				return "shopping.indiatimes.com/control/mtkeywordsearch?SEARCH_STRING=$query&catalog=all"; //changed by ashutosh katara
 			}
 
 		}else if($category == Category::CAMERA_ACC){
