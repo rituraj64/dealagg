@@ -12,15 +12,17 @@ class MirchiMart extends Parsing{
 		return 'http://www.mirchimart.com/';
 	}
 	public function getSearchURL($query,$category = false,$subcat=false){
-		$q = urldecode($query);
-		$q = str_replace(" ", '+', $q);
-		$query = urlencode($q);
+		//$q = urldecode($query);
+		//$q = str_replace(" ", '+', $q);
+		//$query = urlencode($q);
 		if($category == Category::MOBILE){
 			return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=Mobiles&searchText=$query";
 		}else if($category == Category::MOBILE_ACC){
 			//return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MbAccess&searchText=$query";
 			if($subcat == Category::MOB_BATTERY){
-				return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=MbAccessBatteries&selectedCategory=MbAccess&searchText=$query";
+				//return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=MbAccessBatteries&selectedCategory=MbAccess&searchText=$query";
+				return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MMCatalog_ROOT&searchText=$query";
+				// CHANGED BY VIKAS
 			}elseif ($subcat == Category::MOB_CAR_ACC){
 				return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MMCatalog_ROOT&searchText=$query";
 			}elseif ($subcat == Category::MOB_HEADPHONE){
