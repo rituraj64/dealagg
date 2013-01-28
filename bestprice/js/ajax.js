@@ -707,7 +707,7 @@ function calcResult() {
 			} else if ($(this).hasClass('website_noresult')) {
 			} else {
 				var name = $(this).children('.item_main').children('#item_name').val();
-				if (name.length > 0) {
+				if (name != undefined && name.length > 0) {
 					var row = new Array();
 					row['score'] = 0;
 					row['name'] = name;
@@ -770,7 +770,7 @@ function calcResult() {
 				} else {
 					var brandNF = 0;
 					var dist = findBrandDist(data2);
-					console.log(dist);
+					// console.log(dist);
 					console.log(dist.length + "xxx" + Math.ceil((total_sites + 1) * .5));
 					if (dist.length >= Math.ceil((total_sites + 1) * .5)) {
 						// this is more 50% different brands
@@ -869,6 +869,37 @@ function finished() {
 
 		$('.remove_website_btn').show();
 
+		
+		var data = new Array();
+		var total = 0;
+		$('#results').children('.website').each(function() {
+			if ($(this).hasClass('website_error')) {
+			} else if ($(this).hasClass('website_noresult')) {
+			} else {
+				var name = $(this).children('.item_main').children('#item_name).val();
+				data[data.length] = name;
+				total++;
+			}
+		});
+		var r = findHeightestBrand(data);
+		if (r['hits'] > Math.ceil( (total + 1) * .8)) {
+			$('#results').children('.website').each(function() {
+				if ($(this).hasClass('website_error')) {
+				} else if ($(this).hasClass('website_noresult')) {
+				} else {
+					var name = $(this).children('.item_main').children('#item_name).val();
+					var brand = identifyBrand(name);
+					if(brand){
+						if(brand != r['brand']){
+							makeSmall($(this).attr('id'));
+							console.log('Brand Mismatch so making small' + $(this).attr('id') + ' with ' + brand + "xx"+ r['brand']);
+						}
+					}
+				}
+			});
+		}
+		
+		
 		$('#progress_total').val(0);
 		$('#progress_done').val(0);
 		var t = new Date().getTime() - starttime;
