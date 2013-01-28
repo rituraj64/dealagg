@@ -31,7 +31,7 @@ class BuyThePrice extends Parsing{
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=431&bid=0";
 			}else{
 				//return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=78&bid=0";
-				return "http://www.buytheprice.com/search_$query";
+				return "http://www.buytheprice.com/search__$query";
 				//changed by Vikas
 			}
 		}else if($category == Category::TABLETS){
