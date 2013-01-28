@@ -33,36 +33,32 @@
 	 
   </head>
 
-  <body>
+  <body class="genie-body">
 
-    <div class="container">
+    <div class="genie-container">
 
-      <div class="masthead">
-      	<div style="width: 100%">
-      		<div class="pull-left">
-      			<h3 class="muted">Price Genie <small>(beta)</small></h3>
-      		</div>
-      		<div class='pull-right'>
-      			<div id='follow'>
-				  	<button class='btn btn-success' onclick='login();'>Follow This Product Pricing <?php if(isset($_SESSION['name'])){echo $_SESSION['name'];} ?></button>
-				  </div>
-      		</div>
-      	</div>
-      	<div class="clearfix"></div>
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <ul class="nav">
-                <li class="active"><a href="<?php echo Parser::SITE_URL;?>index.php">Home</a></li>
-                <li><a href="<?php echo Parser::SITE_URL;?>coupons.php">Coupons</a></li>
-                <li><a href="<?php echo Parser::SITE_URL;?>sites.php">Sites</a></li>
-                <li><a href="<?php echo Parser::SITE_URL;?>recent.php">Recent Searches</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+
+      <div class="masthead genie-head">
+        <h3 class="muted genie-logo"><img src='<?php echo Parser::SITE_URL;?>img/logo.png' alt='loading..' title='loading..'/></h3>
+        <div class="navbar genie-navbar">
+          <div class="navbar-inner genie-navinner">
+           
+              <ul class="nav genie-nav">
+                <li class="active genie-home"><a href="<?php echo Parser::SITE_URL;?>index.php">Home</a></li>
+                <li class="genie-coup"><a href="<?php echo Parser::SITE_URL;?>coupons.php">Coupons</a></li>
+               <!--  <li><a href="<?php echo Parser::SITE_URL;?>sites.php">Sites</a></li> -->
+                <li class="genie-search"><a href="<?php echo Parser::SITE_URL;?>recent.php">Recent Searches</a></li>
+                <li class="genie-all"><a href="<?php echo Parser::SITE_URL;?>recent.php">Everything Genie</a></li>
+                 <!--   <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>-->
+
               </ul>
-            </div>
+           
           </div>
         </div><!-- /.navbar -->
+        <div class="genie-clear"></div>
       </div>
+      </div>
+       <div class="container">
  <input type='hidden' id='site_url' value="<?php echo Parser::SITE_URL;?>"/>
  <input type='hidden' id='ajax_url' value="<?php echo Parser::AJAX_URL;?>"/>

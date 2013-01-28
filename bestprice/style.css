@@ -102,3 +102,76 @@ body {
 	width: 949px;
 	z-index: 1000;
 }
+
+
+
+/*....genie...............*/
+
+.genie-body
+{
+	margin:0px;
+	padding:0px;
+}
+.genie-logo
+{
+	margin:0px;
+	float:left;
+}
+
+.genie-head
+{
+	width:968px;
+	margin:0px auto;
+}
+.genie-container
+{
+ background: url("img/bluebg.png") repeat-x scroll 0 0 transparent;	
+ 
+}
+
+.genie-navbar
+{
+	float:left;
+	width:640px;
+	margin-left:0px;
+	margin-top:10px;
+}
+.genie-navbar .genie-nav li a{
+	border-left:0px;
+}
+
+.genie-navinner
+{
+	background: none;
+	box-shadow: none;
+	border:0px;
+}
+.genie-nav
+{
+	float:none;
+}
+.genie-nav .active a
+{
+	background: none!important;
+	box-shadow: none!important;
+	border:0px;
+}
+.genie-clear
+{
+	clear: both;
+}
+
+.genie-nav .genie-home
+{
+	background: url("img/home_icon.png") no-repeat scroll 56px 0 transparent;
+}
+
+.genie-nav a
+{
+	padding-top:20px;
+}
+
+.genie-nav .genie-coup
+{
+	background: url("img/sci_icon.png") no-repeat scroll 56px 0 transparent;
+}
