@@ -20,9 +20,7 @@ class MirchiMart extends Parsing{
 		}else if($category == Category::MOBILE_ACC){
 			//return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MbAccess&searchText=$query";
 			if($subcat == Category::MOB_BATTERY){
-				//return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=MbAccessBatteries&selectedCategory=MbAccess&searchText=$query";
-				return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MMCatalog_ROOT&searchText=$query";
-				// CHANGED BY VIKAS
+				return "http://www.mirchimart.com/chilbuli/search_Url?productCategoryId=MbAccessBatteries&selectedCategory=MbAccess&searchText=$query";
 			}elseif ($subcat == Category::MOB_CAR_ACC){
 				return "http://www.mirchimart.com/chilbuli/searchUrl?selectedCategory=MMCatalog_ROOT&searchText=$query";
 			}elseif ($subcat == Category::MOB_HEADPHONE){

@@ -34,9 +34,7 @@ class Seventymm extends Parsing{
 			}elseif ($subcat == Category::MOB_HEADPHONE || $subcat == Category::MOB_HANDSFREE){
 				return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/Headphones-and-Headsets/2739/All-Price/0/Any/0/Any/0/1/1/3/Go";
 			}elseif($subcat == Category::MOB_MEMORY){
-				//return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/Memory-Cards/2370/All-Price/0/Any/0/Any/0/1/1/3/Go";
-				return "http://shop.seventymm.com/Search/$query/tablets-and-mobiles/2829/all-classification/0/all-price/0/any/0/any/0/1/1/3/go";
-				//changed by Vikas
+				return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/Memory-Cards/2370/All-Price/0/Any/0/Any/0/1/1/3/Go";
 			}else return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/All-Classification/0/All-Price/0/Any/0/Any/0/1/1/3/Go";
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::NOT_SURE){

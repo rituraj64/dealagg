@@ -64,9 +64,7 @@ class Snapdeal extends Parsing{
 			if($subcat == Category::NOT_SURE){
 				/*non-json*/		return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=29&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=29&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 			}elseif ($subcat == Category::MOB_BATTERY){
-				/*json*/		//return "http://www.snapdeal.com/json/product/get/search/29/0/20?q=Type%253ABatteries%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
-								return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=0&suggested=false&vertical=&noOfResults=20&clickSrc=go_header&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
-								//CHANGED BY VIKAS
+				/*json*/		return "http://www.snapdeal.com/json/product/get/search/29/0/20?q=Type%253ABatteries%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
 			}elseif ($subcat == Category::MOB_HEADSETS){
 				/*json*/		return "http://www.snapdeal.com/json/product/get/search/29/0/20?q=Type%253ABluetooth%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
 			}elseif ($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADPHONE){
