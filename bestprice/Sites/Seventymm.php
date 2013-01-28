@@ -18,7 +18,9 @@ class Seventymm extends Parsing{
 		if($category == Category::MOBILE){
 			return "http://shop.seventymm.com/Search/$q/Tablets-and-Mobiles/2829/Mobiles/2369/All-Price/0/Any/0/Any/0/1/1/3/Go";
 		}else if($category == Category::MOBILE_ACC){
+			echo $query;
 			$query = str_replace(" ", "-", $query);
+			echo $query;
 			if($subcat == Category::NOT_SURE || $subcat == Category::MOB_OTHERS){
 				return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/All-Classification/0/All-Price/0/Any/0/Any/0/1/1/3/Go";
 			}elseif($subcat == Category::MOB_CASES){
@@ -35,7 +37,7 @@ class Seventymm extends Parsing{
 				return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/Headphones-and-Headsets/2739/All-Price/0/Any/0/Any/0/1/1/3/Go";
 			}elseif($subcat == Category::MOB_MEMORY){
 				//return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/Memory-Cards/2370/All-Price/0/Any/0/Any/0/1/1/3/Go";
-				return "http://shop.seventymm.com/Search/$query/all-categories/0/all-classification/0/all-price/0/any/0/any/0/1/1/3/go";
+				return "http://shop.seventymm.com/Search/$query/tablets-and-mobiles/0/all-classification/0/all-price/0/any/0/any/0/1/1/3/go";
 				//changed by Vikas
 			}else return "http://shop.seventymm.com/Search/$query/Tablets-and-Mobiles/2829/All-Classification/0/All-Price/0/Any/0/Any/0/1/1/3/Go";
 		}else if($category == Category::CAMERA){
