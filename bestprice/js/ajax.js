@@ -187,7 +187,7 @@ function moniter(timer) {
 function findPrice(site, cache, trust, changeSubCat, searchThis) {
 
 	if (trust == undefined) {
-		trust = 0;
+		trust = 1;
 	}
 	if (cache === undefined) {
 		cache = 1;
@@ -750,11 +750,41 @@ function calcResult() {
 			console.log('No Need to show suggesions because of same name ' + highest_score_name + " with entries " + highest_score + " and total sites " + total_sites);
 		} else {
 
-			// find model nos
+			var category = $('#category').val();
+			if (category != 9) {
+				var data2 = new Array();
+				for(var i=0;i<data.length;i++){
+					data2[data2.length] = data[i]['name'];
+				}
+				var branddist = new Array();
+				data2[data2.length] = $('#q').val();
 
-			for ( var i = 0; i < data.length; i++) {
-				// var name1 = data[i]['name'];
-				// var nos = findModelNo(name1);
+				var r = findHeightestBrand(data2)
+				var hits = r['hits'];
+				var brand = r['name'];
+				
+				console.log('hits found to be ' + hits + 'for brand ' + brand + 'among sites ' + total_sites);
+
+				if (hits > Math.ceil( (total_sites + 1) * .8)) {
+					console.log('brand found to be ' + brand + 'with hits ' + hits);
+				} else {
+					var brandNF = 0;
+					var dist = findBrandDist(data2);
+					console.log(dist);
+					console.log(dist.length + "xxx" + Math.ceil((total_sites + 1) * .5));
+					if (dist.length >= Math.ceil((total_sites + 1) * .5)) {
+						// this is more 50% different brands
+						fine = false;
+						console.log('high brand distribution show show step');
+					}
+
+				}
+
+				if (!fine) {
+					finishMoniter('calcResult');
+					showStep();
+					return;
+				}
 			}
 
 			// find suggesstion based on price
@@ -1111,7 +1141,7 @@ function sortResult() {
 				priceweb = priceweb * 1;
 				// console.log('main name' + name1);
 				if (name1 == highest_score_name || name1.indexOf(highest_score_name) != -1) {
-				}else{
+				} else {
 					$(this).find('.item_small').each(function() {
 						name1 = $(this).children('#item_name').val();
 						name1 = getComparableString(name1);
@@ -1122,7 +1152,6 @@ function sortResult() {
 						}
 						price1 = price1 * 1;
 
-						console.log('small name' + name1);
 						if (name1 == highest_score_name || name1.indexOf(highest_score_name) != -1 || highest_score_name.indexOf(name1) != -1) {
 							var avg = $('#avg_best_price').val() * 1;
 							console.log('avg is ' + avg);
@@ -1140,7 +1169,7 @@ function sortResult() {
 											has_copy = true;
 										}
 									} else {
-										if(price1 < small_price){
+										if (price1 < small_price) {
 											small_price = price1;
 											small_id = $(this).attr('id');
 											has_copy = true;
@@ -1804,4 +1833,60 @@ function putShareUrl(query_id) {
 	$('#query_id').val(query_id);
 	var share_url = $('#site_url').val() + 'search/lowest-price-of-' + q + '/' + query_id;
 	$('#share_url').val(share_url);
+}
+function findBrandDist(data2) {
+	var branddist = new Array();
+	for ( var i = 0; i < data2.length; i++) {
+		var name = data2[i];
+		var brand = identifyBrand(name);
+		if (!brand) {
+			brand = '-NF-';
+		}
+
+		var found = false;
+		for ( var j = 0; j< branddist.length; j++) {
+			if (branddist[j]['name'] == brand) {
+				found = true;
+				branddist[j]['hits']++;
+				break;
+			}
+		}
+		if (!found) {
+			var r = new Array();
+			r['name'] = brand;
+			r['hits'] = 1;
+			branddist[branddist.length] = r;
+		}
+	}
+	return branddist;
+}
+function findHeightestBrand(data2) {
+
+	var branddist = findBrandDist(data2);
+	var highestBrand = 0;
+	var brandname = '';
+	for ( var i = 0; i < branddist.length; i++) {
+		if (highestBrand < branddist[i]['hits']) {
+			highestBrand = branddist[i]['hits'];
+			brandname = branddist[i]['name'];
+		}
+	}
+	var r = new Array();
+	r['name'] = brandname;
+	r['hits'] = highestBrand;
+	return r;
+}
+function identifyBrand(name) {
+	var s = '';
+	name = name.toLowerCase();
+	name = name.split(' ');
+	if (name.length > 1) {
+		for ( var i = 0; i < brands.length; i++) {
+			s = brands[i].toLowerCase();
+			if (s == name[0]) {
+				return s;
+			}
+		}
+	}
+	return false;
 }

@@ -112,7 +112,7 @@
 Gain control of your money and discover countless options</p>
         </div>
         <?php } ?>
-        <form class="form-search" onsubmit="findPrice();return false;" style="font-size: 27px">
+        <form class="form-search" onsubmit="$('#showSuggestion').val(1);findPrice();return false;" style="font-size: 27px">
         		
 		  		<input type="text" name='q' id='q' class="input-xlarge" style="font-size: 27px;height: 39px;" value='<?php if(isset($result)){echo $searchObj->getQuery();} ?>'>
 		  		
@@ -259,6 +259,120 @@ Gain control of your money and discover countless options</p>
 		    <?php */ ?>
 		  </div>
 		</div>
+		
+		<div id="fb-root"></div>
+		<script type="text/javascript">
+
+		var brands = new Array();
+		brands[brands.length] = 'airtyme';
+		brands[brands.length] = 'alcatel';
+		brands[brands.length] = 'blackberry';
+		brands[brands.length] = 'byond';
+		brands[brands.length] = 'celkon';
+		brands[brands.length] = 'htc';
+		brands[brands.length] = 'huawei';
+		brands[brands.length] = 'idea';
+		brands[brands.length] = 'intex';
+		brands[brands.length] = 'karbonn';
+		brands[brands.length] = 'lg';
+		brands[brands.length] = 'lava';
+		brands[brands.length] = 'micromax';
+		brands[brands.length] = 'mitashi';
+		brands[brands.length] = 'motorola';
+		brands[brands.length] = 'nokia';
+		brands[brands.length] = 'salora';
+		brands[brands.length] = 'samsung';
+		brands[brands.length] = 'sansui';
+		brands[brands.length] = 'sony';
+		brands[brands.length] = 'sony ericsson';
+		brands[brands.length] = 'spice';
+		brands[brands.length] = 'videocon';
+		brands[brands.length] = 'xolo';
+		brands[brands.length] = 'zte';
+		brands[brands.length] = 'iball';
+		brands[brands.length] = 'aiptek';
+		brands[brands.length] = 'benq';
+		brands[brands.length] = 'canon';
+		brands[brands.length] = 'casio';
+		brands[brands.length] = 'fujifilm';
+		brands[brands.length] = 'jvc';
+		brands[brands.length] = 'nikon';
+		brands[brands.length] = 'olyumpus';
+		brands[brands.length] = 'panasonic';
+		brands[brands.length] = 'poloroid';
+		brands[brands.length] = 'rollei';
+		brands[brands.length] = 'samsung';
+		brands[brands.length] = 'sony';
+		brands[brands.length] = 'wespro';
+		brands[brands.length] = 'asus';
+		brands[brands.length] = 'dell';
+		brands[brands.length] = 'fujitsu';
+		brands[brands.length] = 'hp';
+		brands[brands.length] = 'lenovo';
+		brands[brands.length] = 'toshiba';
+		brands[brands.length] = 'acer';
+		brands[brands.length] = 'hcl';
+		brands[brands.length] = 'lg';
+		brands[brands.length] = 'wipro';
+		brands[brands.length] = 'apple';
+		brands[brands.length] = 'micromax';
+		brands[brands.length] = 'sandisk';
+			//<![CDATA[
+				window.fbAsyncInit = function() {
+					FB.init({
+						appId      : '<?php echo Parser::FB_APPKEY;?>', // App ID
+						status     : true, // check login status
+						cookie     : true, // enable cookies to allow the server to access the session
+						oauth      : true, // enable OAuth 2.0
+						xfbml      : true  // parse XFBML
+					});
+					
+				  FB.Canvas.setAutoGrow();
+					
+				};
+				
+				// logs the user in the application and facebook
+				function login(){
+					var query_id = $('#query_id').val();
+					if($('#share_url').val().length > 0){
+						var basepath='<?php echo Parser::SITE_URL.'facebook.php?redirect='?>'+encodeURL($('#share_url').val());
+						if(query_id.length > 0){
+							basepath += '&query_id'+query_id;
+						}
+					}else{
+						var basepath='<?php echo Parser::SITE_URL.'facebook.php'?>';
+						if(query_id.length > 0){
+							basepath += '?query_id'+query_id;
+						}
+					}
+					FB.getLoginStatus(function(r){
+						if(r.status === 'connected'){
+							window.location.href = basepath;
+					 	}else{
+							FB.login(function(response) {
+								if(response.authResponse) {
+										window.location.href = basepath;
+								} else {
+								  // user is not logged in
+								}
+						  },{scope:'email'});
+						}
+				  });
+				}
+				// logs the user out of the application and facebook
+				
+				
+				// Load the SDK Asynchronously
+				(function() {
+					var e = document.createElement('script'); e.async = true;
+					e.src = document.location.protocol 
+					+ '//connect.facebook.net/en_US/all.js';
+					document.getElementById('fb-root').appendChild(e);
+				}());
+				
+				//]]>
+			</script>
+			
 	<?php require_once 'footer.php';?>  
   
   <div id='resultBodyTemplate' style="display: none">
