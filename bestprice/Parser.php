@@ -1,7 +1,7 @@
 <?php
 class Parser{
-	const SITE_URL = 'http://127.0.0.1/price/';
-	const AJAX_URL = 'http://127.0.0.1/price/';
+	const SITE_URL = 'http://127.0.0.1/price/bestprice/';
+	const AJAX_URL = 'http://127.0.0.1/price/bestprice/';
 
 	//const SITE_URL = 'http://localhost/scrapping/bestprice/';
 	//const AJAX_URL = 'http://localhost/scrapping/bestprice/';
