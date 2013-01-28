@@ -2,6 +2,9 @@
 class Parser{
 	const SITE_URL = 'http://127.0.0.1/price/bestprice/';
 	const AJAX_URL = 'http://127.0.0.1/price/bestprice/';
+	
+	const FB_APPKEY = '467986553238213';
+	const FB_APPSEC = 'a95428b215f24ecf135a94f3c2fc61ad';
 
 	//const SITE_URL = 'http://localhost/scrapping/bestprice/';
 	//const AJAX_URL = 'http://localhost/scrapping/bestprice/';
@@ -62,7 +65,7 @@ class Parser{
 		}
 
 		if (!$html || !$body) {
-			if(strpos($url, 'buytheprice.com') !== false || strpos($url, 'rediff.com') !== false){
+			if(strpos($url, 'buytheprice.com') !== false || strpos($url, 'rediff.com') !== false|| strpos($url, 'infibeam.com') !== false){
 			}else{
 				$a = @simplexml_load_string($html);
 				if($a===FALSE) {

@@ -38,7 +38,17 @@
     <div class="container">
 
       <div class="masthead">
-        <h3 class="muted">Price Genie <small>(beta)</small></h3>
+      	<div style="width: 100%">
+      		<div class="pull-left">
+      			<h3 class="muted">Price Genie <small>(beta)</small></h3>
+      		</div>
+      		<div class='pull-right'>
+      			<div id='follow'>
+				  	<button class='btn btn-success' onclick='login();'>Follow This Product Pricing <?php if(isset($_SESSION['name'])){echo $_SESSION['name'];} ?></button>
+				  </div>
+      		</div>
+      	</div>
+      	<div class="clearfix"></div>
         <div class="navbar">
           <div class="navbar-inner">
             <div class="container">

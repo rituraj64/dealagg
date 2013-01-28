@@ -34,6 +34,7 @@ class Suzalin extends Parsing{
 
 		$data = array();
 		phpQuery::newDocumentHTML($html);
+		$count = 0;
 		if(sizeof(pq('ul.productData')) > 0){
 			foreach(pq('ul.productData') as $div){
 				foreach(pq($div)->find('li') as $div){
@@ -57,6 +58,9 @@ class Suzalin extends Parsing{
 							'author' => $author,
 							'cat' => ''
 					);
+					if(sizeof($data) > 5){
+						break;
+					}
 				}
 			}
 		}

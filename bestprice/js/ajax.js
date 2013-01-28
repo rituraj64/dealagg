@@ -84,7 +84,7 @@ function addMoniter(site, type, ajax, siteparam) {
 	}
 	ajaxReq[len]['started_at'] = new Date().getTime();
 	ajaxReq[len]['status'] = 'START';
-	if (siteparam && siteparam.length > 0) {
+	if (siteparam != undefined && siteparam) {
 		ajaxReq[len]['siteParam'] = siteparam;
 	}
 	moniter();
@@ -174,7 +174,7 @@ function moniter(timer) {
 			console.log('moniter ajax reports finished');
 			for ( var i = 0; i < ajaxReq.length; i++) {
 				var t = (ajaxReq[i]['finish_at'] * 1 - ajaxReq[i]['started_at'] * 1);
-				$('#'+ajaxReq[i]['site']).children('.span2:first').find('#time_taken').html(t + 'ms');
+				$('#' + ajaxReq[i]['site']).children('.span2:first').find('#time_taken').html(t + 'ms');
 			}
 		} else {
 			moniterTime = setTimeout('moniter(2)', 1000);
@@ -186,9 +186,6 @@ function moniter(timer) {
 }
 function findPrice(site, cache, trust, changeSubCat, searchThis) {
 
-	if (trust == undefined) {
-		trust = 1;
-	}
 	if (trust == undefined) {
 		trust = 0;
 	}
@@ -430,7 +427,9 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 	}
 	// if (data.data.length > 0) { commented, because when of the first trusted
 	// site the last site doesnt have any data, the code gets stuck
-	queueSortResult(0, site);
+	if (data.data.length > 0) {
+		queueSortResult(0, site);
+	}
 	// }
 
 	var showResult = false;
@@ -536,20 +535,77 @@ function queueCalcResult() {
 	addMoniter('calcResult', 'function', false);
 }
 
+function findModelNo(q) {
+
+	var patt = /\(.*\)/i;
+	var bracks = q.match(patt);
+	if (bracks.length > 0) {
+		q = q.replace(bracks, '');
+	}
+
+	q = q.split(' ');
+	var model_no = new Array();
+	var pri = 10;
+	for (i = 0; i < q.length; i++) {
+		var patt1 = /[a-z]/i;
+		var patt2 = /[0-9]/;
+		var patt3 = /[-+_]/;
+		if (patt1.test(q[i]) && patt2.test(q[i]) && patt3.test(q[i])) {
+			var r = new Array();
+			r['no'] = q[i];
+			r['pri'] = 1;
+			model_no[model_no.length] = r;
+		} else if ((patt1.test(q[i]) && patt2.test(q[i])) || (patt1.test(q[i]) && patt3.test(q[i])) || (patt2.test(q[i]) && patt3.test(q[i]))) {
+			var r = new Array();
+			r['no'] = q[i];
+			r['pri'] = 2;
+			model_no[model_no.length] = r;
+		} else if (patt2.test(q[i])) {
+			var r = new Array();
+			r['no'] = q[i];
+			r['pri'] = 3;
+			model_no[model_no.length] = r;
+		}
+	}
+
+	return getComparableString(model_no);
+}
+
+function checkAlpha(remove) {
+	if (remove == undefined) {
+		remove = 0;
+	}
+	var q = $('#q').val();
+	var model_no = findModelNo(q);
+
+	if (model_no.length > 0) {
+		console.log('model no found to be ' + model_no)
+		$('#results').children('.website').each(function() {
+			if ($(this).hasClass('website_error')) {
+			} else if ($(this).hasClass('website_noresult')) {
+			} else {
+				var name = $(this).children('.item_main').children('#item_name').val();
+
+				var model_no2 = findModelNo(name);
+				if (model_no2.indexOf(model_no) != -1 || model_no.indexOf(model_no2) != -1) {
+				} else {
+					console.log($(this).attr('id') + ' will be removed for model no mismatch');
+					if (remove == 1) {
+						makeSmall($(this).attr('id'));
+					}
+				}
+			}
+		});
+	} else {
+		console.log('No Model Number Found in search string');
+	}
+}
+
 function calcResult() {
 	queueCalc = 0;
 	console.log('Calc Result Called');
 	$('#progess_text').html('Filtering Data..');
 	var pricesArr = new Array();
-	$('#results').children('.website').each(function() {
-		if ($(this).hasClass('website_error')) {
-		} else if ($(this).hasClass('website_noresult')) {
-			no_result++;
-		} else {
-			total_sites++;
-			pricesArr[pricesArr.length] = $(this).children('.span4:first').children('#item_price').val();
-		}
-	});
 
 	var i = 0;
 
@@ -694,6 +750,13 @@ function calcResult() {
 			console.log('No Need to show suggesions because of same name ' + highest_score_name + " with entries " + highest_score + " and total sites " + total_sites);
 		} else {
 
+			// find model nos
+
+			for ( var i = 0; i < data.length; i++) {
+				// var name1 = data[i]['name'];
+				// var nos = findModelNo(name1);
+			}
+
 			// find suggesstion based on price
 
 			var out = 0;
@@ -773,6 +836,8 @@ function finished() {
 	$('#progress').find('.bar').first().attr('style', 'width:100%');
 
 	if ($('#results').is(':visible')) {
+
+		$('.remove_website_btn').show();
 
 		$('#progress_total').val(0);
 		$('#progress_done').val(0);
@@ -916,7 +981,7 @@ function queueSortResult(timer, site) {
 		if (!site || site == undefined) {
 			site = '';
 		}
-		console.log('queueSort called from website ' + site);
+		// console.log('queueSort called from website ' + site);
 		sortQueue = new Date().getTime();
 		clearTimeout(sortTimeout);
 		addMoniter('sortResult', 'function', false);
@@ -983,6 +1048,10 @@ function sortResult() {
 		}
 	});
 
+	var row = new Array();
+	row['score'] = 0;
+	row['name'] = $('#q').val();
+	data[data.length] = row;
 	// var replace = ('&amp;'=>'and','&'=>'and');
 	for ( var i = 0; i < data.length; i++) {
 		for ( var j = i; j < data.length; j++) {
@@ -1010,6 +1079,7 @@ function sortResult() {
 			highest_score_name = data[i]['name'];
 		}
 	}
+	// console.log(data);
 	prev_highest_score = highest_score_name;
 	prev_highest_score_value = highest_score;
 	console.log(highest_score_name + " Is Highest Scorer");
@@ -1040,7 +1110,8 @@ function sortResult() {
 				}
 				priceweb = priceweb * 1;
 				// console.log('main name' + name1);
-				if (name1 != highest_score_name) {
+				if (name1 == highest_score_name || name1.indexOf(highest_score_name) != -1) {
+				}else{
 					$(this).find('.item_small').each(function() {
 						name1 = $(this).children('#item_name').val();
 						name1 = getComparableString(name1);
@@ -1051,9 +1122,10 @@ function sortResult() {
 						}
 						price1 = price1 * 1;
 
-						// console.log('small name' + name1);
+						console.log('small name' + name1);
 						if (name1 == highest_score_name || name1.indexOf(highest_score_name) != -1 || highest_score_name.indexOf(name1) != -1) {
 							var avg = $('#avg_best_price').val() * 1;
+							console.log('avg is ' + avg);
 							if (small_price != 0) {
 								if (small_price > price1) {
 									if (avg > 0) {
@@ -1068,9 +1140,11 @@ function sortResult() {
 											has_copy = true;
 										}
 									} else {
-										small_price = price1;
-										small_id = $(this).attr('id');
-										has_copy = true;
+										if(price1 < small_price){
+											small_price = price1;
+											small_id = $(this).attr('id');
+											has_copy = true;
+										}
 									}
 								}
 							} else {
@@ -1210,32 +1284,37 @@ function showStep() {
 			var offer = '';
 			var shipping = '';
 
-			var html = $('#stepItem').html();
-			html = html.replace(/{website}/g, website);
-			html = html.replace(/{website_url}/g, logo);
-			html = html.replace(/{item_url}/g, url);
-			html = html.replace(/{item_image}/g, image);
-			html = html.replace(/{item_name}/g, name);
-			html = html.replace(/{item_price}/g, price);
-			html = html.replace(/{website_search_url}/g, website_search_url);
-			html = html.replace(/{item_offer_org}/g, offer);
-			html = html.replace(/{item_shipping_org}/g, shipping);
-			html = html.replace(/{step_id}/g, 'step_' + i);
+			addStepItem(website, logo, url, image, name, price, website_search_url, offer, shipping, i, author);
 
-			html = html.replace(/{item_author}/g, author);
-
-			if (author.length == 0) {
-				html = html.replace(/{name_height}/g, '40px');
-				html = html.replace(/{author_display}/g, 'display:none');
-			} else {
-				html = html.replace(/{name_height}/g, '22px');
-				html = html.replace(/{author_display}/g, '');
-			}
-			$('#step_items').append(html);
-			i++;
 		}
 	});
 	$('#step').show();
+}
+
+function addStepItem(website, logo, url, image, name, price, website_search_url, offer, shipping, i, author) {
+	var html = $('#stepItem').html();
+	html = html.replace(/{website}/g, website);
+	html = html.replace(/{website_url}/g, logo);
+	html = html.replace(/{item_url}/g, url);
+	html = html.replace(/{item_image}/g, image);
+	html = html.replace(/{item_name}/g, name);
+	html = html.replace(/{item_price}/g, price);
+	html = html.replace(/{website_search_url}/g, website_search_url);
+	html = html.replace(/{item_offer_org}/g, offer);
+	html = html.replace(/{item_shipping_org}/g, shipping);
+	html = html.replace(/{step_id}/g, 'step_' + i);
+
+	html = html.replace(/{item_author}/g, author);
+
+	if (author.length == 0) {
+		html = html.replace(/{name_height}/g, '40px');
+		html = html.replace(/{author_display}/g, 'display:none');
+	} else {
+		html = html.replace(/{name_height}/g, '22px');
+		html = html.replace(/{author_display}/g, '');
+	}
+	$('#step_items').append(html);
+	i++;
 }
 
 function loadSmallImages() {
@@ -1447,7 +1526,7 @@ function makeSmall(website) {
 	$('#' + website).children('.item_main').children('hr').hide();
 	$('#' + website).children('.item_main').children('.other_info').hide();
 	$('#' + website).find('#other_prod').hide();
-	$('#' + website).children('.item_main').removeClass('span3');
+	$('#' + website).children('.item_main').removeClass('span4');
 	$('#' + website).children('.item_main').addClass('span8');
 	$('#' + website).children('.span2').children('a').css('line-height', '22px');
 	$('#' + website).children('.span2').children('.remove_website_btn').hide();
@@ -1510,12 +1589,12 @@ function makeSmall(website) {
 function makeBig(website) {
 	// $('#' + website).children('.span4:last').show();
 	// $('#' + website).children('.span2:last').show();
-	$('#' + website).children('.last-div').show();
+	$('#' + website).children('.last-div:first').show();
 	$('#' + website).children('.other_info_parent').show();
 	$('#' + website).children('.item_main').children('hr').show();
 	$('#' + website).children('.item_main').children('.other_info').show();
 	$('#' + website).children('.item_main').removeClass('span8');
-	$('#' + website).children('.item_main').addClass('span3');
+	$('#' + website).children('.item_main').addClass('span4');
 	$('#' + website).find('#other_prod').show();
 	$('#' + website).children('.span2:first').children('a').css('line-height', '75px');
 	$('#' + website).children('.span2').children('.remove_website_btn').show();
@@ -1527,7 +1606,7 @@ function makeBig(website) {
 		big_price = 99999999999;
 	}
 	big_price = big_price * 1;
-	$('#' + website).children('.item_main').children('.media').children('.media-body').width('140px');
+	$('#' + website).children('.item_main').children('.media').children('.media-body').width('227px');
 	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.pull-left:first').css('max-height', '40px');
 	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.clearfix-tog').each(function() {
 		$(this).removeClass('clearfix-tog');
@@ -1684,7 +1763,9 @@ function makeResultBody(data) {
 									html += '<hr style="padding: 0px;margin: 0px;margin-top: 10px;"/>';
 									$(this).before(html);
 									done = true;
-									console.log(website + " before " + $(this).attr('id') + " with price " + price);
+									// console.log(website + " before " +
+									// $(this).attr('id') + " with price " +
+									// price);
 								}
 							}
 						}
@@ -1697,7 +1778,7 @@ function makeResultBody(data) {
 					} else {
 						websites.last().after(html);
 					}
-					console.log(website + " at last with price " + price);
+					// console.log(website + " at last with price " + price);
 				}
 			}
 		}
@@ -1708,9 +1789,9 @@ function makeResultBody(data) {
 function getComparableString(str) {
 	str = str.replace('&amp;', 'and');
 	str = str.replace('&', 'and');
-	str = str.replace('III', '3');
-	str = str.replace('II', '2');
-	str = str.replace('IV', '4');
+	str = str.replace(' III ', '3');
+	str = str.replace(' II ', '2');
+	str = str.replace(' IV ', '4');
 	str = str.toLowerCase();
 	return str;
 }

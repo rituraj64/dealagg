@@ -1,11 +1,31 @@
 <?php
 set_time_limit(300000);
 require_once 'Parsingcoupon.php';
+require_once 'Parsing.php';
 require_once 'phpMailer/class.phpmailer.php';
 require_once 'phpMailer/class.smtp.php';
 require_once 'model/CouponParse.php';
 
 require_once 'detecthtml.php';
+
+require_once 'model/Cache.php';
+
+$parsing = new Parsing();
+
+
+if($parsing->getCurrentCache() == Parsing::CACHE_DB){
+	$cache = new Cache();
+	$data = $cache->read();
+	foreach($data as $row){
+		$hits = $row['hits'];
+		$time = $row['time'];
+
+		$days = ($hits + 1) * 7;
+		if( time() > $time + $days * 25 * 60 * 60  ){
+			$cache->delete(array('id'=>$row['id']));
+		}
+	}
+}
 
 $parsing = new Parsingcoupon();
 $sites = $parsing->getCouponWebsites();

@@ -93,9 +93,15 @@ class BuyThePrice extends Parsing{
 				$url = pq($div)->find('.mosaic-backdrop:first')->attr('href');
 				$name = pq($div)->find('h2.product-name:first')->html();
 				$disc_price = pq($div)->children('a')->children('div')->html();
+				$stock = 0;
+				if($disc_price == 'no offers'){
+					$stock = -1;
+					$disc_price = 0;
+				}else{
+					$stock = 1;
+				}
 				$offer = '';
 				$shipping = '';
-				$stock = 0;
 				$author = '';
 				$data[] = array(
 						'name'=>$name,

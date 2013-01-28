@@ -2,7 +2,21 @@
 $message = 'Problems Found IN <br/>';
 require_once dirname(__FILE__).'/model/HtmlDetect.php';
 $detect = new HtmlDetect();
-$data = $detect->read();
+$data = $detect->read(null,array('warned'=>0));
+$ids = array();
+$priority = 0;
+foreach($data as $row){
+	$ids[] = "'".$row['id']."'";
+	if($row['priority'] == 'HIGH'){
+		$priority = 1;
+	}
+}
+if(!empty($ids)){
+	$detect->query("update html_detect set warned = 1 where ids in (". implode($ids,',') .")");
+	
+}
+
+
 $index = 0;
 if(sizeof($data) > 0){
 	$website = '';
@@ -25,8 +39,8 @@ if(sizeof($data) > 0){
 	//$mail->Port       = 465;
 	///$mail->Username   = "excellenceseo@gmail.com";
 	//$mail->Password   = "seo@1234";
-	$mail->setFrom('noreply@pricegenie.in', 'PriceGenie');
-	$mail->Subject    =$subject;
+	$mail->setFrom($to, 'PriceGenie');
+	$mail->Subject    =$subject . 'Has Priority = '.$priority;
 	$mail->MsgHTML($message);
 
 	$mail->AddAddress($to, "Manish");

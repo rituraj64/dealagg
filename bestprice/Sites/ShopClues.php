@@ -1,7 +1,7 @@
 <?php
 
 class ShopClues extends Parsing{
-	
+
 	public $_code = 'ShopClues';
 	public function getFacebookUrl(){
 		return 'http://www.facebook.com/ShopClues';
@@ -25,11 +25,11 @@ class ShopClues extends Parsing{
 		}else if($category == Category::MOBILE_ACC){
 			//return "http://www.shopclues.com/?subcats=Y&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1471&q=$query&dispatch=products.search";
 			if ($subcat == Category::MOB_BATTERY){
-			return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1533";
+				return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1533";
 			}elseif ($subcat == Category::MOB_HEADSETS){
-			return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1456";
+				return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1456";
 			}elseif ($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADPHONE){
-			return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1064";
+				return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1064";
 			}elseif($subcat == Category::MOB_MEMORY){
 				return "http://www.shopclues.com/index.php?dispatch=products.search&q=$query&subcats=N&status=A&pname=Y&product_code=Y&match=all&pkeywords=Y&search_performed=Y&cid=1346";
 			}elseif ($subcat == Category::MOB_SPEAKER){
@@ -98,7 +98,12 @@ class ShopClues extends Parsing{
 			$a_link = pq($div)->find('.box_metacategory_name');
 			$name = $a_link->html();
 			$url = $a_link->attr('href');
-			$disc_price = pq($div)->find('.box_metacategory_priceoffer')->html();
+			if(sizeof(pq($div)->children('.box_metacategory_pricing')->find('.box_metacategory_priceoffer'))){
+				$disc_price = pq($div)->children('.box_metacategory_pricing')->find('.box_metacategory_priceoffer')->html();
+			}else{
+				pq($div)->children('.box_metacategory_pricing')->find('.nl_red_icon_spl_offer_tag')->remove();
+				$disc_price = pq($div)->children('.box_metacategory_pricing')->find('span:last')->html();
+			}
 			$offer = '';
 			$shipping = '';
 			$stock = 0;

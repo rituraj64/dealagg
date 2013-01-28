@@ -34,10 +34,10 @@ class Storeji extends Parsing{
 					$image = pq($div)->children('a:first')->html();
 					$url = pq($div)->children('a:first')->attr('href');
 					$name = pq($div)->children('.product-descirption')->children('.product-name')->children('a')->html();
-					if(sizeof(pq($div)->children('.product-descirption')->children('.price-box')->children('.special-price'))){
-						$disc_price = pq($div)->children('.product-descirption')->children('.price-box')->children('.special-price')->children('.price')->html();
+					if(sizeof(pq($div)->children('.product-descirption')->find('.price-box')->children('.special-price'))){
+						$disc_price = pq($div)->children('.product-descirption')->find('.price-box')->children('.special-price')->children('.price')->html();
 					}else{
-						$disc_price = pq($div)->children('.product-descirption')->children('.price-box')->children('.regular-price')->children('.price')->html();
+						$disc_price = pq($div)->children('.product-descirption')->find('.price-box')->children('.regular-price')->children('.price')->html();
 					}
 					$offer = '';
 					$shipping = '';

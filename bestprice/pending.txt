@@ -15,12 +15,16 @@ also top floater is not working properly
 12. searchc sony on snapdeal and it goes to its category page.
 13. change in html detection system
 14. design integration of about us, reacent search, coupon pages, contact us
-
+15. brand filtering
 
 //giffiks sometimes redirects to product page on search. see if there is need to parse it, since giffiks is not a famous site
 
 
-Second Release
+1. coupons list page
+2. recent searches page
+3. write code to fetch info from product page for all the sites
+4. display of html detect in admin
+
 1. designing
 2. follow us for product
 3. login integration and friends invite feature.

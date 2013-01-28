@@ -44,7 +44,11 @@ class Croma extends Parsing{
 		foreach(pq('ul.grid_view li') as $div){
 			if(sizeof(pq($div)->find('.content_block'))){
 				$image = pq($div)->find('.content_block')->find('a')->html();
-				$url = pq($div)->find('.content_block-image')->find('a')->attr('href');
+				if(sizeof(pq($div)->find('.content_block-image'))){
+					$url = pq($div)->find('.content_block-image')->find('a')->attr('href');
+				}else{
+					$url = pq($div)->find('.content_block')->children('a.img')->attr('href');
+				}
 				$name = strip_tags(pq($div)->find('.content_block')->find('.view-content')->find('a')->html());
 				$disc_price = strip_tags(pq($div)->find('.content_block')->find('.view-price')->find('.price')->html());
 				$offer = '';

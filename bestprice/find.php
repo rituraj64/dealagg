@@ -3,8 +3,8 @@ date_default_timezone_set('Asia/Calcutta');
 require_once 'Parsing.php';
 
 if(isset($_REQUEST['q'])){
-	$query = urlencode($_REQUEST['q']);
-	$query2 = urldecode($_REQUEST['q']);
+	$query = trim(urlencode($_REQUEST['q']));
+	$query2 = trim(urldecode($_REQUEST['q']));
 	$subcat = $_REQUEST['subcat'];
 
 	$cat = false;

@@ -2,11 +2,18 @@
 require_once 'phpQuery-onefile.php';
 require_once 'Parser.php';
 require_once 'Category.php';
+require_once 'model/Cache.php';
 
 set_time_limit(10000);
 class Parsing{
 	//public $_code = 'Website';
 
+	const CACHE_FILE = 'FILE';
+	const CACHE_DB = 'DB';
+
+	public function getCurrentCache(){
+		return self::CACHE_FILE;
+	}
 	public static function getReplace(){
 		return array('&amp;'=>'and','&'=>'and');
 	}
@@ -35,6 +42,7 @@ class Parsing{
 
 		//for snapdeal need to think something about brands pages, if you search sony it goes to its brand page and not that perticular category
 
+		// need to add sub category, camcorder, because product like this Wespro DV538 Camcorder is not working correct.
 
 
 		//CostPrize this is disabled right now, cos site doesnt look good
@@ -58,6 +66,7 @@ class Parsing{
 		$this->_query_id = $query_id;
 	}
 
+	private $_toParseHtml = '';
 	public function getPriceData($query,$category = false,$subcat = 0,$delay = true,$cache = 1){
 		$url = $this->getSearchURL($query,$category,$subcat);
 		if(empty($url)){
@@ -68,7 +77,7 @@ class Parsing{
 		if($cache == 0){
 			$this->deleteCachedData($website, $query, $category,$subcat,$url);
 		}
-		if($this->hasCachedData($website, $query, $category,$subcat,$url)){
+		if($cache == 1 && $this->hasCachedData($website, $query, $category,$subcat,$url)){
 			$data = $this->getCachedData($website, $query,$category,$subcat, $url);
 			$this->_resultTime = $this->getCachedDataTime($website, $query, $category,$subcat, $url);
 			//$data = $this->getData($data,$query,$category);
@@ -91,6 +100,7 @@ class Parsing{
 					
 				$html = $parser->getHtml($url,$this->getPostFields($query));
 				//$this->cacheData($website, $query,$category, $url, $html);
+				$this->_toParseHtml = $html;
 
 				$data = $this->getData($html,$query,$category,$subcat);
 				$this->_resultTime = time();
@@ -103,28 +113,65 @@ class Parsing{
 	}
 	public function deleteCachedData($website, $query, $category,$subcat,$url){
 		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
-		$filename = 'cache/'.$cacheKey;
-		if(file_exists($filename)){
-			unlink($filename);
+		if($this->getCurrentCache() == self::CACHE_FILE){
+			$filename = 'cache/'.$cacheKey;
+			if(file_exists($filename)){
+				unlink($filename);
+			}
+		}else{
+			$cache = new Cache();
+			//$cache->delete(array('cache_key'=>$cacheKey));
 		}
 	}
 	public function getCachedData($website,$query,$category,$subcat,$url){
 		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
-		if(isset($_REQUEST['url_based'])){
-			$cacheKey = $cacheKey . '-' . $_REQUEST['query_id'];
-		}
-		$filename = 'cache/'.$cacheKey;
 		$content = '';
-		if(file_exists($filename)){
-			$content = file_get_contents('cache/'.$cacheKey);
+		if($this->getCurrentCache() == self::CACHE_FILE){
 			if(isset($_REQUEST['url_based'])){
+				$cacheKey = $cacheKey . '-' . $_REQUEST['query_id'];
+			}
+			$filename = 'cache/'.$cacheKey;
+			$content = '';
+			if(file_exists($filename)){
+				$content = file_get_contents('cache/'.$cacheKey);
+				if(isset($_REQUEST['url_based'])){
 
+				}else{
+					$query_id = $this->_query_id;
+					if($query){
+						$cacheKey = $cacheKey . '-' . $query_id;
+						if(!file_exists($filename)){
+							file_put_contents('cache/'.$cacheKey,$content);
+						}
+					}
+				}
+			}
+		}else{
+			$cache = new Cache();
+			$data = $cache->read(null,array('cache_key'=>$cacheKey),array('time'=>'asc'));
+			if(sizeof($data) > 0){
+				$content = $data[0]['cache_data'];
+			}
+			if(isset($_REQUEST['url_based'])){
+				$content = '';
+				$cache = new Cache();
+				$data = $cache->read(null,array('cache_key'=>$cacheKey,'cache_type'=>$query_id));
+				if(sizeof($data) > 0){
+					$content = $data[0]['cache_data'];
+					$cache->query('update `cache` set hits = hits + 1 where id = '.$data[0]['id']);
+				}
 			}else{
 				$query_id = $this->_query_id;
 				if($query){
-					$cacheKey = $cacheKey . '-' . $query_id;
-					if(!file_exists($filename)){
-						file_put_contents('cache/'.$cacheKey,$html);
+					$cacheKey = $cacheKey;
+					$cache = new Cache();
+					$data = $cache->read(null,array('cache_key'=>$cacheKey,'cache_type'=>$query_id));
+					if(sizeof($data) == 0){
+						$cache->cache_key = $cacheKey;
+						$cache->time = time();
+						$cache->cache_type = 'query_id';
+						$cache->cache_data = $content;
+						$cache->insert();
 					}
 				}
 			}
@@ -133,30 +180,61 @@ class Parsing{
 	}
 	public function getCachedDataTime($website,$query,$category,$subcat,$url){
 		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
-		$filename = 'cache/'.$cacheKey;
-		if(file_exists($filename)){
-			$time = filemtime($filename);
-			return $time;
+		if($this->getCurrentCache() == self::CACHE_FILE){
+			$filename = 'cache/'.$cacheKey;
+			if(file_exists($filename)){
+				$time = filemtime($filename);
+				return $time;
+			}
+		}else{
+			$cache = new Cache();
+			$data = $cache->read(null,array('cache_key'=>$cacheKey),array('time'=>'asc'));
+			if(sizeof($data)){
+				return $data[0]['time'];
+			}
 		}
 		return false;
 	}
 	public function hasCachedData($website,$query,$category,$subcat,$url){
 		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
-		if(isset($_REQUEST['url_based'])){
-			$cacheKey = $cacheKey . '-' . $_REQUEST['query_id'];
-		}
-		$filename = 'cache/'.$cacheKey;
-		if(file_exists($filename)){
+		if($this->getCurrentCache() == self::CACHE_FILE){
 			if(isset($_REQUEST['url_based'])){
-				return true;
-			}else{
-				$time = filemtime($filename);
-				$expiry = 24 * 60 * 60;
-				if(time() - $time > $expiry){
-					unlink($filename);
-					return false;
-				}else{
+				$cacheKey = $cacheKey . '-' . $_REQUEST['query_id'];
+			}
+			$filename = 'cache/'.$cacheKey;
+			if(file_exists($filename)){
+				if(isset($_REQUEST['url_based'])){
 					return true;
+				}else{
+					$time = filemtime($filename);
+					$expiry = 24 * 60 * 60;
+					if(time() - $time > $expiry){
+						unlink($filename);
+						return false;
+					}else{
+						return true;
+					}
+				}
+			}
+		}else{
+			$cache = new Cache();
+			if(isset($_REQUEST['url_based'])){
+				$data = $cache->smartRead(array('where'=>array('cache_key'=>$cacheKey,'cache_type'=>$_REQUEST['query_id'])));
+				if(sizeof($data)){
+					return true;
+				}
+			}else{
+				$data = $cache->smartRead(array('where'=>array('cache_key'=>$cacheKey,array('time'=>'desc'))));
+				if(sizeof($data)){
+					$row = $data[0];
+					$time = $row['time'];
+					$expiry = 24 * 60 * 60;
+					if(time() - $time > $expiry){
+						//$cache->delete(array('id'=>$row['id']));
+						return false;
+					}else{
+						return true;
+					}
 				}
 			}
 		}
@@ -165,19 +243,41 @@ class Parsing{
 
 	public function cacheData($website,$query,$category,$subcat,$url,$html){
 		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
-		file_put_contents('cache/'.$cacheKey,$html);
-
-		/* this code is for caching query wise, so the users previous data is saved */
-		$query_id = $this->_query_id;
-		if($query){
-			$cacheKey = $cacheKey . '-' . $query_id;
+		if($this->getCurrentCache() == self::CACHE_FILE){
 			file_put_contents('cache/'.$cacheKey,$html);
+
+			/* this code is for caching query wise, so the users previous data is saved */
+			$query_id = $this->_query_id;
+			if($query){
+				$cacheKey = $cacheKey . '-' . $query_id;
+				file_put_contents('cache/'.$cacheKey,$html);
+			}
+		}else{
+			/*
+			 $cache = new Cache();
+			$cache->cache_key = $cacheKey;
+			$cache->time = time();
+			$cache->cache_type = 'website';
+			$cache->cache_data = $html;
+			$cache->insert();
+			*/
+
+			$query_id = $this->_query_id;
+			if($query){
+				$cache = new Cache();
+				$cache->cache_key = $cacheKey;
+				$cache->time = time();
+				$cache->cache_type = $query_id;
+				$cache->cache_data = $html;
+				$cache->insert();
+			}
 		}
 
 	}
 	private function getCacheKey($website,$query,$category,$subcat,$url){
 		$query2 = urldecode($query);
 		$query2 = preg_replace("![^a-z0-9]+!i", "-", $query2);
+		$query2 = strtolower($query2);
 
 		$category = urldecode($category);
 		$category = preg_replace("![^a-z0-9]+!i", "-", $category);
@@ -300,10 +400,14 @@ class Parsing{
 
 		//make entry into html detecting system
 
+		$index = 0;
 		foreach($data2 as $row){
 			$problem = '';
-			if(empty($row['price']) || $row['price'] <=0 ){
+			if(empty($row['disc_price']) || $row['disc_price'] <=0 ){
 				$problem .= 'Empty Price Found';
+				if($row['website'] == 'Landmark' && $row['stock'] == -1){
+					$problem = '';
+				}
 			}
 			if(empty($row['name'])){
 				$problem .= 'Empty Name Found';
@@ -315,7 +419,10 @@ class Parsing{
 				$problem .= 'Empty URL Found';
 			}
 			if(!empty($problem)){
-				$problem .= print_r($row,true);
+				if($row['website'] == 'eBay' && $index != 0){
+					continue;
+				}
+				$problem .= 'Index '.$index.' '.print_r($row,true);
 				require_once dirname(__FILE__).'/model/HtmlDetect.php';
 				$detect = new HtmlDetect();
 				$detect->website = $this->getCode();
@@ -323,8 +430,16 @@ class Parsing{
 				$detect->search_url = $url;
 				$detect->cache_key = $this->getCacheKey($this->getCode(), $query,$category,$subcat, $url);
 				$detect->problem = $problem;
+				$detect->warned = 0;
+				$detect->html = $this->_toParseHtml;
+				if($index == 0){
+					$detect->priority = 'HIGH';
+				}else{
+					$detect->priority = 'LOW';
+				}
 				$detect->insert();
 			}
+			$index++;
 		}
 
 		if(isset($data[0])){
@@ -515,12 +630,12 @@ class Parsing{
 				if($row['discount_type'] == 'fixed'){
 					if($row['discount'] > $amt){
 						$amt = $row['discount'];
-						$title_amt = 'Discounts Upto <span class="WebRupee">Rs.</span>'.$amt.' Valid Upto '. date('d M',$row['active_to']).' <br> Use Coupon Code: '.$row['coupon_code'].'<br/>'.$row['desc'];
+						$title_amt = 'Discounts Upto <span class="WebRupee">Rs.</span>'.$amt.' Valid Upto '. date('d M',$row['active_to']).' <br> Use Coupon Code: '.$row['coupon_code'].'<br/>'.$row['description'];
 					}
 				}else if($row['discount_type'] == 'percentage'){
 					if($row['discount'] > $per){
 						$per = $row['discount'];
-						$title_per = 'Discounts Upto '.$amt.'%'.' Valid Upto '. date('d M',$row['active_to']) .' <br> Use Coupon Code: '.$row['coupon_code'].'<br/>'.$row['desc'];
+						$title_per = 'Discounts Upto '.$amt.'%'.' Valid Upto '. date('d M',$row['active_to']) .' <br> Use Coupon Code: '.$row['coupon_code'].'<br/>'.$row['description'];
 					}
 				}
 			}

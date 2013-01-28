@@ -65,7 +65,12 @@ class Saholic extends Parsing{
 				$name = strip_tags(pq($div)->find('.productDetails')->find('.title')->find('a')->html());
 				$org_price = 0;
 				$disc_price = pq($div)->find('.productPrice')->find('.newPrice')->html();
-				$data[] = array('name'=>$name,'image'=>$image,'org_price'=>$org_price,'disc_price'=>$disc_price,'url'=>$url,'website'=>$this->getCode());
+				if(empty($disc_price) || $disc_price == 0){
+					$stock = -1;
+				}else{
+					$stock = 1;
+				}
+				$data[] = array('stock'=>$stock,'name'=>$name,'image'=>$image,'org_price'=>$org_price,'disc_price'=>$disc_price,'url'=>$url,'website'=>$this->getCode());
 			}
 		}
 		$data2 = array();

@@ -207,6 +207,11 @@ class Flipkart extends Parsing{
 					$stock = 0;
 					$shipping = '';
 					$author = '';
+					$status = pq($div)->find('.status:first')->html();
+					if($status == 'Coming Soon.'){
+						$stock = -1;
+						$disc_price = 0;
+					}
 					if($category == 'Books'){
 						$author = pq($div)->find('.fk-item-category')->html();
 						$author = $this->clearHtml($author);

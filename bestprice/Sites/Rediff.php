@@ -17,7 +17,7 @@ class Rediff extends Parsing{
 			return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|gsm+handsets";
 		}else if($category == Category::MOBILE_ACC){
 			$query = urldecode($query);
-			 if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
+			if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
 				return "http://shopping.rediff.com/productv2/$query/cat-mobile phones & accessories|mobile accessories";
 			}elseif ($subcat == Category::MOB_BATTERY){
 				return "http://shopping.rediff.com/productv2/$query/cat-mobile+phones+%26amp%3B+accessories|mobile+accessories|battery?ref_src=inhome_srch";
@@ -128,12 +128,23 @@ class Rediff extends Parsing{
 		}else{
 			$data = array();
 			phpQuery::newDocumentHTML($html);
-			if(sizeof(pq('.div_grid_display_big')) > 0){
-				foreach(pq('.div_grid_display_big') as $div){
-					$image = pq($div)->find('.mitemimg_h4_big:first')->children('a')->html();
-					$url = pq($div)->find('.mitemimg_h4_big:first')->children('a')->attr('href');
-					$name = pq($div)->find('.mitemname_h4:first')->children('a')->html();
-					$disc_price = pq($div)->children('div')->children('div')->children('div:last')->children('span')->html();
+			if(sizeof(pq('.productresultsWrapper')) > 0){
+				foreach(pq('.productresultsWrapper')->children('div') as $div){
+					if(sizeof(pq($div)->find('.mitemimg_h4_big:first'))){
+						$image = pq($div)->find('.mitemimg_h4_big:first')->children('a')->html();
+						$url = pq($div)->find('.mitemimg_h4_big:first')->children('a')->attr('href');
+						$name = pq($div)->find('.mitemname_h4:first')->children('a')->html();
+						if(sizeof(pq($div)->children('div')->children('div')->children('div:last')->children('div.mitemprice'))){
+							$disc_price = pq($div)->children('div')->children('div')->children('div:last')->children('div:last')->html();
+						}else{
+							$disc_price = pq($div)->children('div')->children('div')->children('div:last')->children('span')->html();
+						}
+					}else{
+						$image = pq($div)->children('.div_z_prodimg:first')->children('a')->html();
+						$url = pq($div)->children('.div_z_prodimg:first')->children('a')->attr('href');
+						$name = pq($div)->children('.z_mitemname:first')->children('a')->html();
+						$disc_price = pq($div)->children('div.div_by')->children('a')->html();
+					}
 					$offer = '';
 					$shipping = '';
 					$stock = 0;

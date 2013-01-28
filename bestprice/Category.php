@@ -62,7 +62,7 @@ class Category{
 	const COMP_ACC_NETWORK = 611;
 
 	const GAMING_ACC_GAMES = 401;
-	const GAMING_ACC_CONSOLES = 403;
+	const GAMING_ACC_CONSOLES = 402;
 	const GAMING_ACC_ACC = 403;
 
 	public function getStoreCategory(){
@@ -82,7 +82,7 @@ class Category{
 						//self::MOB_HANDSFREE => 'Handsfree',
 						//self::MOB_OTHERS => 'Other Accessories'
 				)),
-				self::TABLETS=>'Tablets, iPad',
+				self::TABLETS=>'Tablets - iPad',
 				self::TV=>'Television',
 				self::GAMING =>array('Gaming'=>array(
 						self::GAMING_ACC_CONSOLES => 'Gaming Consoles', // includes all game platforms

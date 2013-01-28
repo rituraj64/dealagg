@@ -146,9 +146,9 @@ class Naaptol extends Parsing{
 					$shipping = pq($div)->children('.option')->html();
 					$stock = 0;
 					if(sizeof(pq($div)->children('.shopNow'))){
-						$stock = 1;
+						//$stock = 1; this is not working for some reason so commented
 					}else{
-						$stock = -1;
+						//$stock = -1;
 					}
 					$author = '';
 					$data[] = array(

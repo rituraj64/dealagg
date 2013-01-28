@@ -147,10 +147,15 @@ class Indiatimes extends Parsing{
 					$image = pq($div)->find('.productthumb')->find("a")->html();
 					$url = pq($div)->find('.productthumb')->find('a')->attr('href');
 					$name = strip_tags(pq($div)->find('.productdetail')->find('a')->html());
-					$disc_price = pq($div)->find('.productdetail')->find('.price')->html();
+					$disc_price = pq($div)->find('.productdetail')->children('.view-attr')->find('.newprice')->find('.price')->html();
 					$offer = '';
 					$shipping = '';
 					$stock = 0;
+					if(sizeof(pq($div)->find('.productthumb')->find('.outofstock-small'))){
+						$stock = -1;
+					}else{
+						$stock = 1;
+					}
 					$author = '';
 					$cat = '';
 					$data[] = array(
@@ -174,6 +179,9 @@ class Indiatimes extends Parsing{
 			$html .= '</img>';
 			phpQuery::newDocumentHTML($html);
 			$img = pq('img')->attr('src');
+			if(strpos($img,'loader.gif') > 0){
+				$img = pq('img')->attr('data-original');
+			}
 			if(strpos($img, 'http') === false){
 				$img = $this->getWebsiteUrl().$img;
 			}

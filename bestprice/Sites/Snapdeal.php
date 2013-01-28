@@ -64,7 +64,9 @@ class Snapdeal extends Parsing{
 			if($subcat == Category::NOT_SURE){
 				/*non-json*/		return "http://www.snapdeal.com/search?keyword=$query&catId=12&categoryId=29&suggested=false&vertical=p&noOfResults=20&clickSrc=searchOnSubCat&lastKeyword=$query&prodCatId=29&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
 			}elseif ($subcat == Category::MOB_BATTERY){
-				/*json*/		return "http://www.snapdeal.com/json/product/get/search/29/0/20?q=Type%253ABatteries%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
+				/*json*/		//return "http://www.snapdeal.com/json/product/get/search/29/0/20?q=Type%253ABatteries%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
+				return "http://www.snapdeal.com/search?keyword=$query&catId=0&categoryId=0&suggested=false&vertical=&noOfResults=20&clickSrc=go_header&lastKeyword=$query&prodCatId=&changeBackToAll=false&foundInAll=false&categoryIdSearched=&url=&utmContent=&catalogID=&dealDetail=";
+
 			}elseif ($subcat == Category::MOB_HEADSETS){
 				/*json*/		return "http://www.snapdeal.com/json/product/get/search/29/0/20?q=Type%253ABluetooth%257C&sort=rlvncy&keyword=$query&clickSrc=searchOnSubCat&viewType=Grid";
 			}elseif ($subcat == Category::MOB_HANDSFREE || $subcat == Category::MOB_HEADPHONE){
@@ -158,9 +160,17 @@ class Snapdeal extends Parsing{
 				if(sizeof(pq('.product_grid_cont'))){
 					foreach(pq('.product_grid_cont') as $div){
 						if(sizeof(pq($div)->find('.product-image'))){
-							$image = pq($div)->find('.product-image')->html();
+							$src = pq($div)->find('.product-image')->attr('scr');
+							if(!empty($src)){
+								$image = $src;
+							}else{
+								$image = pq($div)->find('.product-image')->html();
+							}
 							$url = pq($div)->children('a:first')->attr('href');
 							$name = pq($div)->find('.product_grid_cont_heading')->html();
+							if(strpos($name,'ProductDTO.vendorName') > 0){
+								continue;
+							}
 							$org_price = $disc_price = pq($div)->find('.product_grid_cont_price_outer')->children('.product_price')->children('.originalprice ')->html();
 							$org_price = $this->clearHtml($org_price);
 							$disc_price = pq($div)->find('.product_grid_cont_price_outer')->children('.product_price')->html();;
@@ -243,14 +253,16 @@ class Snapdeal extends Parsing{
 
 			$data2 = array();
 			foreach($data as $row){
-				$html = $row['image'];
-				$html .= '</img>';
-				phpQuery::newDocumentHTML($html);
-				$img = pq('img')->attr('src');
-				if(strpos($img, 'http') === false){
-					$img = $this->getWebsiteUrl().$img;
+				if(strpos($row['image'],'http://') === false){
+					$html = $row['image'];
+					$html .= '</img>';
+					phpQuery::newDocumentHTML($html);
+					$img = pq('img')->attr('src');
+					if(strpos($img, 'http') === false){
+						$img = $this->getWebsiteUrl().$img;
+					}
+					$row['image'] = $img;
 				}
-				$row['image'] = $img;
 				$data2[] = $row;
 			}
 		}

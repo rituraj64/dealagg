@@ -652,6 +652,7 @@ class Model {
 	public function queryMYSQL($sql,$param=null){
 		die('This Method Is not used any more. Using query() function itself');
 	}
+	private $_dbCache = false;
 	public function query($sql,$param=null,$func = '',$mode = PDO::FETCH_ASSOC){
 
 		$querytrack = $sql;
@@ -681,9 +682,11 @@ class Model {
 			echo "Query Exec: " . $querytrack . "<br>";
 		}
 		if(!DataDB::USE_PDO){
-			$db = mysql_connect(Configuration::host,Configuration::user,Configuration::pass);
+			if(!$this->_dbCache){
+			$this->_dbCache = mysql_connect(Configuration::host,Configuration::user,Configuration::pass);
 			mysql_selectdb(Configuration::db);
-			$result = mysql_query($querytrack,$db);
+			}
+			$result = mysql_query($querytrack,$this->_dbCache);
 			if(!$result){
 				die('Error In SQL'. $querytrack . ':'.mysql_error());
 			}
