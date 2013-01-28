@@ -117,6 +117,7 @@ body {
 	margin:0px;
 	float:left;
 	background: url("img/bord.png") no-repeat scroll 100% 0 transparent;
+	padding-right:10px;
 }
 
 .genie-head
@@ -159,10 +160,6 @@ body {
 	clear: both;
 }
 
-.genie-nav .genie-home
-{
-	background: url("img/home_icon.png") no-repeat scroll 56px 0 transparent;
-}
 
 .genie-nav a
 {
@@ -178,10 +175,17 @@ margin-bottom: 10px;
 }
 .genie-nav .active a
 {
-	background:url("img/home_icon.png") no-repeat scroll 56px 0 transparent!important;
+	background:none!important;
 	box-shadow: none!important;
 	border:0px;
 	color:#e3ae22!important;
+	
+}
+.genie-nav .genie-home a
+{
+	background: url("img/home_icon.png") no-repeat scroll 50% 0 transparent!important;
+	padding-left:0px!important;
+	padding-right:0px!important;
 }
 
 .genie-navbar .genie-nav li 
@@ -190,16 +194,17 @@ margin-bottom: 10px;
 }
 .genie-nav .genie-coup a
 {
-	background: url("img/sci_icon.png") no-repeat scroll 56px 0 transparent;
+	background: url("img/sci_icon.png") no-repeat scroll 50% 0  transparent;
 }
 
 .genie-nav .genie-search a
 {
-	background: url("img/serc_icon.png") no-repeat scroll 56px 0 transparent;
+	background: url("img/serc_icon.png") no-repeat scroll 50% 0 transparent;
 }
 
 .genie-nav .genie-all a
 {
-	background: url("img/genie_icon.png") no-repeat scroll 56px 0 transparent;
+	background: url("img/genie_icon.png") no-repeat scroll 50% 0  transparent;
+	
 }
 
