@@ -116,6 +116,7 @@ body {
 {
 	margin:0px;
 	float:left;
+	background: url("img/bord.png") no-repeat scroll 100% 0 transparent;
 }
 
 .genie-head
@@ -134,10 +135,12 @@ body {
 	float:left;
 	width:640px;
 	margin-left:0px;
-	margin-top:10px;
+	
 }
+
 .genie-navbar .genie-nav li a{
 	border-left:0px;
+	border-right:0px;
 }
 
 .genie-navinner
@@ -150,12 +153,7 @@ body {
 {
 	float:none;
 }
-.genie-nav .active a
-{
-	background: none!important;
-	box-shadow: none!important;
-	border:0px;
-}
+
 .genie-clear
 {
 	clear: both;
@@ -168,10 +166,40 @@ body {
 
 .genie-nav a
 {
-	padding-top:20px;
+	padding-top:25px!important;
+	margin-top: 20px;
+margin-bottom: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #fff!important;
+	font-style:normal;
+	text-shadow: 0px 2px #000!important;
+	text-transform: uppercase;
+}
+.genie-nav .active a
+{
+	background:url("img/home_icon.png") no-repeat scroll 56px 0 transparent!important;
+	box-shadow: none!important;
+	border:0px;
+	color:#e3ae22!important;
 }
 
-.genie-nav .genie-coup
+.genie-navbar .genie-nav li 
+{
+	background: url("img/bord.png") no-repeat scroll 100% 0 transparent;
+}
+.genie-nav .genie-coup a
 {
 	background: url("img/sci_icon.png") no-repeat scroll 56px 0 transparent;
 }
+
+.genie-nav .genie-search a
+{
+	background: url("img/serc_icon.png") no-repeat scroll 56px 0 transparent;
+}
+
+.genie-nav .genie-all a
+{
+	background: url("img/genie_icon.png") no-repeat scroll 56px 0 transparent;
+}
+
