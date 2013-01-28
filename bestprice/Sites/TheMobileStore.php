@@ -51,10 +51,10 @@ class TheMobileStore extends Parsing{
 				$image = pq($div)->children('.variant-image')->children('a')->html();
 				$url = pq($div)->children('.variant-image')->children('a')->attr('href');
 				$name = strip_tags(pq($div)->children('.variant-desc')->children('.variant-title')->children('a')->html());
-				if(sizeof(pq($div)->children('.variant-desc')->children('.price')->children('.variant-list-price'))){
-					$disc_price = pq($div)->children('.variant-desc')->children('.price')->children('.variant-list-price')->html();
-				}else{
+				if(sizeof(pq($div)->children('.variant-desc')->children('.price')->children('.variant-final-price'))){
 					$disc_price = pq($div)->children('.variant-desc')->children('.price')->children('.variant-final-price')->html();
+				}else{
+					$disc_price = pq($div)->children('.variant-desc')->children('.price')->children('.variant-list-price')->html();					
 				}
 				$shipping = '';
 				$offer = '' ;

@@ -33,7 +33,7 @@ class BuyThePrice extends Parsing{
 				return "www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=78&bid=0";
 			}
 		}else if($category == Category::TABLETS){
-			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=78&bid=0";
+			return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=79&bid=0";
 		}else if($category == Category::CAMERA){
 			if($subcat == Category::CAM_DIGITAL_CAMERA){
 				return "http://www.buytheprice.com/ext_cache/get_search_data_listings_1.php?search=$query&ssc=91&bid=0"; //digial camera

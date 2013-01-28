@@ -13,8 +13,10 @@ class Letshop extends Parsing{
 	}
 
 	public function getSearchURL($query,$category = false,$subcat){
-		if($category == Category::MOBILE || $category == Category::TABLETS){
+		if($category == Category::MOBILE){
 			return "http://letsshop.in/catalogsearch/result/index/?cat=4&q=$query";
+		}else if($category == Category::TABLETS){
+			return "http://letsshop.in/catalogsearch/result/index/?cat=4&mobile_type=212&&q=$query";
 		}else if($category == Category::MOBILE_ACC){
 			$query = str_replace(" ", "-", $query);
 			if($subcat == Category::MOB_MEMORY){

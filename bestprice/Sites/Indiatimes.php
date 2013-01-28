@@ -90,9 +90,11 @@ class Indiatimes extends Parsing{
 			}elseif($subcat == Category::COMP_LAPTOP){
 				return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=$query&filter=PRIMARY_CATALOG_ID:10013";
 			}
+		}else if($category == Category::TABLETS){
+			return "http://shopping.indiatimes.com/control/pinpointsearch?SEARCH_STRING=".$query."&filter=PRIMARY_CATALOG_ID%3A10013&filter=PRIMARY_CATEGORY_ID:40105";
 		}else{
 			//return "http://shopping.indiatimes.com/control/mtkeywordsearch?SEARCH_STRING=".$query;
-			return "shopping.indiatimes.com/control/mtkeywordsearch?SEARCH_STRING=$query&catalog=all"; //changed by ashutosh katara
+			return "shopping.indiatimes.com/control/mtkeywordsearch?SEARCH_STRING=$query&catalog=all"; //changed by ashutos katara
 		}
 	}
 	public function getData($html,$query,$category,$subcat){

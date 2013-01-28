@@ -5,7 +5,7 @@ class Storeji extends Parsing{
 		return 'http://www.facebook.com/storejifan';
 	}
 	public function getAllowedCategory(){
-		return array(Category::COMP_LAPTOP,Category::HOME_APPLIANCE,Category::TV,Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC,Category::GAMING);
+		return array(Category::COMP_LAPTOP,Category::HOME_APPLIANCE,Category::TV,Category::MOBILE,Category::TABLETS,Category::MOBILE_ACC);
 	}
 
 	public function getWebsiteUrl(){

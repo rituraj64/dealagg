@@ -12,6 +12,8 @@ class Suzalin extends Parsing{
 		return 'http://www.suzalin.com/';
 	}
 	public function getSearchURL($query,$category = false,$subcat=false){
+		$query = urldecode($query);
+		$query = rawurlencode($query);
 		if($category == Category::MOBILE){
 			return "http://www.suzalin.com/Search/1_2_$query";
 		}else if($category == Category::CAMERA){

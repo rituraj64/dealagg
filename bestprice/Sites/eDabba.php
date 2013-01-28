@@ -13,6 +13,8 @@ class eDabba extends Parsing{
 		return 'http://www.edabba.com/';
 	}
 	public function getSearchURL($query,$category = false,$subcat=false){
+		$query = urldecode($query);
+		$query = rawurlencode($query);
 		if($category == Category::MOBILE){
 			return "http://www.edabba.com/search/site/$query?f[0]=im_taxonomy_catalog:5860&f[1]=im_taxonomy_catalog:5921";
 		}else if($category == Category::MOBILE_ACC){

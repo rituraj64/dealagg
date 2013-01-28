@@ -5,7 +5,7 @@ class Sulekha extends Parsing{
 		return 'http://www.facebook.com/Sulekhadotcom';
 	}
 	public function getAllowedCategory(){
-		return array(Category::GAMING,Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS);
+		return array(Category::CAMERA,Category::COMP_ACC,Category::COMP_LAPTOP,Category::HOME_APPLIANCE,Category::MOBILE,Category::TABLETS);
 	}
 
 	public function getWebsiteUrl(){
