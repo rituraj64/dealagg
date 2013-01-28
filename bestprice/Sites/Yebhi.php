@@ -13,9 +13,7 @@ class Yebhi extends Parsing{
 	}
 	public function getSearchURL($query,$category = false,$subcat=false){
 		if($category == Category::MOBILE){
-			//return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=bsbstore(text)=Mobile%20Store,alltypes(text)=Mobiles%20and%20Tablets,product%20type(text)=Mobile%20Phones";
-			return "http://www.yebhi.com/searchAll.aspx?q=$query";
-			//changed by ashutosh
+			return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=bsbstore(text)=Mobile%20Store,alltypes(text)=Mobiles%20and%20Tablets,product%20type(text)=Mobile%20Phones";
 		}else if($category == Category::MOBILE_ACC){
 			//return "http://www.yebhi.com/searchall.aspx?q=$query&restrictBy=department(text)=Electronic%20and%20Mobile%20Accessories,bsbstore(text)=Mobile%20Store";
 			if($subcat == Category::MOB_OTHERS || $subcat == Category::NOT_SURE){
