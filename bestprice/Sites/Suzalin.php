@@ -96,8 +96,9 @@ public function hasProductdata(){
 		//pq('.shipping-details:first')->children()->remove();
 		$shipping_time = '';
 
-		$warrenty = pq('.prod_summary:last-child')->html();
+		$warrenty = pq('.prod_summary last-child last-child')->text();
 		
+		//$warrenty=pq($warrenty)
 		$author = '';
 		
 		$attr = array();
