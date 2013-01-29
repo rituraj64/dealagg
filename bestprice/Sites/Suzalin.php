@@ -82,7 +82,7 @@ public function hasProductdata(){
 	}
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
-		$price = 1;
+		$price = pq('.offer_price')->text();
 		//pq('.offer-box:first')->children('.line')->children()->remove('div');
 		//pq('.offer-box:first')->children('.line')->children()->remove('a');
 		$offer = '';
