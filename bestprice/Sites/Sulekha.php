@@ -66,6 +66,10 @@ class Sulekha extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+	
+public function hasProductdata(){
+		return true;
+	}
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
 		foreach(pq('.delproprgt')->find('span') as $span){
@@ -74,7 +78,7 @@ class Sulekha extends Parsing{
 				break;
 			}
 		}
-		$offer = pq('.bordottpbt')->children('.extxt')->html();
+		//$offer = pq('.bordottpbt')->children('.extxt')->html();
 		$stock = pq('.otstkbt')->html();
 		if($stock == 'OUT OF STOCK'){
 			$stock = -1;
@@ -99,7 +103,7 @@ class Sulekha extends Parsing{
 				$warrenty .= ' + ' . pq($li)->html();
 			}
 		}
-
+       $offer =$warrenty;
 		$data = array(
 				'price' => $price,
 				'offer' => $offer,
@@ -109,7 +113,7 @@ class Sulekha extends Parsing{
 				'attr' => $attr,
 				'author' => '',
 				'cat' => $cat,
-				'warrenty' => $warrenty
+				'warrenty' => ''
 		);
 
 		$data = $this->cleanProductData($data);
