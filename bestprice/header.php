@@ -20,6 +20,7 @@
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/noconflict.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/cufon-yui.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/League_Gothic_400.font.js'></script>
+	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/Helvetica_LT_CondensedLight_300.font.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/replacecufon.js'></script>
 	
 
@@ -43,7 +44,7 @@
     <div class="genie-container">
 
 
-      <div class="masthead genie-head">
+      <div class="masthead genie-width">
         <h3 class="muted genie-logo"><img src='<?php echo Parser::SITE_URL;?>img/logo.png' alt='loading..' title='loading..'/></h3>
         <div class="navbar genie-navbar">
           <div class="navbar-inner genie-navinner">
@@ -64,6 +65,6 @@
         <div class="genie-clear"></div>
       </div>
       </div>
-       <div class="container">
+       <div class="container genie-width">
  <input type='hidden' id='site_url' value="<?php echo Parser::SITE_URL;?>"/>
  <input type='hidden' id='ajax_url' value="<?php echo Parser::AJAX_URL;?>"/>

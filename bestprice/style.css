@@ -120,9 +120,9 @@ body {
 	padding-right:10px;
 }
 
-.genie-head
+.genie-width
 {
-	width:968px;
+	width:968px!important;
 	margin:0px auto;
 }
 .genie-container
@@ -208,3 +208,99 @@ margin-bottom: 10px;
 	
 }
 
+.genie-frmtext h1
+{
+	
+	font-size: 65px;
+	color: #666;
+	font-style:normal;
+	text-transform: uppercase;
+	margin:0px!important;
+}
+
+.genie-frmtext p{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #999!important;
+	font-style:normal;
+}
+
+.genie-frmdiv
+{
+width: 906px;
+padding: 8px;
+margin: 0px!important;
+text-align: left;
+border: 1px solid #fff;
+}
+
+.genie-back
+{
+background: #e3ae22;
+padding: 5px;
+width: 932px;
+margin: 0px!important;
+}
+
+.genie-but
+{
+	background: url("img/gobg.png") no-repeat scroll 0 0  transparent!important;
+border: 0px!important;
+box-shadow: none!important;
+text-shadow: none!important;
+width:127px;
+height:54px;
+position: absolute;
+right:0px;
+top:17px;
+}
+
+.genie-frmdiv span,.genie-but
+{
+	font-size:48px!important;
+	color: #fff;
+	font-style:normal;
+	text-transform: lowercase;
+	margin:0px!important;
+	vertical-align: middle;
+}
+.genie-frmdiv span
+{
+	float: left;
+line-height: 54px;
+padding: 0px 10px 0px 5px;
+}
+.genie-form{
+	position: relative;
+}
+
+.genie-inputbg
+{
+	background: #fff;
+padding: 5px;
+float: left;
+width: 790px;
+border-radius: 5px;
+	
+}
+
+.genie-inputbg input{
+	width:380px!important;
+	background: #fff;
+	color:#333;
+	float:left;
+}
+
+.genie-inputbg select{
+	width:325px!important;
+	background: #fff;
+	float:left;
+	color:#333;
+	
+}
+
+.genie-border
+{
+	border-right:1px dotted #ccc;
+	float:left;
+	}

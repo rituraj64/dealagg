@@ -38,7 +38,7 @@
 ?>
 
 <?php require_once 'header.php';?>
-
+ 	
       <!-- Jumbotron -->
       <div class="jumbotron">
       	<?php if(isset($result)){ ?>
@@ -107,16 +107,43 @@
         	</script>
         <?php }else{ ?>
         	<!--  <h1>Ask Me!</h1>-->
-        	  <div class="genie-frmtext"><h1>FIND cheapest price on single click</h1>
+        	  
+        <?php } ?>
+       	<script type="text/javascript">
+jQuery.noConflict();
+	jQuery(document).ready(function()
+			{
+				
+
+					jQuery('.genie-input').focus(function()
+							{
+						if(jQuery(this).attr('value')=='Enter Exact Product Name')
+						{
+						jQuery(this).attr('value','');
+						}
+							});
+						jQuery('.genie-input').blur(function()
+								{
+							if(jQuery(this).attr('value')=='')
+							{
+							jQuery(this).attr('value','Enter Exact Product Name');
+							}
+						
+							});
+			});		
+		</script>		
+        <div class="genie-frmtext"><h1>FIND cheapest price on single click</h1>
         <p>Price Genie is a realtime online price comparison engine, it finds lowest price of a product for you along with best matching coupon codes available
 Gain control of your money and discover countless options</p>
         </div>
-        <?php } ?>
-        <form class="form-search" onsubmit="$('#showSuggestion').val(1);findPrice();return false;" style="font-size: 27px">
-        		
-		  		<input type="text" name='q' id='q' class="input-xlarge" style="font-size: 27px;height: 39px;" value='<?php if(isset($result)){echo $searchObj->getQuery();} ?>'>
-		  		
-		  	 	<select id='category' style="font-size: 18px;height: 39px;" onchange="$('#subcategory').val('-1');">
+        <form class="form-search genie-form" onsubmit="$('#showSuggestion').val(1);findPrice();return false;" style="font-size: 27px">
+        		<div class="genie-back">
+        		<div class="genie-frmdiv">
+        		<span>search</span>
+        			<div class="genie-inputbg">
+		  		<input type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 27px;height: 39px;" value='<?php if(isset($result)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
+		  	<div class="genie-border"></div>
+		  	 	<select id='category' style="font-size: 25px;height:47px;" onchange="$('#subcategory').val('-1');">
 		  	 		<option value="-1">Select Category..</option>
 		  	 		<?php
 		  	 			require_once 'Category.php';
@@ -133,7 +160,11 @@ Gain control of your money and discover countless options</p>
 		  	 		<?php $i++;} ?>
 		  		</select>
 		  		<input type="hidden" id='subcategory' name='subcategory' value='<?php if(isset($result)){echo $searchObj->getSubcat();}else{echo -1;} ?>' />
-		  		<button type="submit" class="btn btn-large btn-danger">NOW!</button>
+		  		</div>
+		  		<button type="submit" class="btn btn-large btn-danger genie-but"></button>
+		  		<div class="genie-clear"></div>
+		</div>
+		</div>
 		</form>
 		
 		 <div id='error_msg' class="alert" <?php if(!isset($error)){echo 'style="display: none';}?>">
