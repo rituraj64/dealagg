@@ -82,7 +82,7 @@ public function hasProductdata(){
 	}
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
-		$price = pq('.offer_price')->children('.rupeeSign')->html();
+		$price = pq('.offer_price')->html();
 		//pq('.offer-box:first')->children('.line')->children()->remove('div');
 		//pq('.offer-box:first')->children('.line')->children()->remove('a');
 		$offer = '';
