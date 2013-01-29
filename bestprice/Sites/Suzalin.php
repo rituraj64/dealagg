@@ -83,7 +83,7 @@ class Suzalin extends Parsing{
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
 		$price = pq('.prod_summary:first')->find('.offer_price:first')->html();
-		$offer = '';
+		$offer = pq('.shipping-section:first')->children('.block-body')->find('.addloffer')->text();
 		if(sizeof(pq('.block-body')->children('.buy-btn-sec')) > 0){
 			$stock = 1;
 		}else{
@@ -99,7 +99,8 @@ class Suzalin extends Parsing{
 				$warrenty = pq($li)->html();
 				break;
 			}
-			if(strpos(strtolower(pq($li)->html()),'warranty') !== false){
+			if(pq($li).attr('class')=='colon') {
+				
 				$found = true;
 			}
 		}
