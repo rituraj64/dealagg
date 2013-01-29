@@ -77,4 +77,62 @@ class Suzalin extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+public function hasProductdata(){
+		return true;
+	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('.offer_price')->children('.rupeeSign')->html();
+		//pq('.offer-box:first')->children('.line')->children()->remove('div');
+		//pq('.offer-box:first')->children('.line')->children()->remove('a');
+		$offer = '';
+		if(sizeof(pq('.block-body')->children('.buy-btn-sec')) > 0){
+				$stock = 1;
+			}else{
+				$stock = -1;
+			}
+		//pq('#fk-mprod-shipping-section-id')->find('.block-headertext:first')->children()->remove();
+		$shipping_cost = pq('.block-headertext span')->text();
+		//pq('.shipping-details:first')->children()->remove();
+		$shipping_time = '';
+
+		$warrenty = pq('.prod_summary:last-child:last-child')->html();
+		
+		$author = '';
+			
+		foreach(pq('.secondary-info') as $div){
+			if(pq($div)->children('span')->html() == 'Author:'){
+				$author = pq($div)->children('a')->html();
+			}
+		}
+		$attr = array();
+
+		foreach(pq('.sim-prodname') as $div){
+			if(!isset($attr['Variants'])){
+				$attr['Variants'] = array();
+			}
+			$attr['Variants'][] = pq($div)->children('a')->html();
+		}
+
+		$cat = '';
+		foreach(pq('.fk-lbreadbcrumb')->find('a') as $li){
+			$cat .= pq($li)->html().',';
+		}
+
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => $author,
+				'cat' => $cat,
+				'warrenty' => $warrenty
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }
