@@ -45,7 +45,7 @@
 
 
       <div class="masthead genie-width">
-        <h3 class="muted genie-logo"><img src='<?php echo Parser::SITE_URL;?>img/logo.png' alt='loading..' title='loading..'/></h3>
+        <div class="genie-logo"><h3 class="muted genie-h3"><img src='<?php echo Parser::SITE_URL;?>img/logo-text.png' alt='loading..' title='loading..'/></h3></div>
         <div class="navbar genie-navbar">
           <div class="navbar-inner genie-navinner">
            
@@ -64,7 +64,6 @@
         </div><!-- /.navbar -->
         <div class="genie-clear"></div>
       </div>
-      </div>
-       <div class="container genie-width">
+    
  <input type='hidden' id='site_url' value="<?php echo Parser::SITE_URL;?>"/>
  <input type='hidden' id='ajax_url' value="<?php echo Parser::AJAX_URL;?>"/>

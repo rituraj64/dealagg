@@ -41,6 +41,7 @@
  	
       <!-- Jumbotron -->
       <div class="jumbotron">
+	   <div class="genie-price genie-width">
       	<?php if(isset($result)){ ?>
       		<script type="text/javascript">
         	$(document).ready(function(){
@@ -109,29 +110,7 @@
         	<!--  <h1>Ask Me!</h1>-->
         	  
         <?php } ?>
-       	<script type="text/javascript">
-jQuery.noConflict();
-	jQuery(document).ready(function()
-			{
-				
-
-					jQuery('.genie-input').focus(function()
-							{
-						if(jQuery(this).attr('value')=='Enter Exact Product Name')
-						{
-						jQuery(this).attr('value','');
-						}
-							});
-						jQuery('.genie-input').blur(function()
-								{
-							if(jQuery(this).attr('value')=='')
-							{
-							jQuery(this).attr('value','Enter Exact Product Name');
-							}
-						
-							});
-			});		
-		</script>		
+      
         <div class="genie-frmtext"><h1>FIND cheapest price on single click</h1>
         <p>Price Genie is a realtime online price comparison engine, it finds lowest price of a product for you along with best matching coupon codes available
 Gain control of your money and discover countless options</p>
@@ -142,7 +121,7 @@ Gain control of your money and discover countless options</p>
         		<span>search</span>
         			<div class="genie-inputbg">
 		  		<input type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 27px;height: 39px;" value='<?php if(isset($result)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
-		  	<div class="genie-border"></div>
+		  	
 		  	 	<select id='category' style="font-size: 25px;height:47px;" onchange="$('#subcategory').val('-1');">
 		  	 		<option value="-1">Select Category..</option>
 		  	 		<?php
@@ -166,7 +145,7 @@ Gain control of your money and discover countless options</p>
 		</div>
 		</div>
 		</form>
-		
+		  
 		 <div id='error_msg' class="alert" <?php if(!isset($error)){echo 'style="display: none';}?>">
 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
 		  <strong>Warning!</strong> <span><?php if(isset($error)){echo $error;}?></span>
@@ -201,8 +180,12 @@ Gain control of your money and discover countless options</p>
 					<h4 id='time'><?php if(isset($result)) {echo date('Y-m-d h:i:s',$created_at);}?></h4>
 				</div>
 				<div class='clearfix'></div>
+				
+		</div>
 		</div>
       </div>
+	  </div>
+       <div class="container genie-width">
       <input type='hidden' id='isSorting' value='0' />
       <input type='hidden' id='query_id' value='0' />
       <input type='hidden' id='showSuggestion' value='1' />

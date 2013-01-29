@@ -116,10 +116,13 @@ body {
 {
 	margin:0px;
 	float:left;
-	background: url("img/bord.png") no-repeat scroll 100% 0 transparent;
+	background: url("img/menutop-border.png") no-repeat scroll 100% 0 transparent;
 	padding-right:10px;
 }
-
+.genie-h3
+{
+background: url("img/logo-gen.png") no-repeat scroll 100% 0 transparent;
+}
 .genie-width
 {
 	width:968px!important;
@@ -127,7 +130,7 @@ body {
 }
 .genie-container
 {
- background: url("img/bluebg.png") repeat-x scroll 0 0 transparent;	
+ background: url("img/headbg.png") repeat-x scroll 0 0 transparent;	
  
 }
 
@@ -163,9 +166,9 @@ body {
 
 .genie-nav a
 {
-	padding-top:25px!important;
-	margin-top: 20px;
-margin-bottom: 10px;
+	padding: 15px 10px!important;
+margin-top: 0px!important;
+
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 13px;
 	color: #fff!important;
@@ -183,15 +186,17 @@ margin-bottom: 10px;
 }
 .genie-nav .genie-home a
 {
-	background: url("img/home_icon.png") no-repeat scroll 50% 0 transparent!important;
+	/*background: url("img/home_icon.png") no-repeat scroll 50% 0 transparent!important;*/
 	padding-left:0px!important;
 	padding-right:0px!important;
 }
 
 .genie-navbar .genie-nav li 
 {
-	background: url("img/bord.png") no-repeat scroll 100% 0 transparent;
+	background: url("img/menutop-border.png") no-repeat scroll 100% 0 transparent;
 }
+
+/*
 .genie-nav .genie-coup a
 {
 	background: url("img/sci_icon.png") no-repeat scroll 50% 0  transparent;
@@ -207,12 +212,12 @@ margin-bottom: 10px;
 	background: url("img/genie_icon.png") no-repeat scroll 50% 0  transparent;
 	
 }
-
+*/
 .genie-frmtext h1
 {
 	
 	font-size: 65px;
-	color: #666;
+	color: #fff;
 	font-style:normal;
 	text-transform: uppercase;
 	margin:0px!important;
@@ -221,7 +226,7 @@ margin-bottom: 10px;
 .genie-frmtext p{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
-	color: #999!important;
+	color: #fff!important;
 	font-style:normal;
 }
 
@@ -244,12 +249,12 @@ margin: 0px!important;
 
 .genie-but
 {
-	background: url("img/gobg.png") no-repeat scroll 0 0  transparent!important;
+	background: url("img/gobutton.png") no-repeat scroll 0 0  transparent!important;
 border: 0px!important;
 box-shadow: none!important;
 text-shadow: none!important;
-width:127px;
-height:54px;
+width:119px;
+height:50px;
 position: absolute;
 right:0px;
 top:17px;
@@ -289,6 +294,11 @@ border-radius: 5px;
 	background: #fff;
 	color:#333;
 	float:left;
+	border-right:1px dotted #ccc;
+	box-shadow:none!important;
+	border-left:0px;
+		border-top:0px dotted #ccc;
+	border-bottom:0px dotted #ccc;
 }
 
 .genie-inputbg select{
@@ -296,6 +306,7 @@ border-radius: 5px;
 	background: #fff;
 	float:left;
 	color:#333;
+	border:none!important;
 	
 }
 
