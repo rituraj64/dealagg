@@ -179,11 +179,16 @@ margin:0px;
 margin-top: 0px!important;
 
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 13px;
+	font-size: 14px;
 	color: #fff!important;
 	font-style:normal;
 	text-shadow: 0px 2px #000!important;
 	text-transform: uppercase;
+	font-weight: normal!important;
+}
+.genie-navbar .genie-nav li:hover a.genie-hov
+{
+color:#e3ae22!important;
 }
 .genie-nav .active a
 {
@@ -216,12 +221,65 @@ margin-top: 0px!important;
 	background: url("img/serc_icon.png") no-repeat scroll 50% 0 transparent;
 }
 */
+.genie-nav .genie-all a
+{
+background: url("img/menudown.png") no-repeat scroll 96% 24px  transparent;
+}
 .genie-nav .genie-all 
 {
-	background: url("img/menudown.png") no-repeat scroll 100% 0  transparent;
+	
+	position:relative;
 	
 }
+.genie-child
+{
+background:#085394;
+margin:0px;
+margin-top: -3px;
+position:absolute;
+z-index:999999;
+display:none;
+border-radius:0px 0px 5px 5px;
+padding-bottom: 8px;
+}
+.genie-nav  li.genie-all:hover .genie-child 
+{
+display:block;
+}
 
+.genie-child li
+{
+float:none!important;
+border:none!important;
+
+display:block!important;
+width:auto!important;
+line-height:17px!important;
+background: url("img/lamp-icon.png") no-repeat scroll 8px 0px transparent!important;
+padding-left: 13px;
+padding-bottom:13px;
+}
+.genie-child li:hover
+{
+background: url("img/lampicon-hover.png") no-repeat scroll 8px 0px transparent!important;
+
+}
+.genie-child li:hover a
+{
+text-decoration:none;
+}
+.genie-child li a
+{
+color: #fff!important;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 13px;
+padding: 0px 40px 0px 25px !important;
+text-transform: inherit;
+font-weight: normal!important;
+font-style: normal;
+background:none!important;
+
+}
 .genie-frmtext h1
 {
 	
@@ -344,6 +402,11 @@ font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #999;
 	font-style:normal;
+}
+.genie-footmenu ul li:hover a
+{
+color:#e3ae22;
+text-decoration:none;
 }
 .genie-footmenu ul li.active a
 {

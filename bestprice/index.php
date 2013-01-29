@@ -123,7 +123,7 @@ Gain control of your money and discover countless options</p>
         		<div class="genie-frmdiv">
         		<span>search</span>
         			<div class="genie-inputbg">
-		  		<input type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 27px;height: 39px;" value='<?php if(isset($result)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
+		  		<input type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($result)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
 		  	
 		  	 	<select id='category' style="font-size: 25px;height:47px;" onchange="$('#subcategory').val('-1');">
 		  	 		<option value="-1">Select Category..</option>

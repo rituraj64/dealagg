@@ -54,12 +54,15 @@
           <div class="navbar-inner genie-navinner">
            
               <ul class="nav genie-nav">
-                <li class="active genie-home"><a href="<?php echo Parser::SITE_URL;?>index.php">Home</a></li>
-                <li class="genie-coup"><a href="<?php echo Parser::SITE_URL;?>coupons.php">Coupons</a></li>
+                <li class="active genie-home"><a class="genie-hov" href="<?php echo Parser::SITE_URL;?>index.php">Home</a></li>
+                <li class="genie-coup"><a class="genie-hov" href="<?php echo Parser::SITE_URL;?>coupons.php">Coupons</a></li>
                <!--  <li><a href="<?php echo Parser::SITE_URL;?>sites.php">Sites</a></li> -->
-                <li class="genie-search"><a href="<?php echo Parser::SITE_URL;?>recent.php">Recent Searches</a></li>
-                <li class="genie-all"><a href="<?php echo Parser::SITE_URL;?>recent.php">Everything Genie</a>
-				<ul>
+                <li class="genie-search"><a class="genie-hov" href="<?php echo Parser::SITE_URL;?>recent.php">Recent Searches</a></li>
+                <li class="genie-all"><a class="genie-hov" href="<?php echo Parser::SITE_URL;?>recent.php">Everything Genie</a>
+				<ul class="genie-child">
+				<li><a href="<?php echo Parser::SITE_URL;?>about.php">About Price Genie</a></li>
+				<li><a href="<?php echo Parser::SITE_URL;?>about.php">How it Works</a></li>
+				<li><a href="<?php echo Parser::SITE_URL;?>contact.php">Contact Us</a></li>
 				</ul>
 				
 				</li>
