@@ -293,16 +293,16 @@
 			}
 			else
 			{
+				if(readStatus!=status_val)
+				{
+					abc.parent("td").parent("tr").hide();
+				}
 				$.ajax({
 			        url: 'updateCouponParse.php?Id='+id,
 			        data: 'content=' + this.value,
 			        cache: false,
 			        success:function(){
 						
-						if(readStatus!=status_val)
-						{
-							abc.parent("td").parent("tr").hide();
-						}
 					}
 			       
 			    });  
