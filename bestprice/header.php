@@ -13,11 +13,10 @@
     <link href="<?php echo Parser::SITE_URL;?>style.css" rel="stylesheet">
     <link href="<?php echo Parser::SITE_URL;?>bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://cdn.webrupee.com/font">
-    <script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="<?php echo Parser::SITE_URL;?>js/jquery-1.8.3.min.js" type="text/javascript"></script>
 	<script src="<?php echo Parser::SITE_URL;?>bootstrap/js/bootstrap.js" type="text/javascript"></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/ajax.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/jquery.scrollTo-1.4.3.1-min.js'></script>
-	
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/cufon-yui.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/League_Gothic_400.font.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/Helvetica_LT_CondensedLight_300.font.js'></script>

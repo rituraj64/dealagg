@@ -18,7 +18,7 @@ $(document).ready(function() {
 
 	$('.remove_website_btn').live('click', function() {
 		var id = $(this).closest('.website').first().attr('id');
-		makeSmall(id);
+		makeSmall(id,'Website Marked Incorrect by you!');
 		updateShareLink();
 	});
 
@@ -204,7 +204,7 @@ function findPrice(site, cache, trust, changeSubCat, searchThis) {
 		setTimeout('hideError()', 2000);
 		return;
 	}
-	if ($('#q').val().length == 0) {
+	if ($('#q').val().length == 0 || $('#q').val() == 'Enter Exact Product Name') {
 		$('#error_msg').find('span').html('Please write the product name!');
 		$('#error_msg').show();
 		setTimeout('hideError()', 2000);
@@ -234,6 +234,7 @@ function findPrice(site, cache, trust, changeSubCat, searchThis) {
 		$('#results').hide();
 		$('#results').html('');
 		$('#step').hide();
+		$('.genie-frmtext').hide();
 		$('#step_items').html('');
 		// $('#progress').hide();
 		$('#progress').find('.bar').first().attr('style', 'width:0%');
@@ -594,7 +595,7 @@ function checkAlpha(remove) {
 				} else {
 					console.log($(this).attr('id') + ' will be removed for model no mismatch');
 					if (remove == 1) {
-						makeSmall($(this).attr('id'));
+						makeSmall($(this).attr('id'),'Model No Mismatch');
 					}
 				}
 			}
@@ -899,7 +900,7 @@ function finished() {
 					if (brand) {
 						if (brand.toLowerCase() != r['name'].toLowerCase()) {
 							if (name.indexOf(brand.toLowerCase()) == -1) {
-								makeSmall($(this).attr('id'));
+								makeSmall($(this).attr('id'),'Branch Name Mismatch. Popular Brand is '+ r['name'].toLowerCase() + ' and current is '+brand.toLowerCase());
 								console.log('Brand Mismatch so making small' + $(this).attr('id') + ' with ' + brand + "xx" + r['brand']);
 							}
 						}
@@ -1096,7 +1097,7 @@ function sortResult() {
 					}
 					var variation = Math.abs(Math.ceil(((a - b) / b) * 100));
 					if (variation > 40) {
-						makeSmall(website);
+						makeSmall(website,'Price Variation Found a ' + a + " b " + b + " = " + variation + '%');
 						console.log('MakeSmall: Variation Found a ' + a + " b " + b + " = " + variation);
 					} else {
 						console.log('MakeSmall False: Variation Found a ' + a + " b " + b + " = " + variation);
@@ -1583,12 +1584,13 @@ function createMainItem(url, item_id_count, image, lazyimage, name, price, autho
 	return html;
 }
 
-function makeSmall(website) {
+function makeSmall(website,reason) {
 	if ($('#' + website).hasClass('website_small')) {
 		return;
 	}
 	// $('#' + website).children('.span4:last').hide();
 	// $('#' + website).children('.span2:last').hide();
+	
 	$('#' + website).children('.last-div').hide();
 	$('#' + website).children('.other_info_parent').hide();
 	$('#' + website).children('.item_main').children('hr').hide();
@@ -1607,7 +1609,7 @@ function makeSmall(website) {
 	img.addClass('no-resize');
 	img.height('50px');
 	img.width('50px');
-	$('#' + website).children('.item_main').children('.media').children('.media-body').width('380px');
+	$('#' + website).children('.item_main').children('.media').children('.media-body').width('530px');
 	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.pull-left:first').css('max-height', '22px');
 	var index = 0;
 	$('#' + website).children('.item_main').children('.media').children('.media-body').children('.clearfix').each(function() {
@@ -1619,6 +1621,13 @@ function makeSmall(website) {
 	});
 	$('#' + website).height('60px');
 	$('#' + website).children('.span2:first').find('img').first().height('40px');
+	
+	if(reason != undefined){
+		var ele = $('#'+website).children('.item_main').children('.media').children('.media-body');
+		ele.append('<div class="clearfix"></div><small id="reason" class="pull-left">Why here? '+reason+'<small>');
+	}
+	
+	
 	// $('#' + website).css('margin-top', '0px');
 	var template = $('#website_hide_template').html();
 	$('#' + website).children('.span8').after(template);
@@ -1657,6 +1666,9 @@ function makeSmall(website) {
 function makeBig(website) {
 	// $('#' + website).children('.span4:last').show();
 	// $('#' + website).children('.span2:last').show();
+	
+	$('#'+website).children('.item_main').children('.media').children('.media-body').children('small#reason').remove();
+	
 	$('#' + website).children('.last-div:first').show();
 	$('#' + website).children('.other_info_parent').show();
 	$('#' + website).children('.item_main').children('hr').show();

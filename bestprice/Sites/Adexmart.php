@@ -33,7 +33,7 @@ class Adexmart extends Parsing{
 				$shipping = '';
 				$stock = 0;
 				$s = pq($div)->find('.availability')->html();
-				if(strpos( strtolower($s), 'out of stock') !== false){
+				if(strpos(strtolower($s), 'out of stock') !== false){
 					$stock = -1;
 				}else{
 					$stock = 1;

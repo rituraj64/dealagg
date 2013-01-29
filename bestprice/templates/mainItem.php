@@ -12,7 +12,7 @@
 		<a class='pull-left' href="{item_url}" target="_blank">
 			<img style="width:50px;height:50px;margin:5px" class="img-rounded media-object" src="{item_image}" alt='{item_name}' title='{item_name}'/>
 		</a>
-		<div class="media-body pull-left" style="width: 227px;text-align:left">
+		<div class="media-body pull-left" style="width: 217px;text-align:left">
 			<div class='pull-left' style="max-height:60px;overflow:hidden">
 				<a href="{item_url}" target="_blank" class="apply_tooltip" rel="tooltip" data-placement="top" data-original-title="{item_name}">{item_name}</a>
 			</div>
