@@ -50,9 +50,9 @@
 		public $problem;
 		public $warned;
 		public $priority;
-		
+		public $html;
 		public $_table = "html_detect";
-		public $_fields = array('id','website','search_url','cache_key','problem','warned','priority');
+		public $_fields = array('id','website','search_url','cache_key','problem','warned','priority','html');
 		
 	}
 ?>

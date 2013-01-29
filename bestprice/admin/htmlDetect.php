@@ -22,7 +22,12 @@ require_once 'couponClass.php';
 require_once '../smartmodel/UI.php';
 
 $user = new html_detect();
+
 $data=$user->read(null,null);
+//foreach($data as $d)
+//{
+//	echo $d['html'];
+//}
 
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
 
@@ -37,8 +42,10 @@ Function view_html($row)
 
 //code starts here for sorting the column ID in desc order
 $usersTable->sortCol='priority'; 
-$usersTable->sorting='desc';
 //code ends here for sorting the column ID in desc order
+
+$array=array('html');
+$usersTable-> setHideColumn($array);
 
 $table=$usersTable->generateTable($user);
 echo $table;
