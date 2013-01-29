@@ -95,8 +95,11 @@ public function hasProductdata(){
 		$shipping_cost = pq('.block-headertext span')->text();
 		//pq('.shipping-details:first')->children()->remove();
 		$shipping_time = '';
-
-		$warrenty = pq('.prod_summary last-child last-child')->text();
+      
+		
+		//pq('.prod_summary:first')->children()->remove();
+		//pq('.prod_summary:first')->children()->remove();
+		$warrenty = pq('prod_summary:first')->text();
 		
 		//$warrenty=pq($warrenty)
 		$author = '';
