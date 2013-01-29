@@ -427,6 +427,7 @@ require_once '../Parsing.php';
 	<div style="float:left">
 		<a href="index.php" id="add_coupon">Coupon Active</a>
 		<a href="couponParse.php" id="add_coupon">Coupon Parse</a>
+		<a href="htmlDetect.php">View HTML</a>
 	</div>
 	<div style="float:right; border:solid 1px; margin-bottom:10px; background-color:#494949;border-radius:5px;">
 		<a class="add_coupon" style="text-decoration:none;color:white;" href="#data">Add Coupon</a>
