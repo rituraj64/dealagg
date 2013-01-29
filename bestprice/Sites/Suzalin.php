@@ -86,11 +86,11 @@ public function hasProductdata(){
 		//pq('.offer-box:first')->children('.line')->children()->remove('div');
 		//pq('.offer-box:first')->children('.line')->children()->remove('a');
 		$offer = '';
-		if(sizeof(pq('.block-body')->children('.buy-btn-sec')) > 0){
+		//if(sizeof(pq('.block-body')->children('.buy-btn-sec')) > 0){
 				$stock = 1;
-			}else{
+		//	}else{
 				$stock = -1;
-			}
+			//}
 		//pq('#fk-mprod-shipping-section-id')->find('.block-headertext:first')->children()->remove();
 		$shipping_cost = pq('.block-headertext span')->text();
 		//pq('.shipping-details:first')->children()->remove();
