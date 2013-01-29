@@ -356,3 +356,31 @@ float:right;
 {
 color:#3a8fcf;
 }
+.genie-leftbg
+{
+background: url("img/genie-withno.png") no-repeat scroll 0 0 transparent!important;
+width: 219px;
+height: 320px;
+margin-top:-55px;
+float:left;
+}
+.genie-serch span
+{
+
+	font-size:36px;
+	color: #000;
+	font-style:normal;
+	text-transform: uppercase;
+}
+.genie-serch .genie-img1
+{
+background: url("img/gen-left.png") no-repeat scroll 0 0 transparent!important;
+width:30px;
+height:19px;
+}
+.genie-serch .genie-img2
+{
+background: url("img/gen-rght.png") no-repeat scroll 0 0 transparent!important;
+width:30px;
+height:19px;
+}

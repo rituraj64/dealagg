@@ -111,7 +111,7 @@
         	  
         <?php } ?>
 		
-		<?php require_once 'corejs.php';?>
+		
 
        	
         <div class="genie-frmtext"><h1>FIND cheapest price on single click</h1>
@@ -255,7 +255,23 @@ Gain control of your money and discover countless options</p>
       <hr>
 
       -->
-      
+      <div class="genie-midbg">
+	    <div class="genie-leftbg"></div>
+	  <div>
+	  <div class="genie-serch"><span class="genie-img1"></span><span>best way to search</span><span class="genie-img2"></span>
+	  </div>
+	  <ul>
+	  <li>
+	  </li>
+	  <li>
+	  </li>
+	  
+	  </ul>
+	  </div>
+	  <div class="genie-clear"></div>
+	  </div>
+	  
+	  
         <div class="modal hide fade" id='subcategory_model'>
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
