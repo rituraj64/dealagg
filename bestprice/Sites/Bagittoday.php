@@ -61,4 +61,67 @@ class Bagittoday extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+public function hasProductdata(){
+		return true;
+	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('.productDetailsBox:first')->children('.productPrice')->html();
+		
+		
+		//$offer = pq('.productDetailsBox:first')->children('.getPuma')->html();
+		$offer='';
+		if(sizeof(pq('.BuyNow:first')) > 0){
+				$stock = 1;
+			}else{
+				$stock = -1;
+			}
+	
+		$shipping_cost = pq('.productDetailsBox:first')->children('.delivery')->html();
+		
+		$shipping_time = pq('.shipping-details:first')->html();
+
+		$warrenty = pq('.mprod-warrenty:first')->html();
+
+	    $cat = '';
+		foreach(pq('.bradCrumsText')->find('a') as $li){
+			$cat .= pq($li)->html().',';
+		}
+		
+		$findme   = 'Books';
+
+		if(strpos($cat, $findme)){
+		$author =pq('.productDetailsBox:first')->children('.productName')->html();
+			
+		$result = end(explode('By', $author));
+		$author=$result;
+	}
+	else
+         $author='';
+		
+      
+
+		
+		$attr = array();
+
+		
+
+		
+
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => $author,
+				'cat' => $cat,
+				'warrenty' => $warrenty
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }
