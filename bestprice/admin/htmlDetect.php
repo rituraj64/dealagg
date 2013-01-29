@@ -15,6 +15,18 @@
 			var url=$(this).text();
 			$(this).html("<a href="+url+" target=_blank>"+url+"</a>");
 		});
+		
+		$(".html").each(function(){
+			var html=$(this).val();
+			$(".view_html").each(function(){
+				var href=$(this).attr("href");
+				if(href=="#")
+				{
+					$(this).attr("href",html);
+					return false;
+				}
+			});
+		});
 	});
 	</script>	
 	<style type="text/css">
@@ -39,12 +51,8 @@ require_once 'couponClass.php';
 require_once '../smartmodel/UI.php';
 
 $user = new html_detect();
-
-$data=$user->read(null,null);
-//foreach($data as $d)
-//{
-//	echo $d['html'];
-//}
+$orderBy=array('asc'=>'priority');
+$data=$user->read(null,null,$orderBy);
 
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
 
@@ -53,9 +61,19 @@ $array=array('Html'=>'view_html');
 $usersTable->addCustomColumn($array);
 Function view_html($row)
 {
-	Return "<a href=# class='add_coupon'>View Html</a>";
+	Return "<a href=# class='view_html'>View Html</a>";
 }
 //code ends here for adding a new column to a table
+foreach($data as $html)
+{?>
+	<input type="hidden" class="html" value="<?php echo $html['html']; ?>"></input>
+<?php 
+}
+?>
+<script>
+		
+	</script>
+<?php 
 
 //code starts here for sorting the column ID in desc order
 $usersTable->sortCol='priority'; 
