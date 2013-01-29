@@ -105,7 +105,10 @@ public function hasProductdata(){
 
 		
 
-		$cat = '';
+	    $cat = '';
+		foreach(pq('.sc-breadbcrumb')->find('a') as $li){
+			$cat .= pq($li)->html().',';
+		}
 		
 
 
