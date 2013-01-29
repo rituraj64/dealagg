@@ -111,6 +111,7 @@ body {
 {
 	margin:0px;
 	padding:0px;
+	background:#f8f8f8;
 }
 .genie-logo
 {
@@ -214,13 +215,13 @@ margin-top: 0px!important;
 {
 	background: url("img/serc_icon.png") no-repeat scroll 50% 0 transparent;
 }
-
-.genie-nav .genie-all a
+*/
+.genie-nav .genie-all 
 {
-	background: url("img/genie_icon.png") no-repeat scroll 50% 0  transparent;
+	background: url("img/menudown.png") no-repeat scroll 100% 0  transparent;
 	
 }
-*/
+
 .genie-frmtext h1
 {
 	
@@ -337,7 +338,7 @@ float:left;
 padding-right:20px;
 }
 
-.genie-footmenu ul li a,.genie-copyrght p
+.genie-footmenu ul li a,.genie-copyrght span
 {
 font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -352,16 +353,25 @@ color:#e3ae22;
 {
 float:right;
 }
-.genie-copyrght p a
+.genie-copyrght span a
 {
 color:#3a8fcf;
 }
 .genie-leftbg
 {
-background: url("img/genie-withno.png") no-repeat scroll 0 0 transparent!important;
+background: url("img/genie-withno.png") no-repeat scroll 0 0 transparent;
 width: 219px;
 height: 320px;
 margin-top:-55px;
+float:left;
+}
+.genie-rghtbg
+{
+background: url("img/boytext.png") no-repeat scroll 0 0 transparent;
+width: 167px;
+height: 194px;
+margin-top:70px;
+margin-left:27px;
 float:left;
 }
 .genie-serch span
@@ -372,15 +382,40 @@ float:left;
 	font-style:normal;
 	text-transform: uppercase;
 }
+.genie-serch
+{
+margin-left:155px;
+
+}
 .genie-serch .genie-img1
 {
-background: url("img/gen-left.png") no-repeat scroll 0 0 transparent!important;
-width:30px;
-height:19px;
+background: url("img/gen-left.png") no-repeat scroll 0px 10px transparent;
+padding-left:40px;
+
 }
 .genie-serch .genie-img2
 {
-background: url("img/gen-rght.png") no-repeat scroll 0 0 transparent!important;
-width:30px;
-height:19px;
+background: url("img/gen-rght.png") no-repeat scroll 11px 10px transparent;
+padding-left: 40px;}
+
+.genie-midtext
+{
+float:left;
+padding-top:19px;
+width:555px;
+}
+.genie-midtext ul
+{
+list-style:none;
+margin:0px !important;
+}
+.genie-midtext li
+{
+line-height:19px;
+padding-bottom:5px;
+}
+.genie-foot
+{
+background: url("img/footbord.png") repeat-x scroll 0px 0px transparent;
+padding-top:2px;
 }

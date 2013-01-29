@@ -58,7 +58,11 @@
                 <li class="genie-coup"><a href="<?php echo Parser::SITE_URL;?>coupons.php">Coupons</a></li>
                <!--  <li><a href="<?php echo Parser::SITE_URL;?>sites.php">Sites</a></li> -->
                 <li class="genie-search"><a href="<?php echo Parser::SITE_URL;?>recent.php">Recent Searches</a></li>
-                <li class="genie-all"><a href="<?php echo Parser::SITE_URL;?>recent.php">Everything Genie</a></li>
+                <li class="genie-all"><a href="<?php echo Parser::SITE_URL;?>recent.php">Everything Genie</a>
+				<ul>
+				</ul>
+				
+				</li>
                  <!--   <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>-->
 

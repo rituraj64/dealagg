@@ -257,17 +257,25 @@ Gain control of your money and discover countless options</p>
       -->
       <div class="genie-midbg">
 	    <div class="genie-leftbg"></div>
-	  <div>
+	  <div class="genie-midtext">
 	  <div class="genie-serch"><span class="genie-img1"></span><span>best way to search</span><span class="genie-img2"></span>
 	  </div>
 	  <ul>
-	  <li>
+	  <li>Enter simple and specific product name your looking for or else results wont be accurate
 	  </li>
-	  <li>
+	  <li>The final result page may have some product which your are not looking for, you can 
+remove them easliy
+	  </li>
+	  <li>If the final results are not what your looking for try a better search term or send us 
+feedback on the same
+	  </li>
+	  <li>We support only selected categories right now, so remember to search in those 
+categories only
 	  </li>
 	  
 	  </ul>
 	  </div>
+	  <div class="genie-rghtbg"></div>
 	  <div class="genie-clear"></div>
 	  </div>
 	  

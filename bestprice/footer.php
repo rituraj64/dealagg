@@ -1,4 +1,6 @@
-  <div class="footer">
+  </div>
+  <div class="footer genie-foot">
+  <div class="container genie-width">
         <div class="genie-footmenu">
 		<ul>
 		 <li class="active genie-abt"><a href="<?php echo Parser::SITE_URL;?>about.php">About</a></li>
@@ -10,15 +12,17 @@
 		                
 		</div>
       <div class="genie-copyrght">
-	  <p>PriceGenie &copy; 2013 by <a>Excellence Technologies </a> |</p>
+	 <span> PriceGenie &copy; 2013 by <a>Excellence Technologies </a> |<span>
+	 <span> <a><img src='<?php echo Parser::SITE_URL;?>img/fb.png' alt='loading..' title='loading..'/></a></span>
+	 <span> <a><img src='<?php echo Parser::SITE_URL;?>img/tw.png' alt='loading..' title='loading..'/></a></span>
 	  </div>
 	  
 	  <div class="genie-clear"></div>
 	  
-	  </div>
+	  
   
 
-
+</div>
 
   </div>
   </body>
