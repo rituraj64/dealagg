@@ -107,7 +107,7 @@
         	</script>
         <?php }else{ ?>
         	<!--  <h1>Ask Me!</h1>-->
-        	  <div><h1>FIND cheapest price on single click</h1>
+        	  <div class="genie-frmtext"><h1>FIND cheapest price on single click</h1>
         <p>Price Genie is a realtime online price comparison engine, it finds lowest price of a product for you along with best matching coupon codes available
 Gain control of your money and discover countless options</p>
         </div>
