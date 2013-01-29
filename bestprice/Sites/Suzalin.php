@@ -99,25 +99,13 @@ public function hasProductdata(){
 		$warrenty = pq('.prod_summary:last-child:last-child')->html();
 		
 		$author = '';
-			
-		foreach(pq('.secondary-info') as $div){
-			if(pq($div)->children('span')->html() == 'Author:'){
-				$author = pq($div)->children('a')->html();
-			}
-		}
+		
 		$attr = array();
 
-		foreach(pq('.sim-prodname') as $div){
-			if(!isset($attr['Variants'])){
-				$attr['Variants'] = array();
-			}
-			$attr['Variants'][] = pq($div)->children('a')->html();
-		}
+		
 
 		$cat = '';
-		foreach(pq('.fk-lbreadbcrumb')->find('a') as $li){
-			$cat .= pq($li)->html().',';
-		}
+		
 
 
 		$data = array(
