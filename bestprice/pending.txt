@@ -15,9 +15,9 @@ also top floater is not working properly
 12. searchc sony on snapdeal and it goes to its category page.
 13. change in html detection system
 14. design integration of about us, reacent search, coupon pages, contact us
-15. brand filtering
 16. for rediff, search in new category only
 17. setup trusted site for all categories
+18. testing of coupon code.
 
 //giffiks sometimes redirects to product page on search. see if there is need to parse it, since giffiks is not a famous site
 

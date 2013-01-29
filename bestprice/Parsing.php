@@ -244,7 +244,9 @@ class Parsing{
 	public function cacheData($website,$query,$category,$subcat,$url,$html){
 		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
 		if($this->getCurrentCache() == self::CACHE_FILE){
-			file_put_contents('cache/'.$cacheKey,$html);
+			
+			//file_put_contents('cache/'.$cacheKey,$html); 
+			// not doing normal caching only query caching
 
 			/* this code is for caching query wise, so the users previous data is saved */
 			$query_id = $this->_query_id;

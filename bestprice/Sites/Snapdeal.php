@@ -133,10 +133,10 @@ class Snapdeal extends Parsing{
 			if(sizeof(pq('div.product_listing_cont'))){
 				foreach(pq('div.product_listing_cont') as $div){
 					if(sizeof(pq($div)->find('.product-image'))){
-						$image = pq($div)->find('.product-image')->html();
-						$url = pq($div)->find('a')->attr('href');
-						$name = strip_tags(pq($div)->find('.product_listing_heading')->html());
-						$disc_price = pq($div)->find('.product_listing_price_outer')->find('.product_discount_outer ')->html();
+						$image = pq($div)->find('.product-image:first')->html();
+						$url = pq($div)->find('a:first')->attr('href');
+						$name = strip_tags(pq($div)->find('.product_listing_heading:first')->html());
+						$disc_price = pq($div)->find('.product_listing_price_outer:first')->find('.product_discount_outer:first')->html();
 						$offer = '';
 						$shipping = '' ;
 						$stock = 0;
@@ -253,7 +253,7 @@ class Snapdeal extends Parsing{
 
 			$data2 = array();
 			foreach($data as $row){
-				if(strpos($row['image'],'http://') === false){
+				if(strpos($row['image'],'http://') != 0){
 					$html = $row['image'];
 					$html .= '</img>';
 					phpQuery::newDocumentHTML($html);

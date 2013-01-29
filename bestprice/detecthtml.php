@@ -12,7 +12,7 @@ foreach($data as $row){
 	}
 }
 if(!empty($ids)){
-	$detect->query("update html_detect set warned = 1 where ids in (". implode($ids,',') .")");
+	$detect->query("update html_detect set warned = 1 where id in (". implode($ids,',') .")");
 	
 }
 

@@ -337,6 +337,7 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 
 	var size = data.data.length;
 	if (size > 0) {
+		// actual process of data here.
 		makeResultBody(data);
 	}
 
@@ -427,7 +428,9 @@ function processData(data, site, cache, trust, changeSubCat, preloaded, searchTh
 	}
 	// if (data.data.length > 0) { commented, because when of the first trusted
 	// site the last site doesnt have any data, the code gets stuck
-	if (data.data.length > 0) {
+	if (data.data.length > 0 || data.error_sites.length) {
+		// added error, because last site i.e shopclues was showing error and
+		// code getting stuck.
 		queueSortResult(0, site);
 	}
 	// }
@@ -633,7 +636,10 @@ function calcResult() {
 			no_result++;
 		} else {
 			total_sites++;
-			pricesArr[pricesArr.length] = $(this).children('.item_main').children('#item_price').val();
+			var p = $(this).children('.item_main').children('#item_price').val();
+			if (p != '-NA-') {
+				pricesArr[pricesArr.length] = p;
+			}
 		}
 	});
 
@@ -753,7 +759,7 @@ function calcResult() {
 			var category = $('#category').val();
 			if (category != 9) {
 				var data2 = new Array();
-				for(var i=0;i<data.length;i++){
+				for ( var i = 0; i < data.length; i++) {
 					data2[data2.length] = data[i]['name'];
 				}
 				var branddist = new Array();
@@ -762,10 +768,10 @@ function calcResult() {
 				var r = findHeightestBrand(data2)
 				var hits = r['hits'];
 				var brand = r['name'];
-				
+
 				console.log('hits found to be ' + hits + 'for brand ' + brand + 'among sites ' + total_sites);
 
-				if (hits > Math.ceil( (total_sites + 1) * .8)) {
+				if (hits > Math.ceil((total_sites + 1) * .8)) {
 					console.log('brand found to be ' + brand + 'with hits ' + hits);
 				} else {
 					var brandNF = 0;
@@ -869,37 +875,39 @@ function finished() {
 
 		$('.remove_website_btn').show();
 
-		
 		var data = new Array();
 		var total = 0;
 		$('#results').children('.website').each(function() {
 			if ($(this).hasClass('website_error')) {
 			} else if ($(this).hasClass('website_noresult')) {
 			} else {
-				var name = $(this).children('.item_main').children('#item_name).val();
+				var name = $(this).children('.item_main').children('#item_name').val();
 				data[data.length] = name;
 				total++;
 			}
 		});
 		var r = findHeightestBrand(data);
-		if (r['hits'] > Math.ceil( (total + 1) * .8)) {
+		console.log('Find Branch Matching');
+		console.log(r);
+		if (r['hits'] > Math.ceil((total) * .8)) {
 			$('#results').children('.website').each(function() {
 				if ($(this).hasClass('website_error')) {
 				} else if ($(this).hasClass('website_noresult')) {
 				} else {
-					var name = $(this).children('.item_main').children('#item_name).val();
+					var name = $(this).children('.item_main').children('#item_name').val();
 					var brand = identifyBrand(name);
-					if(brand){
-						if(brand != r['brand']){
-							makeSmall($(this).attr('id'));
-							console.log('Brand Mismatch so making small' + $(this).attr('id') + ' with ' + brand + "xx"+ r['brand']);
+					if (brand) {
+						if (brand.toLowerCase() != r['name'].toLowerCase()) {
+							if (name.indexOf(brand.toLowerCase()) == -1) {
+								makeSmall($(this).attr('id'));
+								console.log('Brand Mismatch so making small' + $(this).attr('id') + ' with ' + brand + "xx" + r['brand']);
+							}
 						}
 					}
 				}
 			});
 		}
-		
-		
+
 		$('#progress_total').val(0);
 		$('#progress_done').val(0);
 		var t = new Date().getTime() - starttime;
@@ -1875,7 +1883,7 @@ function findBrandDist(data2) {
 		}
 
 		var found = false;
-		for ( var j = 0; j< branddist.length; j++) {
+		for ( var j = 0; j < branddist.length; j++) {
 			if (branddist[j]['name'] == brand) {
 				found = true;
 				branddist[j]['hits']++;
@@ -1907,15 +1915,21 @@ function findHeightestBrand(data2) {
 	r['hits'] = highestBrand;
 	return r;
 }
-function identifyBrand(name) {
+function identifyBrand(name, strict) {
+	// can easliy assume here that always first word is the brand
 	var s = '';
 	name = name.toLowerCase();
 	name = name.split(' ');
 	if (name.length > 1) {
-		for ( var i = 0; i < brands.length; i++) {
-			s = brands[i].toLowerCase();
-			if (s == name[0]) {
-				return s;
+
+		if (strict == undefined) {
+			return name[0].toLowerCase();
+		} else {
+			for ( var i = 0; i < brands.length; i++) {
+				s = brands[i].toLowerCase();
+				if (s == name[0]) {
+					return s;
+				}
 			}
 		}
 	}

@@ -10,7 +10,7 @@ class Parsingcoupon extends Parsing
 
 	public function isCoupon($msg){
 
-		$pattern = array('/[0-9]+%/','/.*offer.*/i','/.*coupon.*/i','/.*promo.*/i','/.*sale.*/i','/.*discount.*/i');
+		$pattern = array('/[0-9]+%/','/.*offer.*/i','/.*coupon.*/i','/.*promo.*/i','/.*sale.*/i','/.*discount.*/i','/.*price.*/i');
 		foreach($pattern as $p){
 			if(preg_match($p, $msg)){
 				return true;

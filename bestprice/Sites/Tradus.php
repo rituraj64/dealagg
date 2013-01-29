@@ -5,6 +5,9 @@ class Tradus extends Parsing{
 		return 'http://www.facebook.com/tradus';
 	}
 	public function isTrusted($category){
+		if($category == Category::BOOKS){
+			return false;
+		}
 		return true;
 	}
 	public function getAllowedCategory(){
