@@ -94,15 +94,28 @@ class Suzalin extends Parsing{
 		$warrenty = '';
 
 		$found = false;
-		foreach(pq('.prod_summary:first')->children('li') as $li){
+		/*foreach(pq('.prod_summary:first')->children('li') as $li){
 			if($found){
 				$warrenty = pq($li)->html();
 				break;
 			}
-			if(pq($li).attr('class')=='colon') {
-				
-				$found = true;
+			if(strpos(strtolower(pq($li)->html()),'warranty') !== false){
+				$warrenty = 123;
 			}
+			
+		}
+		*/
+		$found = false;
+	    foreach(pq('.prod_summary')->find('li') as $li){
+			if($found){
+						$warrenty = pq($li)->html();
+						
+					}
+			if(strpos(pq($li)->attr('class'),'colon')!== false){
+				$found=true;
+				
+			}
+			
 		}
 		$author = '';
 		$attr = array();
