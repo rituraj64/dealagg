@@ -77,44 +77,38 @@ class Suzalin extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
-public function hasProductdata(){
+	public function hasProductdata(){
 		return true;
 	}
 	public function getProductData($html,$price,$stock){
 		phpQuery::newDocumentHTML($html);
-		$price = pq('.offer_price')->html();
-		//pq('.offer-box:first')->children('.line')->children()->remove('div');
-		//pq('.offer-box:first')->children('.line')->children()->remove('a');
+		$price = pq('.prod_summary:first')->find('.offer_price:first')->html();
 		$offer = '';
 		if(sizeof(pq('.block-body')->children('.buy-btn-sec')) > 0){
-				$stock = 1;
-			}else{
-				$stock = -1;
+			$stock = 1;
+		}else{
+			$stock = -1;
 		}
-		//pq('#fk-mprod-shipping-section-id')->find('.block-headertext:first')->children()->remove();
-		$shipping_cost = pq('.block-headertext span')->text();
-		//pq('.shipping-details:first')->children()->remove();
+		$shipping_cost = pq('.shipping-section:first')->find('.block-headertext:first span')->text();
 		$shipping_time = '';
-      
-		
-		//pq('.prod_summary:first')->children()->remove();
-		//pq('.prod_summary:first')->children()->remove();
-		$warrenty = pq('prod_summary:first')->text();
-		
-		//$warrenty=pq($warrenty)
+		$warrenty = '';
+
+		$found = false;
+		foreach(pq('.prod_summary:first')->children('li') as $li){
+			if($found){
+				$warrenty = pq($li)->html();
+				break;
+			}
+			if(strpos(strtolower(pq($li)->html()),'warranty') !== false){
+				$found = true;
+			}
+		}
 		$author = '';
-		
 		$attr = array();
-
-		
-
-	    $cat = '';
+		$cat = '';
 		foreach(pq('.sc-breadbcrumb')->find('a') as $li){
 			$cat .= pq($li)->html().',';
 		}
-		
-
-
 		$data = array(
 				'price' => $price,
 				'offer' => $offer,
