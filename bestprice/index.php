@@ -1,4 +1,5 @@
 <?php
+	session_set_cookie_params(0, '/', '.pricegenie.in');
 	session_start(); 
 	date_default_timezone_set('Asia/Calcutta');
 	if(isset($_REQUEST['query_id'])){
@@ -21,6 +22,9 @@
 			
 			require_once 'find.php';
 			$result = $return;
+			
+			echo '<pre>';
+			print_r($result);die;
 			
 			$formattedResult = array();
 			foreach($result['data'] as $row){
@@ -415,6 +419,9 @@ categories only
 				//]]>
 			</script>
 			
+			
+	<form id='persistForm'>
+	</form>		
 	<?php require_once 'footer.php';?>  
   
   <div id='resultBodyTemplate' style="display: none">

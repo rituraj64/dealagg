@@ -50,6 +50,7 @@ if ($user) {
 				$name .= ' '.$user->lastname;
 			}
 		}
+		session_set_cookie_params(0, '/', '.pricegenie.in');
 		session_start();
 		$_SESSION['userid'] = $user_id;
 		$_SESSION['name'] = $name;

@@ -899,7 +899,7 @@ function finished() {
 					var brand = identifyBrand(name);
 					if (brand) {
 						if (brand.toLowerCase() != r['name'].toLowerCase()) {
-							if (name.indexOf(brand.toLowerCase()) == -1) {
+							if (name.toLowerCase().indexOf(r['name'].toLowerCase()) == -1) {
 								makeSmall($(this).attr('id'),'Branch Name Mismatch. Popular Brand is '+ r['name'].toLowerCase() + ' and current is '+brand.toLowerCase());
 								console.log('Brand Mismatch so making small' + $(this).attr('id') + ' with ' + brand + "xx" + r['brand']);
 							}
@@ -994,7 +994,8 @@ function finished() {
 
 function updateShareLink(t) {
 	var websites_order = '';
-
+	var web_data = '';
+	
 	$('#results').children('.website').each(function() {
 		if ($(this).hasClass('website_error')) {
 			websites_order += $(this).attr('id') + ':ERROR$';
@@ -1002,28 +1003,41 @@ function updateShareLink(t) {
 			websites_order += $(this).attr('id') + ':NORESULT$';
 		} else {
 			websites_order += $(this).attr('id') + ':RESULT$';
+			$('#persistForm').append('<input type="hidden" name="name['+$(this).attr('id')+']" value="'+$(this).children('.item_main').children('#item_name').val()+'" />');
+			$('#persistForm').append('<input type="hidden" name="price['+$(this).attr('id')+']" value="'+$(this).children('.item_main').children('#item_price').val()+'" />');
 		}
 	});
 
 	$('#bad_result_items').children('.website').each(function() {
 		websites_order += $(this).attr('id') + ':BAD$';
 	});
-
+	
+	$('#persistForm').append('<input type="hidden" name="website_data" value="'+websites_order+'" />');
 	var query_id = $('#query_id').val();
+	$('#persistForm').append('<input type="hidden" name="query_id" value="'+query_id+'" />');
 
-	if (t == undefined) {
-		var url = $('#ajax_url').val() + 'persist.php?website_data=' + encodeURI(websites_order) + "&time_taken=" + t + "&query_id=" + query_id + "&callback=?";
-	} else {
-		var url = $('#ajax_url').val() + 'persist.php?website_data=' + encodeURI(websites_order) + "&query_id=" + query_id + "&callback=?";
+
+	if (t != undefined) {
+		$('#persistForm').append('<input type="hidden" name="time_taken" value="'+t+'" />');
 	}
+	
+	var url = $('#site_url').val()  + 'persist.php';
+	
+	
+	var ajax = $.ajax({
+		  type: "POST",
+		  url: url,
+		  data: $('#persistForm').serialize(),
+		  success: function(data) {
+				$('#share').show();
+				//$('#persistForm').html('');
+				var share_url = $('#share_url').val();
+				if (history) {
+					history.pushState('Price Genie', '', share_url);
+				}
+		  }
+		});
 
-	var ajax = $.getJSON(url, function(data) {
-		$('#share').show();
-		var share_url = $('#share_url').val();
-		if (history) {
-			history.pushState('Price Genie', '', share_url);
-		}
-	});
 }
 
 var sortQueue = 0;
@@ -1387,6 +1401,7 @@ function addStepItem(website, logo, url, image, name, price, website_search_url,
 }
 
 function loadSmallImages() {
+	return;
 	var i = 0;
 	$('.lazy_load_img').each(function() {
 		if (!$(this).hasClass('no-resize')) {

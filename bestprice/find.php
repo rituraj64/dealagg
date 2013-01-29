@@ -1,4 +1,7 @@
 <?php
+ini_set('session.cookie_domain', '.pricegenie.in');
+session_set_cookie_params(0, '/', '.pricegenie.in');
+session_start();
 date_default_timezone_set('Asia/Calcutta');
 require_once 'Parsing.php';
 
@@ -10,9 +13,6 @@ if(isset($_REQUEST['q'])){
 	$cat = false;
 	if(isset($_REQUEST['cat'])){
 		$cat = $_REQUEST['cat'];
-		if(!isset($_SESSION)){
-			session_start();
-		}
 		$_SESSION['prev_cat'] = $cat;
 	}
 	$cache = 1;

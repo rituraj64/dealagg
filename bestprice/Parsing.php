@@ -10,9 +10,10 @@ class Parsing{
 
 	const CACHE_FILE = 'FILE';
 	const CACHE_DB = 'DB';
+	const CACHE_NOCACHE = 'NO';
 
 	public function getCurrentCache(){
-		return self::CACHE_FILE;
+		return self::CACHE_NOCACHE;
 	}
 	public static function getReplace(){
 		return array('&amp;'=>'and','&'=>'and');
@@ -98,12 +99,22 @@ class Parsing{
 				$parser = new Parser();
 
 					
-				$html = $parser->getHtml($url,$this->getPostFields($query));
+				$html = $parser->getHtml($url,$this->getPostFields($query,$category,$subcat));
 				//$this->cacheData($website, $query,$category, $url, $html);
 				$this->_toParseHtml = $html;
 
 				$data = $this->getData($html,$query,$category,$subcat);
 				$this->_resultTime = time();
+
+				if($this->_query_id){
+					if(!isset($_SESSION)){
+						session_set_cookie_params(0, '/', '.pricegenie.in');
+						session_start();
+					}
+					$_SESSION[$website] = array();
+					$_SESSION[$website][$this->_query_id] = $data;
+				}
+
 				$this->cacheData($website, $query,$category,$subcat, $url, json_encode($data));
 				return $data;
 			}else{
@@ -118,7 +129,7 @@ class Parsing{
 			if(file_exists($filename)){
 				unlink($filename);
 			}
-		}else{
+		}else if($this->getCurrentCache() == self::CACHE_DB){
 			$cache = new Cache();
 			//$cache->delete(array('cache_key'=>$cacheKey));
 		}
@@ -146,7 +157,7 @@ class Parsing{
 					}
 				}
 			}
-		}else{
+		}else if($this->getCurrentCache() == self::CACHE_DB){
 			$cache = new Cache();
 			$data = $cache->read(null,array('cache_key'=>$cacheKey),array('time'=>'asc'));
 			if(sizeof($data) > 0){
@@ -186,7 +197,7 @@ class Parsing{
 				$time = filemtime($filename);
 				return $time;
 			}
-		}else{
+		}else if($this->getCurrentCache() == self::CACHE_DB){
 			$cache = new Cache();
 			$data = $cache->read(null,array('cache_key'=>$cacheKey),array('time'=>'asc'));
 			if(sizeof($data)){
@@ -215,8 +226,10 @@ class Parsing{
 						return true;
 					}
 				}
+			}else{
+				//echo $filename;die;
 			}
-		}else{
+		}else if($this->getCurrentCache() == self::CACHE_DB){
 			$cache = new Cache();
 			if(isset($_REQUEST['url_based'])){
 				$data = $cache->smartRead(array('where'=>array('cache_key'=>$cacheKey,'cache_type'=>$_REQUEST['query_id'])));
@@ -244,17 +257,20 @@ class Parsing{
 	public function cacheData($website,$query,$category,$subcat,$url,$html){
 		$cacheKey = $this->getCacheKey($website, $query,$category,$subcat, $url);
 		if($this->getCurrentCache() == self::CACHE_FILE){
-			
-			//file_put_contents('cache/'.$cacheKey,$html); 
+
+			//file_put_contents('cache/'.$cacheKey,$html);
 			// not doing normal caching only query caching
 
 			/* this code is for caching query wise, so the users previous data is saved */
 			$query_id = $this->_query_id;
 			if($query){
 				$cacheKey = $cacheKey . '-' . $query_id;
-				file_put_contents('cache/'.$cacheKey,$html);
+				$s = file_put_contents('cache/'.$cacheKey,$html);
+				if($s === false){
+					error_log('unable to create file for cache'.$s);
+				}
 			}
-		}else{
+		}else if($this->getCurrentCache() == self::CACHE_DB){
 			/*
 			 $cache = new Cache();
 			$cache->cache_key = $cacheKey;
