@@ -8,12 +8,29 @@
 		$("#bus table").attr("border","1");
 		$(".form").attr("border","0");
 
+		$("#bus table tbody tr td table").prepend("<col width=3%><col width=10%><col width=26%><col width=20%><col width=26%><col width=5%><col width=6%><col width=4%>")
+		$(".form").children("col").hide();
+		
 		$("#bus table tbody tr td table td:nth-child(3)").each(function(i){
 			var url=$(this).text();
 			$(this).html("<a href="+url+" target=_blank>"+url+"</a>");
 		});
 	});
 	</script>	
+	<style type="text/css">
+	
+	#bus table tbody tr td table
+	{
+		table-layout:fixed;
+	}
+	
+	#bus table tbody tr td table td:nth-child(1n+1)
+	{
+		overflow:hidden;
+		word-wrap:break-word;
+	}
+	
+</style>
 </head>
 
 
