@@ -65,7 +65,7 @@
 			{
 				$("a.fancylink").trigger("click");
 				$("#coupon_code").val(coupon_code);
-				dscription=dscription.replace("This coupon has a special landing page.","");
+				dscription=dscription.replace("This coupon has a special landing page","");
 				dscription=dscription.replace(".. more ››","");
 				$("#description").val(dscription);
 				//$("#deal_url").val(deal_url);
