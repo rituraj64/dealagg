@@ -51,6 +51,7 @@
 			var deal_url=$(this).parent("td").parent("tr").find("a").attr("href");
 			deal_url=deal_url.trim();
 			coupon_code=coupon_code.trim();
+			dscription=dscription.trim();
 			var readStatus=$("#read-status").val();
 			if(readStatus==undefined)
 			{
@@ -62,11 +63,12 @@
 			
 			if(status_val=="2")
 			{
-				
 				$("a.fancylink").trigger("click");
 				$("#coupon_code").val(coupon_code);
+				dscription=dscription.replace("This coupon has a special landing page.","");
+				dscription=dscription.replace(".. more ››","");
 				$("#description").val(dscription);
-				$("#deal_url").val(deal_url);
+				//$("#deal_url").val(deal_url);
 				$("#parse_id").val(id);
 				$("#website").val("");
 				$("#bank").val("None");
@@ -75,6 +77,8 @@
 				$("#discount").val("");
 				$("#min_amt").val("");
 				$("#deal_type").val("Fixed");
+				$("#max_discount").val("");
+				$("#active_to").val("");
 				
 				$(".website_option").each(function(){
 					var option_value=$(this).val();
@@ -116,10 +120,93 @@
 				
 					
 				dscription=dscription.toLowerCase();
-				var search_minimum=dscription.indexOf('minimum');
+				var search_minimum=dscription.indexOf(' min');
 				var search_above=dscription.indexOf('above');
-				var search_maximum=dscription.indexOf('maximum');
-				
+				var search_maximum=dscription.indexOf(' max');
+				var date=dscription.indexOf(' till');
+				if(date!=-1)
+				{
+					var date_search=dscription.split(' till');
+					var day=/\d+(?:\.\d+)?/.exec(date_search[1]);
+					if(date_search[1].indexOf('jan')!=-1)
+					{
+						var month=1;
+						var year_search=date_search[1].split('jan');
+						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					}
+					else if(date_search[1].indexOf('feb')!=-1)
+					{
+						var month=2;
+						var year_search=date_search[1].split('feb');
+						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					}
+					else if(date_search[1].indexOf('march')!=-1)
+					{
+						var month=3;
+						var year_search=date_search[1].split('march');
+						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					}
+					else if(date_search[1].indexOf('april')!=-1)
+					{
+						var month=4;
+						var year_search=date_search[1].split('april');
+						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					}
+					else if(date_search[1].indexOf('may')!=-1)
+					{
+						var month=5;
+						var year_search=date_search[1].split('may');
+						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					}
+					else if(date_search[1].indexOf('june')!=-1)
+					{
+						var month=6;
+						var year_search=date_search[1].split('june');
+						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					}
+					else if(date_search[1].indexOf('july')!=-1)
+					{
+						var month=7;
+						var year_search=date_search[1].split('july');
+						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					}
+					else if(date_search[1].indexOf('aug')!=-1)
+					{
+						var month=8;
+						var year_search=date_search[1].split('aug');
+						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					}
+					else if(date_search[1].indexOf('sept')!=-1)
+					{
+						var month=9;
+						var year_search=date_search[1].split('sept');
+						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					}
+					else if(date_search[1].indexOf('oct')!=-1)
+					{
+						var month=10;
+						var year_search=date_search[1].split('oct');
+						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					}
+					else if(date_search[1].indexOf('nov')!=-1)
+					{
+						var month=11;
+						var year_search=date_search[1].split('nov');
+						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					}
+					else if(date_search[1].indexOf('dec')!=-1)
+					{
+						var month=12;
+						var year_search=date_search[1].split('dec');
+						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					}
+					if(year==null)
+					{
+						year="2013";
+					}
+					var final_date=year+"-"+month+"-"+day;
+					$("#active_to").val(final_date);
+				}
 				var search_discount=dscription.indexOf('%');
 				if(search_discount!=-1)
 				{
@@ -134,16 +221,21 @@
 					var search_rupees=dscription.indexOf(' rs');
 					if(search_rupees!=-1)
 					{
+						var rupee_split=dscription.split(' rs');
+						var rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[1]);
+						
 						if(search_maximum==-1)
 						{
 							if((search_minimum!=-1)||(search_above!=-1))
 							{
-								var rupee_split=dscription.split(' rs');
-								var rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[1]);
 								//var rupee_value=rupee_split[1].substring(0,rupee_split[1].indexOf(' '));
 								$("#min_amt").val(rupee_value);
 								$("#deal_type").val("Conditions");
 							}
+						}
+						else
+						{
+							$("#max_discount").val(rupee_value);
 						}
 					}
 					else
@@ -173,6 +265,11 @@
 									rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[2]);
 									$("#min_amt").val(rupee_value);
 									$("#deal_type").val("Conditions");
+								}
+								else if(search_maximum!=-1)
+								{
+									rupee_value = /\d+(?:\.\d+)?/.exec(rupee_split[2]);
+									$("#max_discount").val(rupee_value);
 								}
 							}
 							else

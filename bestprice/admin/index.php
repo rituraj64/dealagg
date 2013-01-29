@@ -181,6 +181,19 @@ if(isset($_REQUEST['submit_coupon_active']))
 	{
 		$cat_values=-1;
 	}
+	
+	if(isset($_REQUEST['parse_id']))
+	{
+		if($_REQUEST['parse_id']!="")
+		{
+			$parse_id=$_REQUEST['parse_id'];
+			$read=1;
+		
+			$set=array("read"=>$read);
+			$where = array("id"=>$parse_id);
+			$user_parse->update($set,$where);
+		}
+	}
 	if(($id=="undefined")||($id==""))
 	{
 		$user->active_from=$active_from;
@@ -208,18 +221,6 @@ if(isset($_REQUEST['submit_coupon_active']))
 		$set=array("active_from"=>$active_from,"active_to"=>$active_to,"discount"=>$discount,"discount_type"=>$discount_type,"category"=>$cat_values,"product"=>$product,"deal_url"=>$deal_url,"deal_type"=>$deal_type,"coupon_code"=>$coupon_code,"min_amt"=>$min_amt,"bank"=>$bank,"description"=>$description,"image"=>$image,"max_discount"=>$max_discount,"website"=>$website);
 		$where = array("id"=>$id);
 		$user->update($set,$where);
-	}
-	if(isset($_REQUEST['parse_id']))
-	{
-		if($_REQUEST['parse_id']!="")
-		{
-			$parse_id=$_REQUEST['parse_id'];
-			$read=1;
-		
-			$set=array("read"=>$read);
-			$where = array("id"=>$parse_id);
-			$user_parse->update($set,$where);
-		}
 	}
 	
 }
