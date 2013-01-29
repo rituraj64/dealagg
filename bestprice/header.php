@@ -17,7 +17,7 @@
 	<script src="<?php echo Parser::SITE_URL;?>bootstrap/js/bootstrap.js" type="text/javascript"></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/ajax.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/jquery.scrollTo-1.4.3.1-min.js'></script>
-	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/noconflict.js'></script>
+	
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/cufon-yui.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/League_Gothic_400.font.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/Helvetica_LT_CondensedLight_300.font.js'></script>
@@ -45,7 +45,7 @@
 
 
       <div class="masthead genie-width">
-        <div class="genie-logo"><h3 class="muted genie-h3"><img src='<?php echo Parser::SITE_URL;?>img/logo-text.png' alt='loading..' title='loading..'/></h3></div>
+      <div class="genie-logo">  <h3 class="muted genie-h3"><img src='<?php echo Parser::SITE_URL;?>img/logo-text.png' alt='loading..' title='loading..'/></h3></div>
         <div class="navbar genie-navbar">
           <div class="navbar-inner genie-navinner">
            
@@ -64,6 +64,6 @@
         </div><!-- /.navbar -->
         <div class="genie-clear"></div>
       </div>
-    
+     
  <input type='hidden' id='site_url' value="<?php echo Parser::SITE_URL;?>"/>
  <input type='hidden' id='ajax_url' value="<?php echo Parser::AJAX_URL;?>"/>
