@@ -230,10 +230,11 @@ Gain control of your money and discover countless options</p>
 		     </div>
 		    
 	  </div>
-      <hr>
+     
 
       <!-- Example row of columns -->
-      <div class="row-fluid">
+<!--     
+	 <div class="row-fluid">
         <div class="span4">
           <h2>Heading</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
@@ -253,7 +254,7 @@ Gain control of your money and discover countless options</p>
 
       <hr>
 
-      
+      -->
       
         <div class="modal hide fade" id='subcategory_model'>
 		  <div class="modal-header">
