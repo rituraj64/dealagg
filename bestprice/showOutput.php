@@ -8,7 +8,7 @@ if(isset($cache_data) && !empty($cache_data)){
 		$siteObj = new $website;
 		$rows = array();
 		$row['logo'] = $siteObj->getLogo();
-		$row['searchurl'] = $siteObj->getSearchURL();
+		$row['searchurl'] = $siteObj->getWebsiteUrl();
 		$rows[] = $row;
 		ob_start();
 		require 'templates/resultBody.php';
