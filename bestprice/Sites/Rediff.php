@@ -177,4 +177,72 @@ class Rediff extends Parsing{
 			return $data2;
 		}
 	}
+public function hasProductdata(){
+		return true;
+	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('#prod_prcs')->html();
+		
+		$offer =pq('.product_detail_top:first')->find('.arial_12')->html();
+		
+		
+			
+	   if(sizeof(pq('.product_detail_top:first')->children('table')->find('img'))){
+	   	
+	   
+	     	$stock=1;
+	   }
+		   else{
+		     $stock=-1;
+	   }
+		
+		
+		
+		$shipping_time =  pq('.product_detail_top:first')->children('table')->find('.font_gray11:last')->text();
+		
+         $shipping_cost = pq('.product_detail_top:first')->children('div')->text();
+      
+      
+     
+		$warrenty =  pq('.product_detail_top:first')->children('d')->html();
+
+	    $author ='';
+		
+			
+		foreach(pq('.secondary-info') as $div){
+			if(pq($div)->children('span')->html() == 'Author:'){
+				$author = pq($div)->children('a')->html();
+			}
+		}
+		$attr = array();
+
+		foreach(pq('.sim-prodname') as $div){
+			if(!isset($attr['Variants'])){
+				$attr['Variants'] = array();
+			}
+			$attr['Variants'][] = pq($div)->children('a')->html();
+		}
+
+		$cat = '';
+		foreach(pq('.div_bread')->find('a') as $li){
+			$cat .= pq($li)->html().',';
+		}
+
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => $author,
+				'cat' => $cat,
+				'warrenty' => $warrenty
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }
