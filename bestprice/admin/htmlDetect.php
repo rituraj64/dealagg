@@ -35,6 +35,13 @@
 				return false;
 			}
 		});
+		
+		$(".ovalbutton").click(function(){
+			var aa=$(this).attr("href");
+			var search=$("#search").val();
+			aa=aa+search;
+			$(this).attr("href",aa);
+		});
 	});
 	</script>	
 	<style type="text/css">
@@ -70,6 +77,12 @@ if(isset($_REQUEST['Id']))
 	}
 	die;
 }
+$search="";
+if(isset($_REQUEST['242f92dd_obj_search_all']))
+{
+	$search_value=$_REQUEST['242f92dd_obj_search_all'];
+	$search="&242f92dd_obj_search_all=".$search_value;
+}
 if(isset($_REQUEST['deleteId']))
 {
 	$id=$_REQUEST['deleteId'];
@@ -82,6 +95,7 @@ if(isset($_REQUEST['deleteId']))
 	<a href="index.php" id="add_coupon">Coupon Active</a>
 	<a href="couponParse.php" id="add_coupon">Coupon Parse</a>
 	<a href="htmlDetect.php">View HTML</a>
+	<input type="hidden" id="search" value="<?php echo $search; ?>"></input>
 </div>
 <?php 
 $orderBy=array('asc'=>'priority');
