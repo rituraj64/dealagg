@@ -50,11 +50,6 @@
 	
 </style>
 </head>
-<div style="float:left">
-	<a href="index.php" id="add_coupon">Coupon Active</a>
-	<a href="couponParse.php" id="add_coupon">Coupon Parse</a>
-	<a href="htmlDetect.php">View HTML</a>
-</div>
 
 <?php
 require_once 'couponClass.php';
@@ -72,9 +67,14 @@ if(isset($_REQUEST['Id']))
 		echo $code['html'];
 	}
 	die;
-	
 }
-
+?>
+<div style="float:left">
+	<a href="index.php" id="add_coupon">Coupon Active</a>
+	<a href="couponParse.php" id="add_coupon">Coupon Parse</a>
+	<a href="htmlDetect.php">View HTML</a>
+</div>
+<?php 
 $orderBy=array('asc'=>'priority');
 $data=$user->read(null,null,$orderBy);
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
