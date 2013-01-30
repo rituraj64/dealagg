@@ -436,6 +436,7 @@ if(isset($_REQUEST['remove_tags'])){
 	<div style="float:left">
 			<a href="index.php" id="add_coupon">Coupon Active</a>
 			<a href="couponParse.php" id="add_coupon">Coupon Parse</a>
+			<a href="htmlDetect.php">View HTML</a>
 	</div>
 	
 	<div>

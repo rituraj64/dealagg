@@ -50,7 +50,11 @@
 	
 </style>
 </head>
-
+<div style="float:left">
+	<a href="index.php" id="add_coupon">Coupon Active</a>
+	<a href="couponParse.php" id="add_coupon">Coupon Parse</a>
+	<a href="htmlDetect.php">View HTML</a>
+</div>
 
 <?php
 require_once 'couponClass.php';
