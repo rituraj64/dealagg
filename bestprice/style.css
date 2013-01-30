@@ -368,9 +368,9 @@ border-radius: 5px;
 	border-bottom:0px dotted #ccc;
 }
 
-.genie-inputbg select{
+.genie-inputbg .genie-select{
 	width:325px!important;
-	background: #fff;
+	
 	float:left;
 	color:#333;
 	border:none!important;
@@ -481,4 +481,35 @@ padding-bottom:5px;
 {
 background: url("img/footbord.png") repeat-x scroll 0px 0px transparent;
 padding-top:2px;
+}
+
+.genie-select  ul#genie-chldcat .genie-first
+{
+	background: url("img/selicon.png") no-repeat scroll 96% 4px transparent;
+}
+.genie-select  ul#genie-chldcat .discat
+{
+	display:block!important;
+	background: url("img/selicon.png") no-repeat scroll 96% 4px transparent;
+}
+.genie-select ul#genie-chldcat{
+	list-style: none;
+	background: url("img/catbg.png") repeat-y scroll 0px 0px transparent;
+	z-index:9999999;
+	margin-top: 15px;
+}
+
+.genie-select  ul#genie-chldcat li{
+	line-height: 26px;
+}
+
+.genie-lefbg{
+	background: url("img/leftbg.png") no-repeat scroll 0px 0px transparent;
+}
+
+.genie-mid1bg{
+	background: url("img/midbg.png") repeat-x scroll 0px 0px transparent;
+}
+.genie-rghttbg{
+	background: url("img/rghtbg.png") no-repeat scroll 0px 0px transparent;
 }

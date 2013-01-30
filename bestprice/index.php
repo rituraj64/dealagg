@@ -128,7 +128,7 @@ Gain control of your money and discover countless options</p>
         		<span>search</span>
         			<div class="genie-inputbg">
 		  		<input type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($result)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
-		  	
+		  	<!--  
 		  	 	<select id='category' style="font-size: 25px;height:47px;" onchange="$('#subcategory').val('-1');">
 		  	 		<option value="-1">Select Category..</option>
 		  	 		<?php
@@ -145,6 +145,89 @@ Gain control of your money and discover countless options</p>
 		  	 			<option value="<?php echo $key;?>" <?php if(isset($_SESSION['prev_cat']) && $_SESSION['prev_cat'] == $key){echo 'selected="selected";';} ?>><?php echo $cat;?></option>
 		  	 		<?php $i++;} ?>
 		  		</select>
+		  		-->
+		  		
+		  		<script type="text/javascript"  >
+        $(document).ready(function () {
+        	
+        	 $('#genie-chldcat li').css('display','none');
+             $('#genie-chldcat li:first-child').css('display','block');
+             $('#category').val('-1');
+             
+          $('#genie-chldcat li').mouseover(function()
+          	{
+            	 
+            	 $('#genie-chldcat li').css('display','block');
+
+            $(".genie-catli").click(function ()
+             {
+            	$('#genie-chldcat li').removeClass('discat');
+                var catval=$(this).val();
+                var t=$(this).text();
+            $(".genie-catli").css('display','none');
+                $(this).addClass('discat');
+               // alert(t);
+                $('#category').val(catval);
+                //alert(catval);
+            });
+
+           
+           });
+
+           $('#genie-chldcat li').mouseout(function()
+           	{
+        	   $('#genie-chldcat li').css('display','none');
+               //$('#genie-chldcat li:first-child').css('display','block');
+        	   $('#genie-chldcat li.discat').css('display','block');
+           	});
+
+             
+            
+
+  					
+        });
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+		  		<div class="genie-select" style="font-size: 25px;height:47px;">
+		  		
+		  		
+		  		
+		  		<ul id="genie-chldcat">
+		  		<li class="genie-catli genie-first discat" value="-1">Select Category..</li>
+		  		<?php
+		  	 			require_once 'Category.php';
+		  	 			$catObj = new Category();
+		  	 			$cats = $catObj->getStoreCategory();
+		  	 			$i = 0;
+		  	 			if(isset($result)){
+		  	 				$_SESSION['prev_cat'] = $searchObj->category;
+		  	 			}
+		  	 			foreach($cats as $key => $cat){
+		  	 				if(is_array($cat)){$cat = key($cat);}
+		  	 		?>
+		  	 	
+		  	 			<li class="genie-catli genie-midbg" value="<?php echo $key;?>"><?php echo $cat;?></li>
+		  	 		 
+		  	 		<?php $i++;
+		  	 			
+		  	 			} ?>
+		  	 		</ul>
+		  	 		
+		  	 		
+		  	 		<input type="hidden" id='category' value=''></input>
+		  		<div class="genie-clear"></div>
+		  		</div>
 		  		<input type="hidden" id='subcategory' name='subcategory' value='<?php if(isset($result)){echo $searchObj->getSubcat();}else{echo -1;} ?>' />
 		  		</div>
 		  		<button type="submit" class="btn btn-large btn-danger genie-but"></button>
