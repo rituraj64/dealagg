@@ -36,16 +36,22 @@ if(isset($_REQUEST['q'])){
 		$sites = array($site);
 		$query_id = $_REQUEST['query_id'];
 	}else{
-		$query_id = md5($query2.time());
 		require_once 'model/Search.php';
 		$searchModel = new Search();
-		$searchModel->setQuery($query2);
-		$searchModel->setCategory($cat);
-		$searchModel->setSubcat($subcat);
-		$searchModel->query_id = $query_id;
-		$searchModel->created_at = time();
-		$searchModel->setHits(0);
-		$searchModel->insert();
+		$data = $searchModel->read(null,array('category'=>$cat,'subcat'=>$subcat,'query'=>$query2,'user_id'=>-1));
+		if(sizeof($data) > 0){
+			$query_id = $data[0]['query_id'];
+			$searchModel->query('update `search` set `hits` = `hits` + 1,created_at = '.time().' where id = "'.$data[0]['id'].'"');
+		}else{
+			$query_id = md5($query2.time());
+			$searchModel->setQuery($query2);
+			$searchModel->setCategory($cat);
+			$searchModel->setSubcat($subcat);
+			$searchModel->query_id = $query_id;
+			$searchModel->created_at = time();
+			$searchModel->setHits(0);
+			$searchModel->insert();
+		}
 	}
 	$untrusted = array();
 
@@ -107,7 +113,7 @@ if(isset($_REQUEST['q'])){
 		$site = $_REQUEST['site'];
 	}
 	$return = array('untrusted'=>$untrusted,'query_id'=>$query_id,'ajax_parse'=>$ajaxParseSite,'data'=>$data,'result_time'=>date('d/m/y h:i a',$max),'result_number_time'=>$max,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site);
-	
+
 	if(!isset($_REQUEST['silent'])){
 		if(isset($_GET['callback'])){
 			echo $_GET['callback'] . '(' . json_encode($return) . ')';

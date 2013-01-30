@@ -12,7 +12,8 @@ class Search extends SmartModel{
 	public $time_taken;
 	public $website_data;
 	public $website_cache_data;
+	public $user_id;
 
 	public $_table = "search";
-	public $_fields = array('id','query','category','subcat','query_id','remove_websites','created_at','hits','time_taken','website_data','website_cache_data');
+	public $_fields = array('id','query','category','subcat','query_id','remove_websites','created_at','hits','time_taken','website_data','website_cache_data','user_id');
 }
