@@ -1,6 +1,7 @@
 <?php
 	session_set_cookie_params(0, '/', '.pricegenie.in');
 	session_start(); 
+	require_once 'Parsing.php';
 	date_default_timezone_set('Asia/Calcutta');
 	if(isset($_REQUEST['query_id'])){
 		$query_id = $_REQUEST['query_id'];
