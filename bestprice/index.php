@@ -156,7 +156,7 @@ Gain control of your money and discover countless options</p>
              
           $('#genie-chldcat li').mouseover(function()
           	{
-            	 
+        	  
             	 $('#genie-chldcat li').css('display','block');
 
             $(".genie-catli").click(function ()
@@ -166,6 +166,7 @@ Gain control of your money and discover countless options</p>
                 var t=$(this).text();
             $(".genie-catli").css('display','none');
                 $(this).addClass('discat');
+                
                // alert(t);
                 $('#category').val(catval);
                 //alert(catval);
@@ -179,6 +180,7 @@ Gain control of your money and discover countless options</p>
         	   $('#genie-chldcat li').css('display','none');
                //$('#genie-chldcat li:first-child').css('display','block');
         	   $('#genie-chldcat li.discat').css('display','block');
+        	   
            	});
 
              
@@ -189,19 +191,9 @@ Gain control of your money and discover countless options</p>
   </script>
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-		  		<div class="genie-select" style="font-size: 25px;height:47px;">
+		  		<div class="genie-select" style="font-size:18px;height:47px;">
 		  		
-		  		
+		  		<a class="genie-selicon"> </a>
 		  		
 		  		<ul id="genie-chldcat">
 		  		<li class="genie-catli genie-first discat" value="-1">Select Category..</li>
@@ -217,7 +209,11 @@ Gain control of your money and discover countless options</p>
 		  	 				if(is_array($cat)){$cat = key($cat);}
 		  	 		?>
 		  	 	
-		  	 			<li class="genie-catli genie-midbg" value="<?php echo $key;?>"><?php echo $cat;?></li>
+		  	 			<li class="genie-catli genie-midbg" value="<?php echo $key;?>">
+		  	 			<span class="genie-lefbg"></span>
+		  	 			<?php echo $cat;?>
+		  	 			<span class="genie-rghtbg"></span>
+		  	 			</li>
 		  	 		 
 		  	 		<?php $i++;
 		  	 			

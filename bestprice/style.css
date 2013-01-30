@@ -482,23 +482,35 @@ padding-bottom:5px;
 background: url("img/footbord.png") repeat-x scroll 0px 0px transparent;
 padding-top:2px;
 }
-
-.genie-select  ul#genie-chldcat .genie-first
+.genie-select
 {
-	background: url("img/selicon.png") no-repeat scroll 96% 4px transparent;
+	position: relative;
+	
+}
+.genie-selicon 
+{
+	background: url("img/selicon.png") no-repeat scroll 0px 0px transparent;
+position: absolute;
+height: 12px;
+width: 14px;
+right: 20px;
+top: 23px;
 }
 .genie-select  ul#genie-chldcat .discat
 {
 	display:block!important;
-	background: url("img/selicon.png") no-repeat scroll 96% 4px transparent;
+	
 }
 .genie-select ul#genie-chldcat{
 	list-style: none;
 	background: url("img/catbg.png") repeat-y scroll 0px 0px transparent;
 	z-index:9999999;
-	margin-top: 15px;
+	margin-top:10px;
 }
-
+.genie-select ul#genie-chldcat .genie-first
+{
+	font-size: 25px;
+}
 .genie-select  ul#genie-chldcat li{
 	line-height: 26px;
 }
