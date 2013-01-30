@@ -286,6 +286,8 @@ Gain control of your money and discover countless options</p>
       <input type='hidden' id='query_id' value='0' />
       <input type='hidden' id='showSuggestion' value='1' />
       <input type='hidden' id='avg_best_price' value='0' />
+      <input type='hidden' id='session_id' value='<?php echo session_name();?>' />
+      <input type='hidden' id='session_name' value='<?php echo session_id();?>' />
       <input type='hidden' id='other_product_count' value='<?php echo Parsing::DATA_NUM;?>' />
       <div id='step' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;display: none">
 		     <div>
