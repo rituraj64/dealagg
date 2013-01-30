@@ -98,4 +98,79 @@ class Royalimages extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+public function hasProductdata(){
+		return true;
+	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		  if(pq('#price_unit')->find('.offer_label_price')->html()){
+		$price = pq('#price_unit')->find('.offer_label_price')->html();
+		  }
+		  else{
+		  	
+	
+		  pq('.web_sale_offer:first')->find('strong:first')->remove();
+		  $price = pq('.web_sale_offer:first')->find('strong')->html();
+		 
+		  	
+		  }
+		
+		
+		
+		$offer = '';
+		
+		if(sizeof($stock = pq('.add-to-cart:first')->find('.btn-cart')))
+		{
+			
+			$stock=1;
+		}
+		else
+		{
+		$stock=-1;
+		}
+		
+		pq('#fk-mprod-shipping-section-id')->find('.block-headertext:first')->children()->remove();
+		$shipping_cost = pq('#fk-mprod-shipping-section-id')->find('.block-headertext:first')->text();
+		pq('.shipping-details:first')->children()->remove();
+		$shipping_time = pq('.shipping-details:first')->html();
+
+		$warrenty = pq('.access_block:first')->children('.warranty_cnt')->html();
+
+		$author = '';
+			
+		foreach(pq('.secondary-info') as $div){
+			if(pq($div)->children('span')->html() == 'Author:'){
+				$author = pq($div)->children('a')->html();
+			}
+		}
+		$attr = array();
+
+		foreach(pq('.sim-prodname') as $div){
+			if(!isset($attr['Variants'])){
+				$attr['Variants'] = array();
+			}
+			$attr['Variants'][] = pq($div)->children('a')->html();
+		}
+
+		$cat = '';
+		foreach(pq('.breadcrumbs')->children('ul:first')->children('li') as $li){
+			$cat .= pq($li)->children('a')->html().',';
+		}
+
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => $author,
+				'cat' => $cat,
+				'warrenty' => $warrenty
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }
