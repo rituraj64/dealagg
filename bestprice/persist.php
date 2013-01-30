@@ -23,6 +23,9 @@ if(isset($_REQUEST['query_id'])){
 	$website_cache_data = array();
 
 	foreach($website_data as $web){
+		if(empty($web)){
+			continue;
+		}
 		$web = explode(':',$web);
 		$website = $web[0];
 		$type = $web[1];

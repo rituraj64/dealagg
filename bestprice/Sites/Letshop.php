@@ -1,6 +1,6 @@
 <?php
 class Letshop extends Parsing{
-	public $_code = 'Letsshop';
+	public $_code = 'Letshop';
 	public function getFacebookUrl(){
 		return 'http://www.facebook.com/LetsShopFans';
 	}
