@@ -112,7 +112,7 @@ if(isset($_REQUEST['q'])){
 	if(isset($_REQUEST['site'])){
 		$site = $_REQUEST['site'];
 	}
-	$return = array('untrusted'=>$untrusted,'query_id'=>$query_id,'ajax_parse'=>$ajaxParseSite,'data'=>$data,'result_time'=>date('d/m/y h:i a',$max),'result_number_time'=>$max,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site);
+	$return = array('untrusted'=>$untrusted,'query_id'=>$query_id,'ajax_parse'=>$ajaxParseSite,'data'=>$data,'result_time'=>date('d/m/y h:i a',$max),'result_number_time'=>$max,'error_sites'=>$errorSites,'empty_sites'=>$emptySites,'site'=>$site,session_name() => session_id());
 
 	if(!isset($_REQUEST['silent'])){
 		if(isset($_GET['callback'])){

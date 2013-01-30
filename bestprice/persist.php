@@ -36,7 +36,7 @@ if(isset($_REQUEST['query_id'])){
 		}
 	}
 	$website_cache_data = json_encode($website_cache_data);
-	$_SESSION = array();
+	//$_SESSION = array();
 
 
 	$searchModel = new Search();
@@ -57,7 +57,7 @@ if(isset($_REQUEST['query_id'])){
 				$searchModel->update(array('time_taken'=>$time_taken,'website_data' => $website_data_request,'website_cache_data'=>$website_cache_data),array('id'=>$row['id']));
 			}
 		}
-		$return[] = array('success'=>'Updated');
+		$return[] = array('success'=>'Updated',session_name() => session_id());
 	}else{
 		$return[] = array('error'=>'Query ID NOT FOUND');
 	}
