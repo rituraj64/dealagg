@@ -495,6 +495,7 @@ height: 12px;
 width: 14px;
 right: 20px;
 top: 23px;
+z-index: 100;
 }
 .genie-select  ul#genie-chldcat .discat 
 {
@@ -505,7 +506,8 @@ top: 23px;
 .genie-select ul#genie-chldcat{
 	list-style: none;
 	background: url("img/selbg.png") repeat scroll 0px 0px transparent;
-	
+	position: relative;
+z-index: 10;
 	margin-top:10px;
 	margin-left:0px;
 	padding-left:8px;
