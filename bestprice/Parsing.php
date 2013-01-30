@@ -103,6 +103,7 @@ class Parsing{
 				//$this->cacheData($website, $query,$category, $url, $html);
 				$this->_toParseHtml = $html;
 
+				
 				$data = $this->getData($html,$query,$category,$subcat);
 				$this->_resultTime = time();
 

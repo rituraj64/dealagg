@@ -30,6 +30,9 @@ class Giffiks extends Parsing{
 	public function getData($html,$query,$category,$subcat=false){
 		$data = array();
 		phpQuery::newDocumentHTML($html);
+		if(sizeof(pq('.show_total_products'))){
+			return array();
+		}
 		if(sizeof(pq('.product_box_new')) > 0){
 			foreach(pq('.product_box_new') as $div){
 				if(sizeof(pq($div)->children('.product_img')->children('a.book_name')) <= 0){
