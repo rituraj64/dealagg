@@ -22,8 +22,8 @@ if(isset($_REQUEST['query_id'])){
 		$web = explode(':',$web);
 		$website = $web[0];
 		$type = $web[1];
-		$index = $web[2];
 		if($type == 'RESULT'){
+			$index = $web[2];
 			if(isset($_SESSION[$website][$query_id])){
 				$web_session_data = $_SESSION[$website][$query_id];
 				foreach($web_session_data as $row){

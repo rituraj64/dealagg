@@ -3,7 +3,7 @@ $prev_web = array();
 $fullHtml = '';
 if(isset($cache_data) && !empty($cache_data)){
 	$item_id = 1;
-	foreach($formattedResult as $website => $row){
+	foreach($cache_data as $website => $row){
 		$rows = array();
 		$rows[] = $row;
 		ob_start();
@@ -56,6 +56,7 @@ if(isset($cache_data) && !empty($cache_data)){
 				$mainItem = str_replace('{item_shipping}',$row['shipping'],$mainItem);
 				$mainItem = str_replace('{shipping_display}','',$mainItem);
 				$mainItem = str_replace('{item_offer}',$row['offer'],$mainItem);
+				$mainItem = str_replace('{item_index}',$row['index'],$mainItem);
 			}else{
 				ob_start();
 				require 'templates/smallItem.php';
@@ -80,6 +81,7 @@ if(isset($cache_data) && !empty($cache_data)){
 				$smallItem = str_replace('{item_shipping}',$row['shipping'],$smallItem);
 				$smallItem = str_replace('{shipping_display}','',$smallItem);
 				$smallItem = str_replace('{item_offer}',$row['offer'],$smallItem);
+				$smallItem = str_replace('{item_index}',$row['index'],$smallItem);
 				$fullSmallItem .= $smallItem;
 			}
 			$index++;
