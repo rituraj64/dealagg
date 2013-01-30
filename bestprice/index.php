@@ -14,10 +14,8 @@
 			$created_at = $searchObj->created_at;
 
 			
-			echo '<pre>';
 			$cache_data = $searchObj->website_cache_data;
 			$cache_data = json_decode($cache_data,true); 
-			print_r($cache_data);die;
 			
 			$title = 'Lowest Online Price Found For '. $searchObj->query;
 			
