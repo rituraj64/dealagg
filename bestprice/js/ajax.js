@@ -1610,9 +1610,12 @@ function createMainItem(url, item_id_count, image, lazyimage, name, price, autho
 	return html;
 }
 
-function makeSmall(website, reason) {
+function makeSmall(website, reason,preloaded) {
 	if ($('#' + website).hasClass('website_small')) {
 		return;
+	}
+	if(preloaded == undefined){
+		preloaded = 0;
 	}
 	// $('#' + website).children('.span4:last').hide();
 	// $('#' + website).children('.span2:last').hide();
@@ -1653,10 +1656,12 @@ function makeSmall(website, reason) {
 		ele.append('<div class="clearfix"></div><small id="reason" class="pull-left">Why here? ' + reason + '<small>');
 	}
 
+	if(preloaded == 0){
 	// $('#' + website).css('margin-top', '0px');
-	var template = $('#website_hide_template').html();
-	$('#' + website).children('.span8').after(template);
-	$('#' + website).addClass('website_small');
+		var template = $('#website_hide_template').html();
+		$('#' + website).children('.span8').after(template);
+		$('#' + website).addClass('website_small');
+	}
 
 	var html = $('#' + website).outerHTML();
 	$('#' + website).next('hr').first().remove(); // remove

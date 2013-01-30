@@ -49,6 +49,8 @@
         		$('#results').html('');
         		$('#results').show();
         		$('#showSuggestion').val(0);
+        		$('.genie-frmtext').hide();
+        		$('.genie-midbg').hide();
         		<?php
         			if(!empty($cache_data)){
         			$website_data = $searchObj->website_data;
@@ -89,7 +91,7 @@
 					?>
 					var x = makeResultBody(eval(<?php echo json_encode(array('data'=>$data))?>));
 					if(x){
-						makeSmall('<?php echo $site_name;?>');
+						makeSmall('<?php echo $site_name;?>','Preloaded Result',1);
 					}
 					<?php
 					}
