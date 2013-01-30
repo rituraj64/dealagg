@@ -8,7 +8,7 @@
 		$("#bus table").attr("border","1");
 		$(".form").attr("border","0");
 
-		$("#bus table tbody tr td table").prepend("<col width=3%><col width=6%><col width=22%><col width=20%><col width=34%><col width=5%><col width=6%><col width=4%>")
+		$("#bus table tbody tr td table").prepend("<col width=3%><col width=6%><col width=22%><col width=20%><col width=32%><col width=5%><col width=6%><col width=6%>")
 		$(".form").children("col").hide();
 		
 		$("#bus table tbody tr td table td:nth-child(3)").each(function(i){
@@ -16,22 +16,24 @@
 			$(this).html("<a href="+url+" target=_blank>"+url+"</a>");
 		});
 		
-		$(".html").each(function(){
-			var html=$(this).val();
-			$(".view_html").each(function(){
-				var href=$(this).attr("href");
-				if(href=="#")
-				{
-					$(this).attr("href",html);
-					return false;
-				}
-			});
-		});
 		$(".view_html").click(function(e){
 			e.preventDefault();
 			var id=$(this).parent("td").parent("tr").children("td:first-child").html();
 			window.open("htmlDetect.php?Id="+id);
 
+		});
+		$(".delete_data").click(function(e){
+			e.preventDefault();
+			var id=$(this).parent("td").parent("tr").children("td:first-child").html();
+			var conf=confirm("Are you sure you want to Delete this Data");
+			if(conf==true)
+			{
+				window.location.href="htmlDetect.php?deleteId="+id;
+			}
+			else
+			{
+				return false;
+			}
 		});
 	});
 	</script>	
@@ -68,6 +70,13 @@ if(isset($_REQUEST['Id']))
 	}
 	die;
 }
+if(isset($_REQUEST['deleteId']))
+{
+	$id=$_REQUEST['deleteId'];
+	$user->id = $id;
+	$user->delete();
+	echo "<script>window.location.href='htmlDetect.php';</script>";
+}
 ?>
 <div style="float:left">
 	<a href="index.php" id="add_coupon">Coupon Active</a>
@@ -84,7 +93,7 @@ $array=array('Html'=>'view_html');
 $usersTable->addCustomColumn($array);
 Function view_html($row)
 {
-	Return "<a href='#' target='_blank' class='view_html'>View Html</a>";
+	Return "<a href='#' target='_blank' class='view_html'>View Html</a><br><a href='#' class='delete_data'>Remove</a>";
 }
 //code ends here for adding a new column to a table
 
