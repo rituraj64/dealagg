@@ -10,6 +10,6 @@ class Configuration {
 	const host = 'localhost';
 	const db = 'excelll5_pricegenie';
 	const user = "excelll5";
-	const pass = "Java@123";
+	const pass = "Java.123";
 }
 ?>
