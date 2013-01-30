@@ -123,4 +123,57 @@ class Seventymm extends Parsing{
 		$data = $this->bestMatchData($data, $query,$category,$subcat);
 		return $data;
 	}
+public function hasProductdata(){
+		return true;
+	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		$price = pq('.FL')->children('.ITM_SellPrice:first')->html();
+	
+		if(pq('#ctl00_cph_divBuyNow')->is(':disabled')){
+			$stock = -1;
+		}else{
+			$stock = 1;
+		}
+		
+	
+		
+		foreach( pq('.MP_LMHotCatBorder')->children('div')->find('div') as $li){
+				$shipping_cost = pq($li)->html();
+				break;
+				
+			}
+			
+	 $shipping_time= pq('.MP_LMHotCatBorder')->siblings()->find('span')->children('div')->html();
+				
+        $offer = '';
+		$warrenty =pq('.ITM_Waranty:first')->children('span')->html();
+		$author = '';
+		$attr = array();
+
+		
+       pq('.MP_Nav')->children('.GryTxt')->children('div:first-child')->remove();
+		$cat = '';
+		foreach(pq('.MP_Nav')->children('.GryTxt')->find('div') as $li){
+			if(pq($li)->html()){
+			$cat .= pq($li)->html().',';
+			}
+		}
+
+
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => $author,
+				'cat' => $cat,
+				'warrenty' => $warrenty
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }
