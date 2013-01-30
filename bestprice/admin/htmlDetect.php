@@ -35,7 +35,8 @@
 				return false;
 			}
 		});
-		$(".test").click(function(){
+		$(".test").click(function(e){
+			e.preventDefault();
 			var id=$(this).parent("td").parent("tr").children("td:first-child").html();
 			window.location.href="htmlDetect.php?dataId="+id;
 		});
@@ -107,7 +108,7 @@ if(isset($_REQUEST['dataId']))
 	}
 	require_once '../Sites/'.$website.'.php';
 	$obj=new $website;
-	$objData=$obj->getData($htmlCode,false,false);
+	$objData=$obj->getData($htmlCode,false,false,false);
 	echo "<pre>";
 	print_r($objData);
 	echo "</pre>";
