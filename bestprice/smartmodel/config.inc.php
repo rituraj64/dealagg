@@ -9,7 +9,7 @@ class Configuration {
 	*/
 	const host = 'localhost';
 	const db = 'excelll5_pricegenie';
-	const user = "excelll5_excelll5";
-	const pass = "Java.123";
+	const user = "excelll5_pricegenie";
+	const pass = "java@123";
 }
 ?>
