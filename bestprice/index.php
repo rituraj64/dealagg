@@ -162,55 +162,80 @@ Gain control of your money and discover countless options</p>
 		  		</select>
 		  		-->
 		  		
-		  		<script type="text/javascript"  >
-        $(document).ready(function () {
-        	
-        	 $('#genie-chldcat li').css('display','none');
-             $('#genie-chldcat li:first-child').css('display','block');
-             //$('#category').val('-1');
-             
-          $('#genie-chldcat li').mouseover(function()
-          	{
-        	  
-            	 $('#genie-chldcat li').css('display','block');
-
-            $(".genie-catli").click(function ()
-             {
-            	$('#genie-chldcat li').removeClass('discat');
+  
+  
+  
+  <script type="text/javascript">
+ $(document).ready(function() {
+	
+	 $('#genie-chldcat li').css('display','none');
+	 $('#genie-chldcat li:first-child').css('display','block');
+	
+	 $('#genie-chldcat li, .genie-selicon').click(function()
+			{
+			
+			alert("33");
+		var clicked = $(this);
+		if( $('ul#genie-chldcat').hasClass('closed'))
+		{
+		//alert("2d");
+			 $('#genie-chldcat li').css('display','block');
+			
+			 $('ul#genie-chldcat').removeClass('closed');
+		}
+		else
+		{
+			
+			//alert("d");
+			if(clicked.is('#genie-chldcat li'))
+			{
+			
+			
+			$('#genie-chldcat li').removeClass('discat');
                 var catval=$(this).val();
                 var t=$(this).text();
-            $(".genie-catli").css('display','none');
-                $(this).addClass('discat');
+            $("#genie-chldcat li").css('display','none');
+               clicked.addClass('discat');
                 
                // alert(t);
                 $('#category').val(catval);
                 //alert(catval);
-            });
+			 $('ul#genie-chldcat').addClass('closed');
+			}
+			
+			
+		} 
 
-           
-           });
+			});
+			
+	$(document).click(function(event){
 
-          $('#genie-chldcat li').mouseout(function()
-           	{
-        	   $('#genie-chldcat li').css('display','none');
-               //$('#genie-chldcat li:first-child').css('display','block');
-        	   $('#genie-chldcat li.discat').css('display','block');
-        	   
-           	});
+     var $target =$(event.target); 
+	
+	
+   
+   
+   if($target.closest('#genie-chldcat,.genie-selicon').length == 0 ){
+    $("#genie-chldcat li").hide();
+   }
+  
 
-             
-            
+	  
+});
 
-  					
-        });
-  </script>
+
+});
+
+
+</script>
+
   
   
 		  		<div class="genie-select" style="font-size:18px;height:47px;">
 		  		
-		  		<a class="genie-selicon"> </a>
+		  		<a class="genie-selicon"><img src='<?php echo Parser::SITE_URL;?>img/selicon.png' /> </a>
 		  		
-		  		<ul id="genie-chldcat">
+		  		<ul id="genie-chldcat" class="closed">
 		  		<li class="genie-catli genie-first discat" value="-1">Select Category..</li>
 		  		<?php
 		  	 			require_once 'Category.php';

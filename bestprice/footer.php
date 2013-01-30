@@ -24,5 +24,18 @@
 
 </div>
 
+
+<div style="display:none;">  
+	  <img src='<?php echo Parser::SITE_URL;?>img/leftbg.png'/>
+	  <img src='<?php echo Parser::SITE_URL;?>img/midbg.png'/>
+	  <img src='<?php echo Parser::SITE_URL;?>img/midbg2.png'/>
+	  <img src='<?php echo Parser::SITE_URL;?>img/leftbg2.png'/>
+	  <img src='<?php echo Parser::SITE_URL;?>img/rghtbg.png'/>
+	  <img src='<?php echo Parser::SITE_URL;?>img/rghtbg1.png'/>
+	  <img src='<?php echo Parser::SITE_URL;?>img/selbg.png'/>
+	  <img src='<?php echo Parser::SITE_URL;?>img/lamp-icon.png'/>
+	  <img src='<?php echo Parser::SITE_URL;?>img/lampicon-hover.png'/>
+	  <img src='<?php echo Parser::SITE_URL;?>img/menudown.png'/>
+	  </div>
   </div>
   </body>

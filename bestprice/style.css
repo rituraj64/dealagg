@@ -489,12 +489,12 @@ padding-top:2px;
 }
 .genie-selicon 
 {
-	background: url("img/selicon.png") no-repeat scroll 0px 0px transparent;
+	
 position: absolute;
 height: 12px;
 width: 14px;
 right: 20px;
-top: 23px;
+top: 13px;
 z-index: 100;
 }
 .genie-select  ul#genie-chldcat .discat 
@@ -511,6 +511,7 @@ z-index: 10;
 	margin-top:10px;
 	margin-left:0px;
 	padding-left:8px;
+	border-radius:5px;
 }
 .genie-select ul#genie-chldcat .genie-first
 {
