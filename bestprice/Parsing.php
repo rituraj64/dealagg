@@ -108,12 +108,21 @@ class Parsing{
 				$this->_resultTime = time();
 
 				if($this->_query_id){
-					if(!isset($_SESSION)){
-						session_set_cookie_params(0, '/', '.pricegenie.in');
-						session_start();
+					/*
+					 if(!isset($_SESSION)){
+					ini_set('session.cookie_domain', '.pricegenie.in');
+					session_set_cookie_params(0, '/', '.pricegenie.in');
+					session_start();
+					if(isset($_REQUEST[session_name()]) && $_REQUEST[session_name()] != session_id()){
+					$request_id = $_REQUEST[session_name()];
+					session_id($request_id);
+					}
 					}
 					$_SESSION[$website] = array();
 					$_SESSION[$website][$this->_query_id] = $data;
+					*/
+					$file = $website.'-'.$this->_query_id;
+					file_put_contents('cache/'.$file,json_encode($data));
 				}
 
 				$this->cacheData($website, $query,$category,$subcat, $url, json_encode($data));

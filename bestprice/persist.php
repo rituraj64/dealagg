@@ -28,8 +28,10 @@ if(isset($_REQUEST['query_id'])){
 		$type = $web[1];
 		if($type == 'RESULT' || $type == 'BAD'){
 			$index = $web[2];
-			if(isset($_SESSION[$website][$query_id])){
-				$web_session_data = $_SESSION[$website][$query_id];
+			$filename = 'cache/'.$website.'-'.$query_id;
+			if(file_exists($filename)){
+				$content = file_get_contents($filename);
+				$web_session_data = json_decode($content,true);
 				foreach($web_session_data as $row){
 					if($row['index'] == $index){
 						$website_cache_data[$website] = $row;
@@ -37,6 +39,17 @@ if(isset($_REQUEST['query_id'])){
 					}
 				}
 			}
+			/*
+			 if(isset($_SESSION[$website][$query_id])){
+			$web_session_data = $_SESSION[$website][$query_id];
+			foreach($web_session_data as $row){
+			if($row['index'] == $index){
+			$website_cache_data[$website] = $row;
+			break;
+			}
+			}
+			}
+			*/
 		}
 	}
 	$website_cache_data = json_encode($website_cache_data);
@@ -61,7 +74,7 @@ if(isset($_REQUEST['query_id'])){
 				$searchModel->update(array('time_taken'=>$time_taken,'website_data' => $website_data_request,'website_cache_data'=>$website_cache_data),array('id'=>$row['id']));
 			}
 		}
-		$return[] = array('success'=>'Updated',session_name() => session_id());
+		$return[] = array('success'=>'Updated',session_name() => session_id(),'session'=>$_SESSION);
 	}else{
 		$return[] = array('error'=>'Query ID NOT FOUND');
 	}

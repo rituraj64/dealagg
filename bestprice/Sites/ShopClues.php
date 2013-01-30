@@ -7,7 +7,7 @@ class ShopClues extends Parsing{
 		return 'http://www.facebook.com/ShopClues';
 	}
 	public function isTrusted($category){
-		return true;
+		return false;
 	}
 	public function getAllowedCategory(){
 		return array(Category::GAMING,Category::TABLETS,Category::MOBILE,Category::MOBILE_ACC,Category::BOOKS,Category::CAMERA,Category::CAMERA_ACC,Category::COMP_LAPTOP,Category::COMP_COMPUTER);
