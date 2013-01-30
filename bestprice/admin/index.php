@@ -107,9 +107,7 @@
 		});
 		$(".ovalbutton").click(function(){
 			var aa=$(this).attr("href");
-			alert(aa);
 			var search=$("#search").val();
-			alert(search);
 			aa=aa+search;
 			$(this).attr("href",aa);
 		});
