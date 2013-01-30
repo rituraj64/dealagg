@@ -11,10 +11,9 @@
 		$row = $searchObj->read();
 		if(isset($row[0])){
 			$searchObj->smartAssign($row[0]);
-			
+
 			$created_at = $searchObj->created_at;
 
-			
 			$cache_data = $searchObj->website_cache_data;
 			$cache_data = json_decode($cache_data,true); 
 			
@@ -46,6 +45,7 @@
         		$('#results').show();
         		$('#showSuggestion').val(0);
         		<?php
+        			if(!empty($cache_data)){
         			$website_data = $searchObj->website_data;
         			$timetaken = $searchObj->time_taken;
         			$website_data = explode('$',$website_data);
@@ -53,7 +53,13 @@
         			$websites_order = array();
         			
         			foreach($website_data as $web){
+        				if(empty($web)){
+        					continue;
+        				}
         				$web = explode(':',$web);
+        				if(!isset($web[1])){
+        					print_r($web);die;
+        				}
         				if(!isset($websites_order[$web[1]])){
         					$websites_order[$web[1]] = array();
         				}
@@ -62,7 +68,9 @@
         			$data = array();
         			if(isset($websites_order['RESULT'])){
         				foreach($websites_order['RESULT'] as $site_name){
-        					$data[] = $cache_data[$site_name];
+        					if(isset($cache_data[$site_name])){
+        						$data[] = $cache_data[$site_name];
+        					}
         				}
 					}
 					?>
@@ -81,6 +89,7 @@
 					<?php
 					}
 					}
+					$parsing = new Parsing();
 					$sites = $parsing->getWebsites();
 					if(isset($websites_order['NORESULT'])){
 						foreach($websites_order['NORESULT'] as $site_name){
@@ -103,7 +112,10 @@
         		var starttime = new Date().getTime() - <?php echo $timetaken*1000;?>*1;
         		finished(1);
         		putShareUrl('<?php echo $_REQUEST['query_id']?>');
-        		//findPrice();
+        		//
+			<?php }else{ ?>
+				findPrice();
+			<?php } ?>        			
         	});
         	</script>
         <?php }else{ ?>
@@ -123,7 +135,7 @@ Gain control of your money and discover countless options</p>
         		<div class="genie-frmdiv">
         		<span>search</span>
         			<div class="genie-inputbg">
-		  		<input type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($result)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
+		  		<input type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
 		  	<!--  
 		  	 	<select id='category' style="font-size: 25px;height:47px;" onchange="$('#subcategory').val('-1');">
 		  	 		<option value="-1">Select Category..</option>
@@ -148,7 +160,7 @@ Gain control of your money and discover countless options</p>
         	
         	 $('#genie-chldcat li').css('display','none');
              $('#genie-chldcat li:first-child').css('display','block');
-             $('#category').val('-1');
+             //$('#category').val('-1');
              
           $('#genie-chldcat li').mouseover(function()
           	{
@@ -217,10 +229,10 @@ Gain control of your money and discover countless options</p>
 		  	 		</ul>
 		  	 		
 		  	 		
-		  	 		<input type="hidden" id='category' value=''></input>
+		  	 	<input type="hidden" id='category' value='<?php if(isset($cache_data)){ echo $searchObj->getCategory();}else{echo -1;} ?>' />
 		  		<div class="genie-clear"></div>
 		  		</div>
-		  		<input type="hidden" id='subcategory' name='subcategory' value='<?php if(isset($result)){echo $searchObj->getSubcat();}else{echo -1;} ?>' />
+		  		<input type="hidden" id='subcategory' name='subcategory' value='<?php if(isset($cache_data)){echo $searchObj->getSubcat();}else{echo -1;} ?>' />
 		  		</div>
 		  		<button type="submit" class="btn btn-large btn-danger genie-but"></button>
 		  		<div class="genie-clear"></div>

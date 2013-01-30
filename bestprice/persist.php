@@ -45,9 +45,17 @@ if(isset($_REQUEST['query_id'])){
 	if(sizeof($data) > 0){
 		$row = $data[0];
 		if($time_taken == -1){
-			$searchModel->update(array('website_data' => $website_data_request,'website_cache_data'=>$website_cache_data),array('id'=>$row['id']));
+			if(empty($website_cache_data)){
+				$searchModel->update(array('website_data' => $website_data_request),array('id'=>$row['id']));
+			}else{
+				$searchModel->update(array('website_data' => $website_data_request,'website_cache_data'=>$website_cache_data),array('id'=>$row['id']));
+			}
 		}else{
-			$searchModel->update(array('time_taken'=>$time_taken,'website_data' => $website_data_request,'website_cache_data'=>$website_cache_data),array('id'=>$row['id']));
+			if(empty($website_cache_data)){
+				$searchModel->update(array('time_taken'=>$time_taken,'website_data' => $website_data_request),array('id'=>$row['id']));
+			}else{
+				$searchModel->update(array('time_taken'=>$time_taken,'website_data' => $website_data_request,'website_cache_data'=>$website_cache_data),array('id'=>$row['id']));
+			}
 		}
 		$return[] = array('success'=>'Updated');
 	}else{

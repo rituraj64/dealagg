@@ -235,6 +235,7 @@ function findPrice(site, cache, trust, changeSubCat, searchThis) {
 		$('#results').html('');
 		$('#step').hide();
 		$('.genie-frmtext').hide();
+		$('.genie-midbg').hide();
 		$('#step_items').html('');
 		// $('#progress').hide();
 		$('#progress').find('.bar').first().attr('style', 'width:0%');
