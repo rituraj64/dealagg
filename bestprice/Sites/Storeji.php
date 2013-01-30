@@ -71,4 +71,51 @@ class Storeji extends Parsing{
 		$data2 = $this->bestMatchData($data2, $query,$category,$subcat);
 		return $data2;
 	}
+public function hasProductdata(){
+		return true;
+	}
+	public function getProductData($html,$price,$stock){
+		phpQuery::newDocumentHTML($html);
+		foreach(pq('.price-box')->find('span') as $li){
+				if(pq($li)->attr('class')=='price'){
+					
+					$price=pq($li)->html();
+				}
+			}
+		
+		$stock = pq('.product-shop:first')->children('.availability:first')->find('span')->html();
+		if($stock == 'In stock'){
+			$stock = 1;
+		}else{
+			$stock = -1;
+		}
+		
+		$shipping_cost = 'Free Shipping ';
+		
+		$shipping_time ='';
+
+		$attr = array();
+		$cat = '';
+		foreach(pq('.breadcrumbs')->children('ul:first')->children('li') as $li){
+			$cat .= pq($li)->children('a')->html().',';
+		}
+
+		$warrenty = '';
+
+       $offer ='';
+		$data = array(
+				'price' => $price,
+				'offer' => $offer,
+				'stock' => $stock,
+				'shipping_cost' => $shipping_cost,
+				'shipping_time' => $shipping_time,
+				'attr' => $attr,
+				'author' => '',
+				'cat' => $cat,
+				'warrenty' => ''
+		);
+
+		$data = $this->cleanProductData($data);
+		return $data;
+	}
 }
