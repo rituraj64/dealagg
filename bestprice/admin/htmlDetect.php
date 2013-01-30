@@ -35,6 +35,10 @@
 				return false;
 			}
 		});
+		$(".test").click(function(){
+			var id=$(this).parent("td").parent("tr").children("td:first-child").html();
+			window.location.href="htmlDetect.php?dataId="+id;
+		});
 		
 		$(".ovalbutton").click(function(){
 			var aa=$(this).attr("href");
@@ -63,6 +67,7 @@
 <?php
 require_once 'couponClass.php';
 require_once '../smartmodel/UI.php';
+require_once '../Parsing.php';
 
 $user = new html_detect();
 
@@ -90,6 +95,24 @@ if(isset($_REQUEST['deleteId']))
 	$user->delete();
 	echo "<script>window.location.href='htmlDetect.php';</script>";
 }
+if(isset($_REQUEST['dataId']))
+{
+	$id=$_REQUEST['dataId'];
+	$user->id = $id;
+	$dataRead=$user->read();
+	foreach($dataRead as $getData)
+	{
+		$website= $getData['website'];
+		$htmlCode=$getData['html'];
+	}
+	require_once '../Sites/'.$website.'.php';
+	$obj=new $website;
+	$objData=$obj->getData($htmlCode,false,false);
+	echo "<pre>";
+	print_r($objData);
+	echo "</pre>";
+	die;
+}
 ?>
 <div style="float:left">
 	<a href="index.php" id="add_coupon">Coupon Active</a>
@@ -107,7 +130,8 @@ $array=array('Html'=>'view_html');
 $usersTable->addCustomColumn($array);
 Function view_html($row)
 {
-	Return "<a href='#' target='_blank' class='view_html'>View Html</a><br><a href='#' class='delete_data'>Remove</a>";
+	Return "<a href='#' target='_blank' class='view_html'>View Html</a><br><a href='#' class='delete_data'>Remove</a><br>
+	<a href='#' class='test'>Test</a>";
 }
 //code ends here for adding a new column to a table
 
