@@ -27,6 +27,12 @@
 				}
 			});
 		});
+		$(".view_html").click(function(e){
+			e.preventDefault();
+			var id=$(this).parent("td").parent("tr").children("td:first-child").html();
+			window.open("htmlDetect.php?Id="+id);
+
+		});
 	});
 	</script>	
 	<style type="text/css">
@@ -51,9 +57,22 @@ require_once 'couponClass.php';
 require_once '../smartmodel/UI.php';
 
 $user = new html_detect();
+
+if(isset($_REQUEST['Id']))
+{
+	$id=$_REQUEST['Id'];
+	$user->id = $id;
+	$html_read=$user->read();
+	foreach($html_read as $code)
+	{
+		echo $code['html'];
+	}
+	die;
+	
+}
+
 $orderBy=array('asc'=>'priority');
 $data=$user->read(null,null,$orderBy);
-
 $usersTable=new TableUI($user,UI::STYLE_LIGHT_GREY);
 
 //code starts here for adding a new column to a table
@@ -61,19 +80,9 @@ $array=array('Html'=>'view_html');
 $usersTable->addCustomColumn($array);
 Function view_html($row)
 {
-	Return "<a href=# class='view_html'>View Html</a>";
+	Return "<a href='#' target='_blank' class='view_html'>View Html</a>";
 }
 //code ends here for adding a new column to a table
-foreach($data as $html)
-{?>
-	<input type="hidden" class="html" value="<?php echo $html['html']; ?>"></input>
-<?php 
-}
-?>
-<script>
-		
-	</script>
-<?php 
 
 //code starts here for sorting the column ID in desc order
 $usersTable->sortCol='priority'; 
