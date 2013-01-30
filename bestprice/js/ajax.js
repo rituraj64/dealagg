@@ -1434,6 +1434,7 @@ function copyItem(item1_id, item2_id) {
 	var item_offer1 = item1.children('#item_offer').val();
 	var item_shipping1 = item1.children('#item_shipping').val();
 	var has_product1 = item1.children('#has_product').val();
+	var item_index1 = item1.children('#item_index').val();
 
 	var item_url2 = item2.children('#item_url').val();
 	var item_name2 = item2.children('#item_name').val();
@@ -1443,29 +1444,30 @@ function copyItem(item1_id, item2_id) {
 	var item_stock2 = item2.children('#item_stock').val();
 	var item_offer2 = item2.children('#item_offer').val();
 	var item_shipping2 = item2.children('#item_shipping').val();
-	var has_product2 = item1.children('#has_product').val();
+	var has_product2 = item2.children('#has_product').val();
+	var item_index2 = item2.children('#item_index').val();
 
 	if (item1.hasClass('item_main')) {
 		if (item2.hasClass('item_small')) {
-			var new_item1_html = createMainItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2);
-			var new_item2_html = createSmallItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1);
+			var new_item1_html = createMainItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,index2);
+			var new_item2_html = createSmallItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,index1);
 		} else {
-			var new_item1_html = createMainItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1);
-			var new_item2_html = createMainItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2);
+			var new_item1_html = createMainItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,index1);
+			var new_item2_html = createMainItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,index2);
 		}
 	} else {
 		if (item2.hasClass('item_small')) {
-			var new_item1_html = createSmallItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1);
-			var new_item2_html = createSmallItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2);
+			var new_item1_html = createSmallItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,index1);
+			var new_item2_html = createSmallItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,index2);
 		} else {
-			var new_item1_html = createSmallItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2);
-			var new_item2_html = createMainItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1);
+			var new_item1_html = createSmallItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,index2);
+			var new_item2_html = createMainItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,index1);
 		}
 	}
 	item1.replaceWith(new_item1_html);
 	item2.replaceWith(new_item2_html);
 }
-function createSmallItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product) {
+function createSmallItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product,index) {
 	var html = $('#smallItemTemplate').html();
 	html = html.replace(/{item_url}/g, url);
 	html = html.replace(/{item_id}/g, item_id_count);
@@ -1482,7 +1484,7 @@ function createSmallItem(url, item_id_count, image, lazyimage, name, price, auth
 	html = html.replace(/{item_offer}/g, offer);
 	html = html.replace(/{item_stock}/g, stock);
 	html = html.replace(/{has_product}/g, has_product);
-
+	html = html.replace(/{item_index}/g, index);
 	var item_details = "Price: <span class='WebRupee'></span>" + price + "<br/>";
 	if (author.length > 0) {
 		item_details += 'Author: by ' + author + '<br/>';
@@ -1519,7 +1521,7 @@ function createSmallItem(url, item_id_count, image, lazyimage, name, price, auth
 	html = html.replace(/{item_details}/g, item_details);
 	return html;
 }
-function createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, searchurl, has_product, coupon) {
+function createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, searchurl, has_product, coupon,index) {
 	var html2 = $('#resultBodyTemplate').html();
 	html2 = html2.replace(/{website}/g, website);
 	html2 = html2.replace(/{website_url}/g, logo);
@@ -1559,12 +1561,12 @@ function createMain(website, logo, url, item_id_count, image, lazyimage, name, p
 		html2 = html2.replace(/{shipping_display}/g, '');
 	}
 
-	var html = createMainItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product);
+	var html = createMainItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product,index);
 	html2 = html2.replace(/{main_item_html}/g, html);
 
 	return html2;
 }
-function createMainItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product) {
+function createMainItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product,index) {
 	var html = $('#mainItemTemplate').html();
 	html = html.replace(/{item_url}/g, url);
 	html = html.replace(/{item_image}/g, image);
@@ -1575,6 +1577,7 @@ function createMainItem(url, item_id_count, image, lazyimage, name, price, autho
 	html = html.replace(/{item_id}/g, item_id_count);
 	html = html.replace(/{item_stock}/g, stock);
 	html = html.replace(/{has_product}/g, has_product);
+	html = html.replace(/{item_index}/g, index);
 
 	html = html.replace(/{item_author}/g, author);
 	if (author.length == 0) {
@@ -1797,6 +1800,7 @@ function makeResultBody(data) {
 		var stock = 0;
 		var offer = '';
 		var coupon = '';
+		var index = 1;
 		if (data.data[i].coupon) {
 			coupon = data.data[i].coupon;
 		}
@@ -1813,6 +1817,9 @@ function makeResultBody(data) {
 		if (data.data[i].offer) {
 			offer = data.data[i].offer;
 		}
+		if(data.data[i].index){
+			index = data.data[i].index;
+		}
 		item_id_count++;
 
 		if ($('#results').find('#' + website).length > 0) {
@@ -1820,12 +1827,12 @@ function makeResultBody(data) {
 			if ($('#results').find('#' + website).find('#other_prod').children('.item').length >= other_prod_count - 1) {
 
 			} else {
-				var html = createSmallItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product);
+				var html = createSmallItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product,index);
 				$('#results').find('#' + website).find('#other_prod').append(html);
 			}
 
 		} else {
-			var html = createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, data.data[i].searchurl, has_product, coupon);
+			var html = createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, data.data[i].searchurl, has_product, coupon,index);
 
 			var websites_actual = 0;
 			var last_actu_website = false;

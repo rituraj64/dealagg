@@ -8,6 +8,7 @@
 	<input type='hidden' id='item_offer' value='{item_offer_org}' />
 	<input type='hidden' id='item_shipping' value='{item_shipping_org}' />
 	<input type='hidden' id='has_product' value='{has_product}' />
+	<input type='hidden' id='item_index' value='{index}' />
  	<div class="media" style="margin-top: 0px">
 		<a class='pull-left' href="{item_url}" target="_blank">
 			<img style="width:50px;height:50px;margin:5px" class="img-rounded media-object" src="{item_image}" alt='{item_name}' title='{item_name}'/>

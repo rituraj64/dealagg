@@ -359,6 +359,7 @@ class Parsing{
 	}
 	public function cleanData($data,$query){
 		$data2 = array();
+		$index = 1;
 		foreach($data as $row){
 			foreach($row as $key => $value){
 				$value1 = $this->clearHtml($value);
@@ -399,8 +400,9 @@ class Parsing{
 				$row['author'] = trim(str_replace("BY: ", '', $row['author']));
 				$row['author'] = $this->removeSpecial($row['author']);
 			}
-
+			$row['index'] = $index;
 			$data2[] = $row;
+			$index++;
 		}
 		return $data2;
 	}

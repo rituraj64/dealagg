@@ -8,6 +8,7 @@
 			<input type='hidden' id='item_offer' value='{item_offer}' />
 			<input type='hidden' id='item_shipping' value='{item_shipping}' />
 			<input type='hidden' id='has_product' value='{has_product}' />
+			<input type='hidden' id='item_index' value='{has_product}' />
 	<div style="padding: 0px;text-align: center;margin-bottom: 3px;font-size: 11px;height: 25px;">
 		<div class='pull-left'>
 			<a href="{item_url}" target="_blank">
