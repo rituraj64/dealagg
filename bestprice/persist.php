@@ -22,19 +22,14 @@ if(isset($_REQUEST['query_id'])){
 		$web = explode(':',$web);
 		$website = $web[0];
 		$type = $web[1];
+		$index = $web[2];
 		if($type == 'RESULT'){
-			if(isset($_REQUEST['name'][$website])){
-				$prod_name = $_REQUEST['name'][$website];
-				$prod_price = $_REQUEST['price'][$website];
-				
-					
-				if(isset($_SESSION[$website][$query_id])){
-					$web_session_data = $_SESSION[$website][$query_id];
-					foreach($web_session_data as $row){
-						if($row['name'] == $prod_name && $row['disc_price'] == $prod_price){
-							$website_cache_data[$website] = $row;
-							break;
-						}
+			if(isset($_SESSION[$website][$query_id])){
+				$web_session_data = $_SESSION[$website][$query_id];
+				foreach($web_session_data as $row){
+					if($row['index'] == $index){
+						$website_cache_data[$website] = $row;
+						break;
 					}
 				}
 			}

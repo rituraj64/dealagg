@@ -1002,9 +1002,7 @@ function updateShareLink(t) {
 		} else if ($(this).hasClass('website_noresult')) {
 			websites_order += $(this).attr('id') + ':NORESULT$';
 		} else {
-			websites_order += $(this).attr('id') + ':RESULT$';
-			$('#persistForm').append('<input type="hidden" name="name['+$(this).attr('id')+']" value="'+$(this).children('.item_main').children('#item_name').val()+'" />');
-			$('#persistForm').append('<input type="hidden" name="price['+$(this).attr('id')+']" value="'+$(this).children('.item_main').children('#item_price').val()+'" />');
+			websites_order += $(this).attr('id') + ':RESULT:' + $(this).children('.item_main').children('#item_index').val() + '$';
 		}
 	});
 
