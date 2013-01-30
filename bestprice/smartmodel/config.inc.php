@@ -8,8 +8,8 @@ class Configuration {
 	 * MySQL Datebase Settings
 	*/
 	const host = 'localhost';
-	const db = 'bestprice';
-	const user = "root";
-	const pass = "";
+	const db = 'excelll5_pricegenie';
+	const user = "excelll5";
+	const pass = "Java@123";
 }
 ?>
