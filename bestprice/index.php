@@ -133,7 +133,7 @@ Gain control of your money and discover countless options</p>
         <form class="form-search genie-form" onsubmit="$('#showSuggestion').val(1);findPrice();return false;" style="font-size: 27px">
         		<div class="genie-back">
         		<div class="genie-frmdiv">
-        		<span>search</span>
+        		<span class="gen-srch2">search</span>
         			<div class="genie-inputbg">
 		  		<input type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
 		  	<!--  
@@ -183,7 +183,7 @@ Gain control of your money and discover countless options</p>
            
            });
 
-           $('#genie-chldcat li').mouseout(function()
+          $('#genie-chldcat li').mouseout(function()
            	{
         	   $('#genie-chldcat li').css('display','none');
                //$('#genie-chldcat li:first-child').css('display','block');
@@ -217,10 +217,12 @@ Gain control of your money and discover countless options</p>
 		  	 				if(is_array($cat)){$cat = key($cat);}
 		  	 		?>
 		  	 	
-		  	 			<li class="genie-catli genie-midbg" value="<?php echo $key;?>">
+		  	 			<li class="genie-catli " value="<?php echo $key;?>">
 		  	 			<span class="genie-lefbg"></span>
-		  	 			<?php echo $cat;?>
-		  	 			<span class="genie-rghtbg"></span>
+		  	 			<span class="genie-mdbg"><?php echo $cat;?></span>
+		  	 			
+		  	 			<span class="genie-rgtbg"></span>
+						<div class="genie-clear"></div>
 		  	 			</li>
 		  	 		 
 		  	 		<?php $i++;
@@ -349,7 +351,7 @@ Gain control of your money and discover countless options</p>
       <div class="genie-midbg">
 	    <div class="genie-leftbg"></div>
 	  <div class="genie-midtext">
-	  <div class="genie-serch"><span class="genie-img1"></span><span>best way to search</span><span class="genie-img2"></span>
+	  <div class="genie-serch"><span class="genie-img1"></span><span class="gen-serch">best way to search</span><span class="genie-img2"></span>
 	  </div>
 	  <ul>
 	  <li>Enter simple and specific product name your looking for or else results wont be accurate
