@@ -1,4 +1,11 @@
 <?php
+ini_set('session.cookie_domain', '.pricegenie.in');
+session_set_cookie_params(0, '/', '.pricegenie.in');
+session_start();
+if(isset($_REQUEST[session_name()]) && $_REQUEST[session_name()] != session_id()){
+	$request_id = $_REQUEST[session_name()];
+	session_id($request_id);
+}
 require 'facebook/src/facebook.php';
 require_once 'Parser.php';
 
@@ -50,8 +57,6 @@ if ($user) {
 				$name .= ' '.$user->lastname;
 			}
 		}
-		session_set_cookie_params(0, '/', '.pricegenie.in');
-		session_start();
 		$_SESSION['userid'] = $user_id;
 		$_SESSION['name'] = $name;
 		
