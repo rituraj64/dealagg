@@ -1447,19 +1447,19 @@ function copyItem(item1_id, item2_id) {
 
 	if (item1.hasClass('item_main')) {
 		if (item2.hasClass('item_small')) {
-			var new_item1_html = createMainItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,index2);
-			var new_item2_html = createSmallItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,index1);
+			var new_item1_html = createMainItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,item_index2);
+			var new_item2_html = createSmallItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,item_index1);
 		} else {
-			var new_item1_html = createMainItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,index1);
-			var new_item2_html = createMainItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,index2);
+			var new_item1_html = createMainItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,item_index1);
+			var new_item2_html = createMainItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,item_index2);
 		}
 	} else {
 		if (item2.hasClass('item_small')) {
-			var new_item1_html = createSmallItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,index1);
-			var new_item2_html = createSmallItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,index2);
+			var new_item1_html = createSmallItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,item_index1);
+			var new_item2_html = createSmallItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,item_index2);
 		} else {
-			var new_item1_html = createSmallItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,index2);
-			var new_item2_html = createMainItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,index1);
+			var new_item1_html = createSmallItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,item_index2);
+			var new_item2_html = createMainItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,item_index1);
 		}
 	}
 	item1.replaceWith(new_item1_html);
