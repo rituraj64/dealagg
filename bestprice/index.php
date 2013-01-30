@@ -104,7 +104,7 @@
 								require_once 'Sites/'.$site.'.php';
 								$siteObj = new $site;
 								if($siteObj->getCode() == $site_name){
-									$erow = array('site'=>$site_name,'searchurl'=>$siteObj->getSearchURL($_REQUEST['q'],$_REQUEST['cat'],$_REQUEST['subcat']),'logo'=>$siteObj->getLogo());
+									$erow = array('site'=>$site_name,'searchurl'=>$siteObj->getSearchURL($searchObj->query,$searchObj->category,$searchObj->subcat),'logo'=>$siteObj->getLogo());
 									$r = array();
 									$r[] = $erow;
 					?>
