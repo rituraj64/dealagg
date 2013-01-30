@@ -1,9 +1,11 @@
 <?php
 $prev_web = array();
 $fullHtml = '';
-if(isset($formattedResult) && !empty($formattedResult)){
+if(isset($cache_data) && !empty($cache_data)){
 	$item_id = 1;
-	foreach($formattedResult as $website => $rows){
+	foreach($formattedResult as $website => $row){
+		$rows = array();
+		$rows[] = $row;
 		ob_start();
 		require 'templates/resultBody.php';
 		$template = ob_get_contents();

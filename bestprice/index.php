@@ -12,28 +12,14 @@
 			$searchObj->smartAssign($row[0]);
 			
 			$created_at = $searchObj->created_at;
-			
-			$_REQUEST['q'] = $searchObj->getQuery();
-			$_REQUEST['cat'] = $searchObj->getCategory();
-			$_REQUEST['subcat'] = $searchObj->getSubcat();;
-			$_REQUEST['cache'] = 1;
-			$_REQUEST['silent'] = 1;
-			$_REQUEST['url_based'] = 1;
-			
-			require_once 'find.php';
-			$result = $return;
+
 			
 			echo '<pre>';
-			print_r($result);die;
+			$cache_data = $searchObj->website_cache_data;
+			$cache_data = json_decode($cache_data,true); 
+			print_r($cache_data);die;
 			
-			$formattedResult = array();
-			foreach($result['data'] as $row){
-				if(!isset($formattedResult[$row['website']])){
-					$formattedResult[$row['website']] = array();
-				}	
-				$formattedResult[$row['website']][] = $row;
-			}
-			$title = 'Lowest Online Price Found For '. $_REQUEST['q'];
+			$title = 'Lowest Online Price Found For '. $searchObj->query;
 			
 		}else{
 			$error = 'Search Query Doesnt Exist';
@@ -296,7 +282,7 @@ Gain control of your money and discover countless options</p>
 		    
 	  </div>
 	  
-      <div id='results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;<?php if(isset($formattedResult) && !empty($formattedResult)){}else{?>display:none<?php }?>">
+      <div id='results' class='table-bordered' style="border-left: 1px solid #DDD;padding: 10px;margin-top: 10px;<?php if(isset($cache_data) && !empty($cache_data)){}else{?>display:none<?php }?>">
 		     <?php
 		     	require_once 'showOutput.php';
 		     ?>
