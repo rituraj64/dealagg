@@ -103,7 +103,7 @@ class Parsing{
 				//$this->cacheData($website, $query,$category, $url, $html);
 				$this->_toParseHtml = $html;
 
-				
+
 				$data = $this->getData($html,$query,$category,$subcat);
 				$this->_resultTime = time();
 
@@ -421,58 +421,60 @@ class Parsing{
 
 		//make entry into html detecting system
 
-		$index = 0;
-		foreach($data2 as $row){
-			$problem = '';
-			if(empty($row['disc_price']) || $row['disc_price'] <=0 ){
-				$problem .= 'Empty Price Found';
-				if($row['website'] == 'Landmark' && $row['stock'] == -1){
-					$problem = '';
+		if($query){
+			$index = 0;
+			foreach($data2 as $row){
+				$problem = '';
+				if(empty($row['disc_price']) || $row['disc_price'] <=0 ){
+					$problem .= 'Empty Price Found';
+					if($row['website'] == 'Landmark' && $row['stock'] == -1){
+						$problem = '';
+					}
 				}
-			}
-			if(empty($row['name'])){
-				$problem .= 'Empty Name Found';
-			}
-			if(empty($row['image'])){
-				$problem .= 'Empty Image Found';
-			}
-			if(empty($row['url'])){
-				$problem .= 'Empty URL Found';
-			}
-			if(!empty($problem)){
-				if($row['website'] == 'eBay' && $index != 0){
-					continue;
+				if(empty($row['name'])){
+					$problem .= 'Empty Name Found';
 				}
-				$problem .= 'Index '.$index.' '.print_r($row,true);
-				require_once dirname(__FILE__).'/model/HtmlDetect.php';
-				$detect = new HtmlDetect();
-				$detect->website = $this->getCode();
-				$url = $this->getSearchURL($query,$category,$subcat);
-				$detect->search_url = $url;
-				$detect->cache_key = $this->getCacheKey($this->getCode(), $query,$category,$subcat, $url);
-				$detect->problem = $problem;
-				$detect->warned = 0;
-				$detect->html = $this->_toParseHtml;
-				if($index == 0){
-					$detect->priority = 'HIGH';
-				}else{
-					$detect->priority = 'LOW';
+				if(empty($row['image'])){
+					$problem .= 'Empty Image Found';
 				}
-				$detect->insert();
+				if(empty($row['url'])){
+					$problem .= 'Empty URL Found';
+				}
+				if(!empty($problem)){
+					if($row['website'] == 'eBay' && $index != 0){
+						continue;
+					}
+					$problem .= 'Index '.$index.' '.print_r($row,true);
+					require_once dirname(__FILE__).'/model/HtmlDetect.php';
+					$detect = new HtmlDetect();
+					$detect->website = $this->getCode();
+					$url = $this->getSearchURL($query,$category,$subcat);
+					$detect->search_url = $url;
+					$detect->cache_key = $this->getCacheKey($this->getCode(), $query,$category,$subcat, $url);
+					$detect->problem = $problem;
+					$detect->warned = 0;
+					$detect->html = $this->_toParseHtml;
+					if($index == 0){
+						$detect->priority = 'HIGH';
+					}else{
+						$detect->priority = 'LOW';
+					}
+					$detect->insert();
+				}
+				$index++;
 			}
-			$index++;
-		}
 
-		if(isset($data[0])){
-			$row = $data[0];
-			$text = $this->findBestCoupon(array('product'=>$row,'cat'=>$category));
-			if(empty($text)){
-				$text = 'Not Found';
-			}
-			$row['coupon'] = $text;
-			$data[0] = $row;
-		}
 
+			if(isset($data[0])){
+				$row = $data[0];
+				$text = $this->findBestCoupon(array('product'=>$row,'cat'=>$category));
+				if(empty($text)){
+					$text = 'Not Found';
+				}
+				$row['coupon'] = $text;
+				$data[0] = $row;
+			}
+		}
 
 		/*
 		 $data3 = array();
