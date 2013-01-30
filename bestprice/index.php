@@ -17,6 +17,14 @@
 			$cache_data = $searchObj->website_cache_data;
 			$cache_data = json_decode($cache_data,true); 
 			
+			foreach($cache_data as $website => $row){
+				require_once 'Sites/'.$website.'.php';
+				$siteObj = new $website;
+				$rows = array();
+				$row['logo'] = $siteObj->getLogo();
+				$row['searchurl'] = $siteObj->getSearchURL($searchObj->query,$searchObj->category,$searchObj->subcat);
+				$cache_data[$website] = $row;
+			}
 			$title = 'Lowest Online Price Found For '. $searchObj->query;
 			
 		}else{
@@ -30,7 +38,7 @@
       <!-- Jumbotron -->
       <div class="jumbotron">
 	   <div class="genie-price genie-width">
-      	<?php if(isset($result)){ ?>
+      	<?php if(isset($cache_data)){ ?>
       		<script type="text/javascript">
         	$(document).ready(function(){
         		$('#results').html('');
@@ -50,19 +58,22 @@
         				}
         				$websites_order[$web[1]][] = $web[0];
         			}
+        			$data = array();
         			if(isset($websites_order['RESULT'])){
         				foreach($websites_order['RESULT'] as $site_name){
-        					$data = $formattedResult[$site_name]
-        		?>
-        				makeResultBody(eval(<?php echo json_encode(array('data'=>$data))?>),'',1,1,true,0);
-        		<?php
+        					$data[] = $cache_data[$site_name];
         				}
 					}
+					?>
+					makeResultBody(eval(<?php echo json_encode(array('data'=>$data))?>));
+					<?php
+					
 					if(isset($websites_order['BAD'])){
 						foreach($websites_order['BAD'] as $site_name){
-							$data = $formattedResult[$site_name]
-							?>
-					var x = makeResultBody(eval(<?php echo json_encode(array('data'=>$data))?>),'',1,1,true,0);
+							$data = array();
+        					$data[] = $cache_data[$site_name]
+					?>
+					var x = makeResultBody(eval(<?php echo json_encode(array('data'=>$data))?>));
 					if(x){
 						makeSmall('<?php echo $site_name;?>');
 					}
@@ -89,7 +100,7 @@
         		?>
         		loadSmallImages();
         		var starttime = new Date().getTime() - <?php echo $timetaken*1000;?>*1;
-        		finished();
+        		finished(1);
         		putShareUrl('<?php echo $_REQUEST['query_id']?>');
         		//findPrice();
         	});

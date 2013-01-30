@@ -18,7 +18,7 @@ $(document).ready(function() {
 
 	$('.remove_website_btn').live('click', function() {
 		var id = $(this).closest('.website').first().attr('id');
-		makeSmall(id,'Website Marked Incorrect by you!');
+		makeSmall(id, 'Website Marked Incorrect by you!');
 		updateShareLink();
 	});
 
@@ -595,7 +595,7 @@ function checkAlpha(remove) {
 				} else {
 					console.log($(this).attr('id') + ' will be removed for model no mismatch');
 					if (remove == 1) {
-						makeSmall($(this).attr('id'),'Model No Mismatch');
+						makeSmall($(this).attr('id'), 'Model No Mismatch');
 					}
 				}
 			}
@@ -865,7 +865,11 @@ function calcResult() {
 		continueSearch();
 	}
 }
-function finished() {
+function finished(preloaded) {
+	if (preloaded == undefined) {
+		preloaded = 0;
+	}
+
 	$('#progess_text').html('Finished');
 	$('#summary').removeClass('summary_float');
 	$('#summary').addClass('finished');
@@ -874,50 +878,57 @@ function finished() {
 
 	if ($('#results').is(':visible')) {
 
-		$('.remove_website_btn').show();
+		if (preloaded == 1) {
 
-		var data = new Array();
-		var total = 0;
-		$('#results').children('.website').each(function() {
-			if ($(this).hasClass('website_error')) {
-			} else if ($(this).hasClass('website_noresult')) {
-			} else {
-				var name = $(this).children('.item_main').children('#item_name').val();
-				data[data.length] = name;
-				total++;
-			}
-		});
-		var r = findHeightestBrand(data);
-		console.log('Find Branch Matching');
-		console.log(r);
-		if (r['hits'] > Math.ceil((total) * .8)) {
+		} else {
+
+			$('.remove_website_btn').show();
+
+			var data = new Array();
+			var total = 0;
 			$('#results').children('.website').each(function() {
 				if ($(this).hasClass('website_error')) {
 				} else if ($(this).hasClass('website_noresult')) {
 				} else {
 					var name = $(this).children('.item_main').children('#item_name').val();
-					var brand = identifyBrand(name);
-					if (brand) {
-						if (brand.toLowerCase() != r['name'].toLowerCase()) {
-							if (name.toLowerCase().indexOf(r['name'].toLowerCase()) == -1) {
-								makeSmall($(this).attr('id'),'Branch Name Mismatch. Popular Brand is '+ r['name'].toLowerCase() + ' and current is '+brand.toLowerCase());
-								console.log('Brand Mismatch so making small' + $(this).attr('id') + ' with ' + brand + "xx" + r['brand']);
+					data[data.length] = name;
+					total++;
+				}
+			});
+			var r = findHeightestBrand(data);
+			console.log('Find Branch Matching');
+			console.log(r);
+			if (r['hits'] > Math.ceil((total) * .8)) {
+				$('#results').children('.website').each(function() {
+					if ($(this).hasClass('website_error')) {
+					} else if ($(this).hasClass('website_noresult')) {
+					} else {
+						var name = $(this).children('.item_main').children('#item_name').val();
+						var brand = identifyBrand(name);
+						if (brand) {
+							if (brand.toLowerCase() != r['name'].toLowerCase()) {
+								if (name.toLowerCase().indexOf(r['name'].toLowerCase()) == -1) {
+									makeSmall($(this).attr('id'), 'Branch Name Mismatch. Popular Brand is ' + r['name'].toLowerCase() + ' and current is ' + brand.toLowerCase());
+									console.log('Brand Mismatch so making small' + $(this).attr('id') + ' with ' + brand + "xx" + r['brand']);
+								}
 							}
 						}
 					}
-				}
-			});
+				});
+			}
+
+			$('#progress_total').val(0);
+			$('#progress_done').val(0);
+			var t = new Date().getTime() - starttime;
+			t = Math.ceil(t / 1000);
+			$('#summary').find('#time_taken').html(t + "sec");
+			$('#summary').show();
+
+			updateShareLink(t);
+
 		}
-
-		$('#progress_total').val(0);
-		$('#progress_done').val(0);
-		var t = new Date().getTime() - starttime;
-		t = Math.ceil(t / 1000);
-		$('#summary').find('#time_taken').html(t + "sec");
-		$('#summary').show();
-
-		updateShareLink(t);
-
+		
+		//updating product detailed info
 		$('#results').children('.website').each(function() {
 			if ($(this).hasClass('website_error')) {
 			} else if ($(this).hasClass('website_noresult')) {
@@ -995,7 +1006,7 @@ function finished() {
 function updateShareLink(t) {
 	var websites_order = '';
 	var web_data = '';
-	
+
 	$('#results').children('.website').each(function() {
 		if ($(this).hasClass('website_error')) {
 			websites_order += $(this).attr('id') + ':ERROR$';
@@ -1007,34 +1018,32 @@ function updateShareLink(t) {
 	});
 
 	$('#bad_result_items').children('.website').each(function() {
-		websites_order += $(this).attr('id') + ':BAD$';
+		websites_order += $(this).attr('id') + ':BAD:' + $(this).children('.item_main').children('#item_index').val() + '$';
 	});
-	
-	$('#persistForm').append('<input type="hidden" name="website_data" value="'+websites_order+'" />');
-	var query_id = $('#query_id').val();
-	$('#persistForm').append('<input type="hidden" name="query_id" value="'+query_id+'" />');
 
+	$('#persistForm').append('<input type="hidden" name="website_data" value="' + websites_order + '" />');
+	var query_id = $('#query_id').val();
+	$('#persistForm').append('<input type="hidden" name="query_id" value="' + query_id + '" />');
 
 	if (t != undefined) {
-		$('#persistForm').append('<input type="hidden" name="time_taken" value="'+t+'" />');
+		$('#persistForm').append('<input type="hidden" name="time_taken" value="' + t + '" />');
 	}
-	
-	var url = $('#site_url').val()  + 'persist.php';
-	
-	
+
+	var url = $('#site_url').val() + 'persist.php';
+
 	var ajax = $.ajax({
-		  type: "POST",
-		  url: url,
-		  data: $('#persistForm').serialize(),
-		  success: function(data) {
-				$('#share').show();
-				//$('#persistForm').html('');
-				var share_url = $('#share_url').val();
-				if (history) {
-					history.pushState('Price Genie', '', share_url);
-				}
-		  }
-		});
+		type : "POST",
+		url : url,
+		data : $('#persistForm').serialize(),
+		success : function(data) {
+			$('#share').show();
+			// $('#persistForm').html('');
+			var share_url = $('#share_url').val();
+			if (history) {
+				history.pushState('Price Genie', '', share_url);
+			}
+		}
+	});
 
 }
 
@@ -1109,7 +1118,7 @@ function sortResult() {
 					}
 					var variation = Math.abs(Math.ceil(((a - b) / b) * 100));
 					if (variation > 40) {
-						makeSmall(website,'Price Variation Found a ' + a + " b " + b + " = " + variation + '%');
+						makeSmall(website, 'Price Variation Found a ' + a + " b " + b + " = " + variation + '%');
 						console.log('MakeSmall: Variation Found a ' + a + " b " + b + " = " + variation);
 					} else {
 						console.log('MakeSmall False: Variation Found a ' + a + " b " + b + " = " + variation);
@@ -1447,25 +1456,25 @@ function copyItem(item1_id, item2_id) {
 
 	if (item1.hasClass('item_main')) {
 		if (item2.hasClass('item_small')) {
-			var new_item1_html = createMainItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,item_index2);
-			var new_item2_html = createSmallItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,item_index1);
+			var new_item1_html = createMainItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2, item_index2);
+			var new_item2_html = createSmallItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1, item_index1);
 		} else {
-			var new_item1_html = createMainItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,item_index1);
-			var new_item2_html = createMainItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,item_index2);
+			var new_item1_html = createMainItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1, item_index1);
+			var new_item2_html = createMainItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2, item_index2);
 		}
 	} else {
 		if (item2.hasClass('item_small')) {
-			var new_item1_html = createSmallItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,item_index1);
-			var new_item2_html = createSmallItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,item_index2);
+			var new_item1_html = createSmallItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1, item_index1);
+			var new_item2_html = createSmallItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2, item_index2);
 		} else {
-			var new_item1_html = createSmallItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2,item_index2);
-			var new_item2_html = createMainItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1,item_index1);
+			var new_item1_html = createSmallItem(item_url2, item2_id, item_image2, '', item_name2, item_price2, item_author2, item_shipping2, item_offer2, item_stock2, has_product2, item_index2);
+			var new_item2_html = createMainItem(item_url1, item1_id, item_image1, '', item_name1, item_price1, item_author1, item_shipping1, item_offer1, item_stock1, has_product1, item_index1);
 		}
 	}
 	item1.replaceWith(new_item1_html);
 	item2.replaceWith(new_item2_html);
 }
-function createSmallItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product,index) {
+function createSmallItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product, index) {
 	var html = $('#smallItemTemplate').html();
 	html = html.replace(/{item_url}/g, url);
 	html = html.replace(/{item_id}/g, item_id_count);
@@ -1519,7 +1528,7 @@ function createSmallItem(url, item_id_count, image, lazyimage, name, price, auth
 	html = html.replace(/{item_details}/g, item_details);
 	return html;
 }
-function createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, searchurl, has_product, coupon,index) {
+function createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, searchurl, has_product, coupon, index) {
 	var html2 = $('#resultBodyTemplate').html();
 	html2 = html2.replace(/{website}/g, website);
 	html2 = html2.replace(/{website_url}/g, logo);
@@ -1559,12 +1568,12 @@ function createMain(website, logo, url, item_id_count, image, lazyimage, name, p
 		html2 = html2.replace(/{shipping_display}/g, '');
 	}
 
-	var html = createMainItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product,index);
+	var html = createMainItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product, index);
 	html2 = html2.replace(/{main_item_html}/g, html);
 
 	return html2;
 }
-function createMainItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product,index) {
+function createMainItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product, index) {
 	var html = $('#mainItemTemplate').html();
 	html = html.replace(/{item_url}/g, url);
 	html = html.replace(/{item_image}/g, image);
@@ -1600,13 +1609,13 @@ function createMainItem(url, item_id_count, image, lazyimage, name, price, autho
 	return html;
 }
 
-function makeSmall(website,reason) {
+function makeSmall(website, reason) {
 	if ($('#' + website).hasClass('website_small')) {
 		return;
 	}
 	// $('#' + website).children('.span4:last').hide();
 	// $('#' + website).children('.span2:last').hide();
-	
+
 	$('#' + website).children('.last-div').hide();
 	$('#' + website).children('.other_info_parent').hide();
 	$('#' + website).children('.item_main').children('hr').hide();
@@ -1637,13 +1646,12 @@ function makeSmall(website,reason) {
 	});
 	$('#' + website).height('60px');
 	$('#' + website).children('.span2:first').find('img').first().height('40px');
-	
-	if(reason != undefined){
-		var ele = $('#'+website).children('.item_main').children('.media').children('.media-body');
-		ele.append('<div class="clearfix"></div><small id="reason" class="pull-left">Why here? '+reason+'<small>');
+
+	if (reason != undefined) {
+		var ele = $('#' + website).children('.item_main').children('.media').children('.media-body');
+		ele.append('<div class="clearfix"></div><small id="reason" class="pull-left">Why here? ' + reason + '<small>');
 	}
-	
-	
+
 	// $('#' + website).css('margin-top', '0px');
 	var template = $('#website_hide_template').html();
 	$('#' + website).children('.span8').after(template);
@@ -1682,9 +1690,9 @@ function makeSmall(website,reason) {
 function makeBig(website) {
 	// $('#' + website).children('.span4:last').show();
 	// $('#' + website).children('.span2:last').show();
-	
-	$('#'+website).children('.item_main').children('.media').children('.media-body').children('small#reason').remove();
-	
+
+	$('#' + website).children('.item_main').children('.media').children('.media-body').children('small#reason').remove();
+
 	$('#' + website).children('.last-div:first').show();
 	$('#' + website).children('.other_info_parent').show();
 	$('#' + website).children('.item_main').children('hr').show();
@@ -1815,7 +1823,7 @@ function makeResultBody(data) {
 		if (data.data[i].offer) {
 			offer = data.data[i].offer;
 		}
-		if(data.data[i].index){
+		if (data.data[i].index) {
 			index = data.data[i].index;
 		}
 		item_id_count++;
@@ -1825,12 +1833,12 @@ function makeResultBody(data) {
 			if ($('#results').find('#' + website).find('#other_prod').children('.item').length >= other_prod_count - 1) {
 
 			} else {
-				var html = createSmallItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product,index);
+				var html = createSmallItem(url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, has_product, index);
 				$('#results').find('#' + website).find('#other_prod').append(html);
 			}
 
 		} else {
-			var html = createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, data.data[i].searchurl, has_product, coupon,index);
+			var html = createMain(website, logo, url, item_id_count, image, lazyimage, name, price, author, shipping, offer, stock, data.data[i].searchurl, has_product, coupon, index);
 
 			var websites_actual = 0;
 			var last_actu_website = false;

@@ -4,11 +4,6 @@ $fullHtml = '';
 if(isset($cache_data) && !empty($cache_data)){
 	$item_id = 1;
 	foreach($cache_data as $website => $row){
-		require_once 'Sites/'.$website.'.php';
-		$siteObj = new $website;
-		$rows = array();
-		$row['logo'] = $siteObj->getLogo();
-		$row['searchurl'] = $siteObj->getWebsiteUrl();
 		$rows[] = $row;
 		ob_start();
 		require 'templates/resultBody.php';
