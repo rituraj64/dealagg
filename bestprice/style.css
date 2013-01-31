@@ -513,10 +513,11 @@ cursor: pointer;
 	background-color:#fff;
 	position: absolute;
 	z-index: 10;
-	margin-top:10px;
+	margin-top:0px;
 	margin-left:0px;
 	padding-left:8px;
 	border-radius:5px;
+	
 }
 .genie-select ul#genie-chldcat .genie-first
 {
@@ -524,6 +525,7 @@ cursor: pointer;
 	cursor: pointer;
 	color:#000;
 	background: #fff;
+	padding-top:10px;
 	
 }
 .genie-select  ul#genie-chldcat li.genie-first{
