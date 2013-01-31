@@ -168,6 +168,7 @@ Gain control of your money and discover countless options</p>
   <script type="text/javascript">
  $(document).ready(function() {
 	
+	$('#category').val('-1');
 	 $('#genie-chldcat li').css('display','none');
 	 $('#genie-chldcat li:first-child').css('display','block');
 	
@@ -178,7 +179,7 @@ Gain control of your money and discover countless options</p>
 		var clicked = $(this);
 		if( $('ul#genie-chldcat').hasClass('closed'))
 		{
-		//alert("2d");
+		alert("2d");
 			 $('#genie-chldcat li').css('display','block');
 			
 			 $('ul#genie-chldcat').removeClass('closed');
@@ -209,14 +210,12 @@ Gain control of your money and discover countless options</p>
 			});
 			
 	$(document).click(function(event){
-
+alert("dd");
      var $target =$(event.target); 
-	
-	
-   
-   
+
    if($target.closest('#genie-chldcat,.genie-selicon').length == 0 ){
     $("#genie-chldcat li").hide();
+
    }
   
 
