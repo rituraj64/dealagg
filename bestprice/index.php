@@ -139,7 +139,7 @@ Gain control of your money and discover countless options</p>
         		<div class="genie-frmdiv">
         		<span class="gen-srch2">search</span>
         			<div class="genie-inputbg">
-		  		<input tabindex="1" type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->getQuery();}else {echo 'Write Exact Product Name...' ;}?>'>
+		  		<input tabindex="1" type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->query;}else {echo 'Write Exact Product Name...' ;}?>'>
 		  		<div  tabindex="2" class="genie-select" style="font-size:18px;height:47px;">
 			  		<a class="genie-selicon"><img src='<?php echo Parser::SITE_URL;?>img/selicon.png' /> </a>
 			  		<ul id="genie-chldcat" class="closed">
