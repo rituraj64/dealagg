@@ -9,7 +9,7 @@
 		require_once 'Sites/'.$site.'.php';
 		$siteObj = new $site;
 ?>
-<?php if(isset($_REQUEST['site'])&&($_REQUEST['site']!=$siteObj->getCode()))
+<?php if((isset($_REQUEST['site'])&&($_REQUEST['site']!=$siteObj->getCode()))||(isset($_REQUEST['website'])&&($_REQUEST['website']!=$site)))
 { 
 	continue; 
 } ?>
@@ -25,7 +25,7 @@
 							$i = 0;
 							foreach($data as $row){
 						?>		
-								<div id='<?php echo  $row['id'];?>' class='table-bordered pull-left' style="margin-left:10px;border-left: 1px solid #DDD;width:200px">
+								<div id='<?php echo  $row['id'];?>' class='table-bordered pull-left' style="height:100px; overflow:hidden; margin-top:2px; margin-left:10px;border-left: 1px solid #DDD;width:250px">
 								<?php			
 								$title ='';
 								if($row['discount_type'] == 'percentage'){
@@ -51,15 +51,21 @@
 										COUPON CODE: <b><?php echo $row['coupon_code']?></b>
 									</div>
 								</div>
-						<?php 
-						$i++;
-						if($i>2){
-							break;
+							<?php 
+							$i++;
+							if(!isset($_REQUEST['website']))
+							{
+								if($i>2){
+									break;
+									}
 							}
 						}
 						?>
+						<div style="margin-top:40px; float:left">
+							<a href="coupons.php?website=<?php echo $site; ?>" style="color:black;padding-top:50px;">View More</a>
+						</div>
 				</div>
-				<?php if(isset($_REQUEST['site'])&&($_REQUEST['site']==$site))
+				<?php if((isset($_REQUEST['site'])&&($_REQUEST['site']!=$siteObj->getCode()))||(isset($_REQUEST['website'])&&($_REQUEST['website']!=$site)))
 				{ 
 					die; 
 				} ?>

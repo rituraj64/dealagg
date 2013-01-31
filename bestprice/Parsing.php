@@ -707,7 +707,7 @@ class Parsing{
 
 		require_once 'model/CouponActive.php';
 		$active = new CouponActive();
-		$data = $active->query('select * from coupon_active where active_to <= NOW() and website = "'.$website.'" order by id desc');
+		$data = $active->query('select * from coupon_active where active_to >= UNIX_TIMESTAMP(NOW()) and website = "'.$website.'" order by id desc');
 		$data = $active->getData($data);
 		$data2 = array();
 		foreach($data as $row){
