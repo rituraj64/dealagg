@@ -142,11 +142,12 @@ Gain control of your money and discover countless options</p>
         		<div class="genie-frmdiv">
         		<span class="gen-srch2">search</span>
         			<div class="genie-inputbg">
-		  		<input type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 24px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
-		  	<!--  
-		  	 	<select id='category' style="font-size: 25px;height:47px;" onchange="$('#subcategory').val('-1');">
-		  	 		<option value="-1">Select Category..</option>
-		  	 		<?php
+		  		<input tabindex="1" type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
+		  		<div  tabindex="2" class="genie-select" style="font-size:18px;height:47px;">
+			  		<a class="genie-selicon"><img src='<?php echo Parser::SITE_URL;?>img/selicon.png' /> </a>
+			  		<ul id="genie-chldcat" class="closed">
+				  		<li class="genie-catli genie-first discat" value="-1">Select Category..</li>
+		  				<?php
 		  	 			require_once 'Category.php';
 		  	 			$catObj = new Category();
 		  	 			$cats = $catObj->getStoreCategory();
@@ -156,97 +157,7 @@ Gain control of your money and discover countless options</p>
 		  	 			}
 		  	 			foreach($cats as $key => $cat){
 		  	 				if(is_array($cat)){$cat = key($cat);}
-		  	 		?>
-		  	 			<option value="<?php echo $key;?>" <?php if(isset($_SESSION['prev_cat']) && $_SESSION['prev_cat'] == $key){echo 'selected="selected";';} ?>><?php echo $cat;?></option>
-		  	 		<?php $i++;} ?>
-		  		</select>
-		  		-->
-		  		
-  
-  
-  
-  <script type="text/javascript">
- $(document).ready(function() {
-	
-	$('#category').val('-1');
-	 $('#genie-chldcat li').css('display','none');
-	 $('#genie-chldcat li:first-child').css('display','block');
-	
-	 $('#genie-chldcat li, .genie-selicon').click(function()
-			{
-			
-			alert("33");
-		var clicked = $(this);
-		if( $('ul#genie-chldcat').hasClass('closed'))
-		{
-		alert("2d");
-			 $('#genie-chldcat li').css('display','block');
-			
-			 $('ul#genie-chldcat').removeClass('closed');
-		}
-		else
-		{
-			
-			//alert("d");
-			if(clicked.is('#genie-chldcat li'))
-			{
-			
-			
-			$('#genie-chldcat li').removeClass('discat');
-                var catval=$(this).val();
-                var t=$(this).text();
-            $("#genie-chldcat li").css('display','none');
-               clicked.addClass('discat');
-                
-               // alert(t);
-                $('#category').val(catval);
-                //alert(catval);
-			 $('ul#genie-chldcat').addClass('closed');
-			}
-			
-			
-		} 
-
-			});
-			
-	$(document).click(function(event){
-alert("dd");
-     var $target =$(event.target); 
-
-   if($target.closest('#genie-chldcat,.genie-selicon').length == 0 ){
-    $("#genie-chldcat li").hide();
-
-   }
-  
-
-	  
-});
-
-
-});
-
-
-</script>
-
-  
-  
-		  		<div class="genie-select" style="font-size:18px;height:47px;">
-		  		
-		  		<a class="genie-selicon"><img src='<?php echo Parser::SITE_URL;?>img/selicon.png' /> </a>
-		  		
-		  		<ul id="genie-chldcat" class="closed">
-		  		<li class="genie-catli genie-first discat" value="-1">Select Category..</li>
-		  		<?php
-		  	 			require_once 'Category.php';
-		  	 			$catObj = new Category();
-		  	 			$cats = $catObj->getStoreCategory();
-		  	 			$i = 0;
-		  	 			if(isset($result)){
-		  	 				$_SESSION['prev_cat'] = $searchObj->category;
-		  	 			}
-		  	 			foreach($cats as $key => $cat){
-		  	 				if(is_array($cat)){$cat = key($cat);}
-		  	 		?>
+		  	 			?>
 		  	 	
 		  	 			<li class="genie-catli " value="<?php echo $key;?>">
 		  	 			<span class="genie-lefbg"></span>
@@ -255,19 +166,15 @@ alert("dd");
 		  	 			<span class="genie-rgtbg"></span>
 						<div class="genie-clear"></div>
 		  	 			</li>
-		  	 		 
-		  	 		<?php $i++;
-		  	 			
+		  	 			<?php $i++;
 		  	 			} ?>
 		  	 		</ul>
-		  	 		
-		  	 		
-		  	 	<input type="hidden" id='category' value='<?php if(isset($cache_data)){ echo $searchObj->getCategory();}else{echo -1;} ?>' />
-		  		<div class="genie-clear"></div>
+		  	 		<input type="hidden" id='category' value='<?php if(isset($cache_data)){ echo $searchObj->getCategory();}else{echo -1;} ?>' />
+		  			<div class="genie-clear"></div>
 		  		</div>
 		  		<input type="hidden" id='subcategory' name='subcategory' value='<?php if(isset($cache_data)){echo $searchObj->getSubcat();}else{echo -1;} ?>' />
 		  		</div>
-		  		<button type="submit" class="btn btn-large btn-danger genie-but"></button>
+		  		<button  tabindex="3" type="submit" class="btn btn-large btn-danger genie-but"></button>
 		  		<div class="genie-clear"></div>
 		</div>
 		</div>

@@ -16,6 +16,7 @@
     <script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"></script>
 	<script src="<?php echo Parser::SITE_URL;?>bootstrap/js/bootstrap.js" type="text/javascript"></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/ajax.js'></script>
+	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/page.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/jquery.scrollTo-1.4.3.1-min.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/core.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/cufon-yui.js'></script>

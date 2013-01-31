@@ -510,9 +510,9 @@ cursor: pointer;
 }
 .genie-select ul#genie-chldcat{
 	list-style: none;
-	background: url("img/selbg.png") repeat scroll 0px 0px transparent;
-	position: relative;
-z-index: 10;
+	background-color:#fff;
+	position: absolute;
+	z-index: 10;
 	margin-top:10px;
 	margin-left:0px;
 	padding-left:8px;
@@ -526,9 +526,16 @@ z-index: 10;
 	background: #fff;
 	
 }
+.genie-select  ul#genie-chldcat li.genie-first{
+	clear:both !important;
+}
 .genie-select  ul#genie-chldcat li{
 	line-height: 26px;
 	padding-bottom:8px;
+	float: left;
+}
+.genie-catli,.genie-select{
+	cursor: pointer;
 }
 .genie-catli span
 {
