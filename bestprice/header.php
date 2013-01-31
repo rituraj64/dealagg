@@ -76,7 +76,15 @@
            
           </div>
         </div><!-- /.navbar -->
+        <?php
+        	if(isset($_SESSION['userid'])){ 
+        ?>
+        <div class="genie-fbhead">
+        	<?php echo $_SESSION['name'];?>
+        </div>
+        <?php } else { ?>
 		<div class="genie-fbhead">  <a href="#" onclick="login();return false;"><img src='<?php echo Parser::SITE_URL;?>img/fbbuthead.png'/></a></div>
+		<?php } ?>
         <div class="genie-clear"></div>
       </div>
      
