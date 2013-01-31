@@ -20,18 +20,7 @@
 	  
 	  <div class="genie-textpage">
 	  
-	  <div class="genie-textleft">
-	  
-	  <ul>
-	  
-	  <li><a class="active" href="<?php echo Parser::SITE_URL;?>about.php">ABOUT PRICE GENIE</a> </li>
-	  <li><a href="<?php echo Parser::SITE_URL;?>about.php">HOW IT WORKS</a></li>
-	  <li><a href="<?php echo Parser::SITE_URL;?>team.php">TEAM</a></li>
-	  <li><a href="<?php echo Parser::SITE_URL;?>contact.php">CONTACT US</a></li>
-	  </ul>
-	  
-	  
-	  </div>
+	 <?php include_once 'leftside.php';?>
 	  
 	  <div class="genie-textrght">
 	  <div class="genie-rgthead"><span class="genie-icon1"></span><span class="gen-rghthdtext">about price genie</span><span class="genie-icon2"></span>

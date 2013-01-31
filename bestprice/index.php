@@ -143,7 +143,9 @@ Gain control of your money and discover countless options</p>
 		  		<div  tabindex="2" class="genie-select" style="font-size:18px;height:47px;">
 			  		<a class="genie-selicon"><img src='<?php echo Parser::SITE_URL;?>img/selicon.png' /> </a>
 			  		<ul id="genie-chldcat" class="closed">
-				  		<li class="genie-catli genie-first discat" value="-1">Select Category..</li>
+				  		<li class="genie-catli genie-first discat" value="-1">Select Category..
+						<div class="genie-clear"></div>
+						</li>
 		  				<?php
 		  	 			require_once 'Category.php';
 		  	 			$catObj = new Category();
@@ -219,7 +221,7 @@ Gain control of your money and discover countless options</p>
 	  
 	  <div class="genie-socialbut">
 	  <div id="fb" class="genie-left"><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhttp://pricegenie.in/&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:85px; height:21px;" allowTransparency="true"></iframe></div>
-	   <div id="twitter" class="genie-left"><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-url="http://pricegenie.in/" data-counturl="http://pricegenie.in/" data-text="find lowest price" data-hashtags="find lowest price">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
+	   <div id="twitter" style="width:90px;" class="genie-left"><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-url="http://pricegenie.in/" data-counturl="http://pricegenie.in/" data-text="find lowest price" data-hashtags="find lowest price">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
 	   <div class='genie-clear'></div>
 	  </div>
 	  </div>

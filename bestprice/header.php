@@ -40,6 +40,44 @@
 	 
   </head>
 
+  <?php                       
+
+                            $coupons= false;  
+							$recent = false;
+							$about= false;
+							$home=false;
+							$work = false;
+							$contact = false;
+							$team= false;
+							$feedback = false;
+							$terms= false;
+					
+							 if($_SERVER['PHP_SELF'] == '/price/bestprice/index.php'){ 
+								$home = true;
+							}
+							elseif($_SERVER['PHP_SELF'] == '/price/bestprice/about.php'){ 
+							$about = true;
+							}else if($_SERVER['PHP_SELF'] == '/price/bestprice/coupons.php'){ 
+								$coupons = true;
+							}else if($_SERVER['PHP_SELF'] == '/price/bestprice/recent.php'){ 
+								$recent = true;
+							}
+							
+							else if($_SERVER['PHP_SELF'] == '/price/bestprice/work.php'){ 
+								$work = true;
+							}else if($_SERVER['PHP_SELF'] == '/price/bestprice/contact.php'){ 
+								$contact = true;
+							}
+							else if($_SERVER['PHP_SELF'] == '/price/bestprice/team.php'){ 
+								$team = true;
+							}
+							else if($_SERVER['PHP_SELF'] == '/price/bestprice/feedback.php'){ 
+								$feeadback = true;
+							}else if($_SERVER['PHP_SELF'] == '/price/bestprice/terms.php'){ 
+								$terms = true;
+							}
+							?>
+  
   <body class="genie-body">
 
     <div class="genie-container">
@@ -50,21 +88,21 @@
       <!-- 
 	  <a class="genie-iconlogo"><img src='<?php echo Parser::SITE_URL;?>img/logo-gen.png' alt='loading..' title='loading..'/></a>
 	   -->
-	  <h3 class="muted genie-h3"><a><img src='<?php echo Parser::SITE_URL;?>img/logo-text.png' alt='loading..' title='loading..'/></a></h3>
+	  <h3 class="muted genie-h3"><a href="<?php echo Parser::SITE_URL;?>"><img src='<?php echo Parser::SITE_URL;?>img/logo-text.png' alt='logo' title='logo'/></a></h3>
 	  
 	  </div>
         <div class="navbar genie-navbar">
           <div class="navbar-inner genie-navinner">
            
               <ul class="nav genie-nav">
-                <li class="active genie-home"><a class="genie-hov" href="<?php echo Parser::SITE_URL;?>index.php">Home</a></li>
-                <li class="genie-coup"><a class="genie-hov" href="<?php echo Parser::SITE_URL;?>coupons.php">Coupons</a></li>
+                <li class="genie-home"><a <?php if($home){ echo 'class="active"';}?> class="genie-hov" href="<?php echo Parser::SITE_URL;?>index.php">Home</a></li>
+                <li class="genie-coup"><a <?php if($coupons){ echo 'class="active"';}?> class="genie-hov" href="<?php echo Parser::SITE_URL;?>coupons.php">Coupons</a></li>
                <!--  <li><a href="<?php echo Parser::SITE_URL;?>sites.php">Sites</a></li> -->
-                <li class="genie-search"><a class="genie-hov" href="<?php echo Parser::SITE_URL;?>recent.php">Recent Searches</a></li>
-                <li class="genie-all"><a class="genie-hov" href="<?php echo Parser::SITE_URL;?>recent.php">Everything Genie</a>
+                <li class="genie-search"><a <?php if($recent){ echo 'class="active"';}?> class="genie-hov" href="<?php echo Parser::SITE_URL;?>recent.php">Recent Searches</a></li>
+                <li class="genie-all"><a <?php if($about || $contact || $work){ echo 'class="active"';}?>class="genie-hov" href="<?php echo Parser::SITE_URL;?>about.php">Everything Genie</a>
 				<ul class="genie-child">
 				<li><a href="<?php echo Parser::SITE_URL;?>about.php">About Price Genie</a></li>
-				<li><a href="<?php echo Parser::SITE_URL;?>about.php">How it Works</a></li>
+				<li><a href="<?php echo Parser::SITE_URL;?>work.php">How it Works</a></li>
 				<li><a href="<?php echo Parser::SITE_URL;?>contact.php">Contact Us</a></li>
 				</ul>
 				

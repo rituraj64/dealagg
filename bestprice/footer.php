@@ -3,11 +3,11 @@
   <div class="container genie-width">
         <div class="genie-footmenu">
 		<ul>
-		 <li class="genie-abt"><a href="<?php echo Parser::SITE_URL;?>about.php">About</a></li>
-                <li class="genie-term"><a href="<?php echo Parser::SITE_URL;?>termss.php">Terms and Privacy</a></li>
+		 <li class="genie-abt"><a <?php if($about){ echo 'class="active"';}?> href="<?php echo Parser::SITE_URL;?>about.php">About</a></li>
+                <li class="genie-term"><a <?php if($terms){ echo 'class="active"';}?> href="<?php echo Parser::SITE_URL;?>terms.php">Terms and Privacy</a></li>
                <!--  <li><a href="<?php echo Parser::SITE_URL;?>sites.php">Sites</a></li> -->
-                <li class="genie-fb"><a href="<?php echo Parser::SITE_URL;?>feedback.php">Feedback</a></li>
-                <li class="genie-cont"><a href="<?php echo Parser::SITE_URL;?>contact.php">Contact Us</a></li>
+                <li class="genie-fb"><a <?php if($feedback){ echo 'class="active"';}?> href="<?php echo Parser::SITE_URL;?>feedback.php">Feedback</a></li>
+                <li class="genie-cont"><a <?php if($contact){ echo 'class="active"';}?> href="<?php echo Parser::SITE_URL;?>contact.php">Contact Us</a></li>
 		</ul>
 		                
 		</div>
