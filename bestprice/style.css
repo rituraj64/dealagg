@@ -625,7 +625,7 @@ background:#eee;
 .genie-textleft
 {
 float:left;
-width:212px;
+width:220px;
 margin-right:0px;
 
 }
@@ -638,8 +638,8 @@ border-right: 0px solid #ccc;
 .genie-textleft  li 
 {
 background: url("img/leftbord.png") no-repeat scroll 0px 48px transparent;
-line-height: 50px;
-padding-left: 20px;
+line-height: 20px;
+padding-left: 0px;
 }
 .genie-textleft  li a,.genie-pararghtxt p,.genie-listpara p,.genie-listpara ul li h1,.genie-listpara ul li p,p.genie-pbotext
 {
@@ -649,10 +649,23 @@ font-style: normal;
 	text-transform: uppercase;
 	color: #333;
 	}
+	
+.genie-textleft  li a
+{
+
+padding: 15px 23px;
+display: block;
+}
+.genie-textleft  li:hover a,.genie-textleft li a.active
+{
+text-decoration: none;
+color: #e3ae22;
+background: url("img/lefticon.png") no-repeat scroll 175px 21px transparent;
+}	
 .genie-textrght
 {
 float: left;
-width: 740px;
+width: 732px;
 background: #fff;
 border-left: 1px solid #ccc;
 padding:25px 8px 100px 7px;
@@ -686,19 +699,19 @@ font-style: normal;
 
 .genie-paradivrght
 {
-padding-left:25px;
+padding-left:30px;
 }
 .genie-pararghtxt p
 {
 	text-transform: inherit;
 	line-height:24px;
-	padding-bottom:20px;
+	padding-bottom:15px;
 	margin:0px;
 }
 p.genie-pbotext
 {text-transform: inherit;
 	line-height:24px;
-	padding-top:20px;
+	padding-top:10px;
 	margin:0px;
 }
 p.genie-pbotext span
@@ -736,3 +749,4 @@ color:#085394;
 margin:0px;
 line-height:20px;
 }
+

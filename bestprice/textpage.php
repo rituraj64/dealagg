@@ -24,10 +24,10 @@
 	  
 	  <ul>
 	  
-	  <li><a>ABOUT PRICE GENIE</a> </li>
-	  <li><a>HOW IT WORKS</a></li>
-	  <li><a>TEAM</a></li>
-	  <li><a>CONTACT US</a></li>
+	  <li><a class="active" href="<?php echo Parser::SITE_URL;?>about.php">ABOUT PRICE GENIE</a> </li>
+	  <li><a href="<?php echo Parser::SITE_URL;?>about.php">HOW IT WORKS</a></li>
+	  <li><a href="<?php echo Parser::SITE_URL;?>team.php">TEAM</a></li>
+	  <li><a href="<?php echo Parser::SITE_URL;?>contact.php">CONTACT US</a></li>
 	  </ul>
 	  
 	  
