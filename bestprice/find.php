@@ -42,7 +42,7 @@ if(isset($_REQUEST['q'])){
 	}else{
 		require_once 'model/Search.php';
 		$searchModel = new Search();
-		$data1 = $searchModel->read(null,array('category'=>$cat,'subcat'=>$subcat,'query'=>$query2,'user_id'=>-1));
+		$data1 = $searchModel->read(null,array('category'=>$cat,'subcat'=>$subcat,'query'=>$query2,'is_followed'=>-1));
 		if(sizeof($data1) > 0){ 
 			$query_id = $data1[0]['query_id'];
 			$searchModel->query('update `search` set `hits` = `hits` + 1,created_at = '.time().' where id = "'.$data1[0]['id'].'"');

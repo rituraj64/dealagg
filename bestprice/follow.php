@@ -13,13 +13,13 @@ if(isset($_REQUEST['query_id']) && isset($_SESSION['userid'])){
 	$query_id = $_REQUEST['query_id'];
 	require_once 'model/Search.php';
 	$search = new Search();
-	$search->update(array('userid'=>$_SESSION['userid']),array('query_id'=>$query_id));
+	$search->update(array('is_followed'=>1),array('query_id'=>$query_id));
 
 	require_once 'model/Follow.php';
 	$follow = new Follow();
 	$follow->query_id = $query_id;
 	$follow->follow_start = time();
-	$follow->userid = $_SESSION['userid'];
+	$follow->userid = 1;
 	$follow->insert();
 	$follow_id = $follow->lastInsertId();
 

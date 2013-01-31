@@ -1,12 +1,20 @@
 function follow(){
-	var islog = $('#islogged').val();
-	if(islog == 1){
-		login(1);
+	if($('#query_id').val().length > 0){
+		var islog = $('#islogged').val();
+		if(islog == 1){
+			login(1);
+		}else{
+			var url = $('#site_url').val() + 'follow.php?query_id='+$('#query_id').val();
+			$.getJSON(function(url, function(data) {
+				if(data['error'] == 0){
+					alert('Follow Success');
+				}else{
+					alert('Follow Error');
+				}
+			});
+		}
 	}else{
-		var url = $('#site_url').val() + 'follow.php?query_id='+$('#query_id').val();
-		$.getJSON(function(url, function(data) {
-			
-		});
+		alert('Please wait for search to finish');
 	}
 }
 $(document).ready(function() {
