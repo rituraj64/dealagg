@@ -1,7 +1,7 @@
 <?php
 class Parser{
-	//const SITE_URL = 'http://pricegenie.in/';
-	//const AJAX_URL = 'http://site.pricegenie.in/';
+	const SITE_URL = 'http://pricegenie.in/';
+	const AJAX_URL = 'http://site.pricegenie.in/';
 	
 	//const FB_APPKEY = '467986553238213'; //pricegenie.in
 	//const FB_APPSEC = 'a95428b215f24ecf135a94f3c2fc61ad';
@@ -9,8 +9,8 @@ class Parser{
 	const FB_APPKEY = '356134831137444'; //localhost
 	const FB_APPSEC = 'e746e40fa96ee6f9cb82672b7690c4e2';
 
-	const SITE_URL = 'http://localhost/scrapping/bestprice/';
-	const AJAX_URL = 'http://localhost/scrapping/bestprice/';
+	//const SITE_URL = 'http://localhost/scrapping/bestprice/';
+	//const AJAX_URL = 'http://localhost/scrapping/bestprice/';
 
 	public $_noProxy = true;
 	public $_proxy = '';
