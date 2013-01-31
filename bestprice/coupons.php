@@ -9,15 +9,19 @@
 		require_once 'Sites/'.$site.'.php';
 		$siteObj = new $site;
 ?>
+<?php if(isset($_REQUEST['site'])&&($_REQUEST['site']!=$siteObj->getCode()))
+{ 
+	continue; 
+} ?>
 	<div class="row-fluid clearfix website" id="<?php echo $siteObj->getCode()?>" style="vertical-align: middle;margin-top:10px;position: relative;">
 		<div class="span2" style="line-height: 100px">
 			<a href='<?php echo $siteObj->getWebsiteUrl();?>' target='_blank'><img src="<?php echo $siteObj->getLogo();?>" alt="<?php echo $siteObj->getCode()?>" title="<?php echo $siteObj->getCode()?>"/></a>
 		</div>
 		<div class="span10 other_info_parent">
-				<?php if(isset($_REQUEST['site'])){ ?>
+				
 				<div class='row-fluid'>
 						<?php 
-							$data = $siteObj->findBestCoupon();
+							$data = $siteObj->findCoupons();
 							$i = 0;
 							foreach($data as $row){
 						?>		
@@ -55,18 +59,15 @@
 						}
 						?>
 				</div>
-				<?php } else { ?>
-				
-					<div class='table-bordered pull-left' style="margin-left:10px;border-left: 1px solid #DDD">
-						<?php echo $siteObj->findBestCoupon();?>
-					</div>
-				<?php } ?>
+				<?php if(isset($_REQUEST['site'])&&($_REQUEST['site']==$site))
+				{ 
+					die; 
+				} ?>
 		</div>
  	</div>
 	
 <?php		
 	}
-
 ?>
 
 <?php require_once 'footer.php';?>
