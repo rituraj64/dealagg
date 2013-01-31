@@ -708,7 +708,13 @@ class Parsing{
 		require_once 'model/CouponActive.php';
 		$active = new CouponActive();
 		$data = $active->query('select * from coupon_active where active_to >= UNIX_TIMESTAMP(NOW()) and website = "'.$website.'" order by id desc');
+		$num_rows=mysql_num_rows($data);
+		if($num_rows==0)
+		{
+			$data = $active->query('select * from coupon_active where active_to ="" and website = "'.$website.'" order by id desc limit 0,1');
+		}
 		$data = $active->getData($data);
+		
 		$data2 = array();
 		foreach($data as $row){
 			$row['categories'] = '';
