@@ -76,7 +76,7 @@
            
           </div>
         </div><!-- /.navbar -->
-		<div class="genie-fbhead">  <a><img src='<?php echo Parser::SITE_URL;?>img/fbbuthead.png'/></a></div>
+		<div class="genie-fbhead">  <a href="#" onclick="login();return false;"><img src='<?php echo Parser::SITE_URL;?>img/fbbuthead.png'/></a></div>
         <div class="genie-clear"></div>
       </div>
      
