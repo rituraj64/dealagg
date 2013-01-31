@@ -46,8 +46,8 @@
 
       <div class="masthead genie-width">
       <div class="genie-logo">  
-	  <a><img src='<?php echo Parser::SITE_URL;?>img/logo-gen.png' alt='loading..' title='loading..'/></a>
-	  <h3 class="muted genie-h3"><img src='<?php echo Parser::SITE_URL;?>img/logo-text.png' alt='loading..' title='loading..'/></h3>
+	  <a class="genie-iconlogo"><img src='<?php echo Parser::SITE_URL;?>img/logo-gen.png' alt='loading..' title='loading..'/></a>
+	  <h3 class="muted genie-h3"><a><img src='<?php echo Parser::SITE_URL;?>img/logo-text.png' alt='loading..' title='loading..'/></a></h3>
 	  
 	  </div>
         <div class="navbar genie-navbar">
@@ -73,6 +73,7 @@
            
           </div>
         </div><!-- /.navbar -->
+		<div class="genie-fbhead">  <a><img src='<?php echo Parser::SITE_URL;?>img/fbbuthead.png'/></a></div>
         <div class="genie-clear"></div>
       </div>
      

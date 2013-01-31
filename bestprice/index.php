@@ -142,7 +142,7 @@ Gain control of your money and discover countless options</p>
         		<div class="genie-frmdiv">
         		<span class="gen-srch2">search</span>
         			<div class="genie-inputbg">
-		  		<input type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
+		  		<input type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 24px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
 		  	<!--  
 		  	 	<select id='category' style="font-size: 25px;height:47px;" onchange="$('#subcategory').val('-1');">
 		  	 		<option value="-1">Select Category..</option>
@@ -311,8 +311,14 @@ alert("dd");
 		</div>
 		</div>
       </div>
+	  
+	  <div class="genie-socialbut">
+	  <div id="fb" class="genie-left"><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhttp://pricegenie.in/&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:85px; height:21px;" allowTransparency="true"></iframe></div>
+	   <div id="twitter" class="genie-left"><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-url="http://pricegenie.in/" data-counturl="http://pricegenie.in/" data-text="find lowest price" data-hashtags="find lowest price">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
+	   <div class='genie-clear'></div>
 	  </div>
-       <div class="container genie-width">
+	  </div>
+       <div class="container genie-width ddf">
       <input type='hidden' id='isSorting' value='0' />
       <input type='hidden' id='query_id' value='0' />
       <input type='hidden' id='showSuggestion' value='1' />
@@ -542,7 +548,7 @@ categories only
 			</script>
 			
 			
-	<form id='persistForm'>
+	<form id='persistForm' class="genie-form2">
 	</form>		
 	<?php require_once 'footer.php';?>  
   

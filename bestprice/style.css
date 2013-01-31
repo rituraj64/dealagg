@@ -120,10 +120,12 @@ body {
 	background: url("img/menutop-border.png") no-repeat scroll 100% 0 transparent;
 	padding-right:10px;
 	position:relative;
+	cursor: pointer;
 }
-.genie-logo a
+.genie-logo a.genie-iconlogo
 {
 position:absolute;
+cursor: pointer;
 }
 .genie-h3
 {
@@ -138,7 +140,7 @@ margin:0px;
 .genie-container
 {
  background: url("img/headbg.png") repeat-x scroll 0 0 transparent;	
- padding-bottom:33px;
+ padding-bottom:5px;
  
 }
 
@@ -344,6 +346,7 @@ padding: 0px 10px 0px 5px;
 }
 .genie-form{
 	position: relative;
+	margin:0px!important;
 }
 
 .genie-inputbg
@@ -424,8 +427,8 @@ color:#3a8fcf;
 {
 background: url("img/genie-withno.png") no-repeat scroll 0 0 transparent;
 width: 219px;
-height: 320px;
-margin-top:-55px;
+height: 312px;
+margin-top:-40px;
 float:left;
 }
 .genie-rghtbg
@@ -433,7 +436,7 @@ float:left;
 background: url("img/boytext.png") no-repeat scroll 0 0 transparent;
 width: 167px;
 height: 194px;
-margin-top:70px;
+margin-top:78px;
 margin-left:27px;
 float:left;
 }
@@ -448,6 +451,7 @@ float:left;
 .genie-serch
 {
 margin-left:155px;
+margin-bottom:15px;
 
 }
 .genie-serch .genie-img1
@@ -480,7 +484,7 @@ padding-bottom:5px;
 .genie-foot
 {
 background: url("img/footbord.png") repeat-x scroll 0px 0px transparent;
-padding-top:2px;
+padding-top:8px;
 }
 .genie-select
 {
@@ -496,6 +500,7 @@ width: 14px;
 right: 20px;
 top: 13px;
 z-index: 100;
+cursor: pointer;
 }
 .genie-select  ul#genie-chldcat .discat 
 {
@@ -516,6 +521,10 @@ z-index: 10;
 .genie-select ul#genie-chldcat .genie-first
 {
 	font-size: 25px;
+	cursor: pointer;
+	color:#000;
+	background: #fff;
+	
 }
 .genie-select  ul#genie-chldcat li{
 	line-height: 26px;
@@ -547,6 +556,7 @@ white-space: nowrap;
 line-height: 32px!important;
 font-size: 14px;
 float: left!important;
+cursor: pointer;
 }
 .genie-rgtbg{
 	background: url("img/rghtbg.png") no-repeat scroll 0px 0px transparent;
@@ -567,4 +577,24 @@ width: 33px;
 }
 .genie-select  ul#genie-chldcat li.discat .genie-rgtbg{
 	background: url("img/rghtbg1.png") no-repeat scroll 0px 0px transparent;
+}
+.genie-socialbut
+{
+text-align:center;
+width:200px;
+margin:0px auto;
+padding-top:10px;
+}
+.genie-left,.genie-fbhead
+{
+float:left;
+}
+.genie-fbhead
+{
+padding: 11px 0px 0px 8px;
+cursor:pointer;
+}
+.genie-form2
+{
+margin:0px;
 }

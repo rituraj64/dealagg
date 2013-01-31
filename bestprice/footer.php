@@ -13,8 +13,8 @@
 		</div>
       <div class="genie-copyrght">
 	 <span> PriceGenie &copy; 2013 by <a>Excellence Technologies </a> |<span>
-	 <span> <a><img src='<?php echo Parser::SITE_URL;?>img/fb.png' alt='loading..' title='loading..'/></a></span>
-	 <span> <a><img src='<?php echo Parser::SITE_URL;?>img/tw.png' alt='loading..' title='loading..'/></a></span>
+	 <span> <a href="http://www.facebook.com/pages/Pricegeniein/432025980204393"><img src='<?php echo Parser::SITE_URL;?>img/fb.png' /></a></span>
+	 <span> <a href="https://twitter.com/pricegenie2"><img src='<?php echo Parser::SITE_URL;?>img/tw.png' /></a></span>
 	  </div>
 	  
 	  <div class="genie-clear"></div>
@@ -36,6 +36,9 @@
 	  <img src='<?php echo Parser::SITE_URL;?>img/lamp-icon.png'/>
 	  <img src='<?php echo Parser::SITE_URL;?>img/lampicon-hover.png'/>
 	  <img src='<?php echo Parser::SITE_URL;?>img/menudown.png'/>
+	   <img src='<?php echo Parser::SITE_URL;?>img/genie-withno.png'/>
+	  <img src='<?php echo Parser::SITE_URL;?>img/boytext.png'/>
+	 
 	  </div>
   </div>
   </body>
