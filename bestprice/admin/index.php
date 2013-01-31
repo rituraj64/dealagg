@@ -106,11 +106,18 @@
 			}
 		});
 		$(".ovalbutton").click(function(){
-			var aa=$(this).attr("href");
-			var search=$("#search").val();
-			aa=aa+search;
-			$(this).attr("href",aa);
+
+			var search_name=$(".odd td input").attr("name");
+			var search_val=$(".odd td input").val();
+
+			if(search_val!="")
+			{
+				var aa=$(this).attr("href");
+				aa=aa+"&"+search_name+"="+search_val;
+				$(this).attr("href",aa);
+			}
 		});
+		$(".odd td input").attr("class","search_input");
 		
 	});
 </script>
@@ -159,12 +166,7 @@ $user = new coupon_active();
 $user_parse = new coupon_parse();
 $orderBy = array('desc'=>'id');
 $user->read(null,null,$orderBy);
-$search="";
-if(isset($_REQUEST['2d110ab4_obj_search_all']))
-{
-	$search_value=$_REQUEST['2d110ab4_obj_search_all'];
-	$search="&2d110ab4_obj_search_all=".$search_value;
-}
+
 //code starts here for inserting the coupon into the database
 if(isset($_REQUEST['submit_coupon_active']))
 {
@@ -259,7 +261,7 @@ $field = array('id'=>'ID','active_from'=>'Active From','active_to'=>'Active To',
 $usersTable-> setColumnNameMapping($field);
 
 ?>
-<input type="hidden" id="search" value="<?php echo $search; ?>"></input>
+
 <!--code starts here for adding a new coupon-->
 
 <div style="display:none" name="data" id="data">

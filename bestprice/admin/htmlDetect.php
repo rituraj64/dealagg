@@ -42,11 +42,18 @@
 		});
 		
 		$(".ovalbutton").click(function(){
-			var aa=$(this).attr("href");
-			var search=$("#search").val();
-			aa=aa+search;
-			$(this).attr("href",aa);
+
+			var search_name=$(".odd td input").attr("name");
+			var search_val=$(".odd td input").val();
+			if(search_val!="")
+			{
+				var aa=$(this).attr("href");
+				aa=aa+"&"+search_name+"="+search_val;
+				$(this).attr("href",aa);
+			}
 		});
+		$(".odd td input").attr("class","search_input");
+		
 	});
 	</script>	
 	<style type="text/css">
@@ -83,12 +90,7 @@ if(isset($_REQUEST['Id']))
 	}
 	die;
 }
-$search="";
-if(isset($_REQUEST['242f92dd_obj_search_all']))
-{
-	$search_value=$_REQUEST['242f92dd_obj_search_all'];
-	$search="&242f92dd_obj_search_all=".$search_value;
-}
+
 if(isset($_REQUEST['deleteId']))
 {
 	$id=$_REQUEST['deleteId'];
@@ -119,7 +121,6 @@ if(isset($_REQUEST['dataId']))
 	<a href="index.php" id="add_coupon">Coupon Active</a>
 	<a href="couponParse.php" id="add_coupon">Coupon Parse</a>
 	<a href="htmlDetect.php">View HTML</a>
-	<input type="hidden" id="search" value="<?php echo $search; ?>"></input>
 </div>
 <?php 
 $orderBy=array('asc'=>'priority');
