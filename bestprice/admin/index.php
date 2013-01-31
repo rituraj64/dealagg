@@ -54,12 +54,14 @@
 			if(active_from!="")
 			{
 				active_from=new Date(active_from*1000);
-				active_from=('0'+active_from.getFullYear()).substr(-2,2)+'-'+('0'+active_from.getMonth()+1).substr(-2,2)+'-'+('0'+active_from.getDate()).substr(-2,2);
+				var month=active_from.getMonth()+1;
+				active_from=('0'+active_from.getFullYear()).substr(-2,2)+'-'+('0'+month).substr(-2,2)+'-'+('0'+active_from.getDate()).substr(-2,2);
 			}
 			if(active_to!="")
 			{
 				active_to=new Date(active_to*1000);
-				active_to=('0'+active_to.getFullYear()).substr(-2,2)+'-'+('0'+active_to.getMonth()+1).substr(-2,2)+'-'+('0'+active_to.getDate()).substr(-2,2);
+				var month=active_to.getMonth()+1;
+				active_to=('0'+active_to.getFullYear()).substr(-2,2)+'-'+('0'+month).substr(-2,2)+'-'+('0'+active_to.getDate()).substr(-2,2);
 			}
 			$("#hidden_id").val(id);
 			$("#active_from").val(active_from);
