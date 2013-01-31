@@ -159,7 +159,7 @@ Gain control of your money and discover countless options</p>
 		  	 				if(is_array($cat)){$cat = key($cat);}
 		  	 			?>
 		  	 	
-		  	 			<li class="genie-catli " value="<?php echo $key;?>">
+		  	 			<li  style="display: none" class="genie-catli " value="<?php echo $key;?>">
 		  	 			<span class="genie-lefbg"></span>
 		  	 			<span class="genie-mdbg"><?php echo $cat;?></span>
 		  	 			
