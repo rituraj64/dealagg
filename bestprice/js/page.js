@@ -1,3 +1,14 @@
+function follow(){
+	var islog = $('#islogged').val();
+	if(islog == 1){
+		login(1);
+	}else{
+		var url = $('#site_url').val() + 'follow.php?query_id='+$('#query_id').val();
+		$.getJSON(function(url, function(data) {
+			
+		});
+	}
+}
 $(document).ready(function() {
 	$('#genie-chldcat li').hide();
 	$('#genie-chldcat li:first-child').show();
@@ -103,6 +114,28 @@ $(document).ready(function() {
 					$('ul#genie-chldcat').addClass('closed');
 				}
 			}
+		} else if (isAlpha(event.keyCode)) {
+			if ($target.closest('.genie-select').length > 0) {
+				var key = String.fromCharCode(event.keyCode);
+				if (key) {
+					if ($('ul#genie-chldcat').hasClass('closed')) {
+						$("#genie-chldcat li").show();
+						$('ul#genie-chldcat').removeClass('closed');
+					}
+					$('li.genie-catli').each(function() {
+						if (!$(this).hasClass('genie-first')) {
+							if ($(this).text().toLowerCase().charAt(1) == key.toLowerCase()) {
+								$('li.genie-catli').removeClass('discat');
+								$(this).addClass('discat');
+								event.preventDefault();
+								return 0;
+							}
+
+						}
+					});
+				}
+
+			}
 		}
 	});
 	$(document).click(function(event) {
@@ -129,7 +162,9 @@ $(document).ready(function() {
 		}
 	});
 });
-
+function isAlpha(keyCode) {
+	return ((keyCode >= 65 && keyCode <= 90) || keyCode == 8 || keyCode == 32 || keyCode == 190)
+}
 var brands = new Array();
 brands[brands.length] = 'airtyme';
 brands[brands.length] = 'alcatel';

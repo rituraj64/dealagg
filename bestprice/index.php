@@ -64,9 +64,6 @@
         					continue;
         				}
         				$web = explode(':',$web);
-        				if(!isset($web[1])){
-        					print_r($web);die;
-        				}
         				if(!isset($websites_order[$web[1]])){
         					$websites_order[$web[1]] = array();
         				}
@@ -192,6 +189,8 @@ Gain control of your money and discover countless options</p>
 		<div class="alert alert-success" id='share' style="text-align: left;color:black;<?php if(!isset($result)){echo 'display: none';}?>">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			Share Results: <input type='text' id='share_url' value='<?php if(isset($result)){echo 'display: none';}?>' style="width: 100%"/>
+			<br/>
+			<button class='btn btn-important' onclick='follow();'>Follow Product Pricing</button>
 		</div>
 		<div class="alert alert-info" id='summary' style="<?php if(!isset($result)){echo 'display: none';}?>">
 				<div class='pull-left' style="width: 25%">
@@ -226,6 +225,7 @@ Gain control of your money and discover countless options</p>
 	  </div>
 	  </div>
        <div class="container genie-width">
+      <input type='hidden' id='islogged' value='<?php if(isset($_SESSION['userid'])){echo 1;}else{echo 0;}?>' />
       <input type='hidden' id='isSorting' value='0' />
       <input type='hidden' id='query_id' value='0' />
       <input type='hidden' id='showSuggestion' value='1' />
@@ -358,16 +358,19 @@ categories only
 				};
 				
 				// logs the user in the application and facebook
-				function login(){
+				function login(follow){
+					if(follow == undefined){
+						follow = 0;
+					}
 					var query_id = $('#query_id').val();
 					if($('#share_url').val().length > 0){
 						var basepath='<?php echo Parser::SITE_URL.'facebook.php?redirect='?>'+encodeURL($('#share_url').val());
-						if(query_id.length > 0){
+						if(query_id.length > 0 && follow == 1){
 							basepath += '&query_id='+query_id;
 						}
 					}else{
 						var basepath='<?php echo Parser::SITE_URL.'facebook.php'?>';
-						if(query_id.length > 0){
+						if(query_id.length > 0 && follow == 1){
 							basepath += '?query_id='+query_id;
 						}
 					}

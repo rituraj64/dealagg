@@ -46,25 +46,20 @@ if ($user) {
 			$user->insert();
 			$user_id = $user->lastInsertId();
 			$name = $user->firstname;
-			if($user->lastname){
-				$name .= ' '.$user->lastname;
-			}
 		}else{
 			$user->smartAssign($data[0]);
 			$user_id = $data[0]['id'];
 			$name = $user->firstname;
-			if($user->lastname){
-				$name .= ' '.$user->lastname;
-			}
 		}
 		$_SESSION['userid'] = $user_id;
 		$_SESSION['name'] = $name;
-		
+
 		if(isset($_REQUEST['query_id'])){
-			$query_id = $_REQUEST['query_id'];
-			
+			$_REQUEST['silent'] = 1;
+			require_once 'follow.php';
+				
 		}
-		
+
 		if(isset($_REQUEST['redirect'])){
 			header('Location: '.$_REQUEST['redirect']);
 		}else{
