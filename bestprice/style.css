@@ -123,6 +123,7 @@ body {
 .genie-logo a.genie-iconlogo {
 	position: absolute;
 	cursor: pointer;
+	top:-10px;
 }
 
 .genie-h3 {
@@ -136,13 +137,19 @@ body {
 
 .genie-container {
 	background: url("img/headbg.png") repeat-x scroll 0 0 transparent;
-	padding-bottom: 5px;
+	padding-bottom: 0px;
+}
+
+.genie-price
+{
+padding-top:20px;
 }
 
 .genie-navbar {
 	float: left;
 	width: 640px;
 	margin-left: 0px;
+	margin-bottom:0px;
 }
 
 .genie-navbar .genie-nav li a {
@@ -166,7 +173,7 @@ body {
 }
 
 .genie-nav a {
-	padding: 15px 10px !important;
+	padding: 15px 33px !important;
 	margin-top: 0px !important;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
@@ -190,13 +197,14 @@ body {
 
 .genie-nav .genie-home a {
 	/*background: url("img/home_icon.png") no-repeat scroll 50% 0 transparent!important;*/
-	padding-left: 0px !important;
-	padding-right: 0px !important;
+	/*padding-left: 0px !important;
+	padding-right: 0px !important;*/
 }
 
 .genie-navbar .genie-nav li {
 	background: url("img/menutop-border.png") no-repeat scroll 100% 0
 		transparent;
+		width:auto!important;
 }
 
 /*
@@ -211,7 +219,7 @@ body {
 }
 */
 .genie-nav .genie-all a {
-	background: url("img/menudown.png") no-repeat scroll 96% 24px
+	background: url("img/menudown.png") no-repeat scroll 92% 24px
 		transparent;
 }
 
@@ -578,7 +586,10 @@ body {
 	width: 200px;
 	margin: 0px auto;
 	padding-top: 10px;
+	padding-bottom:5px;
 }
+
+
 
 .genie-left,.genie-fbhead {
 	float: left;
@@ -591,6 +602,66 @@ body {
 
 .genie-form2 {
 	margin: 0px;
+
+}
+.genie-texthead h1
+{
+font-size:65px;
+font-style: normal;
+	text-transform: uppercase;
+	color: #666;
+	margin: 0px;
+border-bottom: 2px solid #ccc;
+}
+.genie-text
+{
+padding-top:70px;
+}
+.genie-textleft
+{
+float:left;
+width:212px;
+margin-right:8px;
+background:#eee;
+}
+.genie-textleft ul
+{
+list-style:none;
+margin: 0px;
+border-right: 1px solid #ccc;
+}
+.genie-textleft  li 
+{
+background: url("img/leftbord.png") no-repeat scroll 0px 0px transparent;
+line-height: 50px;
+padding-left: 20px;
+}
+.genie-textleft  li a
+{
+font-family: Arial, Helvetica, sans-serif;
+font-size:14px;
+font-style: normal;
+	text-transform: uppercase;
+	color: #333;
+	}
+.genie-rgthead .gen-rghthdtext
+{
+font-size:36px;
+font-style: normal;
+	text-transform: uppercase;
+	color: #666;
+}	
+
+.genie-rgthead .genie-icon1 {
+	background: url("img/gen-left.png") no-repeat scroll 0px 10px
+		transparent;
+	padding-left: 40px;
+}
+
+.genie-rgthead .genie-icon2 {
+	background: url("img/gen-rght.png") no-repeat scroll 11px 10px
+		transparent;
+	padding-left: 40px;
 }
 .genie-frmtext{
 	width: 942px;

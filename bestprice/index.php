@@ -225,7 +225,7 @@ Gain control of your money and discover countless options</p>
 	   <div class='genie-clear'></div>
 	  </div>
 	  </div>
-       <div class="container genie-width ddf">
+       <div class="container genie-width">
       <input type='hidden' id='isSorting' value='0' />
       <input type='hidden' id='query_id' value='0' />
       <input type='hidden' id='showSuggestion' value='1' />
