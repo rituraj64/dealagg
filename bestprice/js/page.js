@@ -47,39 +47,42 @@ $(document).ready(function() {
 			if (event.keyCode == 40) {
 				up = false;
 			}
-			if ($target.closest('li.genie-catli').length > 0) {
-				console.log('li keypress');
-				var select = false;
-				$('li.genie-catli').each(function() {
-					if ($(this).hasClass('discat')) {
-						select = $(this);
-						return 0;
-					}
-				});
-				if (select) {
-					if(down){
-						var ele = select.next('li.genie-catli');
-						if(ele){
-							$('li.genie-catli').removeClass('discat');
-							ele.addClass('discat');
-						}else{
-							$('li.genie-catli').removeClass('discat');
-							$('li.genie-catli:eq(1)').addClass('discat');
-						}
-					}else{
-						var ele = select.prev('li.genie-catli');
-					}
-				}
-				event.preventDefault();
-			} else if ($target.closest('.genie-select').length > 0) {
+			if ($target.closest('.genie-select').length > 0) {
 				console.log('main press');
+
 				if ($('ul#genie-chldcat').hasClass('closed')) {
 					$('#genie-chldcat li').show();
 					$('ul#genie-chldcat').removeClass('closed');
 				} else {
-					var ele = $('li.genie-catli:eq(1)');
-					ele.addClass('discat');
-					ele.focus();
+					var select = false;
+					$('li.genie-catli').each(function() {
+						if ($(this).hasClass('discat')) {
+							select = $(this);
+							return 0;
+						}
+					});
+
+					if (select) {
+						if (up) {
+							var ele = select.prev('li.genie-catli');
+							if (ele.length > 0 && !ele.hasClass('genie-first')) {
+								$('li.genie-catli').removeClass('discat');
+								ele.addClass('discat');
+							} else {
+								$('li.genie-catli').removeClass('discat');
+								$('li.genie-catli').last().addClass('discat');
+							}
+						} else {
+							var ele = select.next('li.genie-catli');
+							if (ele.length > 0) {
+								$('li.genie-catli').removeClass('discat');
+								ele.addClass('discat');
+							} else {
+								$('li.genie-catli').removeClass('discat');
+								$('li.genie-catli:eq(1)').addClass('discat');
+							}
+						}
+					}
 				}
 				event.preventDefault();
 			}
