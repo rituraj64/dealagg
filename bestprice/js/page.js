@@ -5,7 +5,7 @@ function follow(){
 			login(1);
 		}else{
 			var url = $('#site_url').val() + 'follow.php?query_id='+$('#query_id').val();
-			$.getJSON(function(url, function(data) {
+			$.getJSON(url, function(data) {
 				if(data['error'] == 0){
 					alert('Follow Success');
 				}else{
