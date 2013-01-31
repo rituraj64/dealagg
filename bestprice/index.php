@@ -363,12 +363,12 @@ categories only
 					if($('#share_url').val().length > 0){
 						var basepath='<?php echo Parser::SITE_URL.'facebook.php?redirect='?>'+encodeURL($('#share_url').val());
 						if(query_id.length > 0){
-							basepath += '&query_id'+query_id;
+							basepath += '&query_id='+query_id;
 						}
 					}else{
 						var basepath='<?php echo Parser::SITE_URL.'facebook.php'?>';
 						if(query_id.length > 0){
-							basepath += '?query_id'+query_id;
+							basepath += '?query_id='+query_id;
 						}
 					}
 					FB.getLoginStatus(function(r){
