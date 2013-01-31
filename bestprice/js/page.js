@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('#genie-chldcat li').css('display', 'none');
+	$('#genie-chldcat li').hide();
 	$('#genie-chldcat li:first-child').show();
 	$('#genie-chldcat li:eq(1)').css('clear', 'both');
 	$('.genie-select').click(function(event) {
@@ -28,7 +28,7 @@ $(document).ready(function() {
 				$('li.genie-catli').removeClass('discat');
 				var catval = $(this).val();
 				$('#category').val(catval);
-				$("#genie-chldcat li").css('display', 'none');
+				$("#genie-chldcat li").hide();
 				$(this).addClass('discat');
 				$('ul#genie-chldcat').addClass('closed');
 			}
@@ -42,6 +42,7 @@ $(document).ready(function() {
 	});
 	$(document).keydown(function(event) {
 		var $target = $(event.target);
+		// console.log(event.keyCode);
 		if (event.keyCode == 38 || event.keyCode == 40) {
 			var up = true;
 			if (event.keyCode == 40) {
@@ -86,6 +87,26 @@ $(document).ready(function() {
 				}
 				event.preventDefault();
 			}
+		} else if (event.keyCode == 13 || event.keyCode == 9) {
+			if ($target.closest('.genie-select').length > 0) {
+				if (!$('ul#genie-chldcat').hasClass('closed')) {
+					var select = false;
+					$('li.genie-catli').each(function() {
+						if ($(this).hasClass('discat')) {
+							select = $(this);
+							return 0;
+						}
+					});
+
+					if (select) {
+						var catval = select.val();
+						$('#category').val(catval);
+						event.preventDefault();
+					}
+					$("#genie-chldcat li").hide();
+					$('ul#genie-chldcat').addClass('closed');
+				}
+			}
 		}
 	});
 	$(document).click(function(event) {
@@ -93,6 +114,20 @@ $(document).ready(function() {
 		if ($target.closest('#genie-chldcat,.genie-selicon,.genie-select').length == 0) {
 			console.log('hide from here');
 			if (!$('ul#genie-chldcat').hasClass('closed')) {
+				var select = false;
+				$('li.genie-catli').each(function() {
+					if ($(this).hasClass('discat')) {
+						select = $(this);
+						return 0;
+					}
+				});
+
+				if (select) {
+					var catval = select.val();
+					$('#category').val(catval);
+					event.preventDefault();
+				}
+
 				$("#genie-chldcat li").hide();
 				$('ul#genie-chldcat').addClass('closed');
 			}

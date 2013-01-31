@@ -3,7 +3,7 @@
   <div class="container genie-width">
         <div class="genie-footmenu">
 		<ul>
-		 <li class="active genie-abt"><a href="<?php echo Parser::SITE_URL;?>about.php">About</a></li>
+		 <li class="genie-abt"><a href="<?php echo Parser::SITE_URL;?>about.php">About</a></li>
                 <li class="genie-term"><a href="<?php echo Parser::SITE_URL;?>termss.php">Terms and Privacy</a></li>
                <!--  <li><a href="<?php echo Parser::SITE_URL;?>sites.php">Sites</a></li> -->
                 <li class="genie-fb"><a href="<?php echo Parser::SITE_URL;?>feedback.php">Feedback</a></li>
@@ -12,9 +12,9 @@
 		                
 		</div>
       <div class="genie-copyrght">
-	 <span> PriceGenie &copy; 2013 by <a>Excellence Technologies </a> |<span>
-	 <span> <a href="http://www.facebook.com/pages/Pricegeniein/432025980204393"><img src='<?php echo Parser::SITE_URL;?>img/fb.png' /></a></span>
-	 <span> <a href="https://twitter.com/pricegenie2"><img src='<?php echo Parser::SITE_URL;?>img/tw.png' /></a></span>
+	 <span> PriceGenie &copy; 2013 by <a href='http://excellencetechnologies.in/our-products.php' target="_blan">Excellence Technologies </a> |<span>
+	 <span> <a target="_blank" href="http://www.facebook.com/pages/Pricegeniein/432025980204393"><img src='<?php echo Parser::SITE_URL;?>img/fb.png' /></a></span>
+	 <span> <a target="_blank" href="https://twitter.com/pricegenie2"><img src='<?php echo Parser::SITE_URL;?>img/tw.png' /></a></span>
 	  </div>
 	  
 	  <div class="genie-clear"></div>

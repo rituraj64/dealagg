@@ -47,7 +47,9 @@
 
       <div class="masthead genie-width">
       <div class="genie-logo">  
+      <!-- 
 	  <a class="genie-iconlogo"><img src='<?php echo Parser::SITE_URL;?>img/logo-gen.png' alt='loading..' title='loading..'/></a>
+	   -->
 	  <h3 class="muted genie-h3"><a><img src='<?php echo Parser::SITE_URL;?>img/logo-text.png' alt='loading..' title='loading..'/></a></h3>
 	  
 	  </div>

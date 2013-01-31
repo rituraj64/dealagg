@@ -134,7 +134,7 @@
 
        	
         <div class="genie-frmtext"><h1>FIND cheapest price on single click</h1>
-        <p>Price Genie is a realtime online price comparison engine, it finds lowest price of a product for you along with best matching coupon codes available
+        <p>Price Genie is a realtime online price comparison engine, it finds <i>lowest price</i> of a product for you along with <i>best matching coupon codes</i> available!<br/>
 Gain control of your money and discover countless options</p>
         </div>
         <form class="form-search genie-form" onsubmit="$('#showSuggestion').val(1);findPrice();return false;" style="font-size: 27px">
@@ -142,7 +142,7 @@ Gain control of your money and discover countless options</p>
         		<div class="genie-frmdiv">
         		<span class="gen-srch2">search</span>
         			<div class="genie-inputbg">
-		  		<input tabindex="1" type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->getQuery();}else {echo 'Enter Exact Product Name' ;}?>'>
+		  		<input tabindex="1" type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->getQuery();}else {echo 'Write Exact Product Name...' ;}?>'>
 		  		<div  tabindex="2" class="genie-select" style="font-size:18px;height:47px;">
 			  		<a class="genie-selicon"><img src='<?php echo Parser::SITE_URL;?>img/selicon.png' /> </a>
 			  		<ul id="genie-chldcat" class="closed">
