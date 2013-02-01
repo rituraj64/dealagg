@@ -15,7 +15,7 @@ class Follow extends SmartModel{
 
 		$data = $this->query('select * from follow_url_map where follow_id = '.$id);
 		$data = mysql_fetch_assoc($data);
-		
+
 		require_once 'phpMailer/class.phpmailer.php';
 		require_once 'model/User.php';
 
@@ -38,7 +38,6 @@ class Follow extends SmartModel{
 
 		$subject = 'Follow Pricing Update For '.$prev_data['name'];
 		$message = '';
-		$to = 'manish@excellencetechnologies.in';
 		$today = date("D M j Y h:i");
 		$mail = new phpmailer();
 		$mail->setFrom($to, 'PriceGenie');
@@ -54,8 +53,7 @@ class Follow extends SmartModel{
 		}
 
 		$mail->MsgHTML($message);
-		$to = 'manish@excellencetechnologies.in';
-		$mail->AddAddress($to, "Manish");
+		$mail->AddAddress('manish@excellencetechnologies.in', "Manish");
 		foreach($to as $t){
 			$mail->AddCC($t['email'],$t['name']);
 		}

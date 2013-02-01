@@ -20,11 +20,16 @@ require_once 'Parsing.php';
 require_once 'model/Follow.php';
 require_once 'model/FollowUrl.php';
 require_once 'model/History.php';
+require_once 'model/CouponActive.php';
 
 $parsing = new Parsing();
 $websites = $parsing->getWebsites();
 $parse_queue = array();
 $cache_data = array();
+
+$couponactive = new CouponActive();
+$data = $couponactive->read(null,array('is_follow'=>0));
+
 
 $filelist = array();
 $dir = dirname(__FILE__).'/cache';
@@ -50,10 +55,10 @@ if ($handle = opendir($dir)) {
 				foreach($web_session_data as $row){
 					$cache_data[$website][] = $row;
 				}
-				//unlink($filename);
+				unlink($filename);
 			}
 			$index++;
-			if($index > 10){
+			if($index > 100){
 				break;
 			}
 		}
@@ -78,15 +83,16 @@ foreach($data as $row){
 			$prev_data = $row['prev_data'];
 			$prev_data = json_decode($prev_data,true);
 
-			
+
 			$found = false;
 			if(isset($cache_data[$website])){
 				$rows = $cache_data[$website];
 				foreach($rows as $row1){
-					$follow->report($row['follow_id'],$prev_data,$row1);die;
 					if($row1['name'] == $follow_name){
-						if($row1['disc_price'] != $prev_data['disc_price']){
+						if($row1['disc_price'] != $prev_data['disc_price'] && $row1['disc_price'] > 0){
 							$follow->report($row['follow_id'],$prev_data,$row1);
+							$follow_url = new FollowUrl();
+							$follow_url->update(array('last_followed'=>time(),'prev_data'=>json_encode($row1)),array('id'=>$row['id']));
 							$found = true;
 							break;
 						}
@@ -133,14 +139,15 @@ foreach($parse_queue as $row){
 	if($html){
 		$data = $siteObj->getProductData($html,false,false);
 		if($data){
-			if($data['price'] != $prev_data['disc_price']){
+			if($data['price'] != $prev_data['disc_price']  && $data['price'] > 0){
 
 				$follow->report($row['follow_id'],$prev_data,$data);
 
 				$data['disc_price'] = $data['price'];
-
+				$follow_url = new FollowUrl();
 				$follow_url->update(array('last_followed'=>time(),'prev_data'=>json_encode($data)),array('id'=>$row['id']));
 			}else{
+				$follow_url = new FollowUrl();
 				$follow_url->update(array('last_followed'=>time()),array('id'=>$row['id']));
 			}
 		}

@@ -714,7 +714,7 @@ class Parsing{
 			$data = $active->query('select * from coupon_active where active_to ="" and website = "'.$website.'" order by id desc limit 0,1');
 		}
 		$data = $active->getData($data);
-		
+
 		$data2 = array();
 		foreach($data as $row){
 			$row['categories'] = '';
@@ -741,5 +741,20 @@ class Parsing{
 			$data2[] = $row;
 		}
 		return $data2;
+	}
+	public function findExactMatchCoupon($coupons,$product){
+		$category = $product['category'];
+		$name = $product['name'];
+		$website = $product['website'];
+		$price = $product['disc_price'];
+		$name = $product['name'];
+
+		foreach($coupons as $c){
+			$coupon_cat = $c['category'];
+			$coupon_cat = explode(',',$coupon_cat);
+			if(in_arrray($category,$coupon_cat)){
+
+			}
+		}
 	}
 }
