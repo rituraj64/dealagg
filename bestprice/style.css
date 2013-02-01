@@ -136,10 +136,13 @@ body {
 }
 
 .genie-container {
-	background: url("img/headbg.png") repeat-x scroll 0 0 transparent;
+	background: url("img/headbg1.png") repeat-x scroll 0 0 transparent;
 	padding-bottom: 0px;
 }
-
+.genie-srchbg
+{
+background:#03856e;;
+}
 .genie-price
 {
 padding-top:20px;
@@ -174,7 +177,7 @@ padding-top:20px;
 }
 
 .genie-nav a {
-	padding: 15px 33px !important;
+	padding: 15px 33px 14px!important;
 	margin-top: 0px !important;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
@@ -185,8 +188,8 @@ padding-top:20px;
 	font-weight: normal !important;
 }
 
-.genie-nav a {
-  padding: 15px 31px \9 !important;
+:root .genie-nav a {
+  padding: 15px 31px \0/IE9 !important;
 }
 	
 
@@ -443,7 +446,11 @@ padding-top:20px;
 	color: #000;
 	font-style: normal;
 	text-transform: uppercase;
+	display:inline;
+	*display : inline-block;
+	line-height:30px;
 }
+
 
 .genie-serch {
 	margin-left: 108px;
@@ -695,7 +702,12 @@ font-style: normal;
 	text-transform: uppercase;
 	color: #666;
 }	
-
+.genie-rgthead  span
+{
+display:inline;
+*display : inline-block;
+	line-height:30px;
+	}
 .genie-rgthead .genie-icon1 {
 	background: url("img/gen-left.png") no-repeat scroll 0px 5px
 		transparent;
@@ -764,3 +776,7 @@ margin:0px;
 line-height:20px;
 }
 
+.genie-butimp
+{
+margin-top:10px;
+}

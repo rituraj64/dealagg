@@ -114,6 +114,7 @@
            
           </div>
         </div><!-- /.navbar -->
+		  </div>
         <?php
         	if(isset($_SESSION['userid'])){ 
         ?>

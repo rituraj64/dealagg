@@ -12,7 +12,7 @@
 
 <?php require_once 'header.php';?>
 
-</div>
+
  	  <div class="genie-text genie-width">
       <div class="genie-texthead">
 	  <h1>EVERYTHING GENIE</h1>

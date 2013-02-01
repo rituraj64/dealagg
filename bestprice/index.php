@@ -41,7 +41,7 @@
 <?php require_once 'header.php';?>
  	
       <!-- Jumbotron -->
-      <div class="jumbotron">
+      <div class="jumbotron genie-srchbg">
 	   <div class="genie-price genie-width">
       	<?php if(isset($cache_data)){ ?>
       		<script type="text/javascript">
@@ -192,7 +192,9 @@ Gain control of your money and discover countless options</p>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			Share Results: <input type='text' id='share_url' value='<?php if(isset($result)){echo 'display: none';}?>' style="width: 100%"/>
 		</div>
-		<button class='btn' onclick='follow();return false;'>Follow Product Pricing</button>
+
+		<button class='btn genie-butimp' onclick='follow();return false;'>Follow Product Pricing</button>
+
 		<div class="alert alert-info" id='summary' style="<?php if(!isset($result)){echo 'display: none';}?>">
 				<div class='pull-left' style="width: 25%">
 					Total Time Taken: <h4 id='time_taken'></h4>
@@ -217,15 +219,17 @@ Gain control of your money and discover countless options</p>
 				
 		</div>
 		</div>
-      </div>
-	  
-	  <div class="genie-socialbut">
+		 <div class="genie-socialbut">
 	  <div id="fb" class="genie-left"><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhttp://pricegenie.in/&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:85px; height:21px;" allowTransparency="true"></iframe></div>
 	   <div id="twitter" style="width:90px;" class="genie-left"><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-url="http://pricegenie.in/" data-counturl="http://pricegenie.in/" data-text="find lowest price" data-hashtags="find lowest price">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
 	   <div class='genie-clear'></div>
 	  </div>
-	  </div>
-       <div class="container genie-width">
+      </div>
+	  
+	 
+	
+      
+	  <div class="container genie-width ">
       <input type='hidden' id='islogged' value='<?php if(isset($_SESSION['userid'])){echo 1;}else{echo 0;}?>' />
       <input type='hidden' id='isSorting' value='0' />
       <input type='hidden' id='query_id' value='0' />
