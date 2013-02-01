@@ -285,6 +285,7 @@ padding-top:20px;
 	font-weight: normal !important;
 	font-style: normal;
 	background: none !important;
+	*text-transform: capitalize!important;
 }
 
 .genie-frmtext h1 {
@@ -356,6 +357,7 @@ padding-top:20px;
 	float: left;
 	width: 790px;
 	border-radius: 5px;
+	
 }
 
 .genie-inputbg input {
@@ -372,6 +374,7 @@ padding-top:20px;
 	font-family: Arial;
 	font-style: italic;
 	font-size: 16px !important;
+	line-height:39px;!important;
 }
 
 .genie-inputbg .genie-select {

@@ -218,12 +218,13 @@ Gain control of your money and discover countless options</p>
 				<div class='clearfix'></div>
 				
 		</div>
-		</div>
-		 <div class="genie-socialbut">
+		<div class="genie-socialbut">
 	  <div id="fb" class="genie-left"><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhttp://pricegenie.in/&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:85px; height:21px;" allowTransparency="true"></iframe></div>
 	   <div id="twitter" style="width:90px;" class="genie-left"><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-url="http://pricegenie.in/" data-counturl="http://pricegenie.in/" data-text="find lowest price" data-hashtags="find lowest price">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
 	   <div class='genie-clear'></div>
 	  </div>
+		</div>
+		 
       </div>
 	  
 	 
