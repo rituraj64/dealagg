@@ -21,8 +21,45 @@ require_once 'model/Follow.php';
 require_once 'model/FollowUrl.php';
 require_once 'model/History.php';
 
+$parsing = new Parsing();
+$websites = $parsing->getWebsites();
 $parse_queue = array();
+$cache_data = array();
 
+$filelist = array();
+$dir = dirname(__FILE__).'/cache';
+$index = 0;
+if ($handle = opendir($dir)) {
+	while (false !== ($entry = readdir($handle))) {
+		if ($entry != "." && $entry != "..") {
+
+			$website = false;
+			foreach($websites as $web){
+				if(strpos($entry,$web) !== false){
+					$website = $web;
+					break;
+				}
+			}
+			if($website){
+				$filename = $dir.'/'.$entry;
+				$data = file_get_contents($filename);
+				$web_session_data = json_decode($data,true);
+				if(!isset($cache_data[$website])){
+					$cache_data[$website] = array();
+				}
+				foreach($web_session_data as $row){
+					$cache_data[$website][] = $row;
+				}
+				//unlink($filename);
+			}
+			$index++;
+			if($index > 10){
+				break;
+			}
+		}
+	}
+	closedir($handle);
+}
 $parser = new Parser();
 $follow = new Follow();
 
@@ -41,7 +78,21 @@ foreach($data as $row){
 			$prev_data = $row['prev_data'];
 			$prev_data = json_decode($prev_data,true);
 
-			if(date('Y-m-d',$last) != date('Y-m-d')){
+			$found = false;
+			if(isset($cache_data[$website])){
+				$rows = $cache_data[$website];
+				foreach($rows as $row1){
+					if($row1['name'] == $follow_name){
+						if($row1['disc_price'] != $prev_data['disc_price']){
+							$follow->report($row['follow_id'],$prev_data,$row1);
+							$found = true;
+							break;
+						}
+					}
+				}
+			}
+
+			if(date('Y-m-d',$last) != date('Y-m-d') && !$found){
 				require_once 'Sites/'.$website.'.php';
 				$siteObj = new $website;
 				if($siteObj->hasProductdata()){
@@ -64,17 +115,6 @@ foreach($data as $row){
 }
 $parse_size = sizeof($parse_queue);
 
-$filelist = array();
-if ($handle = opendir(dirname(__FILE__).'/cache/')) {
-	while ($entry = readdir($handle)) {
-		if (is_file($entry)) {
-			echo $entry;die;
-		}
-	}
-	closedir($handle);
-}
-
-
 $parse_no = ceil($parse_size/$min_left);
 
 $index = 1;
@@ -92,13 +132,10 @@ foreach($parse_queue as $row){
 		$data = $siteObj->getProductData($html,false,false);
 		if($data){
 			if($data['price'] != $prev_data['disc_price']){
-				$history = new History();
-				$history->name = $prev_data['name'];
-				$history->model = $row['model_no'];
-				$history->brand = $row['brand'];
-				$history->data = json_encode($prev_data);
-				$history->updated_at = time();
-				$history->insert();
+
+				$follow->report($row['follow_id'],$prev_data,$data);
+
+				$data['disc_price'] = $data['price'];
 
 				$follow_url->update(array('last_followed'=>time(),'prev_data'=>json_encode($data)),array('id'=>$row['id']));
 			}else{
