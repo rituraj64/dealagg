@@ -8,6 +8,6 @@ class Follow extends SmartModel{
 	public $follow_reason;
 	public $userid;
 
-	public $_table = "cache";
+	public $_table = "follow";
 	public $_fields = array('id','query_id','follow_start','follow_end','follow_reason','userid');
 }

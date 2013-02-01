@@ -192,7 +192,7 @@ Gain control of your money and discover countless options</p>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			Share Results: <input type='text' id='share_url' value='<?php if(isset($result)){echo 'display: none';}?>' style="width: 100%"/>
 		</div>
-		<button class='btn btn-important' onclick='follow();'>Follow Product Pricing</button>
+		<button class='btn' onclick='follow();return false;'>Follow Product Pricing</button>
 		<div class="alert alert-info" id='summary' style="<?php if(!isset($result)){echo 'display: none';}?>">
 				<div class='pull-left' style="width: 25%">
 					Total Time Taken: <h4 id='time_taken'></h4>
@@ -365,7 +365,7 @@ categories only
 					}
 					var query_id = $('#query_id').val();
 					if($('#share_url').val().length > 0){
-						var basepath='<?php echo Parser::SITE_URL.'facebook.php?redirect='?>'+encodeURL($('#share_url').val());
+						var basepath='<?php echo Parser::SITE_URL.'facebook.php?redirect='?>'+encodeURIComponent($('#share_url').val());
 						if(query_id.length > 0 && follow == 1){
 							basepath += '&query_id='+query_id;
 						}

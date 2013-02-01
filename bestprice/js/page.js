@@ -1,19 +1,21 @@
-function follow(){
-	if($('#query_id').val().length > 0){
+function follow() {
+	if ($('#query_id').val().length > 0 && $('#query_id').val() != 0) {
 		var islog = $('#islogged').val();
-		if(islog == 1){
+		if (islog == 0) {
 			login(1);
-		}else{
-			var url = $('#site_url').val() + 'follow.php?query_id='+$('#query_id').val();
+		} else {
+			var url = $('#site_url').val() + 'follow.php?query_id=' + $('#query_id').val();
 			$.getJSON(url, function(data) {
-				if(data['error'] == 0){
+				if (data['error'] == 0) {
 					alert('Follow Success');
-				}else{
+				} else if (data['error'] == 3) {
+					alert('Already Following this product');
+				} else {
 					alert('Follow Error');
 				}
 			});
 		}
-	}else{
+	} else {
 		alert('Please wait for search to finish');
 	}
 }
