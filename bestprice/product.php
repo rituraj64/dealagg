@@ -20,8 +20,7 @@ $siteObj = new $site;
 $parser = new Parser();
 try{
 	$html = $parser->getHtml($url);
-
-	$data = $siteObj->getProductData($html,$price,$stock);
+	$data = $siteObj->getProductData($html,$price,$stock);	
 }catch(Exception $e){
 	$data = array();
 	$data['website'] = $site;

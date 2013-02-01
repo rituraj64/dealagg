@@ -41,7 +41,7 @@ if(isset($_REQUEST['query_id'])){
 						break;
 					}
 				}
-				unlink($filename);
+				//unlink($filename);
 			}
 			/*
 			 if(isset($_SESSION[$website][$query_id])){

@@ -428,9 +428,19 @@ class Parsing{
 			}
 		}
 
-		//make entry into html detecting system
-
 		if($query){
+			
+			//check follow product
+			
+			try{
+				require_once 'model/Follow.php';
+				$follow = new Follow();
+				$follow->checkFollow();
+			}catch(Exception $e){
+				
+			}
+			
+			//make entry into html detecting system			
 			$index = 0;
 			foreach($data2 as $row){
 				$problem = '';

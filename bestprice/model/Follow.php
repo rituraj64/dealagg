@@ -10,4 +10,8 @@ class Follow extends SmartModel{
 
 	public $_table = "follow";
 	public $_fields = array('id','query_id','follow_start','follow_end','follow_reason','userid');
+	
+	public function checkFollow($rows){
+		
+	}
 }
