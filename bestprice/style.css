@@ -528,17 +528,9 @@ padding-top:20px;
 	border-style: solid;
 }
 
-.genie-select ul#genie-chldcat .genie-first {
-	font-size: 17px;
-	cursor: pointer;
-	color: #000;
-	background: #fff;
-	padding-top: 9px;
-}
 
-.genie-select  ul#genie-chldcat li.genie-first {
-	clear: both !important;
-}
+
+
 
 .genie-select  ul#genie-chldcat li {
 	line-height: 26px;
@@ -546,8 +538,18 @@ padding-top:20px;
 	padding-top:6px;
 	float: left;
 	font-size: 17px;
+	
 }
 
+.genie-select ul#genie-chldcat .genie-first {
+	font-size: 17px;
+	cursor: pointer;
+	color: #000;
+	background: #fff;
+	padding-top: 9px;
+	clear: both !important;
+	*float:none;
+}
 .genie-catli,.genie-select {
 	cursor: pointer;
 }
@@ -578,6 +580,7 @@ padding-top:20px;
 	font-size: 14px;
 	float: left !important;
 	cursor: pointer;
+	
 }
 
 .genie-rgtbg {
