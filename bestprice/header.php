@@ -95,7 +95,7 @@
           <div class="navbar-inner genie-navinner">
            
               <ul class="nav genie-nav">
-                <li class="genie-home"><a <?php if($home){ echo 'class="active"';}?> class="genie-hov" href="<?php echo Parser::SITE_URL;?>index.php">Home</a></li>
+                <li class="genie-home"><a <?php if($home){ echo 'class="active"';}?> class="genie-hov" href="<?php echo Parser::SITE_URL;?>">Home</a></li>
                 <li class="genie-coup"><a <?php if($coupons){ echo 'class="active"';}?> class="genie-hov" href="<?php echo Parser::SITE_URL;?>coupons.php">Coupons</a></li>
                <!--  <li><a href="<?php echo Parser::SITE_URL;?>sites.php">Sites</a></li> -->
                 <li class="genie-search"><a <?php if($recent){ echo 'class="active"';}?> class="genie-hov" href="<?php echo Parser::SITE_URL;?>recent.php">Recent Searches</a></li>
