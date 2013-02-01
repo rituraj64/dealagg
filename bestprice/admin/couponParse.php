@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="css/jquery.fancybox1.css"></link>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css"></link>
 
-<script type="text/javascript"><!--
+<script type="text/javascript">
 	$(document).ready(function(){
 		
 		$(".add_coupon").fancybox();
@@ -128,84 +128,93 @@
 				{
 					var date_search=dscription.split(' till');
 					var day=/\d+(?:\.\d+)?/.exec(date_search[1]);
-					if(date_search[1].indexOf('jan')!=-1)
-					{
-						var month=1;
-						var year_search=date_search[1].split('jan');
-						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
-					}
-					else if(date_search[1].indexOf('feb')!=-1)
-					{
-						var month=2;
-						var year_search=date_search[1].split('feb');
-						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
-					}
-					else if(date_search[1].indexOf('march')!=-1)
-					{
-						var month=3;
-						var year_search=date_search[1].split('march');
-						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
-					}
-					else if(date_search[1].indexOf('april')!=-1)
-					{
-						var month=4;
-						var year_search=date_search[1].split('april');
-						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
-					}
-					else if(date_search[1].indexOf('may')!=-1)
-					{
-						var month=5;
-						var year_search=date_search[1].split('may');
-						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
-					}
-					else if(date_search[1].indexOf('june')!=-1)
-					{
-						var month=6;
-						var year_search=date_search[1].split('june');
-						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
-					}
-					else if(date_search[1].indexOf('july')!=-1)
-					{
-						var month=7;
-						var year_search=date_search[1].split('july');
-						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
-					}
-					else if(date_search[1].indexOf('aug')!=-1)
-					{
-						var month=8;
-						var year_search=date_search[1].split('aug');
-						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
-					}
-					else if(date_search[1].indexOf('sept')!=-1)
-					{
-						var month=9;
-						var year_search=date_search[1].split('sept');
-						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
-					}
-					else if(date_search[1].indexOf('oct')!=-1)
-					{
-						var month=10;
-						var year_search=date_search[1].split('oct');
-						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
-					}
-					else if(date_search[1].indexOf('nov')!=-1)
-					{
-						var month=11;
-						var year_search=date_search[1].split('nov');
-						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
-					}
-					else if(date_search[1].indexOf('dec')!=-1)
-					{
-						var month=12;
-						var year_search=date_search[1].split('dec');
-						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
-					}
-					if(year==null)
-					{
-						year="2013";
-					}
-					var final_date=year+"-"+month+"-"+day;
-					$("#active_to").val(final_date);
+					var month_search=date_search[1].split(' ');
+					var year_search=date_search[1].split(month_search[2]);
+					var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+					
+					var date = new Date(day+" "+month_search[2]+" "+year);
+					date = new Date(date.getTime()-date.getTimezoneOffset()*60*1000)
+					       .toJSON()
+					       .match(/(\d{4})\-[0]?(\d{1,2})\-[0]?(\d{1,2})T/);
+				       
+//					if(date_search[1].indexOf('jan')!=-1)
+//					{
+//						var month=1;
+//						var year_search=date_search[1].split('jan');
+//						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+//					}
+//					else if(date_search[1].indexOf('feb')!=-1)
+//					{
+//						var month=2;
+//						var year_search=date_search[1].split('feb');
+//						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+//					}
+//					else if(date_search[1].indexOf('march')!=-1)
+//					{
+//						var month=3;
+//						var year_search=date_search[1].split('march');
+//						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+//					}
+//					else if(date_search[1].indexOf('april')!=-1)
+//					{
+//						var month=4;
+//						var year_search=date_search[1].split('april');
+//						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+//					}
+//					else if(date_search[1].indexOf('may')!=-1)
+//					{
+//						var month=5;
+//						var year_search=date_search[1].split('may');
+//						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+//					}
+//					else if(date_search[1].indexOf('june')!=-1)
+//					{
+//						var month=6;
+//						var year_search=date_search[1].split('june');
+//						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+//					}
+//					else if(date_search[1].indexOf('july')!=-1)
+//					{
+//						var month=7;
+//						var year_search=date_search[1].split('july');
+//						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+//					}
+//					else if(date_search[1].indexOf('aug')!=-1)
+//					{
+//						var month=8;
+//						var year_search=date_search[1].split('aug');
+//						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+//					}
+//					else if(date_search[1].indexOf('sept')!=-1)
+//					{
+//						var month=9;
+//						var year_search=date_search[1].split('sept');
+//						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+//					}
+//					else if(date_search[1].indexOf('oct')!=-1)
+//					{
+//						var month=10;
+//						var year_search=date_search[1].split('oct');
+//						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+//					}
+//					else if(date_search[1].indexOf('nov')!=-1)
+//					{
+//						var month=11;
+//						var year_search=date_search[1].split('nov');
+//						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+//					}
+//					else if(date_search[1].indexOf('dec')!=-1)
+//					{
+//						var month=12;
+//						var year_search=date_search[1].split('dec');
+//						var year=/\d+(?:\.\d+)?/.exec(year_search[1]);
+//					}
+//					if(year==null)
+//					{
+//						year="2013";
+//					}
+//					var final_date=year+"-"+month+"-"+day;
+					$("#active_to").val(date[1]+'-'+date[2]+'-'+date[3]);
 				}
 				var search_discount=dscription.indexOf('%');
 				if(search_discount!=-1)
@@ -240,7 +249,7 @@
 					}
 					else
 					{
-						$("#deal_type").val("Fixed");
+					 	$("#deal_type").val("Fixed");
 					}
 				}
 				else
@@ -316,7 +325,16 @@
 		$(".ovalbutton").click(function(){
 			var aa=$(this).attr("href");
 			var readStatus=$("#read-status").val();
+			var search_name=$(".odd td input").attr("name");
+			var search_val=$(".odd td input").val();
 
+			if(search_val!="")
+			{
+				var aa=$(this).attr("href");
+				aa=aa+"&"+search_name+"="+search_val;
+				$(this).attr("href",aa);
+			}
+			
 			if(readStatus==1)
 			{
 				var trail='&status=1';
@@ -330,6 +348,9 @@
 				$(this).attr("href",aa);
 			}
 		});
+
+		$(".odd td input").attr("class","search_input");
+		
 		$("#parse_data").attr("border","0");
 		$("#paging-form").submit(function(){
 			
@@ -355,19 +376,19 @@
 				$(this).children("table").before("<input type='hidden' name='status' value='0'></input>");
 			}
 		});
-		$("#active_from" ).datepicker({
+		$("#active_from").datepicker({
 		   dateFormat: 'yy-mm-dd',
 		   changeMonth:true,
 		   changeYear:true,
 		 });
-		$("#active_to" ).datepicker({
+		$("#active_to").datepicker({
 		   dateFormat: 'yy-mm-dd',
 		   changeMonth:true,
 		   changeYear:true,
 		 });
 	});
 
---></script>
+</script>
 <style>
 
 	#bus table tbody tr td table
