@@ -114,7 +114,7 @@
            
           </div>
         </div><!-- /.navbar -->
-		  </div>
+		 
         <?php
         	if(isset($_SESSION['userid'])){ 
         ?>
@@ -126,6 +126,6 @@
 		<?php } ?>
         <div class="genie-clear"></div>
       </div>
-     
+      </div>
  <input type='hidden' id='site_url' value="<?php echo Parser::SITE_URL;?>"/>
  <input type='hidden' id='ajax_url' value="<?php echo Parser::AJAX_URL;?>"/>
