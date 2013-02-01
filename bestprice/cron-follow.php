@@ -1,5 +1,5 @@
 <?php
-
+set_time_limit(300000);
 
 $total_5min = (24 * 60)/5;
 
@@ -78,10 +78,12 @@ foreach($data as $row){
 			$prev_data = $row['prev_data'];
 			$prev_data = json_decode($prev_data,true);
 
+			
 			$found = false;
 			if(isset($cache_data[$website])){
 				$rows = $cache_data[$website];
 				foreach($rows as $row1){
+					$follow->report($row['follow_id'],$prev_data,$row1);die;
 					if($row1['name'] == $follow_name){
 						if($row1['disc_price'] != $prev_data['disc_price']){
 							$follow->report($row['follow_id'],$prev_data,$row1);

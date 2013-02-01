@@ -15,9 +15,13 @@ class Follow extends SmartModel{
 
 		$data = $this->query('select * from follow_url_map where follow_id = '.$id);
 		$data = mysql_fetch_assoc($data);
-
+		
+		require_once 'phpMailer/class.phpmailer.php';
 		require_once 'model/User.php';
 
+		if(isset($data['userid'])){
+			$data = array($data);
+		}
 
 		$to = array();
 

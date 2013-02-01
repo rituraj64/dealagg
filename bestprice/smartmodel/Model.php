@@ -62,16 +62,16 @@ class Model {
 		$this->escapeArr[DataDB::DB_TYPE_MSSQL]['CLOSE'] = ']';
 		$this->escapeArr[DataDB::DB_TYPE_WORDPRESS]['OPEN'] = '`';
 		$this->escapeArr[DataDB::DB_TYPE_WORDPRESS]['CLOSE'] = '`';
-		
+
 		/*
-		if(!$this->_fields || !isset($this->_fields)){
-			$this->_fields = $this->loadFields();
+		 if(!$this->_fields || !isset($this->_fields)){
+		$this->_fields = $this->loadFields();
 		}
 		*/
 
 	}
 	public function loadFields(){
-		
+
 	}
 	public function escOp(){
 		return $this->escapeArr[DataDB::DB_TYPE]['OPEN'];
@@ -116,9 +116,9 @@ class Model {
 
 
 		if(!empty($limit))
-		$sql ="DELETE FROM ". $this->escOp() . "{$this->_table}". $this->escCl() . "   $wheresql $limit";
+			$sql ="DELETE FROM ". $this->escOp() . "{$this->_table}". $this->escCl() . "   $wheresql $limit";
 		else
-		$sql ="DELETE FROM  ". $this->escOp() . "{$this->_table}". $this->escCl() . "   $wheresql";
+			$sql ="DELETE FROM  ". $this->escOp() . "{$this->_table}". $this->escCl() . "   $wheresql";
 
 
 		$obj = $this->query($sql,$where_values,'delete');
@@ -674,7 +674,7 @@ class Model {
 			}else{
 				//named param used
 				foreach($param as $k=>$v)
-				$querytrack = str_replace($k, "'$v'", $querytrack);
+					$querytrack = str_replace($k, "'$v'", $querytrack);
 			}
 		}
 		if($this->sql_tracking===true){
@@ -683,8 +683,8 @@ class Model {
 		}
 		if(!DataDB::USE_PDO){
 			if(!$this->_dbCache){
-			$this->_dbCache = mysql_connect(Configuration::host,Configuration::user,Configuration::pass);
-			mysql_selectdb(Configuration::db);
+				$this->_dbCache = mysql_connect(Configuration::host,Configuration::user,Configuration::pass);
+				mysql_selectdb(Configuration::db);
 			}
 			$result = mysql_query($querytrack,$this->_dbCache);
 			if(!$result){
@@ -725,8 +725,8 @@ class Model {
 						break;
 					default:
 						$wpdb->query($querytrack);
-						return $wpdb;
-						break;
+					return $wpdb;
+					break;
 				}
 
 
@@ -780,7 +780,7 @@ class Model {
 				return $newData;
 			}else{
 				if(mysql_num_rows($obj) > 0)
-				while($row = mysql_fetch_assoc($obj)){
+					while($row = mysql_fetch_assoc($obj)){
 					$newRow = array();
 					foreach($row as $k => $v){
 						$newRow[$k] = stripslashes($v);
@@ -931,7 +931,7 @@ class Model {
 	public static function is_assoc($array) {
 		foreach (array_keys($array) as $k => $v) {
 			if ($k !== $v)
-			return true;
+				return true;
 		}
 		return false;
 	}
