@@ -153,14 +153,16 @@ Gain control of your money and discover countless options</p>
         					});
         				}
         				function setProductId(text, val, longtext, img, sel){
+        					$('#product').val(-1);
             				if(sel){
-                				
+                				$('#product').val(val);
             				}
         				}
         				function getProductId(){
         				}
         			</script>
         		<div style="float:left;position: relative;">
+        			<input type='hidden' name='product' value='-1'  />
 		  			<input tabindex="1" type="text" name='q' id='q' class="noaddnew noautofill autocomplete func[getAuto] shortbar value[setProductId] return[getProductId] width[375] genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->query;}?>' alt='Write Exact Product Name...'>
 		  		</div>
 		  		<div  tabindex="2" class="genie-select" style="font-size:18px;height:47px;">
