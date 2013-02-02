@@ -20,6 +20,8 @@ function follow() {
 	}
 }
 $(document).ready(function() {
+	inputFocusBlur();
+	scanAuto();
 	$('#genie-chldcat li').hide();
 	$('#genie-chldcat li:first-child').show();
 	$('#genie-chldcat li:eq(1)').css('clear', 'both');
@@ -172,6 +174,8 @@ $(document).ready(function() {
 		}
 	});
 });
+
+
 function isAlpha(keyCode) {
 	return ((keyCode >= 65 && keyCode <= 90) || keyCode == 8 || keyCode == 32 || keyCode == 190)
 }

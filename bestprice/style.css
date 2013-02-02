@@ -361,7 +361,6 @@ padding-top:20px;
 }
 
 .genie-inputbg input {
-	width: 375px !important;
 	background: #fff;
 	color: #333;
 	float: left;
@@ -370,7 +369,7 @@ padding-top:20px;
 	border-left: 0px;
 	border-top: 0px dotted #ccc;
 	border-bottom: 0px dotted #ccc;
-	color: #bbb;
+	/* color: #bbb; */
 	font-family: Arial;
 	font-style: italic;
 	font-size: 16px !important;

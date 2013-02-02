@@ -1,18 +1,20 @@
 .shortbox { /* color: #AEAEAE !important; */
-	
+	/*
 	font-size: 14px !important;
 	margin-bottom: 0px !important;
 	border: 1px solid #ff940a !important;
 	border-right: 6px solid #ff940a !important;
+	*/
+	
 }
 
 .shortbox li.autocomplete_icon {
-	background-image: url("../images/autocomplete/shortboxleftimg.png")
+	background-image: url("../img/autocomplete/shortboxleftimg.png")
 		!important;
 	background-repeat: no-repeat !important;
 	background-position: center center !important;
 	float: left;
-	height: 26px;
+	height: 47px;
 	width: 19px;
 	padding-left: 6px;
 }
@@ -23,12 +25,11 @@
 	height: 32px !important;
 	width: 570px !important;
 	/* color: #AEAEAE !important; */
-	
 	font-size: 14px !important;
 }
 
 .longbox li.autocomplete_icon {
-	background: url("../images/autocomplete/shortboxleftimg.png") no-repeat
+	background: url("../img/autocomplete/shortboxleftimg.png") no-repeat
 		scroll center center #FDFFFF !important;
 	height: 32px;
 	float: left;
@@ -39,30 +40,29 @@
 .shortbox:focus {
 	box-shadow: none !important;
 	color: #AEAEAE !important;
-	
 	font-size: 14px !important;
 }
 
 /*
 .processbar {
-	background: url("../images/autocomplete/progress.png") no-repeat scroll
+	background: url("../img/autocomplete/progress.png") no-repeat scroll
 		260px center #fff !important
 }
 */
 .processbar li.autocomplete_icon {
-	background-image: url("../images/autocomplete/loading.gif") !important;
+	background-image: url("../img/autocomplete/loading.gif") !important;
 }
 
 .longprocessbar li.autocomplete_icon {
-	background-image: url("../images/autocomplete/loading.gif") !important;
+	background-image: url("../img/autocomplete/loading.gif") !important;
 }
 /*
 .leftimage {
-	background: url("../images/autocomplete/shortboxleftimg.png") no-repeat scroll 6px 11px transparent !important;
+	background: url("../img/autocomplete/shortboxleftimg.png") no-repeat scroll 6px 11px transparent !important;
 }
 */
 .bigleftimage {
-	background: url("../images/autocomplete/shortboxleftimg.png") no-repeat
+	background: url("../img/autocomplete/shortboxleftimg.png") no-repeat
 		scroll 5px 17px #FDFFFF !important;
 	height: 32px !important;
 	left: 1px;
@@ -109,18 +109,18 @@
 }
 
 #suggestions-auto-com img,#suggestions-auto-com div,#suggestions-auto-com span,#suggestions-auto-com a
-	{
+	{ /*
 	position: relative !important;
-	/*
 	right: 0px !important;
 	left: 0px !important;
 	*/
+	
 }
 
 #suggestions-auto-com .box {
 	cursor: pointer;
 	padding-left: 10px;
-	height: auto;
+	height: 35px;
 }
 
 #suggestions-auto-com .box-empty {
@@ -150,7 +150,7 @@
 	float: left;
 	width: 85%;
 	text-align: left;
-	padding-top: 8px !important;
+	/*	padding-top: 8px !important; */
 }
 
 #suggestions-auto-com .left-textbox {
@@ -164,7 +164,6 @@
 	float: left;
 	display: inline;
 	clear: none;
-	
 	font-size: 12px;
 	color: #333;
 	margin: 0px !important;
@@ -176,7 +175,6 @@
 	float: left;
 	display: inline;
 	clear: none;
-	
 	font-size: 12px;
 	font-weight: bold;
 	color: #777;
@@ -189,7 +187,6 @@
 	float: right;
 	display: inline;
 	clear: none;
-	
 	font-size: 12px;
 	color: #648bd8;
 	margin: 0px !important;
@@ -198,7 +195,6 @@
 }
 
 #suggestions-auto-com .textbox .text {
-	
 	font-size: 12px;
 	color: #333;
 	font-weight: bold;
@@ -210,7 +206,6 @@
 }
 
 #suggestions-auto-com .textbox .longtext {
-	
 	font-size: 9px;
 	color: #8b8b8b;
 	font-weight: bold;
@@ -242,12 +237,11 @@
 	line-height: 24px;
 	font-weight: bold;
 	font-size: 10px;
-	
 	background-color: white;
 }
 
 .up_box span {
-	background-image: url("../images/autocomplete/up.png");
+	background-image: url("../img/autocomplete/up.png");
 	background-repeat: no-repeat;
 	background-position: right center;
 	padding-right: 20px;
@@ -263,7 +257,6 @@
 	line-height: 24px;
 	font-weight: bold;
 	font-size: 10px;
-	
 	background-color: white;
 }
 
@@ -272,7 +265,6 @@
 	line-height: 24px;
 	font-weight: bold;
 	font-size: 10px;
-	
 	background-color: white;
 	padding-left: 9px;
 }
@@ -298,7 +290,7 @@
 }
 
 .down_box span {
-	background-image: url("../images/autocomplete/down.png");
+	background-image: url("../img/autocomplete/down.png");
 	background-repeat: no-repeat;
 	background-position: right center;
 	padding-right: 20px;
@@ -310,7 +302,7 @@
 }
 
 .auto_facebook_loading {
-	background-image: url("../images/autocomplete/fb_loading.gif");
+	background-image: url("../img/autocomplete/fb_loading.gif");
 	background-repeat: no-repeat;
 	background-position: right center;
 	padding-right: 42px;
@@ -318,7 +310,7 @@
 }
 
 #suggestions-auto-com .autotype_facebook_img {
-	background-image: url("../images/autocomplete/facebook_hover.png");
+	background-image: url("../img/autocomplete/facebook_hover.png");
 	background-repeat: no-repeat;
 	position: absolute !important;
 	width: 14px;
@@ -373,13 +365,13 @@ li.autocomplete_li {
 
 li.autocomplete_li_sug {
 	clear: both;
-	float:left;
-	/*position: absolute;
-	z-index: 999;*/
+	float: left;
+	position: absolute;
+	z-index: 999;
 }
 
 .shortbox li.autocomplete_li_sug {
-	top: 27px;
+	top: 47px;
 }
 
 .longbox li.autocomplete_li_sug {
@@ -425,6 +417,7 @@ li.autocomplete_li_selected span {
 	color: #A6B3CF;
 	cursor: pointer;
 }
+
 li.autocomplete_li_selected span.text {
 	margin-left: 0px;
 	color: black;
@@ -459,7 +452,7 @@ ul.autocomplete_ul input {
 }
 
 .shortbox input {
-	height: 23px !important;
+	height: 47px !important;
 	line-height: 23px !important;
 }
 
@@ -467,8 +460,8 @@ ul.autocomplete_ul input {
 	height: 29px !important;
 }
 
-.autocomplete_li input {
-	color: #bebebe;
+.autocomplete_li input { /* color: #bebebe; */
+	
 }
 
 #fb_data_box {

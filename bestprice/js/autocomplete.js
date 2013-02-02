@@ -47,11 +47,11 @@ function initAutoComplete(id, func) {
 	if ($('#' + id).hasClass('shortbar')) {
 		$('#' + id).closest('ul.autocomplete_ul').addClass('shortbox');
 		var width = parseInt($('#' + id).width()) - parseInt($('#' + id).css('paddingLeft').replace(/[^-\d\.]/g, ''));
-		var w = getWidthValue(id); 
-		if(w){
-			width = w; 
-			$('#' + id).closest('ul.autocomplete_ul').attr('style', $('#' + id).closest('ul.autocomplete_ul')+';width:'+width+'px !important;');
-		}else{
+		var w = getWidthValue(id);
+		if (w) {
+			width = w;
+			$('#' + id).closest('ul.autocomplete_ul').attr('style', $('#' + id).closest('ul.autocomplete_ul') + ';width:' + width + 'px !important;');
+		} else {
 			$('#' + id).closest('ul.autocomplete_ul').css('width', width);
 		}
 		$('#' + id).closest('ul.autocomplete_ul').attr('style', $('#' + id).closest('ul.autocomplete_ul').attr('style') + ' ' + 'margin-bottom: 0px !important');
@@ -60,15 +60,15 @@ function initAutoComplete(id, func) {
 	if ($('#' + id).hasClass('longbar')) {
 		$('#' + id).closest('ul.autocomplete_ul').addClass('longbox');
 		var width = parseInt($('#' + id).width()) - parseInt($('#' + id).css('paddingLeft').replace(/[^-\d\.]/g, ''));
-		var w = getWidthValue(id); 
-		if(w){
-			width = w; 
-			$('#' + id).closest('ul.autocomplete_ul').attr('style', $('#' + id).closest('ul.autocomplete_ul').attr('style')+';width:'+width+'px !important;');
+		var w = getWidthValue(id);
+		if (w) {
+			width = w;
+			$('#' + id).closest('ul.autocomplete_ul').attr('style', $('#' + id).closest('ul.autocomplete_ul').attr('style') + ';width:' + width + 'px !important;');
 		}
 		$('#' + id).closest('ul.autocomplete_ul').attr('style', $('#' + id).closest('ul.autocomplete_ul').attr('style') + ' ' + 'margin-bottom: 0px !important');
 		addClass = 'longprocessbar';
 	}
-	
+
 	if ($('#' + id).siblings('#suggestions-auto-com').length <= 0) {
 		if ($('#' + id).hasClass('longbar')) {
 			$('#' + id).parent('li').after('<li class="autocomplete_li_sug"><div id="suggestions-auto-com" class="longdropdown"></div></li>');
@@ -93,13 +93,13 @@ function initAutoComplete(id, func) {
 			// }
 			var inputVal = returnVal[id];
 			if (inputVal && (inputVal.length == 0 || inputVal == -1) && $(this).val().length > 0) {
-				updateValue(false, id, $(this).val(), -1, true); 
+				updateValue(false, id, $(this).val(), -1, true);
 			}
 		}
 	});
 	$('#' + id).live('keydown', function(evt) {
 		var entities = $(this).parent('li').siblings('.autocomplete_li_sug').children('#suggestions-auto-com').children('.formatdata');
-		
+
 		if (evt.keyCode == '40') { // down
 			if (entities.length <= 0) {
 				$(this).parent('li').siblings('.autocomplete_li_sug').children('#suggestions-auto-com').children('.formatdata').first().addClass('active');
@@ -126,7 +126,7 @@ function initAutoComplete(id, func) {
 					entity = entity1;
 				}
 			});
-			if(!entity){
+			if (!entity) {
 				return;
 			}
 			var e_id = entity.attr('id');
@@ -222,7 +222,7 @@ function initAutoComplete(id, func) {
 					entity = entity1;
 				}
 			});
-			if(!entity){
+			if (!entity) {
 				return;
 			}
 			e_id = entity.attr('id');
@@ -274,7 +274,7 @@ function initAutoComplete(id, func) {
 			var entity = $(this).parent('li').siblings('.autocomplete_li_sug').children('#suggestions-auto-com').children('.active');
 			if (entity.length > 0) {
 				selectEntity(entity.first());
-			}else{
+			} else {
 				closeAutocomplete(id);
 			}
 		} else if (evt.keyCode == '32') {
@@ -284,7 +284,7 @@ function initAutoComplete(id, func) {
 			var entity = $(this).parent('li').siblings('.autocomplete_li_sug').children('#suggestions-auto-com').children('.active');
 			if (entity.length > 0) {
 				selectEntity(entity.first());
-			}else{
+			} else {
 				closeAutocomplete(id);
 			}
 		} else if (evt.keyCode == '8') {
@@ -643,7 +643,7 @@ $(document).ready(function() {
 		var id = $(this).closest('.autocomplete_li_selected').find('#autoid').val();
 		var func = getMultiRemove(id);
 		if (func) {
-			window[func](val,text);
+			window[func](val, text);
 		}
 		$(this).closest('.autocomplete_li_selected').remove();
 		$('#' + id).focus();
@@ -923,8 +923,6 @@ function getWidthValue(id) {
 	return func;
 }
 
-
-
 function scanAuto() {
 	var id = '', func = '';
 	$('.autocomplete').not('.auto_loaded').each(function() {
@@ -960,4 +958,46 @@ function fineWithAuto(entity) {
 			return true;
 		}
 	}
+}
+
+function inputFocusBlur() {
+	// blur,focus section of input box
+	jQuery('.textinput').each(function() {
+		jQuery(this).addClass('changedeactivetxtcolor');
+		var def = jQuery(this).attr('alt');
+		if (jQuery(this).val().length == 0) {
+			jQuery(this).val(def);
+		}
+
+		jQuery(this).live('focus', function() {
+			jQuery(this).removeClass('changedeactivetxtcolor');
+			jQuery(this).addClass('changeactivetxtcolor');
+			if (fineWithAuto(jQuery(this))) {
+				var def = jQuery(this).attr('alt');
+				if (jQuery(this).val() == def) {
+					jQuery(this).val('');
+				}
+			}
+
+		});
+
+		jQuery(this).live('blur', function() {
+			if (fineWithAuto(jQuery(this))) {
+				var def = jQuery(this).attr('alt');
+				if (jQuery(this).val().length == 0) {
+					jQuery(this).val(def);
+					jQuery(this).removeClass('changeactivetxtcolor');
+					jQuery(this).addClass('changedeactivetxtcolor');
+				} else if (jQuery(this).val() != def) {
+					jQuery(this).removeClass('changedeactivetxtcolor');
+					jQuery(this).addClass('changeactivetxtcolor');
+				}
+				if (jQuery(this).attr('id')) {
+					resetInputWidth(jQuery(this).attr('id'));
+				}
+			}
+		});
+
+	});
+
 }

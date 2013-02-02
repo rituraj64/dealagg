@@ -139,7 +139,30 @@ Gain control of your money and discover countless options</p>
         		<div class="genie-frmdiv">
         		<span class="gen-srch2">search</span>
         			<div class="genie-inputbg">
-		  		<input tabindex="1" type="text" name='q' id='q' class="input-xlarge genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->query;}else {echo 'Write Exact Product Name...' ;}?>'>
+        			<script type="text/javascript">
+        				function getAuto(val){
+            				var url = '<?php echo Parser::SITE_URL.'auto.php?term=';?>'+val;
+        					var ajax = $.getJSON(url, function(data) {
+            					var data2 = [];
+            					if(data.data.length > 0){
+                					for(var i=0;i<data.data.length;i++){
+            							data2.push({img:data.data[i].img,text:data.data[i].name,longtext:'Brand: ' +data.data[i].brand,key:data.data[i].id});
+                					}
+            					}
+            					updateAuto(data2);
+        					});
+        				}
+        				function setProductId(text, val, longtext, img, sel){
+            				if(sel){
+                				
+            				}
+        				}
+        				function getProductId(){
+        				}
+        			</script>
+        		<div style="float:left;position: relative;">
+		  			<input tabindex="1" type="text" name='q' id='q' class="noaddnew noautofill autocomplete func[getAuto] shortbar value[setProductId] return[getProductId] width[375] genie-input" style="font-size: 25px;height: 39px;" value='<?php if(isset($cache_data)){echo $searchObj->query;}?>' alt='Write Exact Product Name...'>
+		  		</div>
 		  		<div  tabindex="2" class="genie-select" style="font-size:18px;height:47px;">
 			  		<a class="genie-selicon"><img src='<?php echo Parser::SITE_URL;?>img/selicon.png' /> </a>
 			  		<ul id="genie-chldcat" class="closed">
