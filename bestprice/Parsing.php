@@ -474,14 +474,14 @@ class Parsing{
 			}
 
 
-			if(isset($data[0])){
-				$row = $data[0];
+			if(isset($data2[0])){
+				$row = $data2[0];
 				$text = $this->findBestCoupon(array('product'=>$row,'cat'=>$category));
 				if(empty($text)){
 					$text = 'Not Found';
 				}
 				$row['coupon'] = $text;
-				$data[0] = $row;
+				$data2[0] = $row;
 			}
 		}
 
@@ -500,7 +500,7 @@ class Parsing{
 		}
 		}
 		*/
-		return $data;
+		return $data2;
 	}
 	public function clearHtml($str){
 		$str = preg_replace(
