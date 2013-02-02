@@ -10,7 +10,7 @@ if(isset($_REQUEST['term'])){
 	$data = $product->query($sql);
 	$return['data'] = array();
 	while($row = mysql_fetch_assoc($data)){
-		$return['data'][] = array('name'=>$row['full_name'],'brand'=>$row['brand'],'category_id'=>$row['category_id'],'img'=>Parser::SITE_URL.'img/fb.png','id'=>$row['id']);
+		$return['data'][] = array('name'=>$row['full_name'],'brand'=>$row['brand'],'img'=>Parser::SITE_URL.'img/fb.png','id'=>$row['id'].'#'.$row['category_id']);
 	}
 }else{
 	$return['data'] = array();
