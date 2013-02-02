@@ -78,12 +78,8 @@ foreach($data as $row){
 	$follow_id = $row['id'];
 	$follow_url = new FollowUrl();
 	$data = $follow_url->query('select follow_url.*,`search`.category from follow_url join follow join `search` where follow_id = '.$follow_id.' and follow.id = follow_url.follow_id and `search`.query_id = follow.query_id');
-	$data = mysql_fetch_assoc($data);
-	if(isset($data['category'])){
-		$data = array($data);
-	}
-	if(sizeof($data)){
-		foreach($data as $row){
+	if(mysql_num_rows($data)){
+		while($row = mysql_fetch_assoc($data)){
 			$website = $row['follow_website'];
 			$last = $row['last_followed'];
 			$follow_name = $row['follow_name'];
