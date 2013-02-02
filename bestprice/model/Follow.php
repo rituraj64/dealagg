@@ -11,7 +11,7 @@ class Follow extends SmartModel{
 	public $_table = "follow";
 	public $_fields = array('id','query_id','follow_start','follow_end','follow_reason','userid');
 
-	public function report($id,$prev_data,$new_data,$additional = array()){
+	public function report($id,$prev_data,$new_data,$coupon = false,$couponValue = array()){
 
 		$data = $this->query('select * from follow_url_map where follow_id = '.$id);
 		$data = mysql_fetch_assoc($data);
@@ -42,15 +42,20 @@ class Follow extends SmartModel{
 		$mail = new phpmailer();
 		$mail->setFrom($to, 'PriceGenie');
 		$mail->Subject    =$subject;
-		$message = 'Old Price = '. $prev_data['disc_price'].'<br/>';
-		$message .= 'New Price = '. $new_data['disc_price'].'<br/>';
-		$message .= 'Product Name = '. $new_data['name'].'<br/>';
-		$message .= 'New Product URL = '. $new_data['url'].'<br/>';
-		$message .= 'Old Product URL = '. $prev_data['url'].'<br/>';
-
-		if(isset($additional['coupon'])){
-			$message .= 'User Coupon = '. print_r($additional['coupon'],true).'<br/>';
+		if(!$coupon){
+			$message = 'Old Price = '. $prev_data['disc_price'].'<br/>';
+			$message .= 'New Price = '. $new_data['disc_price'].'<br/>';
+			$message .= 'Product Name = '. $new_data['name'].'<br/>';
+			$message .= 'New Product URL = '. $new_data['url'].'<br/>';
+			$message .= 'Old Product URL = '. $prev_data['url'].'<br/>';
+		}else{
+			$message = 'Old Price = '. $prev_data['disc_price'].'<br/>';
+			$message .= 'Product Name = '. $prev_data['name'].'<br/>';
+			$message .= 'Old Product URL = '. $prev_data['url'].'<br/>';
+			$message .= 'Coupon Code Found FOr your PRoduct = '. print_r($couponValue).'<br/>';
 		}
+		$message .= 'Source of match = '. $prev_data['from'].'<br/>';
+
 
 		$mail->MsgHTML($message);
 		$mail->AddAddress('manish@excellencetechnologies.in', "Manish");
@@ -60,9 +65,9 @@ class Follow extends SmartModel{
 
 
 		if(!$mail->Send()) {
-			echo "Mailer Error: " . $mail->ErrorInfo;
+			//echo "Mailer Error: " . $mail->ErrorInfo;
 		} else {
-			echo "Message sent!";
+			//echo "Message sent!";
 		}
 	}
 }

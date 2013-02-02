@@ -752,9 +752,56 @@ class Parsing{
 		foreach($coupons as $c){
 			$coupon_cat = $c['category'];
 			$coupon_cat = explode(',',$coupon_cat);
-			if(in_arrray($category,$coupon_cat)){
+			if(in_array($category,$coupon_cat)){
+				if(strcasecmp($c['website'],$website) == 0){
+					if(empty($c['active_to']) || time() <= $c['active_to']){
+						$min = 0;
+						if(!empty($c['min_amt'])){
+							$min = $c['min_amt'];
+						}
 
+						if($price > $min){
+							if(!empty($c['product'])){
+								if($this->matchProductName($c['product'], $name)){
+									return $c;
+								}
+							}else{
+								return $c;
+							}
+						}
+					}
+				}
 			}
 		}
+	}
+	function matchProductName($main,$sec){
+		$main = explode(' ',$main);
+		foreach($main as $m){
+			if(strpos($m,'-') !== false){
+				$m1 = $m;
+				$m = array($m1,str_replace('-',' ',$m1),str_replace('-','',$m1));
+			}
+			$found = false;
+			if(is_array($m)){
+
+				$subf = false;
+				foreach($m as $mm){
+					if(strpos($sec,$mm) !== false){
+						$subf = true;
+						break;
+					}
+				}
+				$found = $subf;
+
+			}else{
+				if(strpos($sec,$m) !== false){
+					$found = true;
+				}
+			}
+			if(!$found){
+				return false;
+			}
+		}
+		return true;
 	}
 }

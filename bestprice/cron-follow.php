@@ -28,8 +28,12 @@ $parse_queue = array();
 $cache_data = array();
 
 $couponactive = new CouponActive();
-$data = $couponactive->read(null,array('is_follow'=>0));
+$coupons = $couponactive->read(null,array('is_follow'=>0));
 
+
+$couponactive->update(array('is_follow'=>1),array('is_follow'=>0));
+
+//echo sizeof($coupons). ' New Coupons Found';
 
 $filelist = array();
 $dir = dirname(__FILE__).'/cache';
@@ -73,7 +77,11 @@ $data = $follow->read(null,array('follow_end'=>0));
 foreach($data as $row){
 	$follow_id = $row['id'];
 	$follow_url = new FollowUrl();
-	$data = $follow_url->read(null,array('follow_id'=>$follow_id));
+	$data = $follow_url->query('select follow_url.*,`search`.category from follow_url join follow join `search` where follow_id = '.$follow_id.' and follow.id = follow_url.follow_id and `search`.query_id = follow.query_id');
+	$data = mysql_fetch_assoc($data);
+	if(isset($data['category'])){
+		$data = array($data);
+	}
 	if(sizeof($data)){
 		foreach($data as $row){
 			$website = $row['follow_website'];
@@ -82,6 +90,7 @@ foreach($data as $row){
 			$follow_url = $row['follow_url'];
 			$prev_data = $row['prev_data'];
 			$prev_data = json_decode($prev_data,true);
+			$category = $row['category'];
 
 
 			$found = false;
@@ -90,14 +99,33 @@ foreach($data as $row){
 				foreach($rows as $row1){
 					if($row1['name'] == $follow_name){
 						if($row1['disc_price'] != $prev_data['disc_price'] && $row1['disc_price'] > 0){
-							$follow->report($row['follow_id'],$prev_data,$row1);
 							$follow_url = new FollowUrl();
 							$follow_url->update(array('last_followed'=>time(),'prev_data'=>json_encode($row1)),array('id'=>$row['id']));
+							$prev_data['from'] = 'cache file fetch';
+							$follow->report($row['follow_id'],$prev_data,$row1);
 							$found = true;
 							break;
 						}
 					}
 				}
+			}
+
+			if(!empty($coupons)){
+				$product = array();
+				$product['category'] = $category;
+				$product['name'] = $follow_name;
+				$product['website'] = $website;
+				$product['disc_price'] = $prev_data['disc_price'];
+				$c = $parsing->findExactMatchCoupon($coupons, $product);
+				if(is_array($c)){
+					$prev_data['from'] = 'coupon code match';
+					$follow->report($row['follow_id'],$prev_data,array(),true,$c);
+					$follow_url = new FollowUrl();
+					$follow_url->update(array('last_followed'=>time()),array('id'=>$row['id']));
+					echo 'found';
+					$found = true;
+				}
+				die;
 			}
 
 			if(date('Y-m-d',$last) != date('Y-m-d') && !$found){
@@ -141,6 +169,7 @@ foreach($parse_queue as $row){
 		if($data){
 			if($data['price'] != $prev_data['disc_price']  && $data['price'] > 0){
 
+				$prev_data['from'] = 'product url fetch';
 				$follow->report($row['follow_id'],$prev_data,$data);
 
 				$data['disc_price'] = $data['price'];

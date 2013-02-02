@@ -11,9 +11,11 @@
     <!-- Le styles -->
     <link href="<?php echo Parser::SITE_URL;?>bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo Parser::SITE_URL;?>style.css" rel="stylesheet">
+    <link href="<?php echo Parser::SITE_URL;?>css/autocomplete.css" rel="stylesheet">
     <link href="<?php echo Parser::SITE_URL;?>bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://cdn.webrupee.com/font">
     <script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="<?php echo Parser::SITE_URL;?>js/autocomplete.js" type="text/javascript"></script>
 	<script src="<?php echo Parser::SITE_URL;?>bootstrap/js/bootstrap.js" type="text/javascript"></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/ajax.js'></script>
 	<script type="text/javascript" src='<?php echo Parser::SITE_URL;?>js/page.js'></script>

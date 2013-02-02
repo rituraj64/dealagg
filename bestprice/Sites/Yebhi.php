@@ -58,7 +58,8 @@ class Yebhi extends Parsing{
 				$url = pq($div)->find('.gotopage')->attr('href');
 				$name = pq($div)->children('p:first')->children('a')->html();
 				$disc_price = pq($div)->children('.priice')->children('.inr')->html();
-				$offer = pq($div)->children('.saving:last')->html();
+				//$offer = pq($div)->children('.saving:last')->html(); //commented cos its giving strings like this Savings r: u00c2u00a0u00c2u00a0u00c2u00a05491 or 17%rEM
+				$offer = '';
 				$shipping = '';
 				$stock = 0;
 				$author = '';
