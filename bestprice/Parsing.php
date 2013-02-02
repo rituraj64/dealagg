@@ -667,7 +667,7 @@ class Parsing{
 				}else if($row['discount_type'] == 'percentage'){
 					if($row['discount'] > $per){
 						$per = $row['discount'];
-						$title_per = 'Discounts Upto '.$amt.'%'.' Valid Upto '. date('d M',$row['active_to']) .' <br> Use Coupon Code: '.$row['coupon_code'].'<br/>'.$row['description'];
+						$title_per = 'Discounts Upto '.$per.'%'.' Valid Upto '. date('d M',$row['active_to']) .' <br> Use Coupon Code: '.$row['coupon_code'].'<br/>'.$row['description'];
 					}
 				}
 			}
