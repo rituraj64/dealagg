@@ -5,7 +5,8 @@ $return = array();
 if(isset($_REQUEST['term'])){
 	$term = $_REQUEST['term'];
 	$product = new Product();
-	$sql = "SELECT *,MATCH(full_name) AGAINST ('".mysql_escape_string($term)."') AS score FROM product WHERE MATCH(full_name) AGAINST('".mysql_escape_string($term)."') ORDER BY score DESC,prod_order asc";
+	//$sql = "SELECT *,MATCH(full_name) AGAINST ('".mysql_escape_string($term)."') AS score FROM product WHERE MATCH(full_name) AGAINST('".mysql_escape_string($term)."') ORDER BY score DESC,prod_order asc";
+	$sql = "select * from product where full_name like '%".mysql_escape_string($term)."%' ORDER BY prod_order asc";
 	$data = $product->query($sql);
 	$return['data'] = array();
 	while($row = mysql_fetch_assoc($data)){
