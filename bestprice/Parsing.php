@@ -500,7 +500,7 @@ class Parsing{
 		}
 		}
 		*/
-		return $data2;
+		return $data;
 	}
 	public function clearHtml($str){
 		$str = preg_replace(
@@ -639,7 +639,7 @@ class Parsing{
 				if($row['bank'] != 'None'){
 					continue;
 				}
- 
+
 				if(!empty($row['product'])){
 					if(!empty($name)){
 
