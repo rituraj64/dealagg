@@ -639,7 +639,7 @@ class Parsing{
 				if($row['bank'] != 'None'){
 					continue;
 				}
-
+ 
 				if(!empty($row['product'])){
 					if(!empty($name)){
 
