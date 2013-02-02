@@ -157,7 +157,7 @@ Gain control of your money and discover countless options</p>
             				if(sel){
                 				val = val.split('#');
                 				$('#product').val(val[0]);
-								$('#genie-catli').each(function(){
+								$('.genie-catli').each(function(){
 									var value = $(this).attr('value');
 									if(value == val[1]){
 										$('li.genie-catli').removeClass('discat');

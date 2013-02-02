@@ -227,7 +227,7 @@ function findPrice(site, cache, trust, changeSubCat, searchThis) {
 		}
 	}
 	if (site && site.length > 0) {
-		var url = $('#ajax_url').val().replace('site', site) + 'find.php?q=' + query + '&cat=' + category + "&site=" + site + "&cache=" + cache + "&subcat=" + subcat + '&query_id=' + $('#query_id').val()+'&'+$('#session_name').val() + '=' + $('#session_id').val() + "&callback=?";
+		var url = $('#ajax_url').val().replace('site', site) + 'find.php?q=' + query + '&cat=' + category + "&site=" + site + "&cache=" + cache + "&subcat=" + subcat + '&query_id=' + $('#query_id').val()+'&'+$('#session_name').val() + '=' + $('#session_id').val() + "&callback=?"+ "&product=" + $('#product').val();
 	} else {
 		// reset all here on first button click
 		$('#loading').show();
@@ -266,7 +266,7 @@ function findPrice(site, cache, trust, changeSubCat, searchThis) {
 		}
 		ajaxReq = new Array();
 		starttime = new Date().getTime();
-		var url = $('#site_url').val() + 'find.php?q=' + query + '&cat=' + category + "&cache=" + cache + "&subcat=" + subcat +'&'+$('#session_name').val() + '=' + $('#session_id').val();
+		var url = $('#site_url').val() + 'find.php?q=' + query + '&cat=' + category + "&cache=" + cache + "&subcat=" + subcat +'&'+$('#session_name').val() + '=' + $('#session_id').val() + "&product=" + $('#product').val();
 	}
 	// if (trust == 5) {
 	// url += '&trust=1';
@@ -943,7 +943,7 @@ function finished(preloaded) {
 
 				if (has_product == 'true') {
 					$(this).children('.other_info_parent').children('.other_info').children('.product_loading').show();
-					var url = $('#ajax_url').val().replace('site', website) + 'product.php?url=' + encodeURI(url) + '&website=' + encodeURI(website) + '&price=' + encodeURI(price) + "&stock=" + encodeURI(stock) +'&'+$('#session_name').val() + '=' + $('#session_id').val() + "&callback=?" ;
+					var url = $('#ajax_url').val().replace('site', website) + 'product.php?url=' + encodeURI(url) + '&website=' + encodeURI(website) + '&price=' + encodeURI(price) + "&stock=" + encodeURI(stock) +'&'+$('#session_name').val() + '=' + $('#session_id').val() + "&callback=?" + "&product=" + $('#product').val() ;
 					var ajax = $.getJSON(url, function(data) {
 						$('#' + data.website).children('.other_info_parent').children('.other_info').children('.product_loading').hide();
 
@@ -1030,7 +1030,7 @@ function updateShareLink(t) {
 		$('#persistForm').append('<input type="hidden" name="time_taken" value="' + t + '" />');
 	}
 
-	var url = $('#site_url').val() + 'persist.php?'+$('#session_name').val() + '=' + $('#session_id').val();
+	var url = $('#site_url').val() + 'persist.php?'+$('#session_name').val() + '=' + $('#session_id').val() + "&product=" + $('#product').val();
 
 	var ajax = $.ajax({
 		type : "POST",

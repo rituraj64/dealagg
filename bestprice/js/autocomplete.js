@@ -281,12 +281,12 @@ function initAutoComplete(id, func) {
 			// space
 		} else if (evt.keyCode == '9') {
 			// tab
-			var entity = $(this).parent('li').siblings('.autocomplete_li_sug').children('#suggestions-auto-com').children('.active');
-			if (entity.length > 0) {
-				selectEntity(entity.first());
-			} else {
-				closeAutocomplete(id);
-			}
+			/*
+			 * var entity =
+			 * $(this).parent('li').siblings('.autocomplete_li_sug').children('#suggestions-auto-com').children('.active');
+			 * if (entity.length > 0) { selectEntity(entity.first()); } else {
+			 * closeAutocomplete(id); }
+			 */
 		} else if (evt.keyCode == '8') {
 			if ($('#' + id).parent().siblings('.autocomplete_li_selected').length > 0) {
 				if ($('#' + id).parent().siblings('.autocomplete_li_selected').last().hasClass('autocomplete_li_selected_active')) {
